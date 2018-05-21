@@ -1,0 +1,6 @@
+#wrapper {height:30px;}
+img.excel {float:left;margin:3px;cursor:pointer;}
+div.lettrine {float:left;color:#f00;z-index:1;position:relative;left:-8px;top:12px;font-weight:bold;background-color:#fff;font-family:Monospace;cursor:pointer;}
+.fl {float:left;border-right:1px solid #ffe0e0;margin:3px;padding:3px;height:20px}
+#tableStock {clear:both;}
+input[type="radio"] {margin:3px 5px}

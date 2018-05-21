@@ -1,0 +1,32 @@
+<html>
+<head><title>Aide adrezo</title>
+<link rel="stylesheet" href="../../stylesheet/common.css" type="text/css" />
+</head>
+<body>
+<h2>Import d'adresses IP au format CSV</h2>
+<p>Il est possible pour les administrateurs de l'application d'importer des fichiers CSV afin de créer/modifier les adresses IP contenus dans la base de données.<br />
+Il n'est pas possible d'intégrer toutes les notions d'IP temporaire ou de migration avec cette méthode.<br />
+Le fichier d'import ne doit pas contenir plus de 1000 lignes.</p>
+<p>Chaque ligne du fichier CSV devra être constituée des champs suivants (tous obligatoires sauf si précisé) : KEYWORD,ID,CTX,SITE,SUBNET,IP,MASK,NAME,DEF,MAC<br />
+<ul>Voici une explicaton de ces champs :
+<li>KEYWORD : valeur obligatoire : IP</li>
+<li>ID : valeur pour une création : 0</li>
+<li>CTX : Nom du contexte</li>
+<li>SITE : Nom du site</li>
+<li>SUBNET : Nom du sous-réseau</li>
+<li>IP : Adresse IP dans un format particulier (voir section suivante)</li>
+<li>MASK : Masque de sous-réseau au format CIDR (nombre de 2 à 32)</li>
+<li>NAME : Nom pour cette adresse IP</li>
+<li>DEF : Libellé pour cette adresse IP</li>
+<li>MAC : MAC de cette adresse IP (champ non obligatoire)</li>
+</ul>
+</p>
+<h3>Format de l'adresse IP</h3>
+Chaque nombre de l'adresse IP est représenté par 3 chiffres avec une complétion par des zéros à gauche si le nombre ne contient pas 3 chiffres.<br />
+Ce qui donne pour 10.178.76.3 => 010 178 076 003 => <b>010178076003</b>
+<h3>Fichier Excel</h3>
+<p>Vous trouverez ci-dessous un lien vers un fichier excel à télécharger pour vous aider à constituer le fichier CSV<br />
+<a href="../ressource/adrezo_modele_csv.xlsx">fichier modele Excel pour import CSV Adrezo</a><br />
+Une fois le fichier complété, le transmettre à un administrateur de l'application pour import.</p>
+</body>
+</html>

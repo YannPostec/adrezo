@@ -1,0 +1,44 @@
+<html>
+<head><title>Adrezo Help</title>
+<link rel="stylesheet" href="../../stylesheet/common.css" type="text/css" />
+</head>
+<body>
+<h2>Directories Management</h2>
+<p>With proper permissions, you can manage directories.<br />
+It is not possible to alterate the predefined local directory.<hr />
+On this page, you will find a table with :
+<ul>
+	<li>An Add zone on the first line</li>
+	<li>the list of existing directories list with their informations on the next lines</li>
+</ul>
+Within each line, you could :
+<ul>
+	<li>Delete a user when you click on <img src="../../img/icon_delete.jpg" alt="DeleteIcon" /></li>
+	<li>Modify a user when you click on <img src="../../img/icon_modify.jpg" alt="ModifyIcon" /></li>
+</ul>
+When adding or modifying, icons <img src="../../img/icon_valid.png" alt="ValidIcon" /><img src="../../img/icon_refuse.png" alt="ResetIcon" /> appear.<br />
+Complete or modify informations then click on <img src="../../img/icon_valid.png" alt="ValidIcon" /> to validate.<br />
+You could also click on <img src="../../img/icon_refuse.png" alt="ResetIcon" /> to canel, all fields return to their initial value.<hr />
+A directory is defined by those fields :
+<ul>
+	<li>A name</li>
+	<li>An order that determines the search order when users authenticates</li>
+	<li>Its type in a predefined list :
+		<ul>
+			<li>Local : User local database. It already exists and cannot be modified or deleted.</li>
+			<li>LDAP : Only external type available today. Choose this type to query a LDAP external directory (like OpenLDAP or MS Active Directory)</li>
+			<li>Other external types like Radius or TACACS could be added to this list in future versions.</li>
+		</ul>
+	</li>
+	<li>the configuration for external directories</li>
+</ul>
+</p>
+<hr />
+<h3>LDAP Configuration</h3>
+<p>LDAP Configuration is not available at directory creation. You configure it once created<br />
+The configuration window contains multiple fields, mandatory ones are marked in bold.<br />
+Others fields would have an default value if left empty.<br />
+An explanatory text in italic is present below each field, read them for explanations.</p>
+<b>N.B. : By security measures, password is never displayed</b>
+</body>
+</html>

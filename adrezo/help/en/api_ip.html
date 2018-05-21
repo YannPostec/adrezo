@@ -1,0 +1,127 @@
+<html>
+<head><title>Adrezo Help</title>
+<link rel="stylesheet" href="../../stylesheet/common.css" type="text/css" />
+</head>
+<body>
+<h2>API Syntax, IP section</h2>
+
+<h3>Available IP Address</h3>
+Return an available IP address within one of user authorized subnets.<br />
+Required Roles : API, IP
+<ul>
+<li>URL<ul><li><b>GET /api/ip/dispo/&lt;subnet&gt;</b></li></ul></li>
+<li>In (URI)<ul><li>subnet : subnet id where to search an available IP address</li></ul></li>
+<li>Out (JSON)
+<ul><li>{ "subnet":&lt;subnet&gt;,"ip":"&lt;ip&gt;" }
+<ul><li>subnet : integer, subnet id in database</li>
+<li>ip : string, ip address format x.x.x.x with 0&lt;x&lt;255</li></ul></li>
+</ul></li>
+<li>HTTP return code, if not ok return informations in text format
+<ul><li>500 : internal error in API</li>
+<li>404 : ok but no ip available</li>
+<li>200 : ok, return result in JSON format</li></ul></li>
+</ul>
+<hr />
+
+<h3>Informations on IP address</h3>
+Return informations over a given IP address.<br />
+Required Roles : API
+<ul>
+<li>URL<ul><li><b>GET /api/ip/&lt;ip&gt;</b></li></ul></li>
+<li>In (URI)<ul><li>ip : string, IP address format x.x.x.x with 0&lt;x&lt;255</li></ul></li>
+<li>Out (JSON)
+<ul><li>{ "id":&lt;id&gt;,"ip":"&lt;ip&gt;","mask":&lt;mask&gt;,"mac":&lt;mac&gt;,"name":&lt;name&gt;,"desc":&lt;desc&gt;,"ctx":&lt;ctx&gt;,"site":&lt;site&gt;,"subnet":&lt;subnet&gt; }
+<ul><li>id : integer, IP address id in database</li>
+<li>ip : string, IP address</li>
+<li>mask : integer, subnet mask</li>
+<li>mac : string, optional, associated mac address</li>
+<li>name : string, device name attached to this IP address</li>
+<li>desc : string, optional description</li>
+<li>ctx : integer, context id in database</li>
+<li>site : integer, site id in database</li>
+<li>subnet : integer, subnet id in database</li></ul></li>
+</ul></li>
+<li>HTTP return code, if not ok return informations in text format
+<ul><li>500 : internal error in API</li>
+<li>404 : IP address not found, does not exist in database or is not in an authorized subnet</li>
+<li>200 : ok, return result in JSON format</li></ul></li>
+</ul>
+<hr />
+
+<h3>Delete an IP address</h3>
+Provide suppression of given IP address.<br />
+Required Roles : API, IP
+<ul>
+<li>URL<ul><li><b>DELETE /api/ip/&lt;ip&gt;</b></li></ul></li>
+<li>In (URI)
+<ul><li>ip : string, IP address format x.x.x.x with 0&lt;x&lt;255</li></ul></li>
+<li>Out (text/plain) : none except errors</li>
+<li>HTTP return code, if not ok return informations in text format
+<ul><li>500 : internal error in API</li>
+<li>404 : IP address not found, does not exist in database or is not in an authorized subnet</li>
+<li>200 : ok, IP address has been deleted</li></ul></li>
+</ul>
+<hr />
+
+<h3>Add an IP address</h3>
+Provide creation of an IP Address describe with given attributes.<br />
+Required Roles : API, IP
+<ul>
+<li>URL<ul><li><b>POST /api/ip</b></li></ul></li>
+<li>In (JSON)
+<ul><li>{ "name":&lt;name&gt;,"desc":&lt;desc&gt;,"ip":"&lt;ip&gt;","subnet":&lt;subnet&gt; }
+<ul><li>name : string, device name attached to this IP address, max 20 characters</li>
+<li>desc : string, optional description, max 100 characters</li>
+<li>ip : string, IP address format x.x.x.x with 0&lt;x&lt;255</li>
+<li>subnet : integer, subnet id in database</li></ul></li></ul></li>
+<li>Out (text/plain) : none except errors</li>
+<li>HTTP return code, if not ok return informations in text format
+<ul><li>500 : internal error in API</li>
+<li>404 : subnet not found, does not exist or not authorized</li>
+<li>201 : ok, IP address has been created</li></ul></li>
+</ul>
+<hr />
+
+<h3>Next available device name</h3>
+Find the next available device name with a given prefix.<br />
+Required Roles : API, IP<br />
+It implies that all devices names created in database must strictly follow a classification which offers a natural sort.<br />
+Search is launched against entire database.<br />
+No reservation is made on this name.
+<ul>
+<li>URL<ul><li><b>GET /api/ip/name/&lt;name&gt;</b></li></ul></li>
+<li>In (URI)
+<ul><li>name : string, device name attached to this IP address, max 20 characters</li>
+</ul></li>
+<li>Out (JSON)
+<ul><li>{ "name":&lt;name&gt; }
+<ul><li>name : string, nom possible du prochain équipement</li></ul></li></ul></li>
+<li>HTTP return code, if not ok return informations in text format
+<ul><li>500 : internal error in API</li>
+<li>200 : ok, return result in JSON format</li></ul></li>
+</ul>
+<hr />
+
+<h3>IP Address list in given subnet</h3>
+Return a list of IP address contained in given subnet.<br />
+Required Roles : API
+<ul>
+<li>URL<ul><li><b>GET /api/ip/list/&lt;subnet&gt;</b></li></ul></li>
+<li>In (URI)
+<ul><li>subnet : integer, subnet id in database</li></ul></li>
+<li>Out (JSON)
+<ul><li>{ "ip_list": [ {"id":&lt;id&gt;,"ip":"&lt;ip&gt;","name":&lt;name&gt;,"desc":&lt;desc&gt;,"mask":&lt;mask&gt;},{...} ] }
+<ul><li>id : integer, IP address id in database</li>
+<li>ip : string, IP address</li>
+<li>name : string, device name attached to this IP address</li>
+<li>desc : string, optional description</li>
+<li>mask : integer, subnet mask</li></ul></li></ul></li>
+<li>HTTP return code, if not ok return informations in text format
+<ul><li>500 : internal error in API</li>
+<li>404 : subnet not found, empty or not authorized</li>
+<li>200 : ok, return result in JSON format</li></ul></li>
+</ul>
+<hr />
+
+</body>
+</html>

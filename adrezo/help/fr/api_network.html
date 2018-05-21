@@ -1,0 +1,188 @@
+<html>
+<head><title>Aide adrezo</title>
+<link rel="stylesheet" href="../../stylesheet/common.css" type="text/css" />
+</head>
+<body>
+<h2>Syntaxe API, module Réseau</h2>
+
+<h3>Liste des subnets autorisés</h3>
+Donne la liste des subnets autorisés pour l'utilisateur.<br />
+Roles requis : API
+<ul>
+<li>URL<ul><li><b>GET /api/network/subnet/my</b></li></ul></li>
+<li>Entrée : Aucune</li>
+<li>Sortie (JSON)
+<ul><li>{ "subnet_list": [ {"id":&lt;id1&gt;},{"id":&lt;id2&gt;},{...} ] }
+<ul><li>id : entier, id du subnet dans la base</li></ul></li></ul></li>
+<li>Code de retour HTTP, si non ok retour d'informations en format texte
+<ul><li>500 : erreur interne dans l'API</li>
+<li>200 : ok, retourne le résultat au format JSON</li></ul></li>
+</ul>
+<hr />
+
+<h3>Informations sur un subnet</h3>
+Retourne les informations sur un subnet donné.<br />
+Roles requis : API, NETWORK
+<ul>
+<li>URL<ul><li><b>GET /api/network/subnet/&lt;subnet&gt;</b></li></ul></li>
+<li>Entrée (URI)
+<ul><li>subnet : entier, id du subnet dans la base</li></ul></li>
+<li>Sortie (JSON)
+<ul><li>{ "id":&lt;id&gt;,"desc":&lt;desc&gt;,"ip":"&lt;ip&gt;","mask":&lt;mask&gt;,"gateway":&lt;gateway&gt;,,"broadcast":&lt;broadcast&gt;"ctx":&lt;ctx&gt;,"site":&lt;site&gt;,"vlan":&lt;vlan&gt;,"surnet":&lt;surnet&gt; }
+<ul><li>id : entier, id du subnet dans la base</li>
+<li>desc : chaine, nom du subnet</li>
+<li>ip : chaine, adresse IP du subnet</li>
+<li>mask : entier, masque du subnet</li>
+<li>gateway : chaine, optionnel, adresse IP de la passerelle</li>
+<li>broadcast : chaine, adresse IP de broadcast du subnet</li>
+<li>ctx : entier, id du contexte dans la base</li>
+<li>site : entier, id du site dans la base</li>
+<li>vlan : entier, id du vlan associé dans la base</li>
+<li>surnet : entier, id du surnet associé dans la base</li></ul></li></ul></li>
+<li>Code de retour HTTP, si non ok retour d'informations en format texte
+<ul><li>500 : erreur interne dans l'API</li>
+<li>404 : subnet non trouvé ou non autorisé</li>
+<li>200 : ok, retourne le résultat au format JSON</li></ul></li>
+</ul>
+<hr />
+
+<h3>Suppression d'un subnet</h3>
+Permet la suppression d'un subnet donné.<br />
+Roles requis : API, NETWORK
+<ul>
+<li>URL<ul><li><b>DELETE /api/network/subnet/&lt;subnet&gt;</b></li></ul></li>
+<li>Entrée (URI)<ul><li>subnet : entier, id du subnet dans la base</li></ul></li>
+<li>Sortie (text/plain) : aucune sauf erreur</li>
+<li>Code de retour HTTP, si non ok retour d'informations en format texte
+<ul><li>500 : erreur interne dans l'API</li>
+<li>404 : subnet non trouvé</li>
+<li>200 : ok, subnet supprimé</li></ul></li>
+</ul>
+<hr />
+
+<h3>Ajout d'un subnet</h3>
+Permet l'ajout d'un subnet en fonction des caracteristiques envoyées.<br />
+Roles requis : API, NETWORK
+<ul>
+<li>URL<ul><li><b>POST /api/network/subnet</b></li></ul></li>
+<li>Entrée (JSON)
+<ul><li>{"ip":&lt;ip&gt;,"mask":&lt;mask&gt;,"desc":&lt;desc&gt;,"gateway":&lt;gateway&gt;,"broadcast":&lt;broadcast&gt;,"ctx":&lt;ctx&gt;,"site":&lt;site&gt;,"vlan":&lt;vlan&gt;}
+<ul><li>ip : chaine, adresse IP du subnet</li>
+<li>mask : entier, masque du subnet</li>
+<li>desc : chaine, nom du subnet</li>
+<li>gateway : chaine, optionnel, adresse IP de la passerelle</li>
+<li>broadcast : chaine, adresse IP de broadcast du subnet</li>
+<li>ctx : entier, id du contexte dans la base</li>
+<li>site : entier, id du site dans la base</li>
+<li>vlan : entier, id du vlan associé dans la base</li></ul></li></ul></li>
+<li>Sortie (text/plain) : Subnet &lt;id&gt; created
+<ul><li>id : entier, id du subnet dans la base</li></ul></li>
+<li>Code de retour HTTP, si non ok retour d'informations en format texte
+<ul><li>500 : erreur interne dans l'API</li>
+<li>404 : site non trouvé</li>
+<li>201 : ok, création du subnet effectuée</li></ul></li>
+</ul>
+<hr />
+
+<h3>Liste des subnets</h3>
+Retourne un tableau avec les informations de chaque subnet du site donné.<br />
+Roles requis : API, NETWORK
+<ul>
+<li>URL<ul><li><b>GET /api/network/subnet/list/&lt;site&gt;</b></li></ul></li>
+<li>Entrée (URI)<ul><li>site : entier, id du site dans la base</li></ul></li>
+<li>Sortie (JSON)
+<ul><li>{ "subnet_list": [ {"id":&lt;id&gt;,"ip":&lt;ip&gt;,"mask":&lt;mask&gt;,"desc":&lt;desc&gt;,"gateway":&lt;gateway&gt;,"broadcast":&lt;broadcast&gt;,"ctx":&lt;ctx&gt;,"site":&lt;site&gt;,"vlan":&lt;vlan&gt;,"surnet":&lt;surnet&gt;},{...} ] }
+<ul><li>id : entier, id du subnet dans la base</li>
+<li>desc : chaine, nom du subnet</li>
+<li>ip : chaine, adresse IP du subnet</li>
+<li>mask : entier, masque du subnet</li>
+<li>gateway : chaine, optionnel, adresse IP de la passerelle</li>
+<li>broadcast : chaine, adresse IP de broadcast du subnet</li>
+<li>ctx : entier, id du contexte dans la base</li>
+<li>site : entier, id du site dans la base</li>
+<li>vlan : entier, id du vlan associé dans la base</li>
+<li>surnet : entier, id du surnet associé dans la base</li></ul></li></ul></li>
+<li>Code de retour HTTP, si non ok retour d'informations en format texte
+<ul><li>500 : erreur interne dans l'API</li>
+<li>404 : liste des subnets vide</li>
+<li>200 : ok, retourne le résultat au format JSON</li></ul></li>
+</ul>
+<hr />
+
+<h3>Informations sur un vlan</h3>
+Retourne les informations sur un vlan donné.<br />
+Roles requis : API, NETWORK
+<ul>
+<li>URL<ul><li><b>GET /api/network/vlan/&lt;vlan&gt;</b></li></ul></li>
+<li>Entrée (URI)
+<ul><li>vlan : entier, id du vlan dans la base</li></ul></li>
+<li>Sortie (JSON)
+<ul><li>{ "id":&lt;id&gt;,"name":&lt;name&gt;,"vid":"&lt;vid&gt;","site":&lt;site&gt;,"ctx":&lt;ctx&gt; }
+<ul><li>id : entier, id du vlan dans la base</li>
+<li>name : chaine, nom du vlan</li>
+<li>vid : entier, Vlan ID du vlan</li>
+<li>site : entier, id du site dans la base</li>
+<li>ctx : entier, id du contexte dans la base</li></ul></li></ul></li>
+<li>Code de retour HTTP, si non ok retour d'informations en format texte
+<ul><li>500 : erreur interne dans l'API</li>
+<li>404 : vlan non trouvé</li>
+<li>200 : ok, retourne le résultat au format JSON</li></ul></li>
+</ul>
+<hr />
+
+<h3>Suppression d'un vlan</h3>
+Permet la suppression d'un vlan donné.<br />
+Roles requis : API, NETWORK
+<ul>
+<li>URL<ul><li><b>DELETE /api/network/vlan/&lt;vlan&gt;</b></li></ul></li>
+<li>Entrée (URI)<ul><li>vlan : entier, id du vlan dans la base</li></ul></li>
+<li>Sortie (text/plain) : aucune sauf erreur</li>
+<li>Code de retour HTTP, si non ok retour d'informations en format texte
+<ul><li>500 : erreur interne dans l'API</li>
+<li>404 : vlan non trouvé</li>
+<li>200 : ok, vlan supprimé</li></ul></li>
+</ul>
+<hr />
+
+<h3>Ajout d'un vlan</h3>
+Permet l'ajout d'un vlan en fonction des caracteristiques envoyées.<br />
+Roles requis : API, NETWORK
+<ul>
+<li>URL<ul><li><b>POST /api/network/vlan</b></li></ul></li>
+<li>Entrée (JSON)
+<ul><li>{ "name":&lt;name&gt;,"vid":"&lt;vid&gt;","site":&lt;site&gt;,"ctx":&lt;ctx&gt; }
+<ul><li>name : chaine, nom du vlan</li>
+<li>vid : entier, Vlan ID du vlan</li>
+<li>site : entier, id du site dans la base</li>
+<li>ctx : entier, id du contexte dans la base</li></ul></li></ul></li>
+<li>Sortie (text/plain) : Vlan &lt;id&gt; created
+<ul><li>id : entier, id du vlan dans la base</li></ul></li>
+<li>Code de retour HTTP, si non ok retour d'informations en format texte
+<ul><li>500 : erreur interne dans l'API</li>
+<li>404 : site non trouvé</li>
+<li>201 : ok, création du vlan effectuée</li></ul></li>
+</ul>
+<hr />
+
+<h3>Liste des vlans</h3>
+Retourne un tableau avec les informations de chaque vlan du site donné.<br />
+Roles requis : API, NETWORK
+<ul>
+<li>URL<ul><li><b>GET /api/network/vlan/list/&lt;site&gt;</b></li></ul></li>
+<li>Entrée (URI)<ul><li>site : entier, id du site dans la base</li></ul></li>
+<li>Sortie (JSON)
+<ul><li>{ "vlan_list": [ {"id":&lt;id&gt;,"name":&lt;name&gt;,"vid":"&lt;vid&gt;","site":&lt;site&gt;,"ctx":&lt;ctx&gt;},{...} ] }
+<ul><li>id : entier, id du vlan dans la base</li>
+<li>name : chaine, nom du vlan</li>
+<li>vid : entier, Vlan ID du vlan</li>
+<li>site : entier, id du site dans la base</li>
+<li>ctx : entier, id du contexte dans la base</li></ul></li></ul></li>
+<li>Code de retour HTTP, si non ok retour d'informations en format texte
+<ul><li>500 : erreur interne dans l'API</li>
+<li>404 : liste des vlans vide</li>
+<li>200 : ok, retourne le résultat au format JSON</li></ul></li>
+</ul>
+<hr />
+
+</body>
+</html>

@@ -1,0 +1,127 @@
+<html>
+<head><title>Aide adrezo</title>
+<link rel="stylesheet" href="../../stylesheet/common.css" type="text/css" />
+</head>
+<body>
+<h2>SDR</h2>
+<h3>Alimentation de la base adrezo</h3>
+Les données proviennent de Cacti, plusieurs tâches planifiées permettent d'alimenter la base :
+<ul>
+<li>quotidiennement, la base adrezo est remplie avec les evolutions du parc Cacti (CactiDevicesJob).<br />
+Les nouveaux éléments sont ajoutés, ceux devenus inexistants sont marqués comme Détruit mais reste pour les statistiques, ceux marqués Disable dans Cacti le deviennent également dans la base adrezo.</li>
+<li>toutes les heures, jours ou mois selon ce qui est défini pour CactiStatsJob, les stats de Cacti sont reportés dans adrezo et sont réinitialisés dans la base Cacti.</li>
+<li>les données sont aggrégées des heures en jours et des jours en mois (CactiAggregateHoursJob, CactiAggregateDaysJob) pour former les statistiques mensuelles</li>
+</ul>
+<h2>Avec les droits nécessaires, vous pouvez gérer les différents items de la base adrezo pour ces SLA</h2>
+<h3>Gestion des Clients</h3>
+Vous trouverez dans cette page un tableau avec la liste des clients composé de :
+<ul>
+	<li>une zone d'ajout en première ligne</li>
+	<li>la liste des clients existants avec leurs informations sur les lignes suivantes</li>
+</ul>
+Pour chaque ligne de la liste, vous pouvez :
+<ul>
+	<li>Effacer un client en cliquant sur <img src="../../img/icon_delete.jpg" alt="DeleteIcon" />. <b>Attention cela entraine la suppression des sites associés</b></li>
+	<li>Modifier un client en cliquant sur <img src="../../img/icon_modify.jpg" alt="ModifyIcon" /></li>
+</ul>
+En cas d'ajout ou de modification, les icônes <img src="../../img/icon_valid.png" alt="ValidIcon" /><img src="../../img/icon_refuse.png" alt="ResetIcon" /> apparaîssent.<br />
+Entrez ou modifiez les différentes informations puis cliquez sur <img src="../../img/icon_valid.png" alt="ValidIcon" /> pour valider.<br />
+Vous pouvez également cliquer sur <img src="../../img/icon_refuse.png" alt="ResetIcon" /> pour annuler, tous les champs reviennent à leur valeur initiale.
+<p>Un client est défini par :
+<ul>
+	<li>son nom</li>
+	<li>si on veut qu'il soit visible ou non dans les statistiques</li>
+	<li>le planning associé (<b>tout changement modifie les sites et équipements associés</b>)</li>
+</ul>
+</p>
+<hr />
+<h3>Gestion des sites</h3>
+Les sites sont un "nom" générique pour entité/zone/regroupement d'équipement.<br />
+Vous trouverez dans la page un tableau avec la liste des sites composé de :
+<ul>
+	<li>une zone d'ajout en première ligne</li>
+	<li>la liste des sites existants avec leurs informations sur les lignes suivantes</li>
+</ul>
+Pour chaque ligne de la liste, vous pouvez :
+<ul>
+	<li>Effacer un site en cliquant sur <img src="../../img/icon_delete.jpg" alt="DeleteIcon" />. <b>Attention les équipements associés seront remis dans le client/site Inconnu</b></li>
+	<li>Modifier un site en cliquant sur <img src="../../img/icon_modify.jpg" alt="ModifyIcon" /></li>
+</ul>
+En cas d'ajout ou de modification, les icônes <img src="../../img/icon_valid.png" alt="ValidIcon" /><img src="../../img/icon_refuse.png" alt="ResetIcon" /> apparaîssent.<br />
+Entrez ou modifiez les différentes informations puis cliquez sur <img src="../../img/icon_valid.png" alt="ValidIcon" /> pour valider.<br />
+Vous pouvez également cliquer sur <img src="../../img/icon_refuse.png" alt="ResetIcon" /> pour annuler, tous les champs reviennent à leur valeur initiale.
+<p>
+Un site est défini par :
+<ul>
+	<li>son client</li>
+	<li>son nom</li>
+	<li>si on veut qu'il soit visible ou non dans les statistiques</li>
+	<li>le planning associé (<b>tout changement modifie les équipements associés</b>)</li>
+</ul>
+</p>
+<hr />
+<h3>Gestion des équipements (devices)</h3>
+Les equipements sont importés dans adrezo par les tâches planifiées.<br />
+Ils sont définis pour leur premier ajout dans un site spécial "Inconnu" pour le client "Inconnu".<br />
+Ces clients/sites ne s'affichent pas dans les statistiques, il faut donc passer sur cette page pour mettre à jour la liste des équipements.<br />
+
+Vous trouverez dans la page un tableau avec la liste des equipements et leurs informations.<br />
+Pour chaque ligne de la liste, vous pouvez modifier le couple client/site en cliquant sur <img src="../../img/icon_modify.jpg" alt="ModifyIcon" /><br />
+En cas de modification, les icônes <img src="../../img/icon_valid.png" alt="ValidIcon" /><img src="../../img/icon_refuse.png" alt="ResetIcon" /> apparaîssent.<br />
+Entrez ou modifiez les différentes informations puis cliquez sur <img src="../../img/icon_valid.png" alt="ValidIcon" /> pour valider.<br />
+Vous pouvez également cliquer sur <img src="../../img/icon_refuse.png" alt="ResetIcon" /> pour annuler, tous les champs reviennent à leur valeur initiale.
+<p>
+Un équipement est défini par :
+<ul>
+	<li>son site/client</li>
+	<li>son nom</li>
+	<li>son ID de la base Cacti à des fins de debug</li>
+	<li>son status, les valeurs possibles sont
+	<ul>
+		<li>0 : Inactif (correspond à Disable dans Cacti)</li>
+		<li>1 : Actif (correspond à Enable dans Cacti)</li>
+		<li>2 : Detruit (n'existe plus dans Cacti)</li>
+	</ul>
+	</li>
+	<li>le planning associé</li>
+</ul>
+</p>
+<hr />
+<h3>Gestion des plannings</h3>
+Les plannings définissent des périodes de temps ou les statistiques ne seront pas collectés.<br />
+Vous trouverez dans la page un tableau avec la liste des plannings composé de :
+<ul>
+	<li>une zone d'ajout en première ligne</li>
+	<li>la liste des plannings existants avec leurs informations sur les lignes suivantes</li>
+</ul>
+Pour chaque ligne de la liste, vous pouvez :
+<ul>
+	<li>Effacer un planning en cliquant sur <img src="../../img/icon_delete.jpg" alt="DeleteIcon" />. <b>Attention les clients,sites,équipements associés seront remis dans le planning par défaut (tout le temps)</b></li>
+	<li>Modifier un planning en cliquant sur <img src="../../img/icon_modify.jpg" alt="ModifyIcon" /></li>
+</ul>
+En cas d'ajout ou de modification, les icônes <img src="../../img/icon_valid.png" alt="ValidIcon" /><img src="../../img/icon_refuse.png" alt="ResetIcon" /> apparaîssent.<br />
+Entrez ou modifiez les différentes informations puis cliquez sur <img src="../../img/icon_valid.png" alt="ValidIcon" /> pour valider.<br />
+Vous pouvez également cliquer sur <img src="../../img/icon_refuse.png" alt="ResetIcon" /> pour annuler, tous les champs reviennent à leur valeur initiale.
+<p>
+Une fois un planning créé, vous pouvez sélectionner les heures (de 0h à 23h) où la collecte ne s'effectuera pas en cliquant sur <img src="../../img/icon_database.png" alt="HoursIcon" /><br />
+Chaque heure X représente de Xh00 à Xh59.<br />
+Procédez ainsi pour chaque jour de la semaine, vous avez également la possibilité de sélectionner par jour toutes les heures, aucun ou d'inverser la sélection.<br />
+Vous pouvez ensuite valider avec <img src="../../img/icon_valid.png" alt="ValidIcon" />
+</p>
+<p>
+Un planning est défini par :
+<ul>
+	<li>son id</li>
+	<li>son nom</li>
+	<li>le choix des heures où la collecte ne s'effectuera pas</li>
+</ul>
+</p>
+Vous pouvez également copier un planning en cliquant sur <img src="../../img/icon_copy.png" alt="CopyIcon" />, une fenêtre vous demande de rentrer le nom de ce nouveau planning.<br />
+La création se fait en cliquant sur <img src="../../img/icon_valid.png" alt="ValidIcon" />
+<hr />
+<h3>Nettoyage des Statistiques</h3>
+Sur la page Purge, vous pouvez voir le nombre de lignes contenues dans la table statistiques.<br />
+Ces lignes apparaissent par mois, le mois étant nommé &lt;YYYYDD&gt; (YYYY : année, MM : mois)<br />
+Pour supprimer les statistiques d'un mois, il vous suffit de cliquer sur <img src="../../img/icon_delete.jpg" alt="DeleteIcon" />.
+</body>
+</html>

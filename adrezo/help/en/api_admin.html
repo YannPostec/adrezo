@@ -1,0 +1,151 @@
+<html>
+<head><title>Adrezo Help</title>
+<link rel="stylesheet" href="../../stylesheet/common.css" type="text/css" />
+</head>
+<body>
+<h2>API Syntax, Admin section</h2>
+
+<h3>Informations on site</h3>
+Return informations over a given site.<br />
+Required Roles : API, ADMIN
+<ul>
+<li>URL<ul><li><b>GET /api/admin/site/&lt;site&gt;</b></li></ul></li>
+<li>In (URI)<ul><li>site : integer, site id in database</li></ul></li>
+<li>Out (JSON)
+<ul><li>{ "id":&lt;id&gt;,"name":&lt;name&gt;,"code":&lt;code&gt;,"ctx":&lt;ctx&gt; }
+<ul><li>id : integer, site id in database</li>
+<li>name : string, optional, site name</li>
+<li>code : string, site code (trigram,etc...)</li>
+<li>ctx : integer, context id in database</li></ul></li>
+</ul></li>
+<li>HTTP return code, if not ok return informations in text format
+<ul><li>500 : internal error in API</li>
+<li>404 : site not found</li>
+<li>200 : ok, return result in JSON format</li></ul></li>
+</ul>
+<hr />
+
+<h3>Delete a site</h3>
+Provide suppression of given site.<br />
+Required Roles : API, ADMIN
+<ul>
+<li>URL<ul><li><b>DELETE /api/admin/site/&lt;site&gt;</b></li></ul></li>
+<li>In (URI)<ul><li>site : integer, site id in database</li></ul></li>
+<li>Out (text/plain) : none except errors</li>
+<li>HTTP return code, if not ok return informations in text format
+<ul><li>500 : internal error in API</li>
+<li>404 : site not found</li>
+<li>200 : ok, site deleted</li></ul></li>
+</ul>
+<hr />
+
+<h3>Add a site</h3>
+Provide creation of a site describe with given attributes in given context.<br />
+Required Roles : API, ADMIN
+<ul>
+<li>URL<ul><li><b>POST /api/admin/site</b></li></ul></li>
+<li>In (JSON)
+<ul><li>{ "name":&lt;name&gt;,"code":&lt;code&gt;,"ctx":&lt;ctx&gt; }
+<ul><li>name : string, optional, site name</li>
+<li>code : string, site code (trigram,etc...)</li>
+<li>ctx : integer, contexte id in database</li></ul></li></ul></li>
+<li>Out (text/plain) : Site &lt;id&gt; created
+<ul><li>id : integer, site id in database</li></ul></li>
+<li>HTTP return code, if not ok return informations in text format
+<ul><li>500 : internal error in API</li>
+<li>404 : context not found</li>
+<li>201 : ok, site created</li></ul></li>
+</ul>
+<hr />
+
+<h3>Modify a site</h3>
+Provide modification of some site parameters with given attributes.<br />
+Required Roles : API, ADMIN
+<ul>
+<li>URL<ul><li><b>PATCH /api/admin/site/&lt;site&gt;</b></li></ul></li>
+<li>In (URI)<ul><li>site : integer, site id in database</li></ul></li>
+<li>In (JSON)
+<ul><li>{ "name":&lt;name&gt;,"code":&lt;code&gt; }
+<ul><li>name : string, optional, site name</li>
+<li>code : string, site code (trigram,etc...)</li></ul></li></ul></li>
+<li>Out (text/plain) : none except errors</li>
+<li>HTTP return code, if not ok return informations in text format
+<ul><li>500 : internal error in API</li>
+<li>404 : site not found</li>
+<li>200 : ok, site modified</li></ul></li>
+</ul>
+<hr />
+
+<h3>Informations on context</h3>
+Return informations on given context.<br />
+Required Roles : API, ADMIN
+<ul>
+<li>URL<ul><li><b>GET /api/admin/context/&lt;ctx&gt;</b></li></ul></li>
+<li>In (URI)<ul><li>ctx : integer, context id in database</li></ul></li>
+<li>Out (JSON)
+<ul><li>{ "id":&lt;id&gt;,"name":&lt;name&gt;,"site_main":&lt;site_main&gt; }
+<ul><li>id : integer, context id in database</li>
+<li>name : string, context name</li>
+<li>site_main : integer, site id with context main stock</li></ul></li></ul></li>
+<li>HTTP return code, if not ok return informations in text format
+<ul><li>500 : internal error in API</li>
+<li>404 : context not found</li>
+<li>200 : ok, return result in JSON format</li></ul></li>
+</ul>
+<hr />
+
+<h3>Modify a context</h3>
+Provide modification of some context parameters with given attributes.<br />
+Required Roles : API, ADMIN
+<ul>
+<li>URL<ul><li><b>PATCH /api/admin/context/&lt;ctx&gt;</b></li></ul></li>
+<li>In (URI)<ul><li>ctx : integer, context id in database</li></ul></li>
+<li>In (JSON)
+<ul><li>{ "name":&lt;name&gt; }
+<ul><li>name : string, context name</li></ul></li></ul></li>
+<li>Out (text/plain) : none except errors</li>
+<li>HTTP return code, if not ok return informations in text format
+<ul><li>500 : internal error in API</li>
+<li>404 : context not found</li>
+<li>200 : ok, context modified</li></ul></li>
+</ul>
+<hr />
+
+<h3>Contexts list</h3>
+Return array with informations on each context of the application.<br />
+Required Roles : API, ADMIN
+<ul>
+<li>URL<ul><li><b>GET /api/admin/context</b></li></ul></li>
+<li>In : None</li>
+<li>Out (JSON)
+<ul><li>{ "ctx_list": [ {"id":&lt;id&gt;,"name":&lt;name&gt;,"site_main":&lt;site_main&gt;},{...} ] }
+<ul><li>id : integer, context id in database</li>
+<li>name : string, context name</li>
+<li>site_main : integer, site id with context main stock</li></ul></li></ul></li>
+<li>HTTP return code, if not ok return informations in text format
+<ul><li>500 : internal error in API</li>
+<li>404 : empty list</li>
+<li>200 : ok, return result in JSON format</li></ul></li>
+</ul>
+<hr />
+
+<h3>Sites list</h3>
+Return array with informations on each site of a given context.<br />
+Required Roles : API, ADMIN
+<ul>
+<li>URL<ul><li><b>GET /api/admin/context/listsite/&lt;ctx&gt;</b></li></ul></li>
+<li>In (URI)<ul><li>ctx : integer, context id in database</li></ul></li>
+<li>Out (JSON)
+<ul><li>{ "site_list": [ {"id":&lt;id&gt;,"name":&lt;name&gt;,"code":&lt;code&gt;},{...} ] }
+<ul><li>id : integer, site id in database</li>
+<li>name : string, optional, site name</li>
+<li>code : string, site code (trigram,etc...)</li></ul></li></ul></li>
+<li>HTTP return code, if not ok return informations in text format
+<ul><li>500 : internal error in API</li>
+<li>404 : empty list</li>
+<li>200 : ok, return result in JSON format</li></ul></li>
+</ul>
+<hr />
+
+</body>
+</html>

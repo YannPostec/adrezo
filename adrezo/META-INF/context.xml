@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context docBase="${catalina.base}/webapps/adrezo" swallowOutput="true">
+<Resource name="jdbc/adrezo" auth="Container" type="javax.sql.DataSource" driverClassName="org.postgresql.Driver" url="jdbc:postgresql://localhost:5432/adrezo" username="adrezo" password="adrezo" maxTotal="20" maxIdle="10" maxWaitMillis="-1" />
+</Context>

@@ -1,0 +1,35 @@
+<html>
+<head><title>Adrezo Help</title>
+<link rel="stylesheet" href="../../stylesheet/common.css" type="text/css" />
+</head>
+<body>
+<h2>API Concepts</h2>
+
+<h3>Authentication</h3>
+To access API endpoints, you need to be authenticated.<br />
+Authentication is only done upon local database.<br />
+<p>URL : <b>GET /api/auth</b></p>
+Example with curl :<br />
+<pre>curl -k https://&lt;server ip&gt;/adrezo/api/auth --data-urlencode username=someuser --data-urlencode password=somepassword</pre>
+This answer is your authentication token
+<pre>{"sessionKey":"h6uoeo69n9r4io8r7la1uhu428"}</pre>
+This token is valid during period defined with api.timeout in application properties file. Default value : 10mn<br />
+Each time auth endpoint is called, the token is created, regenerated if expired or refreshed.
+<p>The user must be declared as a normal user in local database.</p>
+
+You must after retrieving the token put it into Authorization HTTP header of each request you make.<br />
+The Authentication Scheme is : Adrezo<br />
+Example with curl :
+<pre>-H "Authorization: Adrezo h6uoeo69n9r4io8r7la1uhu428"</pre>
+
+<h3>Authorization</h3>
+Each API endpoint required some roles to be executed.<br />
+When many roles are required, they must all be present in user rights.<br />
+These roles are the same that those defined in application.<br />
+In the role defined for the user, the API take into account the rights you defined for New Context.
+
+<h3>Restriction to some subnets</h3>
+By default, user can access all subnets in IP and Network operations.<br />
+You can restrict this access to some subnets only, see Admin/API Management in help.
+</body>
+</html>

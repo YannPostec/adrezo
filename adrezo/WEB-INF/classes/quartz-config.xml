@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<job-scheduling-data
+	xmlns="http://www.quartz-scheduler.org/xml/JobSchedulingData"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.quartz-scheduler.org/xml/JobSchedulingData
+	http://www.quartz-scheduler.org/xml/job_scheduling_data_2_0.xsd"
+	version="2.0">
+	<schedule>
+		<job>
+			<name>PurgeUsersJob</name>
+			<group>AdminGroup</group>
+			<description>Purge Users with no login since x days</description>
+			<job-class>ypodev.adrezo.schedulers.PurgeUsersJob</job-class>
+		</job>
+		<job>
+			<name>PurgeSupplyMvtJob</name>
+			<group>AdminGroup</group>
+			<description>Purge Supply Mouvement lines, keep x days</description>
+			<job-class>ypodev.adrezo.schedulers.PurgeSupplyMvtJob</job-class>
+		</job>
+		<job>
+			<name>PurgePhotosJob</name>
+			<group>AdminGroup</group>
+			<description>Purge photo files on disk when not existing in database</description>
+			<job-class>ypodev.adrezo.schedulers.PurgePhotosJob</job-class>
+		</job>
+		<job>
+			<name>MailTempIPJob</name>
+			<group>AdminGroup</group>
+			<description>Mail users with temporary IP with date exceeded</description>
+			<job-class>ypodev.adrezo.schedulers.MailTempIPJob</job-class>
+		</job>
+		<job>
+			<name>MailMigIPJob</name>
+			<group>AdminGroup</group>
+			<description>Mail users with migrating IP with date exceeded</description>
+			<job-class>ypodev.adrezo.schedulers.MailMigIPJob</job-class>
+		</job>
+		<job>
+			<name>NormAddSubnetJob</name>
+			<group>AdminGroup</group>
+			<description>Add free subnets in Norm surnets</description>
+			<job-class>ypodev.adrezo.schedulers.NormAddSubnetJob</job-class>
+		</job>
+		<job>
+			<name>CactiDevicesJob</name>
+			<group>AdminGroup</group>
+			<description>Inject cacti devices in adrezo</description>
+			<job-class>ypodev.adrezo.schedulers.CactiDevicesJob</job-class>
+		</job>
+		<job>
+			<name>CactiStatsJob</name>
+			<group>AdminGroup</group>
+			<description>Gather availability stats from cacti</description>
+			<job-class>ypodev.adrezo.schedulers.CactiStatsJob</job-class>
+		</job>
+		<job>
+			<name>CactiAggregateHoursJob</name>
+			<group>AdminGroup</group>
+			<description>Aggregate hourly cacti stats</description>
+			<job-class>ypodev.adrezo.schedulers.CactiAggregateHoursJob</job-class>
+		</job>
+		<job>
+			<name>CactiAggregateDaysJob</name>
+			<group>AdminGroup</group>
+			<description>Aggregate daily cacti stats</description>
+			<job-class>ypodev.adrezo.schedulers.CactiAggregateDaysJob</job-class>
+		</job>
+		<trigger>
+			<cron>
+				<name>PurgeUsersTrigger</name>
+				<job-name>PurgeUsersJob</job-name>
+				<job-group>AdminGroup</job-group>
+				<cron-expression>0 0 17 1 * ?</cron-expression>
+			</cron>
+		</trigger>
+		<trigger>
+			<cron>
+				<name>PurgeSupplyMvtTrigger</name>
+				<job-name>PurgeSupplyMvtJob</job-name>
+				<job-group>AdminGroup</job-group>
+				<cron-expression>0 0 18 1 * ?</cron-expression>
+			</cron>
+		</trigger>
+		<trigger>
+			<cron>
+				<name>PurgePhotosTrigger</name>
+				<job-name>PurgePhotosJob</job-name>
+				<job-group>AdminGroup</job-group>
+				<cron-expression>0 0 14 ? * SAT</cron-expression>
+			</cron>
+		</trigger>
+		<trigger>
+			<cron>
+				<name>MailTempIPTrigger</name>
+				<job-name>MailTempIPJob</job-name>
+				<job-group>AdminGroup</job-group>
+				<cron-expression>0 0 8 ? * MON</cron-expression>
+			</cron>
+		</trigger>
+		<trigger>
+			<cron>
+				<name>MailMigIPTrigger</name>
+				<job-name>MailMigIPJob</job-name>
+				<job-group>AdminGroup</job-group>
+				<cron-expression>0 0 8 ? * TUE</cron-expression>
+			</cron>
+		</trigger>
+		<trigger>
+			<cron>
+				<name>NormAddSubnetTrigger</name>
+				<job-name>NormAddSubnetJob</job-name>
+				<job-group>AdminGroup</job-group>
+				<cron-expression>0 0 20 ? * *</cron-expression>
+			</cron>
+		</trigger>
+		<trigger>
+			<cron>
+				<name>CactiDevicesTrigger</name>
+				<job-name>CactiDevicesJob</job-name>
+				<job-group>AdminGroup</job-group>
+				<cron-expression>0 0 2 ? * *</cron-expression>
+			</cron>
+		</trigger>
+		<trigger>
+			<cron>
+				<name>CactiStatsTrigger</name>
+				<job-name>CactiStatsJob</job-name>
+				<job-group>AdminGroup</job-group>
+				<cron-expression>0 1 * ? * *</cron-expression>
+			</cron>
+		</trigger>
+		<trigger>
+			<cron>
+				<name>CactiAggregateHoursTrigger</name>
+				<job-name>CactiAggregateHoursJob</job-name>
+				<job-group>AdminGroup</job-group>
+				<cron-expression>0 0 1 ? * *</cron-expression>
+			</cron>
+		</trigger>
+		<trigger>
+			<cron>
+				<name>CactiAggregateDaysTrigger</name>
+				<job-name>CactiAggregateDaysJob</job-name>
+				<job-group>AdminGroup</job-group>
+				<cron-expression>0 0 3 1 * ?</cron-expression>
+			</cron>
+		</trigger>
+	</schedule>
+</job-scheduling-data>

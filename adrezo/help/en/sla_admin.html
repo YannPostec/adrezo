@@ -1,0 +1,124 @@
+<html>
+<head><title>Adrezo Help</title>
+<link rel="stylesheet" href="../../stylesheet/common.css" type="text/css" />
+</head>
+<body>
+<h2>NAS</h2>
+<h3>Adrezo database feed</h3>
+Data comes from  Cacti, many scheduled jobs inject data in adrezo database :
+<ul>
+<li>daily, adrezo database is filled with Cacti device list evolutions (CactiDevicesJob).<br />
+New devices are added, those disappeared are marked as destroyed (keep in database for statistic), those marked as disable in Cacti are marked disable as well in adrezo.</li>
+<li>hourly, daily or monthly as defined in CactiStatsJob, Cacti availability statistics are injected in adrezo and resetted in Cacti database.</li>
+<li>data are aggregated from hours to days, from days to month (CactiAggregateHoursJob, CactiAggregateDaysJob) to have monthly statistics</li>
+</ul>
+<h2>With proper permissions, you can manage differents items composing NAS.</h2>
+<h3>Clients Management</h3>
+On this page, you will find a table with :
+<ul>
+	<li>An Add zone on the first line</li>
+	<li>the list of existing clients with their informations on the next lines</li>
+</ul>
+Within each line, you could :
+<ul>
+	<li>Delete a client when you click on <img src="../../img/icon_delete.jpg" alt="DeleteIcon" />. <b>Be careful, it will delete associated sites.</b></li>
+	<li>Modify a client when you click on <img src="../../img/icon_modify.jpg" alt="ModifyIcon" /></li>
+</ul>
+When adding or modifying, icons <img src="../../img/icon_valid.png" alt="ValidIcon" /><img src="../../img/icon_refuse.png" alt="ResetIcon" /> appears.<br />
+Enter or modify informations then click on <img src="../../img/icon_valid.png" alt="ValidIcon" /> to validate.<br />
+You could also click on <img src="../../img/icon_refuse.png" alt="ResetIcon" /> to cancel, going back to initial values.
+<p>A client is defined by :
+<ul>
+	<li>its name</li>
+	<li>visible or not in the statistics</li>
+	<li>associated planning (<b>any change modify associated sites and devices</b>)</li>
+</ul>
+</p>
+<hr />
+<h3>Sites Management</h3>
+Sites are a generic name for entity/zone/group of devices.<br />
+On this page, you will find a table with :
+<ul>
+	<li>An Add zone on the first line</li>
+	<li>the list of existing sites with their informations on the next lines</li>
+</ul>
+Within each line, you could :
+<ul>
+	<li>Delete a site when you click on <img src="../../img/icon_delete.jpg" alt="DeleteIcon" />. <b>Be careful, all associated devices are put back in client/site Unknown.</b></li>
+	<li>Modify a site when you click on <img src="../../img/icon_modify.jpg" alt="ModifyIcon" /></li>
+</ul>
+When adding or modifying, icons <img src="../../img/icon_valid.png" alt="ValidIcon" /><img src="../../img/icon_refuse.png" alt="ResetIcon" /> appears.<br />
+Enter or modify informations then click on <img src="../../img/icon_valid.png" alt="ValidIcon" /> to validate.<br />
+You could also click on <img src="../../img/icon_refuse.png" alt="ResetIcon" /> to cancel, going back to initial values.
+<p>A site is defined by :
+<ul>
+	<li>its client</li>
+	<li>its name</li>
+	<li>visible or not in the statistics</li>
+	<li>associated planning (<b>any change modify associated devices</b>)</li>
+</ul>
+</p>
+<hr />
+<h3>Devices Management</h3>
+Devices are imported into adrezo by scheduled jobs.<br />
+When created, they are in a special site "Unknown" for a special client "Unknown".<br />
+Thoses clients/sites doesn't appears in statistics.<br />
+On this page, you will find a table with the list of devices and their informations.<br />
+For each line, you can modify the client/site by clicking on <img src="../../img/icon_modify.jpg" alt="ModifyIcon" /><br />
+When adding or modifying, icons <img src="../../img/icon_valid.png" alt="ValidIcon" /><img src="../../img/icon_refuse.png" alt="ResetIcon" /> appears.<br />
+Enter or modify informations then click on <img src="../../img/icon_valid.png" alt="ValidIcon" /> to validate.<br />
+You could also click on <img src="../../img/icon_refuse.png" alt="ResetIcon" /> to cancel, going back to initial values.
+<p>A site is defined by many fields :
+<ul>
+	<li>its site/client</li>
+	<li>its name</li>
+	<li>its Cacti ID for debugging purposes</li>
+	<li>its status, values are
+	<ul>
+		<li>0 : Inactive (matches Disable in Cacti)</li>
+		<li>1 : Active (matches Up/Enable in Cacti)</li>
+		<li>2 : Destroyed (doesn't exist anymore in Cacti)</li>
+	</ul>
+	</li>
+	<li>associated planning</li>
+</ul>
+</p>
+<hr />
+<h3>Plannings Management</h3>
+Plannings define time periodes where statistics are not gathered.<br />
+On this page, you will find a table with :
+<ul>
+	<li>An Add zone on the first line</li>
+	<li>the list of existing plannings with their informations on the next lines</li>
+</ul>
+Within each line, you could :
+<ul>
+	<li>Delete a planning when you click on <img src="../../img/icon_delete.jpg" alt="DeleteIcon" />. <b>Be careful, all associated clients,sites,devices are put back in default planning (anytime).</b></li>
+	<li>Modify a planning when you click on <img src="../../img/icon_modify.jpg" alt="ModifyIcon" /></li>
+</ul>
+When adding or modifying, icons <img src="../../img/icon_valid.png" alt="ValidIcon" /><img src="../../img/icon_refuse.png" alt="ResetIcon" /> appears.<br />
+Enter or modify informations then click on <img src="../../img/icon_valid.png" alt="ValidIcon" /> to validate.<br />
+You could also click on <img src="../../img/icon_refuse.png" alt="ResetIcon" /> to cancel, going back to initial values.
+<p>
+Once a planning is created, you could select hours (0h - 23h) where gathering will not be performed by clicking on <img src="../../img/icon_database.png" alt="HoursIcon" /><br />
+Every hour X represent from Xh00 to Xh59.<br />
+Proceed for each day of the week, you could also select by day all hours, none or invert your selection.<br />
+Validate at the end with <img src="../../img/icon_valid.png" alt="ValidIcon" />
+</p>
+<p>
+A planning is defined by :
+<ul>
+	<li>its id</li>
+	<li>its name</li>
+	<li>choice of hours where gathering will not be performed</li>
+</ul>
+</p>
+You could also copy a planning by clicking on <img src="../../img/icon_copy.png" alt="CopyIcon" />, you will be asked to enter the name of this new planning.<br />
+Validate with clicking on <img src="../../img/icon_valid.png" alt="ValidIcon" />
+<hr />
+<h3>Statistics Cleanup</h3>
+On the Purge page is displayed number of lines contained in statistics table.<br />
+Those statistics are grouped by month, month is named &lt;YYYYDD&gt; (YYYY : year, MM : month)<br />
+To delete statistics of a month, click on <img src="../../img/icon_delete.jpg" alt="DeleteIcon" />.
+</body>
+</html>

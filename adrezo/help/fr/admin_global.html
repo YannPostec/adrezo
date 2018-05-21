@@ -1,0 +1,49 @@
+<html>
+<head><title>Aide adrezo</title>
+<link rel="stylesheet" href="../../stylesheet/common.css" type="text/css" />
+</head>
+<body>
+<h2>Administration de l'application</h2>
+<p>Avec les droits necessaires, vous avez acces aux paramètres de l'application.<br />
+Ils sont composés de :
+<ul>
+	<li>Langue par défaut de l'application</li>
+	<li>Contexte par défaut de l'application</li>
+	<li>Gestion du compte admin</li>
+	<li>Gestion des URL pour les adresses IP</li>
+	<li>Outils de maintenance</li>
+</ul>
+</p>
+<h3>Choix par défaut</h3>
+<p>Sélectionner la langue ou le contexte par défaut en cliquant dessus.<br />
+La langue ou le contexte actuel apparaissent en vert.</p>
+<h3>Compte admin</h3>
+<p>Ici vous pouvez changer le mot de passe et/ou le mail du compte admin.<br />
+Le mot de passe n'est jamais affiché.</p>
+<h3>Gestion des URLS</h3>
+<p>Chaque url est construite avec &lt;protocole&gt;://&lt;IP&gt;:&lt;port&gt;/&lt;URI&gt;<br />
+Le port et l'URI ne sont pas obligatoires, si vous rentrez le port 80 pour le protocole http ou 443 pour https, les ports ne seront pas pris en compte.</p>
+<h3>Lien entre comptes normal et exploitation</h3>
+<p>En authentification externe, si les comptes utilisées sont des comptes d'exploitation et ne contiennent pas d'adresse mail,<br />
+Et si le login de ces comptes est dérivé du compte normal utilisateur qui lui contient une adresse mail,<br />
+Vous pouvez lier cette information en mettant le prefixe et/ou suffixe utilisé pour retrouver le login du compte normal.</p>
+<h3>Outils de maintenance</h3>
+<p>Voir les logs de l'application qui sont :
+<ul>
+<li>photo : les erreurs liés au traitement des photos</li>
+<li>database : les erreurs liés à la base de données</li>
+<li>adrezo-default : le log de l'application</li>
+<li>adrezo-api : le log de l'api</li>
+<li>adrezo-beans : le log des beans</li>
+<li>adrezo-jsp : le log des taglib jsp</li>
+<li>adrezo-servlets : le log des servlets</li>
+<li>adrezo-listener : le log des listeners</li>
+<li>quartz : le log du module quartz gérant les tâches planifiées</li>
+<li>quartz-jobs : le log des tâches planifiées</li>
+</ul>
+</p>
+<h3>Gestion du logo</h3>
+<p>Vous pouvez changer le logo de la page de login en important une image au format PNG.<br />
+Il est également possible de revenir au logo par défaut en cliquant sur le bouton approprié.</p>
+</body>
+</html>

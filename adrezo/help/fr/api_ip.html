@@ -1,0 +1,127 @@
+<html>
+<head><title>Aide adrezo</title>
+<link rel="stylesheet" href="../../stylesheet/common.css" type="text/css" />
+</head>
+<body>
+<h2>Syntaxe API, module IP</h2>
+
+<h3>Adresse IP disponible</h3>
+Retourne une adresse IP disponible dans le subnet spécifié.<br />
+Roles requis : API, IP
+<ul>
+<li>URL<ul><li><b>GET /api/ip/dispo/&lt;subnet&gt;</b></li></ul></li>
+<li>Entrée (URI)<ul><li>subnet : id du subnet ou chercher une adresse IP disponible</li></ul></li>
+<li>Sortie (JSON)
+<ul><li>{ "subnet":&lt;subnet&gt;,"ip":"&lt;ip&gt;" }
+<ul><li>subnet : entier, id du subnet dans la base</li>
+<li>ip : chaine, adresse ip format x.x.x.x avec 0&lt;x&lt;255</li></ul></li>
+</ul></li>
+<li>Code de retour HTTP, si non ok retour d'informations en format texte
+<ul><li>500 : erreur interne dans l'API</li>
+<li>404 : ok mais plus d'ip disponible</li>
+<li>200 : ok, retourne le résultat au format JSON</li></ul></li>
+</ul>
+<hr />
+
+<h3>Informations sur une adresse IP</h3>
+Retourne les informations sur une IP donnée.<br />
+Roles requis : API
+<ul>
+<li>URL<ul><li><b>GET /api/ip/&lt;ip&gt;</b></li></ul></li>
+<li>Entrée (URI)<ul><li>ip : chaine, adresse ip format x.x.x.x avec 0&lt;x&lt;255</li></ul></li>
+<li>Sortie (JSON)
+<ul><li>{ "id":&lt;id&gt;,"ip":"&lt;ip&gt;","mask":&lt;mask&gt;,"mac":&lt;mac&gt;,"name":&lt;name&gt;,"desc":&lt;desc&gt;,"ctx":&lt;ctx&gt;,"site":&lt;site&gt;,"subnet":&lt;subnet&gt; }
+<ul><li>id : entier, id de l'adresse IP dans la base</li>
+<li>ip : chaine, representation de l'adresse IP</li>
+<li>mask : entier, masque du subnet</li>
+<li>mac : chaine, optionnel, adresse mac associée</li>
+<li>name : chaine, nom de l'équipement rattaché à cette adresse IP</li>
+<li>desc : chaine, optionnel, libellé décrivant l'adresse IP</li>
+<li>ctx : entier, id du contexte dans la base</li>
+<li>site : entier, id du site dans la base</li>
+<li>subnet : entier, id du subnet dans la base</li></ul></li>
+</ul></li>
+<li>Code de retour HTTP, si non ok retour d'informations en format texte
+<ul><li>500 : erreur interne dans l'API</li>
+<li>404 : adresse IP non trouvé, n'existe pas dans la base ou n'est pas dans un subnet autorisé</li>
+<li>200 : ok, retourne le résultat au format JSON</li></ul></li>
+</ul>
+<hr />
+
+<h3>Suppression d'une adresse IP</h3>
+Permet la suppression d'une IP donnée.<br />
+Roles requis : API, IP
+<ul>
+<li>URL<ul><li><b>DELETE /api/ip/&lt;ip&gt;</b></li></ul></li>
+<li>Entrée (URI)
+<ul><li>ip : chaine, adresse ip format x.x.x.x avec 0&lt;x&lt;255</li></ul></li>
+<li>Sortie (text/plain) : aucune sauf erreur</li>
+<li>Code de retour HTTP, si non ok retour d'informations en format texte
+<ul><li>500 : erreur interne dans l'API</li>
+<li>404 : adresse IP non trouvé, n'existe pas dans la base ou n'est pas dans un subnet autorisé</li>
+<li>200 : ok, l'adresse IP a été supprimée</li></ul></li>
+</ul>
+<hr />
+
+<h3>Ajout d'une adresse IP</h3>
+Permet l'ajout d'une adresse IP en fonction des caracteristiques envoyées.<br />
+Roles requis : API, IP
+<ul>
+<li>URL<ul><li><b>POST /api/ip</b></li></ul></li>
+<li>Entrée (JSON)
+<ul><li>{ "name":&lt;name&gt;,"desc":&lt;desc&gt;,"ip":"&lt;ip&gt;","subnet":&lt;subnet&gt; }
+<ul><li>name : chaine, nom de l'équipement rattaché à cette adresse IP, max 20 caractères</li>
+<li>desc : chaine, libellé optionnel décrivant l'adresse IP, max 100 caractères</li>
+<li>ip : chaine, adresse ip format x.x.x.x avec 0&lt;x&lt;255</li>
+<li>subnet : entier, id du subnet dans la base</li></ul></li></ul></li>
+<li>Sortie (text/plain) : aucune sauf erreur</li>
+<li>Code de retour HTTP, si non ok retour d'informations en format texte
+<ul><li>500 : erreur interne dans l'API</li>
+<li>404 : subnet non trouvé, n'existe pas dans la base ou n'est pas un subnet autorisé</li>
+<li>201 : ok, création de l'adresse IP effectuée</li></ul></li>
+</ul>
+<hr />
+
+<h3>Prochain nom d'equipement</h3>
+Permet de trouver le prochain nom d'equipement disponible suivant un préfixe donné.<br />
+Roles requis : API, IP<br />
+Cela implique que tous les noms d'équipements entrés dans la base soient parfaitement normés selon une norme offrant un tri naturel.<br />
+La recherche s'effectue sur la base entière.<br />
+Aucune réservation du nom n'est effectué.
+<ul>
+<li>URL<ul><li><b>GET /api/ip/name/&lt;name&gt;</b></li></ul></li>
+<li>Entrée (URI)
+<ul><li>name : chaine, nom de l'équipement rattaché à cette adresse IP, max 20 caractères</li>
+</ul></li>
+<li>Sortie (JSON)
+<ul><li>{ "name":&lt;name&gt; }
+<ul><li>name : chaine, nom possible du prochain équipement</li></ul></li></ul></li>
+<li>Code de retour HTTP, si non ok retour d'informations en format texte
+<ul><li>500 : erreur interne dans l'API</li>
+<li>200 : ok, retourne le résultat au format JSON</li></ul></li>
+</ul>
+<hr />
+
+<h3>Liste des adresse IP d'un subnet</h3>
+Retourne une liste des adresses IP contenus dans le subnet avec leurs informations.<br />
+Roles requis : API
+<ul>
+<li>URL<ul><li><b>GET /api/ip/list/&lt;subnet&gt;</b></li></ul></li>
+<li>Entrée (URI)
+<ul><li>subnet : entier, id du subnet dans la base</li></ul></li>
+<li>Sortie (JSON)
+<ul><li>{ "ip_list": [ {"id":&lt;id&gt;,"ip":"&lt;ip&gt;","name":&lt;name&gt;,"desc":&lt;desc&gt;,"mask":&lt;mask&gt;},{...} ] }
+<ul><li>id : entier, id de l'adresse IP dans la base</li>
+<li>ip : chaine, representation de l'adresse IP</li>
+<li>name : chaine, nom de l'équipement rattaché à cette adresse IP</li>
+<li>desc : chaine, libellé optionnel décrivant l'adresse IP</li>
+<li>mask : entier, masque du subnet</li></ul></li></ul></li>
+<li>Code de retour HTTP, si non ok retour d'informations en format texte
+<ul><li>500 : erreur interne dans l'API</li>
+<li>404 : subnet non trouvé, vide ou non autorisé</li>
+<li>200 : ok, retourne le résultat au format JSON</li></ul></li>
+</ul>
+<hr />
+
+</body>
+</html>

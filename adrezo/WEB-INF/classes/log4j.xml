@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration PUBLIC "-//log4j/log4j Configuration//EN" "log4j.dtd" >
+<log4j:configuration threshold="all" debug="false">
+	<appender name="console" class="org.apache.log4j.ConsoleAppender">
+		<param name="Target" value="System.out" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d %-5p (%c.java:%L).%M - %m%n"/>
+		</layout>
+	</appender>
+	
+	<appender name="default.file" class="org.apache.log4j.RollingFileAppender">
+		<param name="append" value="true" />
+		<param name="maxFileSize" value="200KB" />
+		<param name="maxBackupIndex" value="5" />
+		<param name="threshold" value="debug" />
+		<param name="file" value="${catalina.base}/webapps/adrezo/log/adrezo-default.log" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{yyyy-MM-dd HH:mm:ss} %-5p %c{1}:%L - %m%n" />
+		</layout>
+	</appender>
+
+	<appender name="servlets.file" class="org.apache.log4j.RollingFileAppender">
+		<param name="append" value="true" />
+		<param name="maxFileSize" value="200KB" />
+		<param name="maxBackupIndex" value="5" />
+		<param name="threshold" value="debug" />
+		<param name="file" value="${catalina.base}/webapps/adrezo/log/adrezo-servlets.log" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{yyyy-MM-dd HH:mm:ss} %-5p %c{1}:%L - %m%n" />
+		</layout>
+	</appender>
+
+	<appender name="listener.file" class="org.apache.log4j.RollingFileAppender">
+		<param name="append" value="true" />
+		<param name="maxFileSize" value="200KB" />
+		<param name="maxBackupIndex" value="5" />
+		<param name="threshold" value="debug" />
+		<param name="file" value="${catalina.base}/webapps/adrezo/log/adrezo-listener.log" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{yyyy-MM-dd HH:mm:ss} %-5p %c{1}:%L - %m%n" />
+		</layout>
+	</appender>
+
+	<appender name="api.file" class="org.apache.log4j.RollingFileAppender">
+		<param name="append" value="true" />
+		<param name="maxFileSize" value="200KB" />
+		<param name="maxBackupIndex" value="5" />
+		<param name="threshold" value="debug" />
+		<param name="file" value="${catalina.base}/webapps/adrezo/log/adrezo-api.log" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{yyyy-MM-dd HH:mm:ss} %-5p %c{1}:%L - %m%n" />
+		</layout>
+	</appender>
+
+	<appender name="beans.file" class="org.apache.log4j.RollingFileAppender">
+		<param name="append" value="true" />
+		<param name="maxFileSize" value="200KB" />
+		<param name="maxBackupIndex" value="5" />
+		<param name="threshold" value="debug" />
+		<param name="file" value="${catalina.base}/webapps/adrezo/log/adrezo-beans.log" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{yyyy-MM-dd HH:mm:ss} %-5p %c{1}:%L - %m%n" />
+		</layout>
+	</appender>
+	
+	<appender name="jsp.file" class="org.apache.log4j.RollingFileAppender">
+		<param name="append" value="true" />
+		<param name="maxFileSize" value="200KB" />
+		<param name="maxBackupIndex" value="5" />
+		<param name="threshold" value="debug" />
+		<param name="file" value="${catalina.base}/webapps/adrezo/log/adrezo-jsp.log" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{yyyy-MM-dd HH:mm:ss} %-5p %c{1}:%L - %m%n" />
+		</layout>
+	</appender>
+	
+	<appender name="quartz.file" class="org.apache.log4j.RollingFileAppender">
+		<param name="append" value="true" />
+		<param name="maxFileSize" value="200KB" />
+		<param name="maxBackupIndex" value="5" />
+		<param name="threshold" value="debug" />
+		<param name="file" value="${catalina.base}/webapps/adrezo/log/quartz.log" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{yyyy-MM-dd HH:mm:ss} %-5p %c{1}:%L - %m%n" />
+		</layout>
+	</appender>
+	
+	<appender name="quartzjobs.file" class="org.apache.log4j.RollingFileAppender">
+		<param name="append" value="true" />
+		<param name="maxFileSize" value="200KB" />
+		<param name="maxBackupIndex" value="5" />
+		<param name="threshold" value="debug" />
+		<param name="file" value="${catalina.base}/webapps/adrezo/log/quartz-jobs.log" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{yyyy-MM-dd HH:mm} %-5p %c{1}: %m%n" />
+		</layout>
+	</appender>
+
+	<logger name="org.quartz" additivity="false">
+		<level value="info" />
+		<appender-ref ref="quartz.file" />
+	</logger>
+	
+	<logger name="ypodev.adrezo.schedulers" additivity="false">
+		<level value="info" />
+		<appender-ref ref="quartzjobs.file" />
+	</logger>
+
+	<logger name="ypodev.adrezo.servlets" additivity="false">
+		<level value="info" />
+		<appender-ref ref="servlets.file" />
+	</logger>
+	
+	<logger name="ypodev.adrezo.listener" additivity="false">
+		<level value="info" />
+		<appender-ref ref="listener.file" />
+	</logger>
+
+	<logger name="ypodev.adrezo.api" additivity="false">
+		<level value="info" />
+		<appender-ref ref="api.file" />
+	</logger>
+	
+	<logger name="ypodev.adrezo.beans" additivity="false">
+		<level value="info" />
+		<appender-ref ref="beans.file" />
+	</logger>
+	
+	<logger name="ypodev.adrezo.tags" additivity="false">
+		<level value="info" />
+		<appender-ref ref="jsp.file" />
+	</logger>
+	
+	<root>
+		<level value="info" />
+		<appender-ref ref="console" />
+		<appender-ref ref="default.file" />
+	</root>
+</log4j:configuration>

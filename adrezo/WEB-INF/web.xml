@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://java.sun.com/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	version="2.5">
+	
+	<context-param>
+		<param-name>javax.servlet.jsp.jstl.fmt.fallbackLocale</param-name>
+		<param-value>en</param-value>
+	</context-param>
+	<context-param>
+		<param-name>javax.servlet.jsp.jstl.sql.dataSource</param-name>
+		<param-value>jdbc/adrezo</param-value>
+	</context-param>
+	<context-param>
+		<param-name>quartz:shutdown-on-unload</param-name>
+		<param-value>true</param-value>
+	</context-param>
+	<context-param>
+		<param-name>quartz:wait-on-shutdown</param-name>
+		<param-value>true</param-value>
+	</context-param>
+	<context-param>
+		<param-name>quartz:start-scheduler-on-load</param-name>
+		<param-value>true</param-value>
+	</context-param>
+	<context-param>
+		<param-name>quartz:scheduler-context-servlet-context-key</param-name>
+		<param-value>servletContext</param-value>
+	</context-param>
+
+	<listener>
+		<listener-class>org.quartz.ee.servlet.QuartzInitializerListener</listener-class>
+	</listener>
+	<listener>
+		<listener-class>ypodev.adrezo.listener.LdapPoolListener</listener-class>
+	</listener>
+
+
+	<servlet>
+		<servlet-name>upload</servlet-name>
+		<servlet-class>ypodev.adrezo.servlets.UploadServlet</servlet-class>
+		<load-on-startup>0</load-on-startup>
+	</servlet>
+	<servlet>
+		<servlet-name>replaceupload</servlet-name>
+		<servlet-class>ypodev.adrezo.servlets.ReplaceUploadServlet</servlet-class>
+		<load-on-startup>0</load-on-startup>
+	</servlet>
+	<servlet>
+		<servlet-name>purge</servlet-name>
+		<servlet-class>ypodev.adrezo.servlets.PurgeServlet</servlet-class>
+		<load-on-startup>0</load-on-startup>
+	</servlet>
+	<servlet>
+		<servlet-name>ldapgroup</servlet-name>
+		<servlet-class>ypodev.adrezo.servlets.LDAPGroupServlet</servlet-class>
+		<load-on-startup>0</load-on-startup>
+	</servlet>
+	<servlet>
+		<servlet-name>importcsv</servlet-name>
+		<servlet-class>ypodev.adrezo.servlets.ImportCSVServlet</servlet-class>
+		<load-on-startup>0</load-on-startup>
+	</servlet>
+	<servlet>
+		<servlet-name>uploadlogo</servlet-name>
+		<servlet-class>ypodev.adrezo.servlets.UploadLogoServlet</servlet-class>
+		<load-on-startup>0</load-on-startup>
+	</servlet>
+	<servlet>
+		<servlet-name>normcalc</servlet-name>
+		<servlet-class>ypodev.adrezo.servlets.NormCalcServlet</servlet-class>
+		<load-on-startup>0</load-on-startup>
+	</servlet>
+	<servlet>
+		<servlet-name>listjobs</servlet-name>
+		<servlet-class>ypodev.adrezo.servlets.ListJobsServlet</servlet-class>
+		<load-on-startup>0</load-on-startup>
+	</servlet>
+	<servlet>
+    <servlet-name>APIServlet</servlet-name>
+    <servlet-class>org.apache.cxf.jaxrs.servlet.CXFNonSpringJaxrsServlet</servlet-class>
+    <init-param>
+      <param-name>jaxrs.serviceClasses</param-name>
+			<param-value>
+				ypodev.adrezo.api.AuthAPI,
+				ypodev.adrezo.api.IPAPI,
+				ypodev.adrezo.api.NetworkAPI,
+				ypodev.adrezo.api.AdminAPI,
+				ypodev.adrezo.api.StockAdminAPI,
+				ypodev.adrezo.api.StockAPI,
+				ypodev.adrezo.api.PhotoAPI
+			</param-value>
+		</init-param>
+    <init-param>
+      <param-name>jaxrs.providers</param-name>
+			<param-value>
+				ypodev.adrezo.api.AuthenticationFilter,
+				ypodev.adrezo.api.AuthorizationFilter
+			</param-value>
+		</init-param>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>APIServlet</servlet-name>
+		<url-pattern>/api/*</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+  	<servlet-name>upload</servlet-name>
+		<url-pattern>/upload</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+  	<servlet-name>replaceupload</servlet-name>
+		<url-pattern>/replaceupload</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+  	<servlet-name>purge</servlet-name>
+		<url-pattern>/purge</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+  	<servlet-name>ldapgroup</servlet-name>
+		<url-pattern>/ldapgroup</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+  	<servlet-name>importcsv</servlet-name>
+		<url-pattern>/importcsv</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+  	<servlet-name>uploadlogo</servlet-name>
+		<url-pattern>/uploadlogo</url-pattern>
+	</servlet-mapping>	
+	<servlet-mapping>
+  	<servlet-name>normcalc</servlet-name>
+		<url-pattern>/normcalc</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+  	<servlet-name>listjobs</servlet-name>
+		<url-pattern>/jobs</url-pattern>
+	</servlet-mapping>
+
+	<session-config>
+		<session-timeout>360</session-timeout>	
+	</session-config>
+
+	<welcome-file-list>
+		<welcome-file>login.jsp</welcome-file>
+	</welcome-file-list>
+
+	<jsp-config>
+		<jsp-property-group>
+			<url-pattern>*.jsp</url-pattern>
+			<el-ignored>false</el-ignored>
+			<page-encoding>UTF-8</page-encoding>
+			<trim-directive-whitespaces>true</trim-directive-whitespaces>
+		</jsp-property-group>
+	</jsp-config>
+
+	<resource-ref>
+		<description>The default data source for JSTL.</description>
+		<res-ref-name>jdbc/adrezo</res-ref-name>
+		<res-type>javax.sql.DataSource</res-type>
+		<res-auth>Container</res-auth>
+	</resource-ref>
+	
+	<env-entry>
+		<description>JNDI name of JDBC pool</description>
+		<env-entry-name>jdbc_jndi</env-entry-name>
+		<env-entry-type>java.lang.String</env-entry-type>
+		<env-entry-value>jdbc/adrezo</env-entry-value>
+	</env-entry>
+	
+	<env-entry>
+		<description>Photos Location, In Application: /webapp/dir/, with CIFS: http(s)://host/dir/</description>
+		<env-entry-name>photo_webhost</env-entry-name>
+		<env-entry-type>java.lang.String</env-entry-type>
+		<env-entry-value>/adrezo/pictures/</env-entry-value>
+	</env-entry>
+	<env-entry>
+		<description>CIFS Location of photos : host/dir/</description>
+		<env-entry-name>photo_cifshost</env-entry-name>
+		<env-entry-type>java.lang.String</env-entry-type>
+		<env-entry-value>127.0.0.1/adrezo/</env-entry-value>
+	</env-entry>
+	<env-entry>
+		<description>Photos File Location : /dir/ If CIFS, allow temporary storage during upload</description>
+		<env-entry-name>photo_dir</env-entry-name>
+		<env-entry-type>java.lang.String</env-entry-type>
+		<env-entry-value>/pictures/</env-entry-value>
+	</env-entry>
+	<env-entry>
+		<description>false : Storage in app directory. true : Storage on CIFS share</description>
+		<env-entry-name>photo_cifs</env-entry-name>
+		<env-entry-type>java.lang.Boolean</env-entry-type>
+		<env-entry-value>false</env-entry-value>
+	</env-entry>
+	<env-entry>
+		<description>DB Type : oracle,postgresql</description>
+		<env-entry-name>db_type</env-entry-name>
+		<env-entry-type>java.lang.String</env-entry-type>
+		<env-entry-value>postgresql</env-entry-value>
+	</env-entry>
+</web-app>

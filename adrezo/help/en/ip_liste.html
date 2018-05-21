@@ -1,0 +1,34 @@
+<html>
+<head><title>Adrezo Help</title>
+<link rel="stylesheet" href="../../stylesheet/common.css" type="text/css" />
+</head>
+<body>
+<p>
+This list shows IP addresses records. A record has the following fields :
+<ul>
+<li>Type : "static" (entered by users), "dynamic" (created by application) et "dhcp" (created by DHCP servers scripts)</li>
+<li>Site : Site name<br />Mouse over the site gives you the site code.</li>
+<li>Name  : Device name</li>
+<li>Description : Device description</li>
+<li>IP Address : &lt;IP Address&gt;/&lt;Subnet Mask (CIDR)&gt;<br />
+Mouse over the IP address gives you the mask in IP format.</li>
+<li>Subnet : Subnet name where the IP address belongs<br />
+Mouse over the subnet gives you the gateway of the subnet.</li>
+<li>MAC Address: 12 digits mac address</li>
+<li>Last modification : User and date/time of last modification</li>
+<li>Temporary : define if the IP address is temporary, if yes : who put it in that state and until when.<br />
+Values are "NO" or "YES (&lt;login&gt;) until &lt;date&gt"</li>
+<li>Migrating : define if the IP address must migrate, if yes : who put it in that state and for when.<br />
+Values are "NO" ou "YES (&lt;login&gt;) the &lt;date&gt; into &lt;Upcoming address&gt; (&lt;future site&gt;/&lt;future subnet&gt;)"</li>
+</ul>
+</p>
+<p>First three columns are the actions : Delete, Modify, Migrate.<br />
+User without proper permissions doesn't have access to those columns</p>
+<p>For "dhcp" type records, all IP served by DHCP servers are in the database with name "RESA_DHCP" and description "Reservation DHCP".<br />
+You find also :<ul>
+<li>Static reservations with device name, MAC address and description "Reservation Statique DHCP"</li>
+<li>Dynamic DHCP IP Address with device name, MAC address, description "Adresse DHCP" and lease date as temporary date</li>
+</ul></p>
+<p>If function is enabled, by clicking on IP address, a box opens with urls build with this address. You could open a new window going at url specified simply by clicking on one of them.</p>
+</body>
+</html>

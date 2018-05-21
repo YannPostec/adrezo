@@ -1,0 +1,72 @@
+<html>
+<head><title>Adrezo Help</title>
+<link rel="stylesheet" href="../../stylesheet/common.css" type="text/css" />
+</head>
+<body>
+<h2>Zone : Navigation Criteria</h2>
+This zone allow you to apply some criterias :
+<ul>
+	<li>Number of records displayed per page <select><option>20</option><option>40</option><option>75</option><option>100</option></select></li>
+	<li>Direct access to page number <input type="text" size="3">/ XXX (total pages number)<br />
+	<i>Enter a number greater than the total pages number send you to last page.</i>
+	</li>
+	<li>Navigation through pages :<br />
+	<img src="../../img/nav_first.gif" alt="first" /> (Go to first page)<br />
+	<img src="../../img/nav_previous.gif" alt="previous" /> (Go to previous page)<br />
+	Page number list (9 max) centered on current page number if possible. Example : 1 2 <a class="current">3</a> 4 5 6 7 8 9<br />
+	<img src="../../img/nav_next.gif" alt="next" /> (Go to next page)<br />
+	<img src="../../img/nav_end.gif" alt="end" /> (Go to last page)<br />
+	</li>
+</ul>
+<p>Every change on a criteria is immediately take into account</p>
+<hr />
+<h2>Zone : Search Criteria</h2>
+<p>This zone allow you to build an SQL search chain.<br />
+Once the chain is built, you apply using <input type="button" value="GO" /><br />
+<i>The text area shows the search chain, it is not editable</i>
+</p>
+<h3>Form : Creating search chain</h3>
+5 differents types of elements could be added :<br />
+<ul>
+<li><input type="button" value="("> Open Parenthesis</li>
+<li><input type="button" value=")"> Close Parenthesis</li>
+<li><input type="button" value="ET"> Logical element AND</li>
+<li><input type="button" value="OU"> Logical Element OR</li>
+<li>Search criteria</li>
+</ul>
+A search criteria is an expression composed of three elements:
+<ul>
+<li>A search key to choose in list <select><option>Site</option><option>etc...</option></select></li>
+<li>An operator to choose in a key-specific list. Example <select><option>Equal</option><option>Different from</option></select> for a numeric value</li>
+<li>A search value to choose in a list or to type depending on the key</li>
+</ul>
+<p>Adding a criteria bu clicking on <input type="button" value="Add" /><br />
+The four other elements help to build a logical expression and you add them by clicking on their respective buttons.<br />
+<p>Adding those elements have constraints
+<ul>
+<li>A ( can be placed only after AND, OR or at the start of the chain</li>
+<li>A ) can be placed only after a search criteria</li>
+<li>AND, OR can be place only after a ) or a search criteria</li>
+<li>A search criteria can be placed only after a  ) or another search criteria</li>
+</ul>
+If thos rules are not followed, the elemet is not added
+</p>
+<p>Delete Buttons <input type="button" value="All" /> and <input type="button" value="Last Element" /> delete respectively the full chain or only the last added element</p>
+<hr />
+<h2>Zone : Sort Criteria</h2>
+<p>This zone allow you to apply a sort key on some columns of IP address list.</p>
+<p>Choice is made with a list <select><option>IP Address</option><option>etc...</option></select><br />
+By selecting the proper radio button, the sort order could be <input type="radio" name="test" class="radio" checked="checked">Crescent (Default) or <input type="radio" name="test" class="radio">Decrescent.</p>
+<p>Every change on a criteria is immediately take into account</p>
+<hr />
+<h2>Zone : Excel Export</h2>
+<p>
+You could have a database export under excel format by clicking on <img src="../../img/icon_excel.jpg" alt="ExcelIcon" /> with 3 variants :
+<ul>
+<li>a complete export of IP addresses regardless of selected context</li>
+<li>a export of only IP addresses for the selected context</li>
+<li>a export of only IP addresses restricted by the current search chain</li>
+</ul>
+</p>
+</body>
+</html>

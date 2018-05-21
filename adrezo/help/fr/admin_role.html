@@ -1,0 +1,57 @@
+<html>
+<head><title>Aide adrezo</title>
+<link rel="stylesheet" href="../../stylesheet/common.css" type="text/css" />
+</head>
+<body>
+<h2>Gestion des Roles</h2>
+<p>Avec les droits nécessaires, vous pouvez gérer les rôles et les droits d'accès à l'application associés.<hr />
+Vous trouverez dans la page un tableau avec :
+<ul>
+	<li>une zone d'ajout en première ligne</li>
+	<li>la liste des roles existants avec leurs informations sur les lignes suivantes</li>
+</ul>
+Pour chaque ligne de la liste, vous pouvez :
+<ul>
+	<li>Effacer un role en cliquant sur <img src="../../img/icon_delete.jpg" alt="DeleteIcon" /></li>
+	<li>Modifier un role en cliquant sur <img src="../../img/icon_modify.jpg" alt="ModifyIcon" /></li>
+</ul>
+En cas d'ajout ou de modification, les icônes <img src="../../img/icon_valid.png" alt="ValidIcon" /><img src="../../img/icon_refuse.png" alt="ResetIcon" /> apparaîssent.<br />
+Entrez ou modifiez les différentes informations puis cliquez sur <img src="../../img/icon_valid.png" alt="ValidIcon" /> pour valider.<br />
+Vous pouvez également cliquer sur <img src="../../img/icon_refuse.png" alt="ResetIcon" /> pour annuler, tous les champs reviennent à leur valeur initiale.<hr />
+Un rôle est défini par plusieurs champs :
+<ul>
+	<li>son nom</li>
+	<li>l'annuaire de rattachement</li>
+	<li>le contexte initial qui sera appliqué quand l'utilisateur possédant ce rôle se connectera</li>
+	<li>les droits qui seront appliqués pour ce rôle a un nouveau contexte quand ce dernier sera créé.</li>
+	<li>les droits associés au rôle pour chaque contexte existant</li>
+	<li>si le rôle sert dans une authentification externe, l'association qu'il a avec un groupe</li>
+</ul>
+<b>N.B. : Les rôles de l'annuaire Local "Read-Only" et "AdminLocal" ne sont pas éditables.</b><br />
+<b>N.B. : Voir la gestion des utilisateurs pour comprendre quel contexte initial sera appliqué.</b>
+</p>
+<hr />
+<h3>Nouveau Contexte :</h3>
+Afin de renseigner les droits qui seront associés entre ce rôle et un nouveau contexte, vous pouvez soit :
+<ul>
+	<li>directement remplir le champ avec une valeur comprise entre 0 et 255</li>
+	<li>utiliser le formulaire associé en cliquant sur <img src="../../img/icon_database.png" alt="Config" />. Ce formulaire présente les différentes catégories de droits pour le nouveau contexte.</li>
+</ul>
+<h3>Gestion des droits :</h3>
+La gestion des droits n'est pas disponible directement à la création du rôle. Elle se fait une fois ce dernier créé.<br />
+Afin de renseigner les droits qui seront associés entre ce rôle et les différents contextes existant, cliquez sur <img src="../../img/icon_database.png" alt="Config" />.<br />
+Un tableau similaire à celui de nouveau contexte mais présentant un contexte par ligne sera affiché dans une nouvelle fenêtre.<br />
+Une fois vos choix faits, validez en cliquant sur <img src="../../img/icon_valid.png" alt="ValidIcon" />.<br />
+Un rappel des droits et de leurs usages est également à disposition sur cette nouvelle fenêtre.
+<h3>Mapping des groupes LDAP :</h3>
+Le mapping des groupes n'est pas disponible directement à la création du rôle. Il se fait une fois ce dernier créé.<br />
+Apres l'authentification de l'utilisateur, lors de la phase d'autorisations, l'ensemble des rôles liés à l'annuaire sur lequel l'utilisateur s'est authentifié sont regardés.<br />
+On récupère le groupe LDAP associé et on regarde si l'utilisateur fait partie d'un de ces groupes.<br />
+Si c'est le cas, le rôle et ses droits lui sont attribués.<br />
+Afin d'effectuer ce mapping, cliquer sur <img src="../../img/icon_database.png" alt="Config" /> ce qui fera apparaitre une nouvelle fenêtre.<br />
+Une liste des groupes LDAP présents dans l'annuaire (selon la configuration faite dans celle de l'annuaire) apparaitra.<br />
+Vous pourrez alors choisir un groupe en cliquant sur <img src="../../img/icon_valid.png" alt="ValidIcon" />
+Afin d'assurer l'affichage en cas d'un grand nombre de groupes, la liste est paginée par page de 10 éléments.<br />
+Vous pouvez défiler entre les pages avec les flèches ou faire une recherche directement en commencant à écrire dans le rectangle.
+</body>
+</html>

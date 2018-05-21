@@ -1,0 +1,151 @@
+<html>
+<head><title>Aide adrezo</title>
+<link rel="stylesheet" href="../../stylesheet/common.css" type="text/css" />
+</head>
+<body>
+<h2>Syntaxe API, module Admin</h2>
+
+<h3>Informations sur un site</h3>
+Retourne les informations sur un site donné.<br />
+Roles requis : API, ADMIN
+<ul>
+<li>URL<ul><li><b>GET /api/admin/site/&lt;site&gt;</b></li></ul></li>
+<li>Entrée (URI)<ul><li>site : entier, id du site dans la base</li></ul></li>
+<li>Sortie (JSON)
+<ul><li>{ "id":&lt;id&gt;,"name":&lt;name&gt;,"code":&lt;code&gt;,"ctx":&lt;ctx&gt; }
+<ul><li>id : entier, id du site dans la base</li>
+<li>name : chaine, optionnel, nom du site</li>
+<li>code : chaine, code du site (trigramme,etc...)</li>
+<li>ctx : entier, id du contexte dans la base</li></ul></li>
+</ul></li>
+<li>Code de retour HTTP, si non ok retour d'informations en format texte
+<ul><li>500 : erreur interne dans l'API</li>
+<li>404 : site non trouvé</li>
+<li>200 : ok, retourne le résultat au format JSON</li></ul></li>
+</ul>
+<hr />
+
+<h3>Suppression d'un site</h3>
+Permet la suppression d'un site donné.<br />
+Roles requis : API, ADMIN
+<ul>
+<li>URL<ul><li><b>DELETE /api/admin/site/&lt;site&gt;</b></li></ul></li>
+<li>Entrée (URI)<ul><li>site : entier, id du site dans la base</li></ul></li>
+<li>Sortie (text/plain) : aucune sauf erreur</li>
+<li>Code de retour HTTP, si non ok retour d'informations en format texte
+<ul><li>500 : erreur interne dans l'API</li>
+<li>404 : site non trouvé</li>
+<li>200 : ok, site supprimé</li></ul></li>
+</ul>
+<hr />
+
+<h3>Ajout d'un site</h3>
+Permet l'ajout d'un site dans un contexte donné en fonction des caracteristiques envoyées.<br />
+Roles requis : API, ADMIN
+<ul>
+<li>URL<ul><li><b>POST /api/admin/site</b></li></ul></li>
+<li>Entrée (JSON)
+<ul><li>{ "name":&lt;name&gt;,"code":&lt;code&gt;,"ctx":&lt;ctx&gt; }
+<ul><li>name : chaine, optionnel, nom du site</li>
+<li>code : chaine, code du site (trigramme,etc...)</li>
+<li>ctx : entier, id du contexte dans la base</li></ul></li></ul></li>
+<li>Sortie (text/plain) : Site &lt;id&gt; created
+<ul><li>id : entier, id du site dans la base</li></ul></li>
+<li>Code de retour HTTP, si non ok retour d'informations en format texte
+<ul><li>500 : erreur interne dans l'API</li>
+<li>404 : contexte non trouvé</li>
+<li>201 : ok, création du site effectuée</li></ul></li>
+</ul>
+<hr />
+
+<h3>Modification d'un site</h3>
+Permet de modifier certains paramètres d'un site en fonction des caracteristiques envoyées.<br />
+Roles requis : API, ADMIN
+<ul>
+<li>URL<ul><li><b>PATCH /api/admin/site/&lt;site&gt;</b></li></ul></li>
+<li>Entrée (URI)<ul><li>site : entier, id du site dans la base</li></ul></li>
+<li>Entrée (JSON)
+<ul><li>{ "name":&lt;name&gt;,"code":&lt;code&gt; }
+<ul><li>name : chaine, optionnel, nom du site</li>
+<li>code : chaine, code du site (trigramme,etc...)</li></ul></li></ul></li>
+<li>Sortie (text/plain) : aucune sauf erreur</li>
+<li>Code de retour HTTP, si non ok retour d'informations en format texte
+<ul><li>500 : erreur interne dans l'API</li>
+<li>404 : site non trouvé</li>
+<li>200 : ok, modification du site effectuée</li></ul></li>
+</ul>
+<hr />
+
+<h3>Informations sur un contexte</h3>
+Retourne les informations sur un contexte donné.<br />
+Roles requis : API, ADMIN
+<ul>
+<li>URL<ul><li><b>GET /api/admin/context/&lt;ctx&gt;</b></li></ul></li>
+<li>Entrée (URI)<ul><li>ctx : entier, id du contexte dans la base</li></ul></li>
+<li>Sortie (JSON)
+<ul><li>{ "id":&lt;id&gt;,"name":&lt;name&gt;,"site_main":&lt;site_main&gt; }
+<ul><li>id : entier, id du contexte dans la base</li>
+<li>name : chaine, nom du contexte</li>
+<li>site_main : entier, id du site contenant le stock principal du contexte</li></ul></li></ul></li>
+<li>Code de retour HTTP, si non ok retour d'informations en format texte
+<ul><li>500 : erreur interne dans l'API</li>
+<li>404 : contexte non trouvé</li>
+<li>200 : ok, retourne le résultat au format JSON</li></ul></li>
+</ul>
+<hr />
+
+<h3>Modification d'un contexte</h3>
+Permet de modifier certains paramètres d'un contexte en fonction des caracteristiques envoyées.<br />
+Roles requis : API, ADMIN
+<ul>
+<li>URL<ul><li><b>PATCH /api/admin/context/&lt;ctx&gt;</b></li></ul></li>
+<li>Entrée (URI)<ul><li>ctx : entier, id du contexte dans la base</li></ul></li>
+<li>Entrée (JSON)
+<ul><li>{ "name":&lt;name&gt; }
+<ul><li>name : chaine, nom du contexte</li></ul></li></ul></li>
+<li>Sortie (text/plain) : aucune sauf erreur</li>
+<li>Code de retour HTTP, si non ok retour d'informations en format texte
+<ul><li>500 : erreur interne dans l'API</li>
+<li>404 : contexte non trouvé</li>
+<li>200 : ok, modification du contexte effectuée</li></ul></li>
+</ul>
+<hr />
+
+<h3>Liste des contextes</h3>
+Retourne un tableau avec les informations de chaque contexte de l'application.<br />
+Roles requis : API, ADMIN
+<ul>
+<li>URL<ul><li><b>GET /api/admin/context</b></li></ul></li>
+<li>Entrée : Aucune</li>
+<li>Sortie (JSON)
+<ul><li>{ "ctx_list": [ {"id":&lt;id&gt;,"name":&lt;name&gt;,"site_main":&lt;site_main&gt;},{...} ] }
+<ul><li>id : entier, id du contexte dans la base</li>
+<li>name : chaine, nom du contexte</li>
+<li>site_main : entier, id du site contenant le stock principal du contexte</li></ul></li></ul></li>
+<li>Code de retour HTTP, si non ok retour d'informations en format texte
+<ul><li>500 : erreur interne dans l'API</li>
+<li>404 : liste des contextes vide</li>
+<li>200 : ok, retourne le résultat au format JSON</li></ul></li>
+</ul>
+<hr />
+
+<h3>Liste des sites</h3>
+Retourne un tableau avec les informations de chaque site du contexte donné.<br />
+Roles requis : API, ADMIN
+<ul>
+<li>URL<ul><li><b>GET /api/admin/context/listsite/&lt;ctx&gt;</b></li></ul></li>
+<li>Entrée (URI)<ul><li>ctx : entier, id du contexte dans la base</li></ul></li>
+<li>Sortie (JSON)
+<ul><li>{ "site_list": [ {"id":&lt;id&gt;,"name":&lt;name&gt;,"code":&lt;code&gt;},{...} ] }
+<ul><li>id : entier, id du site dans la base</li>
+<li>name : chaine, optionnel, nom du site</li>
+<li>code : chaine, code du site (trigramme,etc...)</li></ul></li></ul></li>
+<li>Code de retour HTTP, si non ok retour d'informations en format texte
+<ul><li>500 : erreur interne dans l'API</li>
+<li>404 : liste des sites vide</li>
+<li>200 : ok, retourne le résultat au format JSON</li></ul></li>
+</ul>
+<hr />
+
+</body>
+</html>

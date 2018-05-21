@@ -1,0 +1,5 @@
+.acc {list-style:none; color:#033; margin:0px; padding:0px; }
+.acc h3 {font-size:x-small; border:1px solid #9ac1c9; padding:3px 20px 4px; font-weight:bold; margin-top:3px; margin-bottom:0px; cursor:pointer; background:url(../img/tinydd_header.gif)}
+.acc h3:hover {background:url(../img/tinydd_header_over.gif)}
+.acc .acc-section {overflow:hidden; background:#fff}
+.acc .acc-content {padding:5px; border:1px solid #9ac1c9; border-top:none; background:#fff}

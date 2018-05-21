@@ -1,0 +1,44 @@
+<html>
+<head><title>Adrezo Help</title>
+<link rel="stylesheet" href="../../stylesheet/common.css" type="text/css" />
+</head>
+<body>
+<h2>Scheduled Task Management</h2>
+<p>With proper permissions, you could manage scheduled task pre-programmed in application.<hr />
+On this page, you will find a list of jobs with :
+<ul>
+	<li>its purpose</li>
+	<li>if job is enabled</li>
+	<li>additional parameters for some jobs</li>
+	<li>statistics on elements used in job</li>
+</ul>
+After modification, click on <img src="../../img/icon_valid.png" alt="ValidIcon" /> to validate.<br />
+You will also find at the bottom of the page a scheduled task list with their next execution time.<br />
+This list display when clicking on <img src="../../img/icon_valid.png" alt="ValidIcon" /></p>
+<p>Jobs Details:
+<ul>
+<li>Job 1 : Each time a user connect to the application, date is recorded in a table with his preferences<br />
+This table is cleaned from users not connected since x days</li>
+<li>Job 2 : Each change in supply is recorded<br />
+The table is cleaned from lines older than x days</li>
+<li>Job 3 : When photos are deleted in application, they are just deleted from database. Physical files remains.<br />
+This job compare physical file with database informations and delete unreferenced file.<br />
+By clicking on the button, this verification can be launched manually</li>
+<li>Job 4 : Temporary IP addresses are valid until a certain date. This job send an email to users with date exceeded.<br />
+If user don't exist anymore, informations are sent to the admin account</li>
+<li>Job 5 : Migrating IP addresses are valid until a certain date. This job send an email to users with date exceeded.<br />
+If user don't exist anymore, informations are sent to the admin account</li>
+<li>Job 6 : Subnets which are not in nom are put into corresponding surnet.</li>
+<li>Job 7 : Gathering devices list in Cacti database, injection in adrezo database. Daily execution</li>
+<li>Job 8 : Gathering network availability statistics in cacti database, injection in adrezo database and zeroize cacti statistics data. Hourly, Daily or Monthly execution.</li>
+<li>Job 9 : Average of hourly statistics to create daily statistics</li>
+<li>Job 10 : Average of daily statistics to create monthly statistics</li>
+</ul>
+</p>
+<p>Tasks scheduling is managed in file quartz-config.xml which resides in WEB-INF/classes<br />
+Logs management is managed in file log4j.xml within same location.
+</p>
+</body>
+</html>
+
+

@@ -1,0 +1,73 @@
+<html>
+<head><title>Aide adrezo</title>
+<link rel="stylesheet" href="../../stylesheet/common.css" type="text/css" />
+</head>
+<body>
+<h2>Zone d'application de critères de navigation</h2>
+Cette zone permet d'appliquer les critères suivants :
+<ul>
+	<li>Choix du nombre d'enregistrements affichés par page via une liste de sélection <select><option>20</option><option>40</option><option>75</option><option>100</option></select></li>
+	<li>Accès direct à une page indiqué dans une zone de texte <input type="text" size="3">/ XXX (Indication du nombre de pages total)<br />
+	<i>L'entrée d'un numéro de page supérieur au nombre total de pages envoie à la dernière page.</i>
+	</li>
+	<li>Navigation dans les pages :<br />
+	<img src="../../img/nav_first.gif" alt="first" /> (Aller à la première page)<br />
+	<img src="../../img/nav_previous.gif" alt="previous" /> (Aller à la page précédente)<br />
+	Liste de numéros de page (au nombre maximal de 9) centré si possible sur le numéro de page courante qui est mis en valeur. Exemple : 1 2 <a class="current">3</a> 4 5 6 7 8 9<br />
+	<img src="../../img/nav_next.gif" alt="next" /> (Aller à la page suivante)<br />
+	<img src="../../img/nav_end.gif" alt="end" /> (Aller à la dernière page)<br />
+	</li>
+</ul>
+<p>Chaque changement d'un critere est directement pris en compte</p>
+<hr />
+<h2>Zone d'application de critères de recherche</h2>
+<p>Cette zone propose la construction d'une chaine de recherche SQL de façon simplifiée en guidant l'utilisateur.<br />
+Afin d'appliquer chaque modification de la chaîne de recherche visible dans la zone de texte, il faut utiliser le bouton <input type="button" value="GO" /><br />
+<i>La zone de texte permet de visualiser la recherche en cours. Cette zone ne permet pas l'édition</i>
+</p>
+<h3>Formulaire de création de la chaîne de recherche</h3>
+5 types d'éléments peuvent être ajoutés:<br />
+<ul>
+<li><input type="button" value="("> Parenthèse ouvrante</li>
+<li><input type="button" value=")"> Parenthèse fermante</li>
+<li><input type="button" value="ET"> Element logique ET</li>
+<li><input type="button" value="OU"> Element logique OU</li>
+<li>Critère de recherche</li>
+</ul>
+Un critère de recherche est une expression composé de trois éléments :
+<ul>
+<li>Une clé de recherche à choisir dans la liste <select><option>Site</option><option>etc...</option></select></li>
+<li>Un opérateur à choisir dans une liste spécifique à chaque clé. Exemple <select><option>Egal</option><option>Different de</option></select> pour une valeur numérique</li>
+<li>Une valeur de recherche imposé (à choisir dans une liste) ou libre selon la clé</li>
+</ul>
+<p>L'ajout d'un critère de recherche se fait avec le bouton <input type="button" value="Ajouter" /><br />
+Les 4 autres éléments servent à créer une expression logique et s'ajoutent en cliquant sur leurs boutons respectifs.<br />
+<p>L'ajout de ces éléments se fait selon certaines règles d'écriture
+<ul>
+<li>Une ( ne peut se placer qu'après un ET, un OU ou en début de chaîne</li>
+<li>Une ) ne peut se placer qu'après un critère de recherche</li>
+<li>ET, OU ne peuvent se placer qu'après une ), un critère de recherche</li>
+<li>Un critère de recherche ne peut se placer après une ), un autre critère de recherche</li>
+</ul>
+Si ces règles ne sont pas respectés, l'élément n'est pas ajouté
+</p>
+<p>Les boutons Effacer <input type="button" value="Tout" /> et <input type="button" value="Dernier Element" /> permettent d'effacer respectivement la chaîne complète ou le dernier élément ajouté</p>
+<p>Lors de la validation de cette chaine de recherche, s'il y'a une mauvaise balance des parenthèses, une fenêtre s'affiche. Il vous faut alors corriger l'erreur</p>
+<hr />
+<h2>Zone d'application de critères de tri</h2>
+<p>Cette zone permet l'affectation d'une clé de tri sur une des colonnes de la liste d'adresses IP.</p>
+<p>Le choix dans les clés de tri se fait via une liste de sélection de ce type <select><option>Adresse IP</option><option>etc...</option></select> ou seul les colonnes intéressantes sont présentes.<br />
+En sélectionnant le bouton radio adéquat, l'ordre du tri sur cette clé peut être <input type="radio" name="test" class="radio" checked="checked">Croissant (choix par défaut) ou <input type="radio" name="test" class="radio">Decroissant.</p>
+<p>Chaque changement d'un critere est directement pris en compte</p>
+<hr />
+<h2>Zone Export Excel</h2>
+<p>
+Vous pouvez effectuer un export sous Excel de la base d'adresses IP en cliquant sur <img src="../../img/icon_excel.jpg" alt="ExcelIcon" /> suivant 3 conditions :
+<ul>
+<li>Un export global des adresses IP quelquesoit le contexte sélectionné (la base entière d'adrezo)</li>
+<li>Un export plus réduit : uniquement les adresses IP du contexte sélectionné</li>
+<li>Un export des adresses IP fournis par la chaîne de recherche actuelle. Equivalent à s'il n'y a aucune recherche créée.</li>
+</ul>
+</p>
+</body>
+</html>

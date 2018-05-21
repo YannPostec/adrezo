@@ -1,0 +1,47 @@
+<html>
+<head><title>Aide adrezo</title>
+<link rel="stylesheet" href="../../stylesheet/common.css" type="text/css" />
+</head>
+<body>
+<h2>Gestion des Utilisateurs</h2>
+<p>Avec les droits nécessaires, vous pouvez gérer les utilisateurs et leurs méthodes d'authentification.<hr />
+Vous trouverez dans la page un tableau avec :
+<ul>
+	<li>une zone d'ajout en première ligne</li>
+	<li>la liste des utilisateurs existants avec leurs informations sur les lignes suivantes</li>
+</ul>
+Pour chaque ligne de la liste, vous pouvez :
+<ul>
+	<li>Effacer un utilisateur en cliquant sur <img src="../../img/icon_delete.jpg" alt="DeleteIcon" /></li>
+	<li>Modifier un utilisateur en cliquant sur <img src="../../img/icon_modify.jpg" alt="ModifyIcon" /></li>
+</ul>
+En cas d'ajout ou de modification, les icônes <img src="../../img/icon_valid.png" alt="ValidIcon" /><img src="../../img/icon_refuse.png" alt="ResetIcon" /> apparaîssent.<br />
+Entrez ou modifiez les différentes informations puis cliquez sur <img src="../../img/icon_valid.png" alt="ValidIcon" /> pour valider.<br />
+Vous pouvez également cliquer sur <img src="../../img/icon_refuse.png" alt="ResetIcon" /> pour annuler, tous les champs reviennent à leur valeur initiale.<hr />
+Un utilisateur est défini par plusieurs champs :
+<ul>
+	<li>son login de connexion</li>
+	<li>son mot de passe</li>
+	<li>son adresse mail</li>
+	<li>le rôle associé</li>
+	<li>la méthode d'autorisation</li>
+</ul>
+<b>N.B. : L'utilisateur admin n'est pas affiché et doit être géré dans la page Générale de l'administration.</b><br />
+<b>N.B. : Par mesure de sécurité, le mot de passe n'est jamais affiché</b>
+</p>
+<hr />
+<h3>Methodes d'autorisation</h3>
+Ces méthodes sont au nombre de deux : Locale et Externe
+<ul>
+	<li>Locale : Ce compte sert aux deux mécanismes que sont authentification et autorisation. L'authentification permettra de valider le mot de passe rentré ici.<br />
+	L'autorisation permettra d'appliquer le rôle associé à l'utilisateur et donc de lui donner ses droits.</li>
+	<li>Externe : Ce compte ne sert qu'au mécanisme d'autorisation. Le mot de passe bien qu'obligatoire ne sera jamais utilisé.<br />
+	L'authentification se fera au moyen d'une connexion LDAP (seul méthode disponible pour l'instant). L'autorisation se fera grace aux groupes LDAP et aux rôles associés.<br />
+	La création d'un compte sur cette page permet d'ajouter un rôle supplémentaire pour un utilisateur spécifique en plus de ceux de son groupe LDAP.</li>
+</ul>
+<h3>Choix du contexte initial</h3
+Lors d'une authentification/autorisation locale, le contexte initial sera celui du rôle défini pour l'utilisateur<br />
+Lors d'une authentification externe, le contexte initial de tous les rôles/groupes LDAP sera affecté au fur et à mesure, on ne prendra en compte que le dernier utilisé<br />
+En dernier lieu, on regarde si un utilisateur est déclaré afin de lui affecter un rôle supplémentaire. Dans ce cas, c'est le contexte initial qui sera appliqué.
+</body>
+</html>

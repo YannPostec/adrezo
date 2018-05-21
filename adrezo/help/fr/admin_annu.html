@@ -1,0 +1,44 @@
+<html>
+<head><title>Aide adrezo</title>
+<link rel="stylesheet" href="../../stylesheet/common.css" type="text/css" />
+</head>
+<body>
+<h2>Gestion des Annuaires</h2>
+<p>Avec les droits nécessaires, vous pouvez gérer les annuaires.<br />
+Cependant il n'est pas possible d'altérer l'annuaire Local prédéfini.<hr />
+Vous trouverez dans la page un tableau avec :
+<ul>
+	<li>une zone d'ajout en première ligne</li>
+	<li>la liste des annuaires existants avec leurs informations sur les lignes suivantes</li>
+</ul>
+Pour chaque ligne de la liste, vous pouvez :
+<ul>
+	<li>Effacer un utilisateur en cliquant sur <img src="../../img/icon_delete.jpg" alt="DeleteIcon" /></li>
+	<li>Modifier un utilisateur en cliquant sur <img src="../../img/icon_modify.jpg" alt="ModifyIcon" /></li>
+</ul>
+En cas d'ajout ou de modification, les icônes <img src="../../img/icon_valid.png" alt="ValidIcon" /><img src="../../img/icon_refuse.png" alt="ResetIcon" /> apparaissent.<br />
+Entrez ou modifiez les différentes informations puis cliquez sur <img src="../../img/icon_valid.png" alt="ValidIcon" /> pour valider.<br />
+Vous pouvez également cliquer sur <img src="../../img/icon_refuse.png" alt="ResetIcon" /> pour annuler, tous les champs reviennent à leur valeur initiale.<hr />
+Un annuaire est défini par plusieurs champs :
+<ul>
+	<li>un nom</li>
+	<li>un ordre qui déterminera l'ordre de recherche lors de l'authentification des utilisateurs</li>
+	<li>son type dans une liste prédéfinie :
+		<ul>
+			<li>Local : La base locale d'utilisateurs. Elle existe déjà et ne peut être modifié ou supprimé.</li>
+			<li>LDAP : Le seul type aujourd'hui disponible. Choisir ce type pour interroger un annuaire distant LDAP ou dérivé (tel qu'Active Directory)</li>
+			<li>D'autres types tels que Radius ou TACACS pourraient s'ajouter à cette liste.</li>
+		</ul>
+	</li>
+	<li>la configuration pour les annuaires externes</li>
+</ul>
+</p>
+<hr />
+<h3>Configuration LDAP</h3>
+<p>La configuration LDAP n'est pas disponible directement à la création de l'annuaire. Elle se fait une fois ce dernier créé<br />
+La fenêtre de configuration contient plusieurs champs à remplir, certains sont obligatoires en gras.<br />
+D'autres prendront les valeurs par défaut si vous les laissez vide.<br />
+Un texte explicatif en italique est présent en dessous de chaque champ, merci de vous y reporter pour les explications.</p>
+<b>N.B. : Par mesure de sécurité, le mot de passe n'est jamais affiché</b>
+</body>
+</html>

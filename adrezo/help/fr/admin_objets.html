@@ -1,0 +1,29 @@
+<html>
+<head><title>Aide adrezo</title>
+<link rel="stylesheet" href="../../stylesheet/common.css" type="text/css" />
+</head>
+<body>
+<h2>Hiérarchie des Objets</h2>
+La hiérarchie simple des objets est résumé ci-dessous :
+<ul>
+	<li>Un contexte contient plusieurs sites</li>
+	<li>Un site contient plusieurs subnets, plusieurs vlans, plusieurs salles, plusieurs stocks</li>
+	<li>Un stock contient plusieurs références</li>
+	<li>Un subnet contient plusieurs adresses IP, certaines étant des redondances</li>
+	<li>Un vlan contient plusieurs subnets</li>
+	<li>Une salle contient plusieurs ensembles et plusieurs photos</li>
+	<li>Un ensemble contient plusieurs baies</li>
+	<li>Une baie contient de 1 à 4 photos</li>
+	<li>La norme (Surnet Global) contient plusieurs surnets et/ou subnets</li>
+	<li>Pour les SDR : les clients contiennent plusieurs sites</li>
+	<li>SDR : les sites contiennent plusieurs équipements (Devices)</li>
+	<li>SDR : les équipements possèdent des statistiques mensuelles</li>
+	<li>Pour l'authentification : on définit des annuaires locaux ou externes (LDAP)</li>
+	<li>Auth : Un annuaire contient plusieurs roles</li>
+	<li>Auth : Plusieurs utilisateurs peuvent être membre d'un même role</li>
+	<li>Auth : Des droits définissent l'association entre un contexte et les droits du role dans ce contexte</li>
+	<li>API : Certains utilisateurs peuvent être autorisés à utiliser les API</li>
+</ul>
+<img src="../ressource/objets_adrezo_fr.png" alt="objets" />
+</body>
+</html>

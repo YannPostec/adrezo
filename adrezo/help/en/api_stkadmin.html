@@ -1,0 +1,232 @@
+<html>
+<head><title>Adrezo Help</title>
+<link rel="stylesheet" href="../../stylesheet/common.css" type="text/css" />
+</head>
+<body>
+<h2>API Syntax, Stock Admin section</h2>
+
+<h3>Sites List</h3>
+Return array with informations on each site of a given context with main site information.<br />
+Required Roles : API, STKADMIN
+<ul>
+<li>URL<ul><li><b>GET /api/stockadmin/site/list/&lt;ctx&gt;</b></li></ul></li>
+<li>In (URI)
+<ul><li>ctx : integer, context id in database</li></ul></li>
+<li>Out (JSON)
+<ul><li>{"stocksite_list": [ {"id":&lt;id&gt;,"name":&lt;name&gt;,"main":&lt;main&gt;},{...} ] }
+<ul><li>id : integer, site id in database</li>
+<li>name : string, site name</li>
+<li>main : boolean, main stock for this context</li></ul></li></ul></li>
+<li>HTTP return code, if not ok return informations in text format
+<ul><li>500 : internal error in API</li>
+<li>404 : empty site list or context not found</li>
+<li>200 : ok, return result in JSON format</li></ul></li>
+</ul>
+<hr />
+
+<h3>Types List</h3>
+Return array with informations on each type of a given site.<br />
+Required Roles : API, STKADMIN
+<ul>
+<li>URL<ul><li><b>GET /api/stockadmin/type/list/&lt;site&gt;</b></li></ul></li>
+<li>In (URI)
+<ul><li>site : integer, site id in database</li></ul></li>
+<li>Out (JSON)
+<ul><li>{"stocktype_list": [ {"id":&lt;id&gt;,"name":&lt;name&gt;,"threshold":&lt;threshold&gt;,"category":&lt;category&gt;,"index":&lt;index&gt;,"ongoing":&lt;ongoing&gt;,"ctx":&lt;ctx&gt;,"site":&lt;site&gt;},{...} ] }
+<ul><li>id : integer, type id in database</li>
+<li>name : string, type name</li>
+<li>threshold : integer, alert threshold</li>
+<li>category : integer, category id in database</li>
+<li>index : string, type index in stock</li>
+<li>ongoing : integer, number of elements arriving</li>
+<li>ctx : integer, context id in database</li>
+<li>site : integer, site id in database</li></ul></li></ul></li>
+<li>HTTP return code, if not ok return informations in text format
+<ul><li>500 : internal error in API</li>
+<li>404 : empty type list or site not found</li>
+<li>200 : ok, return result in JSON format</li></ul></li>
+</ul>
+<hr />
+
+<h3>Informations on type</h3>
+Return informations on given type.<br />
+Required Roles : API, STKADMIN
+<ul>
+<li>URL<ul><li><b>GET /api/stockadmin/type/&lt;id&gt;</b></li></ul></li>
+<li>In (URI)
+<ul><li>id : integer, type id in database</li></ul></li>
+<li>Out (JSON)
+<ul><li>{ "id":&lt;id&gt;,"name":&lt;name&gt;,"threshold":&lt;threshold&gt;,"category":&lt;category&gt;,"index":&lt;index&gt;,"ongoing":&lt;ongoing&gt;,"ctx":&lt;ctx&gt;,"site":&lt;site&gt; }
+<ul><li>id : integer, type id in database</li>
+<li>name : string, type name</li>
+<li>threshold : integer, alert threshold</li>
+<li>category : integer, category id in database</li>
+<li>index : string, type index in stock</li>
+<li>ongoing : integer, number of elements arriving</li>
+<li>ctx : integer, context id in database</li>
+<li>site : integer, site id in database</li></ul></li></ul></li>
+<li>HTTP return code, if not ok return informations in text format
+<ul><li>500 : internal error in API</li>
+<li>404 : type not found</li>
+<li>200 : ok, return result in JSON format</li></ul></li>
+</ul>
+<hr />
+
+<h3>Delete a type</h3>
+Provide suppression of given type.<br />
+Required Roles : API, STKADMIN
+<ul>
+<li>URL<ul><li><b>DELETE /api/stockadmin/type/&lt;id&gt;</b></li></ul></li>
+<li>In (URI)
+<ul><li>id : integer, type id in database</li></ul></li>
+<li>Out (text/plain) : none except errors</li>
+<li>HTTP return code, if not ok return informations in text format
+<ul><li>500 : internal error in API</li>
+<li>404 : type not found</li>
+<li>200 : ok, type deleted</li></ul></li>
+</ul>
+<hr />
+
+<h3>Add a type</h3>
+Provide creation of a type describe with given attributes in given site.<br />
+Required Roles : API, STKADMIN
+<ul>
+<li>URL<ul><li><b>POST /api/stockadmin/type</b></li></ul></li>
+<li>In (JSON)
+<ul><li>{ "name":&lt;name&gt;,"threshold":&lt;threshold&gt;,"category":&lt;category&gt;,"index":&lt;index&gt;,"ongoing":&lt;ongoing&gt;,"ctx":&lt;ctx&gt;,"site":&lt;site&gt; }
+<ul><li>name : string, type name</li>
+<li>threshold : integer, optional, default 0, alert threshold</li>
+<li>category : integer, category id in database</li>
+<li>index : string, type index in stock</li>
+<li>ongoing : integer, optional, default 0, number of elements arriving</li>
+<li>ctx : integer, context id in database</li>
+<li>site : integer, site id in database</li></ul></li></ul></li>
+<li>Out (text/plain) : Type &lt;id&gt; created
+<ul><li>id : integer, type id in database</li></ul></li>
+<li>HTTP return code, if not ok return informations in text format
+<ul><li>500 : internal error in API</li>
+<li>404 : site not found</li>
+<li>201 : ok, type created</li></ul></li>
+</ul>
+<hr />
+
+<h3>Modify a type</h3>
+Provide modification of some type parameters with given attributes.<br />
+Required Roles : API, STKADMIN
+<ul>
+<li>URL<ul><li><b>PATCH /api/stockadmin/type/&lt;id&gt;</b></li></ul></li>
+<li>In (URI)<ul><li>id : integer, type id in database</li></ul></li>
+<li>In (JSON)
+<ul><li>{ "name":&lt;name&gt;,"threshold":&lt;threshold&gt;,"category":&lt;category&gt;,"index":&lt;index&gt;,"ongoing":&lt;ongoing&gt; }
+<ul><li>name : string, type name</li>
+<li>threshold : integer, alert threshold</li>
+<li>category : integer, category id in database</li>
+<li>index : string, type index in stock</li>
+<li>ongoing : integer, number of elements arriving</li></ul></li></ul></li>
+<li>Out (text/plain) : none except errors</li>
+<li>HTTP return code, if not ok return informations in text format
+<ul><li>500 : internal error in API</li>
+<li>404 : type not found</li>
+<li>200 : ok, type modified</li></ul></li>
+</ul>
+<hr />
+
+<h3>Reception of ongoing quantity</h3>
+Provide reception of ongoing quantity defined on type.<br />
+Required Roles : API, STKADMIN
+<ul>
+<li>URL<ul><li><b>PATCH /api/stockadmin/type/&lt;id&gt;/reception</b></li></ul></li>
+<li>In (URI)<ul><li>id : integer, type id in database</li></ul></li>
+<li>Out (text/plain) : none except errors</li>
+<li>HTTP return code, if not ok return informations in text format
+<ul><li>500 : internal error in API</li>
+<li>404 : type not found</li>
+<li>200 : ok, reception done</li></ul></li>
+</ul>
+<hr />
+
+<h3>Category List</h3>
+Return array with informations on each category.<br />
+Required Roles : API, STKADMIN
+<ul>
+<li>URL<ul><li><b>GET /api/stockadmin/category/list/</b></li></ul></li>
+<li>In (URI)</li>
+<li>Out (JSON)
+<ul><li>{"stockcategory_list": [ {"id":&lt;id&gt;,"name":&lt;name&gt;},{...} ] }
+<ul><li>id : integer, category id in database</li>
+<li>name : string, category name</li></ul></li></ul></li>
+<li>HTTP return code, if not ok return informations in text format
+<ul><li>500 : internal error in API</li>
+<li>404 : empty category list</li>
+<li>200 : ok, return result in JSON format</li></ul></li>
+</ul>
+<hr />
+
+<h3>Informations on category</h3>
+Return informations on given category.<br />
+Required Roles : API, STKADMIN
+<ul>
+<li>URL<ul><li><b>GET /api/stockadmin/category/&lt;id&gt;</b></li></ul></li>
+<li>In (URI)
+<ul><li>id : integer, category in database</li></ul></li>
+<li>Out (JSON)
+<ul><li>{ "id":&lt;id&gt;,"name":&lt;name&gt; }
+<ul><li>id : integer, category id in database</li>
+<li>name : string, category name</li></ul></li></ul></li>
+<li>HTTP return code, if not ok return informations in text format
+<ul><li>500 : internal error in API</li>
+<li>404 : category not found</li>
+<li>200 : ok, return result in JSON format</li></ul></li>
+</ul>
+<hr />
+
+<h3>Delete a category</h3>
+Provide suppression of given category.<br />
+Required Roles : API, STKADMIN
+<ul>
+<li>URL<ul><li><b>DELETE /api/stockadmin/category/&lt;id&gt;</b></li></ul></li>
+<li>In (URI)
+<ul><li>id : integer, category id in database</li></ul></li>
+<li>Out (text/plain) : none except errors</li>
+<li>HTTP return code, if not ok return informations in text format
+<ul><li>500 : internal error in API</li>
+<li>404 : category not found</li>
+<li>200 : ok, category deleted</li></ul></li>
+</ul>
+<hr />
+
+<h3>Add a category</h3>
+Provide creation of a category describe with given attributes.<br />
+Required Roles : API, STKADMIN
+<ul>
+<li>URL<ul><li><b>POST /api/stockadmin/category</b></li></ul></li>
+<li>In (JSON)
+<ul><li>{ "name":&lt;name&gt; }
+<ul><li>name : string, category name</li></ul></li></ul></li>
+<li>Out (text/plain) : Category &lt;id&gt; created
+<ul><li>id : integer, category id in database</li></ul></li>
+<li>HTTP return code, if not ok return informations in text format
+<ul><li>500 : internal error in API</li>
+<li>201 : ok, category created</li></ul></li>
+</ul>
+<hr />
+
+<h3>Modify a category</h3>
+Provide modification of some category parameters with given attributes.<br />
+Required Roles : API, STKADMIN
+<ul>
+<li>URL<ul><li><b>PATCH /api/stockadmin/category/&lt;id&gt;</b></li></ul></li>
+<li>In (URI)<ul><li>id : integer, category id in database</li></ul></li>
+<li>In (JSON)
+<ul><li>{ "name":&lt;name&gt; }
+<ul><li>name : string, category name</li></ul></li></ul></li>
+<li>Out (text/plain) : none except errors</li>
+<li>HTTP return code, if not ok return informations in text format
+<ul><li>500 : internal error in API</li>
+<li>404 : category not found</li>
+<li>200 : ok, category modified</li></ul></li>
+</ul>
+<hr />
+
+</body>
+</html>

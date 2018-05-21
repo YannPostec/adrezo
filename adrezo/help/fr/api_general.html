@@ -1,0 +1,35 @@
+<html>
+<head><title>Aide adrezo</title>
+<link rel="stylesheet" href="../../stylesheet/common.css" type="text/css" />
+</head>
+<body>
+<h2>Concepts API</h2>
+
+<h3>Authentification</h3>
+Afin d'accéder aux differents points d'entrée de l'API, une authentification est nécessaire.<br />
+Cette dernière ne se base que sur la base locale d'authentification.<br />
+<p>URL : <b>GET /api/auth</b></p>
+Exemple en utilisant curl :<br />
+<pre>curl -k https://&lt;server ip&gt;/adrezo/api/auth --data-urlencode username=someuser --data-urlencode password=somepassword</pre>
+La réponse est le token d'authentification
+<pre>{"sessionKey":"h6uoeo69n9r4io8r7la1uhu428"}</pre>
+Ce token est valide pendant la période définit par api.timeout dans le fichier properties de l'application. Valeur par défaut : 10mn<br />
+A chaque appel du point d'entrée auth, le token est créé, recréé si expiré ou rafraichi.
+<p>L'utilisateur doit être déclaré comme un utilisateur normal sur la base locale.</p>
+
+Il faut ensuite paser le token dans le header HTTP Authorization de chaque requete.<br />
+L'Authentication Scheme est : Adrezo<br />
+Exemple en utilisant curl :
+<pre>-H "Authorization: Adrezo h6uoeo69n9r4io8r7la1uhu428"</pre>
+
+<h3>Autorisation</h3>
+Chaque point d'entrée de l'API demande certains rôles afin de pouvoir s'exécuter.<br />
+Quand plusieurs rôles sont requis, ils doivent tous être présents.<br />
+Ces roles sont les memes que ceux définis dans les roles de l'application.<br />
+Dans le role déclaré pour l'utilisateur, l'API prend en compte la déclaration des roles du nouveau contexte.
+
+<h3>Limitation à certains subnets</h3>
+Par défaut, l'utilisateur a accès aux opérations IP et Réseau sur l'ensemble des subnets.<br />
+Il est possible de restreindre l'accès à certains subnets seulement, voir Admin/Gestion API dans l'aide.
+</body>
+</html>

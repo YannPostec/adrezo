@@ -1,0 +1,44 @@
+<html>
+<head><title>Aide adrezo</title>
+<link rel="stylesheet" href="../../stylesheet/common.css" type="text/css" />
+</head>
+<body>
+<h2>Gestion des Tâches Planifiées</h2>
+<p>Avec les droits nécessaires, vous pouvez agir sur les tâches planifiées pré-programmées de l'application.<hr />
+Vous trouverez dans la page une liste des tâches (job) avec :
+<ul>
+	<li>son action</li>
+	<li>si la tâche doit être activée</li>
+	<li>des paramètres additionnels pour certaines tâches</li>
+	<li>des statistiques sur des éléments se rapportant à la tâche</li>
+</ul>
+Après modification d'un des paramètres, cliquer sur <img src="../../img/icon_valid.png" alt="ValidIcon" /> pour valider.<br />
+Vous trouverez également en fin de page le moyen d'afficher la liste des tâches planifiées et leur prochaine exécution.<br />
+Cette liste s'affiche en cliquant sur <img src="../../img/icon_valid.png" alt="ValidIcon" /></p>
+<p>Détails des jobs :
+<ul>
+<li>Job 1 : A chaque connexion d'un utilisateur, la date est enregistrée dans une table avec ses préférences<br />
+Cette table est nettoyée des utilisateurs qui ne se sont pas connectées depuis x jours</li>
+<li>Job 2 : Chaque modification de stock est enregistrée<br />
+La table est nettoyée des lignes de mouvement vieilles de x jours</li>
+<li>Job 3 : Lorsque des photos sont supprimes dans le module photos, elles sont juste supprimées de la base de données. Les fichiers physiques restent.<br />
+Ce job permet de comparer les fichiers physiques avec les informations de la base et de supprimer les fichiers sans référence.<br />
+On peut lancer manuellement cette vérification en cliquant sur le bouton</li>
+<li>Job 4 : Les adresses IP temporaires sont valides jusqu'a une certaine date. Cette tâche permet d'envoyer un mail aux utilisateurs dont la date de ces IP est dépassée.<br />
+Si l'utilisateur n'existe plus, les informations sont envoyées au compte admin</li>
+<li>Job 5 : Les adresses IP en migration sont valides jusqu'a une certaine date. Cette tâche permet d'envoyer un mail aux utilisateurs dont la date de ces IP est dépassée.<br />
+Si l'utilisateur n'existe plus, les informations sont envoyées au compte admin</li>
+<li>Job 6 : Les subnets qui ne sont pas dans la norme sont mis automatiquement dans le surnet correspondant si ce dernier existe.</li>
+<li>Job 7 : Recuperation de la liste des equipements dans la base de données Cacti et injection dans celle d'Adrezo. Lancé quotidiennement</li>
+<li>Job 8 : Recuperation des statistiques de disponibilité réseau depuis la base de données Cacti, injection dans celle d'Adrezo et remise à zéro des données dans Cacti. Récurrence horaire,quotidienne ou mensuelle.</li>
+<li>Job 9 : Aggregation des statistiques horaires vers la moyenne journalière</li>
+<li>Job 10 : Aggregation des statistiques journalières vers la moyenne mensuelle</li>
+</ul>
+</p>
+<p>Les planifications des tâches sont gérées dans le fichier quartz-config.xml présents dans WEB-INF/classes<br />
+La gestion des logs est gérée dans le fichier log4j.xml au même endroit.
+</p>
+</body>
+</html>
+
+

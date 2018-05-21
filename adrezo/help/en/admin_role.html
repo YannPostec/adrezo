@@ -1,0 +1,52 @@
+<html>
+<head><title>Adrezo Help</title>
+<link rel="stylesheet" href="../../stylesheet/common.css" type="text/css" />
+</head>
+<body>
+<h2>Role Management</h2>
+<p>With proper permissions,you can manage roles and associated access rights.<hr />
+On this page, you will find a table with :
+<ul>
+	<li>An Add zone on the first line</li>
+	<li>the list of existing roles with their informations on the next lines</li>
+</ul>
+Within each line, you could :
+<ul>
+	<li>Delete a role when you click on <img src="../../img/icon_delete.jpg" alt="DeleteIcon" /></li>
+	<li>Modify a role when you click on <img src="../../img/icon_modify.jpg" alt="ModifyIcon" /></li>
+</ul>
+When adding or modifying, icons <img src="../../img/icon_valid.png" alt="ValidIcon" /><img src="../../img/icon_refuse.png" alt="ResetIcon" /> appears.<br />
+Enter or modify informations then click on <img src="../../img/icon_valid.png" alt="ValidIcon" /> to validate.<br />
+You could also click on <img src="../../img/icon_refuse.png" alt="ResetIcon" /> to cancel, going back to initial values.<hr />
+A role is defined by only one field :
+<ul>
+	<li>its name</li>
+	<li>its directory</li>
+	<li>the initial context which be applied when user log into the application</li>
+	<li>rights applied for this role to a new context.</li>
+	<li>rights applied for this role for every existing context</li>
+	<li>if role is used with external authentication, the matching group used to choose this role</li>
+</ul>
+<b>N.B. : Local directory roles as "Read-Only" and "AdminLocal" are not alterable.</b><br />
+<b>N.B. : See users management to understand the notion of initial context.</b>
+</p>
+<hr />
+<h3>New Context :</h3>
+To define rights applied for this role in case of a new context, you could :
+<ul>
+	<li>immediately fill the field with a value between 0 and 255</li>
+	<li>use the form by clicking on <img src="../../img/icon_database.png" alt="Config" />. This form presents all rights categories for this new context.</li></ul>
+<h3>Rights Management :</h3>
+Rights management is not available directly when creating a role. Once a role is created, you could modify rights by clicking on <img src="../../img/icon_database.png" alt="Config" />.<br />
+A form similar to the one with new context displaying one context per line.<br />
+Once you have done, validate by clicking on <img src="../../img/icon_valid.png" alt="ValidIcon" />.<br />
+A reminder of rights and what they're used for is present in this form.
+<h3>LDAP Groups Mapping :</h3>
+Groups mapping is not available directly when creating a role. Once a role is created, you could choose those mappings.<br />
+After user authenticates, within authorize phase, the application look into every role of the directory the user logged into.<br />
+For each role, if there is a group mapping, the application checks if the user is a member of one of those groups.<br />
+If it is the case, role and rights are applied to the user, cumulatively with the previous ones.<br />
+To select a mapping click on <img src="../../img/icon_database.png" alt="Config" /> wich display another window with groups listing.<br />
+You could choose a group by clicking on <img src="../../img/icon_valid.png" alt="ValidIcon" />
+</body>
+</html>

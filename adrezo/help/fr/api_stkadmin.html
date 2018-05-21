@@ -1,0 +1,232 @@
+<html>
+<head><title>Aide adrezo</title>
+<link rel="stylesheet" href="../../stylesheet/common.css" type="text/css" />
+</head>
+<body>
+<h2>Syntaxe API, module Stock Admin</h2>
+
+<h3>Liste des sites</h3>
+Retourne un tableau avec les informations de chaque site pour un contexte donné avec le site principal.<br />
+Roles requis : API, STKADMIN
+<ul>
+<li>URL<ul><li><b>GET /api/stockadmin/site/list/&lt;ctx&gt;</b></li></ul></li>
+<li>Entrée (URI)
+<ul><li>ctx : entier, id du contexte dans la base</li></ul></li>
+<li>Sortie (JSON)
+<ul><li>{"stocksite_list": [ {"id":&lt;id&gt;,"name":&lt;name&gt;,"main":&lt;main&gt;},{...} ] }
+<ul><li>id : entier, id du site dans la base</li>
+<li>name : chaine, nom du site</li>
+<li>main : booleen, stock principal pour le contexte</li></ul></li></ul></li>
+<li>Code de retour HTTP, si non ok retour d'informations en format texte
+<ul><li>500 : erreur interne dans l'API</li>
+<li>404 : liste des sites vide ou contexte non trouvé</li>
+<li>200 : ok, retourne le résultat au format JSON</li></ul></li>
+</ul>
+<hr />
+
+<h3>Liste des types de stock</h3>
+Retourne un tableau avec les informations de chaque type pour un site donné.<br />
+Roles requis : API, STKADMIN
+<ul>
+<li>URL<ul><li><b>GET /api/stockadmin/type/list/&lt;site&gt;</b></li></ul></li>
+<li>Entrée (URI)
+<ul><li>site : entier, id du site dans la base</li></ul></li>
+<li>Sortie (JSON)
+<ul><li>{"stocktype_list": [ {"id":&lt;id&gt;,"name":&lt;name&gt;,"threshold":&lt;threshold&gt;,"category":&lt;category&gt;,"index":&lt;index&gt;,"ongoing":&lt;ongoing&gt;,"ctx":&lt;ctx&gt;,"site":&lt;site&gt;},{...} ] }
+<ul><li>id : entier, id du type dans la base</li>
+<li>name : chaine, nom du type</li>
+<li>threshold : entier, seuil d'alerte</li>
+<li>category : entier, id de la categorie dans la base</li>
+<li>index : chaine, classification du type dans le stock</li>
+<li>ongoing : entier, nombre d'elements en cours d'approvisionnement</li>
+<li>ctx : entier, id du contexte dans la base</li>
+<li>site : entier, id du site dans la base</li></ul></li></ul></li>
+<li>Code de retour HTTP, si non ok retour d'informations en format texte
+<ul><li>500 : erreur interne dans l'API</li>
+<li>404 : liste des types vide ou site non trouvé</li>
+<li>200 : ok, retourne le résultat au format JSON</li></ul></li>
+</ul>
+<hr />
+
+<h3>Informations sur un type</h3>
+Retourne les informations sur un type donné.<br />
+Roles requis : API, STKADMIN
+<ul>
+<li>URL<ul><li><b>GET /api/stockadmin/type/&lt;id&gt;</b></li></ul></li>
+<li>Entrée (URI)
+<ul><li>id : entier, id du type dans la base</li></ul></li>
+<li>Sortie (JSON)
+<ul><li>{ "id":&lt;id&gt;,"name":&lt;name&gt;,"threshold":&lt;threshold&gt;,"category":&lt;category&gt;,"index":&lt;index&gt;,"ongoing":&lt;ongoing&gt;,"ctx":&lt;ctx&gt;,"site":&lt;site&gt; }
+<ul><li>id : entier, id du type dans la base</li>
+<li>name : chaine, nom du type</li>
+<li>threshold : entier, seuil d'alerte</li>
+<li>category : entier, id de la categorie dans la base</li>
+<li>index : chaine, classification du type dans le stock</li>
+<li>ongoing : entier, nombre d'elements en cours d'approvisionnement</li>
+<li>ctx : entier, id du contexte dans la base</li>
+<li>site : entier, id du site dans la base</li></ul></li></ul></li>
+<li>Code de retour HTTP, si non ok retour d'informations en format texte
+<ul><li>500 : erreur interne dans l'API</li>
+<li>404 : type non trouvé</li>
+<li>200 : ok, retourne le résultat au format JSON</li></ul></li>
+</ul>
+<hr />
+
+<h3>Suppression d'un type</h3>
+Permet la suppression d'un type donné.<br />
+Roles requis : API, STKADMIN
+<ul>
+<li>URL<ul><li><b>DELETE /api/stockadmin/type/&lt;id&gt;</b></li></ul></li>
+<li>Entrée (URI)
+<ul><li>id : entier, id du type dans la base</li></ul></li>
+<li>Sortie (text/plain) : aucune sauf erreur</li>
+<li>Code de retour HTTP, si non ok retour d'informations en format texte
+<ul><li>500 : erreur interne dans l'API</li>
+<li>404 : type non trouvé</li>
+<li>200 : ok, type supprimé</li></ul></li>
+</ul>
+<hr />
+
+<h3>Ajout d'un type</h3>
+Permet l'ajout d'un type dans un site donné en fonction des caracteristiques envoyées.<br />
+Roles requis : API, STKADMIN
+<ul>
+<li>URL<ul><li><b>POST /api/stockadmin/type</b></li></ul></li>
+<li>Entrée (JSON)
+<ul><li>{ "name":&lt;name&gt;,"threshold":&lt;threshold&gt;,"category":&lt;category&gt;,"index":&lt;index&gt;,"ongoing":&lt;ongoing&gt;,"ctx":&lt;ctx&gt;,"site":&lt;site&gt; }
+<ul><li>name : chaine, nom du type</li>
+<li>threshold : entier, optionnel, défaut 0, seuil d'alerte</li>
+<li>category : entier, id de la categorie dans la base</li>
+<li>index : chaine, classification du type dans le stock</li>
+<li>ongoing : entier, optionnel, défaut 0, nombre d'elements en cours d'approvisionnement</li>
+<li>ctx : entier, id du contexte dans la base</li>
+<li>site : entier, id du site dans la base</li></ul></li></ul></li>
+<li>Sortie (text/plain) : Type &lt;id&gt; created
+<ul><li>id : entier, id du type dans la base</li></ul></li>
+<li>Code de retour HTTP, si non ok retour d'informations en format texte
+<ul><li>500 : erreur interne dans l'API</li>
+<li>404 : site non trouvé</li>
+<li>201 : ok, création du type effectuée</li></ul></li>
+</ul>
+<hr />
+
+<h3>Modification d'un type</h3>
+Permet de modifier certains paramètres d'un type en fonction des caracteristiques envoyées.<br />
+Roles requis : API, STKADMIN
+<ul>
+<li>URL<ul><li><b>PATCH /api/stockadmin/type/&lt;id&gt;</b></li></ul></li>
+<li>Entrée (URI)<ul><li>id : entier, id du type dans la base</li></ul></li>
+<li>Entrée (JSON)
+<ul><li>{ "name":&lt;name&gt;,"threshold":&lt;threshold&gt;,"category":&lt;category&gt;,"index":&lt;index&gt;,"ongoing":&lt;ongoing&gt; }
+<ul><li>name : chaine, nom du type</li>
+<li>threshold : entier, seuil d'alerte</li>
+<li>category : entier, id de la categorie dans la base</li>
+<li>index : chaine, classification du type dans le stock</li>
+<li>ongoing : entier, nombre d'elements en cours d'approvisionnement</li></ul></li></ul></li>
+<li>Sortie (text/plain) : aucune sauf erreur</li>
+<li>Code de retour HTTP, si non ok retour d'informations en format texte
+<ul><li>500 : erreur interne dans l'API</li>
+<li>404 : type non trouvé</li>
+<li>200 : ok, modification du type effectuée</li></ul></li>
+</ul>
+<hr />
+
+<h3>Reception d'un type</h3>
+Permet de receptionner le quantitatif encours déclaré sur le type de stock.<br />
+Roles requis : API, STKADMIN
+<ul>
+<li>URL<ul><li><b>PATCH /api/stockadmin/type/&lt;id&gt;/reception</b></li></ul></li>
+<li>Entrée (URI)<ul><li>id : entier, id du type dans la base</li></ul></li>
+<li>Sortie (text/plain) : aucune sauf erreur</li>
+<li>Code de retour HTTP, si non ok retour d'informations en format texte
+<ul><li>500 : erreur interne dans l'API</li>
+<li>404 : type non trouvé</li>
+<li>200 : ok, reception effectuée</li></ul></li>
+</ul>
+<hr />
+
+<h3>Liste des catégories de stock</h3>
+Retourne un tableau avec les informations de chaque catégorie.<br />
+Roles requis : API, STKADMIN
+<ul>
+<li>URL<ul><li><b>GET /api/stockadmin/category/list/</b></li></ul></li>
+<li>Entrée (URI)</li>
+<li>Sortie (JSON)
+<ul><li>{"stockcategory_list": [ {"id":&lt;id&gt;,"name":&lt;name&gt;},{...} ] }
+<ul><li>id : entier, id de la catégorie dans la base</li>
+<li>name : chaine, nom de la catégorie</li></ul></li></ul></li>
+<li>Code de retour HTTP, si non ok retour d'informations en format texte
+<ul><li>500 : erreur interne dans l'API</li>
+<li>404 : liste des catégories vide</li>
+<li>200 : ok, retourne le résultat au format JSON</li></ul></li>
+</ul>
+<hr />
+
+<h3>Informations sur une catégorie</h3>
+Retourne les informations sur une catégorie donnée.<br />
+Roles requis : API, STKADMIN
+<ul>
+<li>URL<ul><li><b>GET /api/stockadmin/category/&lt;id&gt;</b></li></ul></li>
+<li>Entrée (URI)
+<ul><li>id : entier, id de la catégorie dans la base</li></ul></li>
+<li>Sortie (JSON)
+<ul><li>{ "id":&lt;id&gt;,"name":&lt;name&gt; }
+<ul><li>id : entier, id de la catégorie dans la base</li>
+<li>name : chaine, nom de la catégorie</li></ul></li></ul></li>
+<li>Code de retour HTTP, si non ok retour d'informations en format texte
+<ul><li>500 : erreur interne dans l'API</li>
+<li>404 : catégorie non trouvée</li>
+<li>200 : ok, retourne le résultat au format JSON</li></ul></li>
+</ul>
+<hr />
+
+<h3>Suppression d'une catégorie</h3>
+Permet la suppression d'une catégorie donnée.<br />
+Roles requis : API, STKADMIN
+<ul>
+<li>URL<ul><li><b>DELETE /api/stockadmin/category/&lt;id&gt;</b></li></ul></li>
+<li>Entrée (URI)
+<ul><li>id : entier, id de la catégorie dans la base</li></ul></li>
+<li>Sortie (text/plain) : aucune sauf erreur</li>
+<li>Code de retour HTTP, si non ok retour d'informations en format texte
+<ul><li>500 : erreur interne dans l'API</li>
+<li>404 : catégorie non trouvée</li>
+<li>200 : ok, catégorié supprimée</li></ul></li>
+</ul>
+<hr />
+
+<h3>Ajout d'une catégorie</h3>
+Permet l'ajout d'une catégorie en fonction des caracteristiques envoyées.<br />
+Roles requis : API, STKADMIN
+<ul>
+<li>URL<ul><li><b>POST /api/stockadmin/category</b></li></ul></li>
+<li>Entrée (JSON)
+<ul><li>{ "name":&lt;name&gt; }
+<ul><li>name : chaine, nom de la catégorie</li></ul></li></ul></li>
+<li>Sortie (text/plain) : Category &lt;id&gt; created
+<ul><li>id : entier, id de la catégorie dans la base</li></ul></li>
+<li>Code de retour HTTP, si non ok retour d'informations en format texte
+<ul><li>500 : erreur interne dans l'API</li>
+<li>201 : ok, création de la catégorie effectuée</li></ul></li>
+</ul>
+<hr />
+
+<h3>Modification d'une catégorie</h3>
+Permet de modifier certains paramètres d'une catégorie en fonction des caracteristiques envoyées.<br />
+Roles requis : API, STKADMIN
+<ul>
+<li>URL<ul><li><b>PATCH /api/stockadmin/category/&lt;id&gt;</b></li></ul></li>
+<li>Entrée (URI)<ul><li>id : entier, id de la catégorie dans la base</li></ul></li>
+<li>Entrée (JSON)
+<ul><li>{ "name":&lt;name&gt; }
+<ul><li>name : chaine, nom de la catégorie</li></ul></li></ul></li>
+<li>Sortie (text/plain) : aucune sauf erreur</li>
+<li>Code de retour HTTP, si non ok retour d'informations en format texte
+<ul><li>500 : erreur interne dans l'API</li>
+<li>404 : catégorie non trouvée</li>
+<li>200 : ok, modification de la catégorie effectuée</li></ul></li>
+</ul>
+<hr />
+
+</body>
+</html>

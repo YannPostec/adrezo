@@ -1,0 +1,47 @@
+<html>
+<head><title>Aide adrezo</title>
+<link rel="stylesheet" href="../../stylesheet/common.css" type="text/css" />
+</head>
+<body>
+<h2>Gestion de la norme</h2>
+<p>Avec les droits nécessaires, vous pouvez gérer les surnets définissant la norme.<br />
+Utilisez le bouton <img src="../../img/button_admin_red.png" /> pour entrer ou sortir du mode admin.</p>
+<p>Sur chaque surnet, vous trouverez alors 4 icônes :
+<ul>
+<li><img src="../../img/icon_delete.jpg" /> Supprimer le surnet</li>
+<li><img src="../../img/icon_add.png" /> Ajouter un surnet fils à ce surnet</li>
+<li><img src="../../img/icon_modify.jpg" /> Modifier les informations de ce surnet</li>
+<li><img src="../../img/icon_database.png" /> Gérer la liste de subnets associés à ce surnet</li>
+<li><img src="../../img/icon_calc.png" /> Calculer les subnets disponibles dans ce surnet</li>
+</ul>
+<hr />
+<h3>Supprimer</h3>
+Cliquer dessus pour faire apparaitre une fenetre de confirmation<br />
+<b>Attention, cela supprime tous les surnets fils en cascade, ainsi que tous les liens avec les subnets du surnet ou des fils. Cependant les subnets ne sont en rien modifiés</b>
+<h3>Ajouter</h3>
+Cliquer dessus pour faire apparaitre un popup vous permettant de rentrer les informations du surnet fils :
+<ul>
+<li>son ip</li>
+<li>son masque</li>
+<li>son libellé</li>
+<li>ses informations avec un éditeur</li>
+<li>si le surnet doit proposer le calcul de subnets disponible</li>
+</ul>
+Valider la création en cliquant sur <img src="../../img/icon_valid.png" /><br />
+Si l'ip/mask entrés ne forment pas une adresse de subnet valide, un message vous avertit.<br />
+Il est cependant possible de valider l'ajout.
+<h3>Modifier</h3>
+De la même façon que pour l'ajout, un popup vous permet de modifier les champs du surnet
+<h3>Liste Subnets</h3>
+Cette liste présente les subnets rattachés au surnet.<br />
+Dans la partie droite se trouve la liste des subnets rattachés.<br />
+Dans la partie gauche se trouvent les subnets que vous pouvez rattacher.<br />
+La partie gauche est remplie à chaque fois que vous choisissez un contexte, vous pouvez affinez en sélectionnant un site.<br />
+Il est possible de bouger un ou plusieurs éléments entre les listes en utilisant les icônes :
+<ul>
+<li><img src="../../img/choice_right.png" /> Passer de la colonne de gauche à celle de droite</li>
+<li><img src="../../img/choice_left.png" /> Passer de la colonne de droite à celle de gauche</li>
+</ul>
+Il vous suffit de valider en cliquant sur <img src="../../img/icon_valid.png" /> pour attacher au surnet l'ensemble des subnets sélectionnés.
+<h3>Calcul des Subnets disponibles</h3>
+Dans le popup qui s'ouvre, il vous suffit de rentrer le masque des subnets que vous rechercher et l'application renverra une liste des subnets disponibles.

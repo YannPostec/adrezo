@@ -1,0 +1,95 @@
+<html>
+<head><title>Aide adrezo</title>
+<link rel="stylesheet" href="../../stylesheet/common.css" type="text/css" />
+</head>
+<body>
+<h2>Syntaxe API, module Stock</h2>
+
+<h3>Liste des éléments de stock</h3>
+Retourne un tableau avec les informations de chaque élément de stock du site donné.<br />
+Roles requis : API, STOCK
+<ul>
+<li>URL<ul><li><b>GET /api/stock/supply/list/&lt;site&gt;</b></li></ul></li>
+<li>Entrée (URI)
+<ul><li>site : entier, id du site dans la base</li></ul></li>
+<li>Sortie (JSON)
+<ul><li>{"stocksupply_list": [ {"id":&lt;id&gt;,"name":&lt;name&gt;,"stock":&lt;stock&gt;,"threshold":"&lt;threshold&gt;","category":&lt;category&gt;,"index":&lt;index&gt;,"ongoing":&lt;ongoing&gt;},{...} ] }
+<ul><li>id : entier, id de l'élément de stock dans la base</li>
+<li>name : chaine, nom de l'élément</li>
+<li>stock : entier, nombre d'éléments en stock</li>
+<li>threshold : entier, optionnel, seuil de déclenchement d'alerte sur stock</li>
+<li>category : entier, id de la catégorie dans la base</li>
+<li>index : chaine, classification de l'élément dans le stock</li>
+<li>ongoing : entier, optionnel, nombre d'elements en cours d'approvisionnement</li></ul></li></ul></li>
+<li>Code de retour HTTP, si non ok retour d'informations en format texte
+<ul><li>500 : erreur interne dans l'API</li>
+<li>404 : liste des éléments de stock vide</li>
+<li>200 : ok, retourne le résultat au format JSON</li></ul></li>
+</ul>
+<hr />
+
+<h3>Informations sur un élément de stock</h3>
+Retourne les informations sur un élément de stock donné.<br />
+Roles requis : API, STOCK
+<ul>
+<li>URL<ul><li><b>GET /api/stock/supply/&lt;id&gt;</b></li></ul></li>
+<li>Entrée (URI)
+<ul><li>id : entier, id de l'élément dans la base</li></ul></li>
+<li>Sortie (JSON)
+<ul><li>{ "id":&lt;id&gt;,"name":&lt;name&gt;,"stock":&lt;stock&gt;,"threshold":"&lt;threshold&gt;","category":&lt;category&gt;,"index":&lt;index&gt;,"ongoing":&lt;ongoing&gt; }
+<ul><li>id : entier, id de l'élément de stock dans la base</li>
+<li>name : chaine, nom de l'élément</li>
+<li>stock : entier, nombre d'éléments en stock</li>
+<li>threshold : entier, optionnel, seuil de déclenchement d'alerte sur stock</li>
+<li>category : entier, id de la catégorie dans la base</li>
+<li>index : chaine, classification de l'élément dans le stock</li>
+<li>ongoing : entier, optionnel, nombre d'elements en cours d'approvisionnement</li></ul></li></ul></li>
+<li>Code de retour HTTP, si non ok retour d'informations en format texte
+<ul><li>500 : erreur interne dans l'API</li>
+<li>404 : élément non trouvé</li>
+<li>200 : ok, retourne le résultat au format JSON</li></ul></li>
+</ul>
+<hr />
+
+<h3>Historique des mouvements sur un élément</h3>
+Retourne l'historique des mouvements sur un élément de stock donné.<br />
+Roles requis : API, STOCK
+<ul>
+<li>URL<ul><li><b>GET /api/stock/supply/history/&lt;id&gt;</b></li></ul></li>
+<li>Entrée (URI)
+<ul><li>id : entier, id de l'élément dans la base</li></ul></li>
+<li>Sortie (JSON)
+<ul><li>{ "stockhistory_list": [ {"stamp":"2018-05-01 14:18:54","user":"ypostec","movement":2,"inventory":true,"ongoing":false},{...} ] }
+<ul><li>stamp : date, date du mouvement</li>
+<li>user : chaine, utilisateur ayant effectué le mouvement</li>
+<li>movement : entier, mouvement de stock</li>
+<li>inventory : booleen, mouvement en mode inventaire</li>
+<li>threshold : booleen, mouvement ayant provoqué un dépassement de seuil</li></ul></li></ul></li>
+<li>Code de retour HTTP, si non ok retour d'informations en format texte
+<ul><li>500 : erreur interne dans l'API</li>
+<li>404 : élément non trouvé</li>
+<li>200 : ok, retourne le résultat au format JSON</li></ul></li>
+</ul>
+<hr />
+
+<h3>Mouvement de stock sur un élément</h3>
+Permet d'effectuer un mouvement sur un élément de stock donné.<br />
+Roles requis : API, STOCK
+<ul>
+<li>URL<ul><li><b>PATCH /api/stock/supply/&lt;id&gt;</b></li></ul></li>
+<li>Entrée (URI)<ul><li>id : entier, id de l'élément dans la base</li></ul></li>
+<li>Entrée (JSON)
+<ul><li>{ "variation":&lt;variation&gt;,"inventory":&lt;inventory&gt; }
+<ul><li>variation : entier, mouvement quantitatif positif ou négatif de stock sur l'élément</li>
+<li>inventory : booleen, optionnel, mode inventaire</li></ul></li></ul></li>
+<li>Sortie (text/plain) : aucune sauf erreur</li>
+<li>Code de retour HTTP, si non ok retour d'informations en format texte
+<ul><li>500 : erreur interne dans l'API</li>
+<li>404 : élément non trouvé</li>
+<li>200 : ok, retourne le résultat au format JSON</li></ul></li>
+</ul>
+<hr />
+
+
+</body>
+</html>

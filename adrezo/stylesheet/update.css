@@ -1,0 +1,6 @@
+.btn {text-align:center;}
+p {color:#000; padding:2px; text-align:center; font-size:12px; font-family:monospace}
+p.ver {background-color:#bbbbbb; color:#fff; font-weight:bold}
+p.err {color:#f00; font-weight:bold}
+p.ok {font-weight:bold}
+input {font-size:small}

@@ -1,0 +1,34 @@
+<html>
+<head><title>Adrezo : Liste des adresses</title>
+<link rel="stylesheet" href="../../stylesheet/common.css" type="text/css" />
+</head>
+<body>
+<p>
+Cette liste propose une visualisation des enregistrements. Un enregistrement comporte les champs suivants :
+<ul>
+<li>Type : Adresse IP statique ou dynamique. Valeurs "static" (rentrée par un utilisateur), "dynamic" (crée par l'application) et "dhcp" (crée par le script des serveurs DHCP)</li>
+<li>Site : Nom du site<br />Le passage de la souris sur le site permet de visualiser le code site.</li>
+<li>Nom  : Nom normé de l'équipement</li>
+<li>Libelle  : Descriptif de l'équipement</li>
+<li>Adresse IP : &lt;Adresse IP&gt;/&lt;Masque de Sous-Réseau au format CIDR&gt;<br />
+Le passage de la souris sur l'adresse IP permet de visualiser le masque au format standard.</li>
+<li>Sous r&eacute;seau : Nom du Sous-r&eacute;seau auquel l'adresse IP appartient<br />
+Le passage de la souris sur le sous-réseau permet de visualiser sa passerelle.</li>
+<li>Adresse MAC : Chaîne de 12 caractères représentant l'adresse MAC</li>
+<li>Dernière Modification : Tracabilité de la dernière modification par &lt;login&gt; aux &lt;date&gt; &lt;heure&gt; indiquées</li>
+<li>Temporaire : définit si l'adresse IP est affectée temporairement, si oui qui a affecté cet état et jusqu'à quand.<br />
+Les valeurs possibles sont "NON" ou "OUI (&lt;login&gt;) jusqu'au &lt;date&gt"</li>
+<li>Migration : définit si l'adresse IP doit migrer, si oui qui a affecté cet état et pour quand.<br />
+Les valeurs possibles sont "NON" ou "OUI (&lt;login&gt;) le &lt;date&gt; en &lt;future adresse IP/masque&gt; (&lt;futur site&gt;/&lt;futur subnet&gt;)"</li>
+</ul>
+</p>
+<p>Les différentes actions Effacer, Modifier et Migrer constituent les 3 premières colonnes de cette liste.<br />
+L'utilisateur ne possédant pas les droits nécessaires n'a pas accès à ces colonnes</p>
+<p>Pour les enregistrements de type "dhcp", les plages d'adresses délivrées en DHCP sont rentrées dans la base avec le nom "RESA_DHCP" et le libellé "Reservation DHCP".<br />
+On trouve également :<ul>
+<li>Les réservations statiques d'adresse IP rentrées avec le nom de la station en Nom, son adresse MAC et le Libellé "Reservation Statique DHCP"</li>
+<li>Les affectations dynamiques d'adresse IP rentrées avec le nom de la station en Nom, son adresse MAC, le Libellé "Adresse DHCP" et la date de resiliation du bail en Date Temporaire</li>
+</ul></p>
+<p>Si la fonction est activée, en cliquant sur l'adresse IP, une fenêtre s'ouvre avec des urls contruite autour de cette adresse IP, vous pouvez ensuite ouvrir une nouvelle fenêtre allant à l'adresse indiquée en simplement cliquant sur une des url.</p>
+</body>
+</html>

@@ -1,0 +1,6 @@
+ul.prefs {list-style:none; margin:0; padding:0}
+ul.prefs * {margin:0; padding:0; text-align: center}
+ul.prefs li {position:relative; border:1px solid #aaa; width:200px; margin:0px 20px}
+ul.prefs li a {display:block; padding:3px 7px 5px; background-color:#dedeff}
+ul.prefs li a.prefselect {background-color:#C7FFBA}
+ul.prefs li a:hover {background-color:#cacaff}

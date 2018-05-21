@@ -1,0 +1,188 @@
+<html>
+<head><title>Adrezo Help</title>
+<link rel="stylesheet" href="../../stylesheet/common.css" type="text/css" />
+</head>
+<body>
+<h2>API Syntax, Network section</h2>
+
+<h3>Authorized Subnet List</h3>
+Provide the list of authorized subnets for the given user.<br />
+Required Roles : API
+<ul>
+<li>URL<ul><li><b>GET /api/network/subnet/my</b></li></ul></li>
+<li>In : None</li>
+<li>Out (JSON)
+<ul><li>{ "subnet": [ {"id":&lt;id1&gt;},{"id":&lt;id2&gt;},{...} ] }
+<ul><li>id : integer, subnet id in database</li></ul></li></ul></li>
+<li>HTTP return code, if not ok return informations in text format
+<ul><li>500 : internal error in API</li>
+<li>200 : ok, return result in JSON format</li></ul></li>
+</ul>
+<hr />
+
+<h3>Informations on subnet</h3>
+Return informations over a given subnet.<br />
+Required Roles : API, NETWORK
+<ul>
+<li>URL<ul><li><b>GET /api/network/subnet/&lt;subnet&gt;</b></li></ul></li>
+<li>In (URI)
+<ul><li>subnet : integer, id du subnet dans la base</li></ul></li>
+<li>Out (JSON)
+<ul><li>{ "id":&lt;id&gt;,"desc":&lt;desc&gt;,"ip":"&lt;ip&gt;","mask":&lt;mask&gt;,"gateway":&lt;gateway&gt;,,"broadcast":&lt;broadcast&gt;"ctx":&lt;ctx&gt;,"site":&lt;site&gt;,"vlan":&lt;vlan&gt;,"surnet":&lt;surnet&gt; }
+<ul><li>id : integer, subnet id in database</li>
+<li>desc : string, subnet name</li>
+<li>ip : string, subnet IP address</li>
+<li>mask : integer, subnet mask</li>
+<li>gateway : string, optional, subnet gateway IP address</li>
+<li>broadcast : string, subnet broadcast IP address</li>
+<li>ctx : integer, context id in database</li>
+<li>site : integer, site id in database</li>
+<li>vlan : integer, vlan id in database</li>
+<li>surnet : integer, surnet id in database</li></ul></li></ul></li>
+<li>HTTP return code, if not ok return informations in text format
+<ul><li>500 : internal error in API</li>
+<li>404 : subnet not found or not autorized</li>
+<li>200 : ok, return result in JSON format</li></ul></li>
+</ul>
+<hr />
+
+<h3>Delete a subnet</h3>
+Provide suppression of given subnet.<br />
+Required Roles : API, NETWORK
+<ul>
+<li>URL<ul><li><b>DELETE /api/network/subnet/&lt;subnet&gt;</b></li></ul></li>
+<li>In (URI)<ul><li>subnet : integer, subnet id in database</li></ul></li>
+<li>Out (text/plain) : none except errors</li>
+<li>HTTP return code, if not ok return informations in text format
+<ul><li>500 : internal error in API</li>
+<li>404 : subnet not found</li>
+<li>200 : ok, subnet deleted</li></ul></li>
+</ul>
+<hr />
+
+<h3>Add a subnet</h3>
+Provide creation of subnet describe with given attributes.<br />
+Required Roles : API, NETWORK
+<ul>
+<li>URL<ul><li><b>POST /api/network/subnet</b></li></ul></li>
+<li>In (JSON)
+<ul><li>{"ip":&lt;ip&gt;,"mask":&lt;mask&gt;,"desc":&lt;desc&gt;,"gateway":&lt;gateway&gt;,"broadcast":&lt;broadcast&gt;,"ctx":&lt;ctx&gt;,"site":&lt;site&gt;,"vlan":&lt;vlan&gt;}
+<ul><li>ip : string, subnet network IP</li>
+<li>mask : integer, subnet network mask</li>
+<li>desc : string, subnet name</li>
+<li>gateway : string, optional, Gateway IP address</li>
+<li>broadcast : string, broadcast IP address</li>
+<li>ctx : integer, context id in database</li>
+<li>site : integer, site id in database</li>
+<li>vlan : integer, associated vlan id in database</li></ul></li></ul></li>
+<li>Out (text/plain) : Subnet &lt;id&gt; created
+<ul><li>id : integer, subnet id in database</li></ul></li>
+<li>HTTP return code, if not ok return informations in text format
+<ul><li>500 : internal error in API</li>
+<li>404 : site not found</li>
+<li>201 : ok, subnet created</li></ul></li>
+</ul>
+<hr />
+
+<h3>Subnets List</h3>
+Return array with informations on each subnet of a given site.<br />
+Required Roles : API, NETWORK
+<ul>
+<li>URL<ul><li><b>GET /api/network/subnet/list/&lt;site&gt;</b></li></ul></li>
+<li>In (URI)<ul><li>site : integer, site id in database</li></ul></li>
+<li>Out (JSON)
+<ul><li>{ "subnet_list": [ {"id":&lt;id&gt;,"ip":&lt;ip&gt;,"mask":&lt;mask&gt;,"desc":&lt;desc&gt;,"gateway":&lt;gateway&gt;,"broadcast":&lt;broadcast&gt;,"ctx":&lt;ctx&gt;,"site":&lt;site&gt;,"vlan":&lt;vlan&gt;,"surnet":&lt;surnet&gt;},{...} ] }
+<ul><li>id : integer, subnet id in database</li>
+<li>desc : string, subnet name</li>
+<li>ip : string, subnet IP address</li>
+<li>mask : integer, subnet mask</li>
+<li>gateway : string, optional, subnet gateway IP address</li>
+<li>broadcast : string, subnet broadcast IP address</li>
+<li>ctx : integer, context id in database</li>
+<li>site : integer, site id in database</li>
+<li>vlan : integer, vlan id in database</li>
+<li>surnet : integer, surnet id in database</li></ul></li></ul></li>
+<li>HTTP return code, if not ok return informations in text format
+<ul><li>500 : internal error in API</li>
+<li>404 : subnets list empty</li>
+<li>200 : ok, return result in JSON format</li></ul></li>
+</ul>
+<hr />
+
+<h3>Informations on vlan</h3>
+Return informations over a given vlan.<br />
+Required Roles : API, NETWORK
+<ul>
+<li>URL<ul><li><b>GET /api/network/vlan/&lt;vlan&gt;</b></li></ul></li>
+<li>In (URI)
+<ul><li>vlan : integer, vlan id in database</li></ul></li>
+<li>Out (JSON)
+<ul><li>{ "id":&lt;id&gt;,"name":&lt;name&gt;,"vid":"&lt;vid&gt;","site":&lt;site&gt;,"ctx":&lt;ctx&gt; }
+<ul><li>id : integer, vlan id in database</li>
+<li>name : string, vlan name</li>
+<li>vid : integer, Network Vlan ID</li>
+<li>site : integer, site id in database</li>
+<li>ctx : integer, context id in database</li></ul></li></ul></li>
+<li>HTTP return code, if not ok return informations in text format
+<ul><li>500 : internal error in API</li>
+<li>404 : vlan not found</li>
+<li>200 : ok, return result in JSON format</li></ul></li>
+</ul>
+<hr />
+
+<h3>Delete a vlan</h3>
+Provide suppression of given vlan.<br />
+Required Roles : API, NETWORK
+<ul>
+<li>URL<ul><li><b>DELETE /api/network/vlan/&lt;vlan&gt;</b></li></ul></li>
+<li>In (URI)<ul><li>vlan : integer, vlan id in database</li></ul></li>
+<li>Out (text/plain) : none except errors</li>
+<li>HTTP return code, if not ok return informations in text format
+<ul><li>500 : internal error in API</li>
+<li>404 : vlan not found</li>
+<li>200 : ok, vlan deleted</li></ul></li>
+</ul>
+<hr />
+
+<h3>Add a vlan</h3>
+Provide creation of vlan describe with given attributes.<br />
+Required Roles : API, NETWORK
+<ul>
+<li>URL<ul><li><b>POST /api/network/vlan</b></li></ul></li>
+<li>In (JSON)
+<ul><li>{ "name":&lt;name&gt;,"vid":"&lt;vid&gt;","site":&lt;site&gt;,"ctx":&lt;ctx&gt; }
+<ul><li>name : string, vlan name</li>
+<li>vid : integer, Network Vlan ID</li>
+<li>site : integer, site id in database</li>
+<li>ctx : integer, context id in database</li></ul></li></ul></li>
+<li>Out (text/plain) : Vlan &lt;id&gt; created
+<ul><li>id : integer, vlan id in database</li></ul></li>
+<li>HTTP return code, if not ok return informations in text format
+<ul><li>500 : internal error in API</li>
+<li>404 : site not found</li>
+<li>201 : ok, vlan created</li></ul></li>
+</ul>
+<hr />
+
+<h3>Vlans List</h3>
+Return array with informations on each vlan of a given site.<br />
+Required Roles : API, NETWORK
+<ul>
+<li>URL<ul><li><b>GET /api/network/vlan/list/&lt;site&gt;</b></li></ul></li>
+<li>In (URI)<ul><li>site : integer, site id in database</li></ul></li>
+<li>Out (JSON)
+<ul><li>{ "vlan_list": [ {"id":&lt;id&gt;,"name":&lt;name&gt;,"vid":"&lt;vid&gt;","site":&lt;site&gt;,"ctx":&lt;ctx&gt;},{...} ] }
+<ul><li>id : integer, vlan id in database</li>
+<li>name : string, vlan name</li>
+<li>vid : integer, Network Vlan ID</li>
+<li>site : integer, site id in database</li>
+<li>ctx : integer, context id in database</li></ul></li></ul></li>
+<li>HTTP return code, if not ok return informations in text format
+<ul><li>500 : internal error in API</li>
+<li>404 : vlans list empty</li>
+<li>200 : ok, return result in JSON format</li></ul></li>
+</ul>
+<hr />
+
+</body>
+</html>

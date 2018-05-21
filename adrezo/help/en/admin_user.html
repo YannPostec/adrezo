@@ -1,0 +1,47 @@
+<html>
+<head><title>Adrezo Help</title>
+<link rel="stylesheet" href="../../stylesheet/common.css" type="text/css" />
+</head>
+<body>
+<h2>Users Management</h2>
+<p>With proper permissions, you can manage users and authentication methods.<hr />
+On this page, you will find a table with :
+<ul>
+	<li>An Add zone on the first line</li>
+	<li>the list of existing users with their informations on the next lines</li>
+</ul>
+Within each line, you could :
+<ul>
+	<li>Delete a user when you click on <img src="../../img/icon_delete.jpg" alt="DeleteIcon" /></li>
+	<li>Modify a user when you click on <img src="../../img/icon_modify.jpg" alt="ModifyIcon" /></li>
+</ul>
+When adding or modifying, icons <img src="../../img/icon_valid.png" alt="ValidIcon" /><img src="../../img/icon_refuse.png" alt="ResetIcon" /> appears.<br />
+Enter or modify informations then click on <img src="../../img/icon_valid.png" alt="ValidIcon" /> to validate.<br />
+You could also click on <img src="../../img/icon_refuse.png" alt="ResetIcon" /> to cancel, going back to initial values.<hr />
+A user is defined by many fields :
+<ul>
+	<li>his login</li>
+	<li>his password</li>
+	<li>his mail address</li>
+	<li>his role</li>
+	<li>authorization method</li>
+</ul>
+<b>N.B. : admin user is not displayed and must be managed within application settings page.</b><br />
+<b>N.B. : By security measures, password is never displayed</b>
+</p>
+<hr />
+<h3>Authorization Methods</h3>
+There are two methods : Local and External
+<ul>
+	<li>Local : this account is used with authentication and authorization mechanism. Authentication will validate the password you enter here.<br />
+	Authorization will be used to apply role to the user and so his rights.</li>
+	<li>External : this account is used only with authorization mechanism. Password even if mandatory will never be used.<br />
+	Authentication will be against LDAP (only one available at the moment) and authorization will be against LDAP group membership and so role/rights associated.<br />
+	Account creation on this page adds an additional role to a specific user in addition of roles from his LDAP group membership.</li>
+</ul>
+<h3>Initial context choice</h3
+With local authentication/authorization, initial context will be this one<br />
+With external authentication, initial context of all roles/LDAP groups will be applied consecutively but only the last one will be taken under account<br />
+But if this user is also declared on this page, the initial context defined here will be finally applied.
+</body>
+</html>

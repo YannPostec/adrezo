@@ -1,0 +1,34 @@
+<html>
+<head><title>Adrezo Help</title>
+<link rel="stylesheet" href="../../stylesheet/common.css" type="text/css" />
+</head>
+<body>
+<h2>Subnets Management</h2>
+<p>With proper permissions, you can manage subnets.<hr />
+On this page, you will find two zones :
+<ul>
+	<li>An Add/Modify zone</li>
+	<li>the list of existing subnets with their informations</li>
+</ul>
+Within each line, you could :
+<ul>
+	<li>Delete a subnet when you click on <img src="../../img/icon_delete.jpg" alt="DeleteIcon" />. <b>Be careful, it will delete all associated objects.</b></li>
+	<li>Modify a subnet when you click on <img src="../../img/icon_modify.jpg" alt="ModifyIcon" /></li>
+</ul>
+When adding or modifying, enter or modify informations then click on <img src="../../img/icon_valid.png" alt="ValidIcon" /> to validate.<br />
+You could also click on <img src="../../img/icon_refuse.png" alt="ResetIcon" /> to cancel, going back to empty values.<hr />
+A subnet is defined by many fields :
+<ul>
+	<li>its site</li>
+	<li>its starting IP</li>
+	<li>its subnet mask</li>
+	<li>its name</li>
+	<li>the gateway IP address (as information to the user)</li>
+	<li>the broadcast IP address (as end limit to available IP search)</li>
+	<li>its vlan ID if any. If none, choose ID 0 which means 'No vlan'</li>
+</ul>
+The broadcast IP address is calculated automatically when subnet ip and mask are entered.<br />
+In case of add or modification, the ip/mask you entered are checked for subnet address validity.
+</p>
+</body>
+</html>

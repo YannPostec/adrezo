@@ -1,0 +1,321 @@
+<html>
+<head><title>Aide adrezo</title>
+<link rel="stylesheet" href="../../stylesheet/common.css" type="text/css" />
+</head>
+<body>
+<h2>Syntaxe API, module Photo</h2>
+
+<h3>Liste des salles</h3>
+Retourne un tableau avec les informations de chaque salle pour un site donné.<br />
+Roles requis : API, PHOTO
+<ul>
+<li>URL<ul><li><b>GET /api/photo/room/list/&lt;site&gt;</b></li></ul></li>
+<li>Entrée (URI)
+<ul><li>site : entier, id du site dans la base</li></ul></li>
+<li>Sortie (JSON)
+<ul><li>{"photoroom_list": [ {"id":&lt;id&gt;,"name":&lt;name&gt;},{...} ] }
+<ul><li>id : entier, id de la salle dans la base</li>
+<li>name : chaine, nom de la salle</li></ul></li></ul></li>
+<li>Code de retour HTTP, si non ok retour d'informations en format texte
+<ul><li>500 : erreur interne dans l'API</li>
+<li>404 : liste des salles vide ou site non trouvé</li>
+<li>200 : ok, retourne le résultat au format JSON</li></ul></li>
+</ul>
+<hr />
+
+<h3>Informations sur une salle</h3>
+Retourne les informations sur une salle donnée.<br />
+Roles requis : API, PHOTO
+<ul>
+<li>URL<ul><li><b>GET /api/photo/room/&lt;id&gt;</b></li></ul></li>
+<li>Entrée (URI)
+<ul><li>id : entier, id de la salle dans la base</li></ul></li>
+<li>Sortie (JSON)
+<ul><li>{ "id":&lt;id&gt;,"name":&lt;name&gt;,"site":&lt;site&gt; }
+<ul><li>id : entier, id de la salle dans la base</li>
+<li>name : chaine, nom de la salle</li>
+<li>site : entier, id du site dans la base</li></ul></li></ul></li>
+<li>Code de retour HTTP, si non ok retour d'informations en format texte
+<ul><li>500 : erreur interne dans l'API</li>
+<li>404 : salle non trouvée</li>
+<li>200 : ok, retourne le résultat au format JSON</li></ul></li>
+</ul>
+<hr />
+
+<h3>Suppression d'une salle</h3>
+Permet la suppression d'une salle donnée.<br />
+Roles requis : API, PHOTO
+<ul>
+<li>URL<ul><li><b>DELETE /api/photo/room/&lt;id&gt;</b></li></ul></li>
+<li>Entrée (URI)
+<ul><li>id : entier, id de la salle dans la base</li></ul></li>
+<li>Sortie (text/plain) : aucune sauf erreur</li>
+<li>Code de retour HTTP, si non ok retour d'informations en format texte
+<ul><li>500 : erreur interne dans l'API</li>
+<li>404 : salle non trouvée</li>
+<li>200 : ok, salle supprimée</li></ul></li>
+</ul>
+<hr />
+
+<h3>Ajout d'une salle</h3>
+Permet l'ajout d'une salle dans un site donné en fonction des caracteristiques envoyées.<br />
+Roles requis : API, PHOTO
+<ul>
+<li>URL<ul><li><b>POST /api/photo/room</b></li></ul></li>
+<li>Entrée (JSON)
+<ul><li>{ "name":&lt;name&gt;,"site":&lt;site&gt; }
+<ul><li>name : chaine, nom de la salle</li>
+<li>site : entier, id du site dans la base</li></ul></li></ul></li>
+<li>Sortie (text/plain) : Photo Room &lt;id&gt; created
+<ul><li>id : entier, id de la salle dans la base</li></ul></li>
+<li>Code de retour HTTP, si non ok retour d'informations en format texte
+<ul><li>500 : erreur interne dans l'API</li>
+<li>404 : site non trouvé</li>
+<li>201 : ok, création de la salle effectuée</li></ul></li>
+</ul>
+<hr />
+
+<h3>Modification d'une salle</h3>
+Permet de modifier certains paramètres d'une salle en fonction des caracteristiques envoyées.<br />
+Roles requis : API, PHOTO
+<ul>
+<li>URL<ul><li><b>PATCH /api/photo/room/&lt;id&gt;</b></li></ul></li>
+<li>Entrée (URI)<ul><li>id : entier, id de la salle dans la base</li></ul></li>
+<li>Entrée (JSON)
+<ul><li>{ "name":&lt;name&gt;,"site":&lt;site&gt; }
+<ul><li>name : chaine, optionnel, nom de la salle</li>
+<li>site : entier, optionnel, id du site dans la base</li></ul></li></ul></li>
+<li>Sortie (text/plain) : aucune sauf erreur</li>
+<li>Code de retour HTTP, si non ok retour d'informations en format texte
+<ul><li>500 : erreur interne dans l'API</li>
+<li>404 : salle non trouvée</li>
+<li>200 : ok, modification de la salle effectuée</li></ul></li>
+</ul>
+<hr />
+
+<h3>Liste des ensembles</h3>
+Retourne un tableau avec les informations de chaque ensemble pour une salle donnée.<br />
+Roles requis : API, PHOTO
+<ul>
+<li>URL<ul><li><b>GET /api/photo/set/list/&lt;room&gt;</b></li></ul></li>
+<li>Entrée (URI)
+<ul><li>room : entier, id de la salle dans la base</li></ul></li>
+<li>Sortie (JSON)
+<ul><li>{"photoset_list": [ {"id":&lt;id&gt;,"name":&lt;name&gt;},{...} ] }
+<ul><li>id : entier, id de l'ensemble dans la base</li>
+<li>name : chaine, nom de l'ensemble</li></ul></li></ul></li>
+<li>Code de retour HTTP, si non ok retour d'informations en format texte
+<ul><li>500 : erreur interne dans l'API</li>
+<li>404 : liste des ensembles vide ou salle non trouvée</li>
+<li>200 : ok, retourne le résultat au format JSON</li></ul></li>
+</ul>
+<hr />
+
+<h3>Informations sur un ensemble</h3>
+Retourne les informations sur un ensemble donné.<br />
+Roles requis : API, PHOTO
+<ul>
+<li>URL<ul><li><b>GET /api/photo/set/&lt;id&gt;</b></li></ul></li>
+<li>Entrée (URI)
+<ul><li>id : entier, id de l'ensemble dans la base</li></ul></li>
+<li>Sortie (JSON)
+<ul><li>{ "id":&lt;id&gt;,"name":&lt;name&gt;,"room":&lt;room&gt; }
+<ul><li>id : entier, id de l'ensemble dans la base</li>
+<li>name : chaine, nom de l'ensemble</li>
+<li>room : entier, id de la salle dans la base</li></ul></li></ul></li>
+<li>Code de retour HTTP, si non ok retour d'informations en format texte
+<ul><li>500 : erreur interne dans l'API</li>
+<li>404 : ensemble non trouvé</li>
+<li>200 : ok, retourne le résultat au format JSON</li></ul></li>
+</ul>
+<hr />
+
+<h3>Suppression d'un ensemble</h3>
+Permet la suppression d'un ensemble donné.<br />
+Roles requis : API, PHOTO
+<ul>
+<li>URL<ul><li><b>DELETE /api/photo/set/&lt;id&gt;</b></li></ul></li>
+<li>Entrée (URI)
+<ul><li>id : entier, id de l'ensemble dans la base</li></ul></li>
+<li>Sortie (text/plain) : aucune sauf erreur</li>
+<li>Code de retour HTTP, si non ok retour d'informations en format texte
+<ul><li>500 : erreur interne dans l'API</li>
+<li>404 : ensemble non trouvé</li>
+<li>200 : ok, ensemble supprimé</li></ul></li>
+</ul>
+<hr />
+
+<h3>Ajout d'un ensemble</h3>
+Permet l'ajout d'un ensemble dans une salle donnée en fonction des caracteristiques envoyées.<br />
+Roles requis : API, PHOTO
+<ul>
+<li>URL<ul><li><b>POST /api/photo/set</b></li></ul></li>
+<li>Entrée (JSON)
+<ul><li>{ "name":&lt;name&gt;,"room":&lt;room&gt; }
+<ul><li>name : chaine, nom de l'ensemble</li>
+<li>room : entier, id de la salle dans la base</li></ul></li></ul></li>
+<li>Sortie (text/plain) : Photo Set &lt;id&gt; created
+<ul><li>id : entier, id de l'ensemble dans la base</li></ul></li>
+<li>Code de retour HTTP, si non ok retour d'informations en format texte
+<ul><li>500 : erreur interne dans l'API</li>
+<li>404 : salle non trouvée</li>
+<li>201 : ok, création de l'ensemble effectuée</li></ul></li>
+</ul>
+<hr />
+
+<h3>Modification d'un ensemble</h3>
+Permet de modifier certains paramètres d'un ensemble en fonction des caracteristiques envoyées.<br />
+Roles requis : API, PHOTO
+<ul>
+<li>URL<ul><li><b>PATCH /api/photo/set/&lt;id&gt;</b></li></ul></li>
+<li>Entrée (URI)<ul><li>id : entier, id de l'ensemble dans la base</li></ul></li>
+<li>Entrée (JSON)
+<ul><li>{ "name":&lt;name&gt;,"room":&lt;room&gt; }
+<ul><li>name : chaine, optionnel, nom de l'ensemble</li>
+<li>room : entier, optionnel, id de la salle dans la base</li></ul></li></ul></li>
+<li>Sortie (text/plain) : aucune sauf erreur</li>
+<li>Code de retour HTTP, si non ok retour d'informations en format texte
+<ul><li>500 : erreur interne dans l'API</li>
+<li>404 : ensemble non trouvé</li>
+<li>200 : ok, modification de l'ensemble effectuée</li></ul></li>
+</ul>
+<hr />
+
+<h3>Liste des baies</h3>
+Retourne un tableau avec les informations de chaque baie pour un ensemble donné.<br />
+Roles requis : API, PHOTO
+<ul>
+<li>URL<ul><li><b>GET /api/photo/rack/list/&lt;set&gt;</b></li></ul></li>
+<li>Entrée (URI)
+<ul><li>set : entier, id de l'ensemble dans la base</li></ul></li>
+<li>Sortie (JSON)
+<ul><li>{"photorack_list": [ {"id":&lt;id&gt;,"name":&lt;name&gt;,"position":&lt;position&gt;},{...} ] }
+<ul><li>id : entier, id de la baie dans la base</li>
+<li>name : chaine, nom de la baie</li>
+<li>position : entier, position de la baie dans l'ensemble</li></ul></li></ul></li>
+<li>Code de retour HTTP, si non ok retour d'informations en format texte
+<ul><li>500 : erreur interne dans l'API</li>
+<li>404 : liste des baies vide ou ensemble non trouvé</li>
+<li>200 : ok, retourne le résultat au format JSON</li></ul></li>
+</ul>
+<hr />
+
+<h3>Informations sur une baie</h3>
+Retourne les informations sur une baie donnée.<br />
+Roles requis : API, PHOTO
+<ul>
+<li>URL<ul><li><b>GET /api/photo/rack/&lt;id&gt;</b></li></ul></li>
+<li>Entrée (URI)
+<ul><li>id : entier, id de la baie dans la base</li></ul></li>
+<li>Sortie (JSON)
+<ul><li>{ "id":&lt;id&gt;,"name":&lt;name&gt;,"position":&lt;position&gt;,"set":&lt;set&gt; }
+<ul><li>id : entier, id de la baie dans la base</li>
+<li>name : chaine, nom de la baie</li>
+<li>position : entier, position de la baie dans l'ensemble</li>
+<li>set : entier, id de l'ensemble dans la base</li></ul></li></ul></li>
+<li>Code de retour HTTP, si non ok retour d'informations en format texte
+<ul><li>500 : erreur interne dans l'API</li>
+<li>404 : baie non trouvée</li>
+<li>200 : ok, retourne le résultat au format JSON</li></ul></li>
+</ul>
+<hr />
+
+<h3>Suppression d'une baie</h3>
+Permet la suppression d'une baie donnée.<br />
+Roles requis : API, PHOTO
+<ul>
+<li>URL<ul><li><b>DELETE /api/photo/rack/&lt;id&gt;</b></li></ul></li>
+<li>Entrée (URI)
+<ul><li>id : entier, id de la baie dans la base</li></ul></li>
+<li>Sortie (text/plain) : aucune sauf erreur</li>
+<li>Code de retour HTTP, si non ok retour d'informations en format texte
+<ul><li>500 : erreur interne dans l'API</li>
+<li>404 : baie non trouvée</li>
+<li>200 : ok, baie supprimée, la position des autres baies est décalée</li></ul></li>
+</ul>
+<hr />
+
+<h3>Ajout d'une baie</h3>
+Permet l'ajout d'une baie dans un ensemble donné en fonction des caracteristiques envoyées.<br />
+Roles requis : API, PHOTO
+<ul>
+<li>URL<ul><li><b>POST /api/photo/rack</b></li></ul></li>
+<li>Entrée (JSON)
+<ul><li>{ "name":&lt;name&gt;,"position":&lt;position&gt;,"set":&lt;set&gt; }
+<ul><li>name : chaine, nom de la salle</li>
+<li>position : entier, position de la baie dans l'ensemble</li>
+<li>set : entier, id de l'ensemble dans la base</li></ul></li></ul></li>
+<li>Sortie (text/plain) : Photo Rack &lt;id&gt; created
+<ul><li>id : entier, id de la baie dans la base</li></ul></li>
+<li>Code de retour HTTP, si non ok retour d'informations en format texte
+<ul><li>500 : erreur interne dans l'API</li>
+<li>404 : ensemble non trouvé</li>
+<li>201 : ok, création de la baie effectuée</li></ul></li>
+</ul>
+<hr />
+
+<h3>Modification d'une baie</h3>
+Permet de modifier certains paramètres d'une baie en fonction des caracteristiques envoyées.<br />
+Roles requis : API, PHOTO
+<ul>
+<li>URL<ul><li><b>PATCH /api/photo/rack/&lt;id&gt;</b></li></ul></li>
+<li>Entrée (URI)<ul><li>id : entier, id de la baie dans la base</li></ul></li>
+<li>Entrée (JSON)
+<ul><li>{ "name":&lt;name&gt;,"position":&lt;position&gt;,"set":&lt;set&gt; }
+<ul><li>name : chaine, optionnel, nom de la baie</li>
+<li>position : entier, requis si set non null, position de la baie dans l'ensemble</li>
+<li>set : entier, optionnel, id de l'ensemble dans la base</li></ul></li></ul></li>
+<li>Sortie (text/plain) : aucune sauf erreur</li>
+<li>Code de retour HTTP, si non ok retour d'informations en format texte
+<ul><li>500 : erreur interne dans l'API</li>
+<li>404 : baie non trouvée</li>
+<li>200 : ok, modification de la baie effectuée</li></ul></li>
+</ul>
+<hr />
+
+<h3>Liste des photos d'une salle</h3>
+Retourne un tableau avec les informations de chaque photo pour une salle donnée.<br />
+Roles requis : API, PHOTO
+<ul>
+<li>URL<ul><li><b>GET /api/photo/room/pictures/&lt;room&gt;</b></li></ul></li>
+<li>Entrée (URI)
+<ul><li>room : entier, id de la salle dans la base</li></ul></li>
+<li>Sortie (JSON)
+<ul><li>{"photo_list": [ {"id":&lt;id&gt;,"name":&lt;name&gt;,"directory":&lt;directory&gt;,"suffix":&lt;suffix&gt;,"update":&lt;update&gt;},{...} ] }
+<ul><li>id : entier, id de la photo dans la base</li>
+<li>name : chaine, nom de la photo</li>
+<li>directory : entier, numéro de répertoire ou est stocké la photo</li>
+<li>suffix : chaine, suffixe du nom de fichier de la photo</li>
+<li>update : date, dernière mise à jour sur la photo</li>
+</ul></li></ul></li>
+<li>Code de retour HTTP, si non ok retour d'informations en format texte
+<ul><li>500 : erreur interne dans l'API</li>
+<li>404 : liste des photos vide ou salle non trouvée</li>
+<li>200 : ok, retourne le résultat au format JSON</li></ul></li>
+</ul>
+<hr />
+
+<h3>Liste des photos d'une baie</h3>
+Retourne un tableau avec les informations de chaque photo pour une baie donnée.<br />
+Roles requis : API, PHOTO
+<ul>
+<li>URL<ul><li><b>GET /api/photo/rack/pictures/&lt;rack&gt;</b></li></ul></li>
+<li>Entrée (URI)
+<ul><li>rack : entier, id de la baie dans la base</li></ul></li>
+<li>Sortie (JSON)
+<ul><li>{"photo_list": [ {"id":&lt;id&gt;,"name":&lt;name&gt;,"directory":&lt;directory&gt;,"suffix":&lt;suffix&gt;,"update":&lt;update&gt;},{...} ] }
+<ul><li>id : entier, id de la photo dans la base</li>
+<li>name : chaine, nom de la photo</li>
+<li>directory : entier, numéro de répertoire ou est stocké la photo</li>
+<li>suffix : chaine, suffixe du nom de fichier de la photo</li>
+<li>update : date, dernière mise à jour sur la photo</li>
+</ul></li></ul></li>
+<li>Code de retour HTTP, si non ok retour d'informations en format texte
+<ul><li>500 : erreur interne dans l'API</li>
+<li>404 : liste des photos vide ou baie non trouvée</li>
+<li>200 : ok, retourne le résultat au format JSON</li></ul></li>
+</ul>
+<hr />
+
+</body>
+</html>

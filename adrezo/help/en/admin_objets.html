@@ -1,0 +1,29 @@
+<html>
+<head><title>Adrezo Help</title>
+<link rel="stylesheet" href="../../stylesheet/common.css" type="text/css" />
+</head>
+<body>
+<h2>Objects Hierarchy</h2>
+Object hierarchy is summarized below :
+<ul>
+	<li>A context contains many sites</li>
+	<li>A site contains many subnets, vlans, romms and supply sites</li>
+	<li>A supply site contains many references</li>
+	<li>A subnet contains many IP addresses, some of them are redundancy IP</li>
+	<li>A vlan contains many subnets</li>
+	<li>A room contains many sets and photos</li>
+	<li>A set contains many racks</li>
+	<li>A rack contains 1 to 4 photos</li>
+	<li>Root surnet in Norm contains many surnet and/or subnets</li>
+	<li>NAS : client contains many sites</li>
+	<li>NAS : sites contains many devices</li>
+	<li>NAS : devices owns monthly statistics</li>
+	<li>Authentication : Local or external (LDAP) directories are defined</li>
+	<li>Auth : directory contains many roles</li>
+	<li>Auth : many users could be members of one role</li>
+	<li>Auth : rigths defined association between a context and role rights for this context</li>
+	<li>API : Some users could be authorized to use API</li>
+</ul>
+<img src="../ressource/objets_adrezo_en.png" alt="objets" />
+</body>
+</html>

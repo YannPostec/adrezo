@@ -1,0 +1,17 @@
+span.photo {padding:30px;border: 1px dashed #f00;float:left}
+div.photos {padding:5px; float:left; text-align:center}
+div.pic {padding:2px; width:auto; height:100px; background-color:#fff; text-align:center}
+div.caption {text-align:center; width:auto; border-bottom:1px solid #000; padding:3px; background-color:#fff5f5}
+.acc .album {border-bottom:none}
+p.text {display:inline}
+img.text {margin-right:2px; vertical-align:bottom; float:left}
+img.add {margin-left:2px; vertical-align:bottom; float:right}
+img.del, img.mod {vertical-align:top}
+img.mod {position:relative; left:-16px; top:20px}
+.admin {display:none;}
+.progress {width:330px;height:15px;display:none;}
+.upp {text-align:center;}
+.upclose {display:none;}
+.upresult {color:red;}
+p[id^='sens_'] {cursor:pointer;}
+.frameIE {width:500px;height:200px;border:0px;display:none;}

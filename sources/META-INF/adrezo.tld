@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<taglib xmlns="http://java.sun.com/xml/ns/javaee"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-jsptaglibrary_2_1.xsd"
+  version="2.1">
+	<description>Tag library for ADREZO</description>
+	<tlib-version>1.0</tlib-version>
+	<short-name>adrezo</short-name>
+	<uri>adrezotaglib</uri>
+
+	<tag>
+		<description>Invalidate session</description>
+		<name>invalidateSession</name>
+		<tag-class>ypodev.adrezo.tags.InvalidateSessionTag</tag-class>
+		<body-content>empty</body-content>
+	</tag>
+	<tag>
+		<description>User friendly display of DB format IP address</description>
+		<name>displayIP</name>
+		<tag-class>ypodev.adrezo.tags.DisplayIPTag</tag-class>
+		<body-content>empty</body-content>
+		<attribute>
+			<description>IP Address in DB format</description>
+			<name>value</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+	<tag>
+		<description>User friendly display of subnet mask</description>
+		<name>displayMask</name>
+		<tag-class>ypodev.adrezo.tags.DisplayMaskTag</tag-class>
+		<body-content>empty</body-content>
+		<attribute>
+			<description>CIDR Mask</description>
+			<name>value</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+	<tag>
+		<description>Writing content in log file if defined. System.out if none</description>
+		<name>fileDB</name>
+		<tag-class>ypodev.adrezo.tags.FileDBTag</tag-class>
+		<body-content>empty</body-content>
+		<attribute>
+			<description>Content to write</description>
+			<name>value</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+	<tag>
+		<description>Display String without newline</description>
+		<name>trim</name>
+		<tag-class>ypodev.adrezo.tags.TrimTag</tag-class>
+		<body-content>empty</body-content>
+		<attribute>
+			<description>String</description>
+			<name>value</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+	<tag>
+		<description>Versions List to update</description>
+		<name>updateVersion</name>
+		<tag-class>ypodev.adrezo.tags.UpdateVersionTag</tag-class>
+		<body-content>empty</body-content>
+		<attribute>
+			<description>Version to update</description>
+			<name>begin</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<description>Version goal</description>
+			<name>end</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+	<tag>
+		<description>Log throwable JSP errors</description>
+		<name>logger</name>
+		<tag-class>ypodev.adrezo.tags.LoggerTag</tag-class>
+		<body-content>empty</body-content>
+		<attribute>
+			<description>Throwable</description>
+			<name>exception</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+	<tag>
+		<description>Execute sql trigger</description>
+		<name>sqlTrigger</name>
+		<tag-class>ypodev.adrezo.tags.SqlTriggerTag</tag-class>
+		<body-content>scriptless</body-content>
+	</tag>
+	<tag>
+		<description>Check admin password against given one</description>
+		<name>updatePwd</name>
+		<tag-class>ypodev.adrezo.tags.UpdatePwdTag</tag-class>
+		<body-content>empty</body-content>
+		<attribute>
+			<description>Password</description>
+			<name>value</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+	<function>
+		<description>Display env-entry matching entry value</description>
+		<name>envEntry</name>
+		<function-class>ypodev.adrezo.util.EnvEntry</function-class>
+		<function-signature>java.lang.String envEntry(java.lang.String)</function-signature>
+	</function>
+	<function>
+		<description>Encryption of entry password</description>
+		<name>encryptPwd</name>
+		<function-class>ypodev.adrezo.util.EncryptPwd</function-class>
+		<function-signature>java.lang.String encryptPwd(java.lang.String)</function-signature>
+	</function>
+	<function>
+		<description>Encryption of entry LDAP password</description>
+		<name>encryptLDAPPwd</name>
+		<function-class>ypodev.adrezo.util.EncryptLDAPPwd</function-class>
+		<function-signature>java.lang.String encryptLDAPPwd(java.lang.String)</function-signature>
+	</function>	
+	<function>
+		<description>DB Sequence nextval depending of DB Type</description>
+		<name>dbSeqNextval</name>
+		<function-class>ypodev.adrezo.util.DbSeqNextval</function-class>
+		<function-signature>java.lang.String dbSeqNextval(java.lang.String)</function-signature>
+	</function>
+	<function>
+		<description>DB Sequence currval depending of DB Type</description>
+		<name>dbSeqCurrval</name>
+		<function-class>ypodev.adrezo.util.DbSeqCurrval</function-class>
+		<function-signature>java.lang.String dbSeqCurrval(java.lang.String)</function-signature>
+	</function>
+	<function>
+		<description>DB Cast for PGSQL</description>
+		<name>dbCast</name>
+		<function-class>ypodev.adrezo.util.DbCast</function-class>
+		<function-signature>java.lang.String dbCast(java.lang.String)</function-signature>
+	</function>
+</taglib>

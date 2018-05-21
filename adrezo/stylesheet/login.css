@@ -1,0 +1,17 @@
+body {background-color:#fff; color:#000}
+div.global {margin:0 auto; width:1600px}
+div.logo {background:url('../img/login_logo.png') no-repeat; position:absolute; width:962px; height:200px; margin:100px}
+p {width:auto; height:auto; margin:0; font-family:"Times New Roman",serif; position:relative}
+p.name {color:#00a2db; top:0px; left:220px; font-size:45px; width:200px}
+p.version {color:#b3e2f4; top:25px; left:390px; font-size:11px; font-weight:bold; width:20px}
+p.login {color:#c05050; top:30px; left:750px; font-weight:bold; font-size:15px; width:50px; font-family:Verdana,Arial,sans-serif}
+p.pwd {color:#c05050; top:30px; left:721px; font-weight:bold; font-size:15px; width:86px; font-family:Verdana,Arial,sans-serif}
+input.login {position:relative; border:1px solid #000; top:9px; left:810px; padding:4px}
+input.pwd {position:relative; border:1px solid #000; top:9px; left:810px; padding:4px}
+img.login {position:relative; top:-8px; left:820px}
+img.company {position:absolute; width:120px; height:120px; top:137px; left:152px; z-index:2}
+p.comment,p.error {color:#fff; left:750px; width:212px; padding:2px; text-align:center; font-size:10px; font-family:monospace}
+p.comment {background-color:#8ccbed; top:20px}
+p.error {background-color:#e41819; top:30px}
+p.browser {background-color:#e41819; top:30px; color:#fff; padding:2px; text-align:center; font-size:12px; font-family:monospace}
+p.errver {background-color:#e41819; top:50px; color:#fff; padding:2px; text-align:center; font-size:12px; font-family:monospace}

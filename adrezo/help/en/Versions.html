@@ -1,0 +1,554 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Adrezo : Changelog</title>
+<meta http-equiv="Pragma" content="no-cache" />
+<script type="text/javascript" charset="utf-8" src="../../js/common.js"></script>
+<script type="text/javascript" charset="utf-8" src="../../js/tinyaccordion.js"></script>
+<link rel="stylesheet" href="../../stylesheet/common.css" type="text/css" />
+<link rel="stylesheet" href="../../stylesheet/tinyaccordion.css" type="text/css" />
+</head>
+<body>
+<ul class="acc" id="acc">
+	<li>
+		<h3>Browser known limitations</h3>
+		<div class="acc-section">
+			<div class="acc-content">
+				<ul>
+					<li>Depending on your browser settings, new windows open in tab or separate window</li>
+					<li>Depending on your graphic card performances: Scrolling display from menu, sections and box as stock movement history could be slow</li>
+				</ul>
+			</div>
+		</div>
+	</li>
+	<li>
+		<h3>1.9.6 (06/05/2018)</h3>
+		<div class="acc-section">
+			<div class="acc-content">
+				<ul>
+					<li>API StockAdmin : Sites List of given context with information on main site</li>
+					<li>API StockAdmin : Type Informations. Type Creation/Deletion/Modification. Type List of given site</li>
+					<li>API StockAdmin : Category Informations. Category Creation/Deletion/Modification. Category List</li>
+					<li>API Stock : Supply Informations. Supply List of given site. Supply Modification</li>
+					<li>API Stock : Supply Movements history</li>
+					<li>API Photo : Room Informations. Room Creation/Deletion/Modification. Room List of given site</li>
+					<li>API Photo : Set Informations. Set Creation/Deletion/Modification. Set List of given room</li>
+					<li>API Photo : Rack Informations. Rack Creation/Deletion/Modification. Rack List of given set</li>
+					<li>API Photo : Pictures List of given room. Pictures List of given rack</li>					
+					<li>Java Library : Evolution Apache CXF 3.2.1 -> 3.2.4</li>
+					<li>Java Library : Evolution Gson 2.8.2 -> 2.8.3</li>
+					<li>Java Library : Evolution Java Mail 1.6.0 -> 1.6.1</li>
+					<li>Java Library : Evolution Slf4j 1.7.7 -> 1.7.25</li>
+				</ul>
+			</div>
+		</div>
+	</li>	
+	<li>
+		<h3>1.9.5 (29/04/2018)</h3>
+		<div class="acc-section">
+			<div class="acc-content">
+				<ul>
+					<li>Update : Admin credentials to proceed</li>
+					<li>Install : Minor changes to install page</li>
+					<li>NAS : Transform perl scripts to java jobs for Cacti NAS</li>
+					<li>NAS : Gather hourly,daily or monthly availability from Cacti with aggregation through monthly stats</li>
+					<li>NAS : Planning to define maintenance time</li>
+				</ul>
+			</div>
+		</div>
+	</li>		
+	<li>
+		<h3>1.9.4 (05/04/2018)</h3>
+		<div class="acc-section">
+			<div class="acc-content">
+				<ul>
+					<li>DB : PostgreSQL 10.3 support</li>
+					<li>Photos Upload : Temporary record in database before file processing</li>
+				</ul>
+			</div>
+		</div>
+	</li>		
+	<li>
+		<h3>1.9.3 (28/03/2018)</h3>
+		<div class="acc-section">
+			<div class="acc-content">
+				<ul>
+					<li>Evolution : Javax Naming -> Apache Directory 1.0.0</li>
+					<li>LDAP : Connections Pool</li>
+					<li>LDAP : SSL Enabled Connections</li>
+					<li>LDAP : Search groups with attributes member,memberOf with/without nested groups</li>
+					<li>Login : Search mail in user account when exploitation account used to login</li>
+					<li>Bug - Admin/Context : Last remaining context must not be deleted</li>
+					<li>API v2 : With Authentication/Authorization filters</li>
+					<li>API Network : Subnets Creation/Deletion. Subnets List of given site</li>
+					<li>API Network : Vlan Informations. Vlans Creation/Deletion. Vlans List of given site</li>
+					<li>API Admin : Context Informations. Context Modification. Contexts List. Sites List of given context</li>
+					<li>API Admin : Site Informations. Site Creation/Deletion/Modification</li>						
+				</ul>
+			</div>
+		</div>
+	</li>
+	<li>
+		<h3>1.9.2 (25/01/2018)</h3>
+		<div class="acc-section">
+			<div class="acc-content">
+				<ul>
+					<li>Global : Translations improvements</li>
+					<li>Evolution : Javax Json 1.0.4 -> Gson 2.8.2</li>
+					<li>Evolution : Oracle JDBC Driver 11 -> 12</li>
+					<li>Code : Checking database connection clean close</li>
+					<li>Bug : Jobs IP Temp/Mig, empty or non existing mail field was not managed</li>
+				</ul>
+			</div>
+		</div>
+	</li>		
+	<li>
+		<h3>1.9.1 (14/01/2018)</h3>
+		<div class="acc-section">
+			<div class="acc-content">
+				<ul>
+					<li>Evolution : Jersey 1.19.1 -> Apache CXF 3.2.1</li>
+					<li>Admin : More parameters to send email</li>
+					<li>Photos : Add basic slideshow</li>
+					<li>Stock : Moves between stocks</li>
+					<li>IP : Available IP can be sent to migrating field if active</li>
+					<li>IP : Informations on migrating IP in add zone</li>
+					<li>Job : Automatic insertion of new subnets in norm</li>
+					<li>UerPrefs : Modification of slideshow timeout</li>
+				</ul>
+			</div>
+		</div>
+	</li>
+	<li>
+		<h3>1.9.0 (05/01/2018)</h3>
+		<div class="acc-section">
+			<div class="acc-content">
+				<ul>
+					<li>Evolution : Java 6 -> Java 8</li>
+					<li>Evolution : Weblogic 11 -> Tomcat 8.5</li>
+					<li>Evolution : Apache Commons Lang 3.5 -> 3.7</li>
+					<li>Evolution : JMail 1.5.1 -> Apache Commons Email 1.5</li>
+					<li>Evolution : JAI 1.1.3 -> ImgScalr 4.2</li>
+					<li>Evolution : JCIFS 1.3.17 -> 1.3.19</li>
+					<li>Evolution : Apache Commons FileUpload 1.3 -> 1.3.3</li>
+					<li>Java : Using Apache Commons Configurations 2.2</li>
+					<li>Global : Reformating logs</li>
+					<li>Bug : Check IP broadcast and gateway are in specified subnet in Network/Subnets</li>
+					<li>Bug : Check ID is a number in Network/Redundancy</li>
+					<li>Bug : More length to login and password fields in login page</li>
+					<li>Bug : Correct some translations in photo upload</li>
+					<li>Bug : IP modifying address, error reading migration date in some cases</li>
+				</ul>
+			</div>
+		</div>
+	</li>
+	<li>
+		<h3>1.8 (30/11/2016)</h3>
+		<div class="acc-section">
+			<div class="acc-content">
+				<ul>
+					<li>New module : Scheduled Tasks</li>
+					<li>Scheduled Tasks : cleanup users table</li>
+					<li>Scheduled Tasks : cleanup supply moves history</li>
+					<li>Scheduled Tasks : photo physical files cleanup</li>
+					<li>Scheduled Tasks : mail sent to users when date of migrating or temporary IP are exceeded</li>
+					<li>Global : update logs management</li>
+					<li>Bug : in photos racks, all choices were displayed even if already occupied</li>
+				</ul>
+			</div>
+		</div>
+	</li>	
+	<li>
+		<h3>1.7 (20/11/2016)</h3>
+		<div class="acc-section">
+			<div class="acc-content">
+				<ul>
+					<li>Mail : Mail content Internationalization</li>
+					<li>SDR : Admin, Statistics table cleanup</li>
+				</ul>
+			</div>
+		</div>
+	</li>	
+	<li>
+		<h3>1.6 (19/11/2016)</h3>
+		<div class="acc-section">
+			<div class="acc-content">
+				<ul>
+					<li>API : ipname, Change to give the first available index</li>
+					<li>API : mysubnet, authorized subnets list</li>
+					<li>API : subnet, attributes of given subnet</li>
+					<li>API: subnetip, IP list of given subnet</li>
+					<li>Photo : Add photo upload date in database when created or replaced</li>
+					<li>Photo : Display photo upload date and compute oldest and newest date for the entire page</li>
+					<li>Bug : Close Button absent when replacing a photo</li>
+				</ul>
+			</div>
+		</div>
+	</li>		
+	<li>
+		<h3>1.5 (06/11/2016)</h3>
+		<div class="acc-section">
+			<div class="acc-content">
+				<ul>
+					<li>General : Change in homepage to insert logo</li>
+					<li>Admin Directory : With LDAP, paging process of ldap answers</li>
+					<li>New module : API for IP adresses management with associated admin page</li>
+					<li>Bug Calendar : August was missing in an array. Shift in display occurs</li>
+					<li>Bug Infos : Subnets Fill doesn't take into account IP with null description</li>
+					<li>Bug Directory : Default values were not applied when field was empty</li>
+				</ul>
+			</div>
+		</div>
+	</li>	
+	<li>
+		<h3>1.4 (01/05/2016)</h3>
+		<div class="acc-section">
+			<div class="acc-content">
+				<ul>
+					<li>Norme : Subnet Calculator which may be disabled on a surnet basis</li>
+					<li>Norme : Subnet verification (warn only)</li>
+					<li>Network : Subnet verification, broadcast automatic computing</li>
+				</ul>
+			</div>
+		</div>
+	</li>	
+	<li>
+		<h3>1.3 (10/03/2016)</h3>
+		<div class="acc-section">
+			<div class="acc-content">
+				<ul>
+					<li>General : Packaging Java</li>
+					<li>Admin : Management of homepage logo</li>
+					<li>Admin : Rewrite page Sites</li>
+					<li>Network : Rewrite pages Subnets, Vlans</li>
+					<li>Photos : Rewrite pages Rooms, Sets, Racks</li>
+					<li>User : Setting to disable urls display on IP address</li>
+					<li>IP : Available IP search display a message when no result instead of an empty table</li>
+				</ul>
+			</div>
+		</div>
+	</li>	
+	<li>
+		<h3>1.2 (21/02/2016)</h3>
+		<div class="acc-section">
+			<div class="acc-content">
+				<ul>
+					<li>General: IE7, IE8, IE9 support removal</li>
+					<li>Login : No authentication using unsupported browser</li>
+					<li>Admin : Database update page</li>
+					<li>Admin : Database initialization page</li>
+					<li>NAS : Devices without statistics are not displayed</li>
+					<li>Bug : Management of quotes in sites and subnets names when requested with JSON</li>
+				</ul>
+			</div>
+		</div>
+	</li>	
+	<li>
+		<h3>1.1 (08/02/2016)</h3>
+		<div class="acc-section">
+			<div class="acc-content">
+				<ul>
+					<li>General: Application Internationalization (Java/JSP/Javascript)</li>
+					<li>General: Change os sort for sites from site code to name</li>
+					<li>Langue: Add English language</li>
+					<li>Utilisateur : Add user preferences interface</li>
+					<li>IP: For used by search, generate lists in JSON</li>
+					<li>IP: Choice within urls list build on IP address when you click on it</li>
+					<li>Admin : Role AdminLocal and admin account cannot be modified</li>
+					<li>Admin : Modification of pages Subnet and Vlan to load site list only when needed</li>
+					<li>Admin : Rewrite servlet photos wipe to produce xml result instead of html</li>
+					<li>Admin : Add application settings interface</li>
+					<li>CSV : Add a maximum of lines that could be treated depending of objects</li>
+					<li>Bug : In Norm, Subnets management, crash when selecting first entry in context list</li>
+				</ul>
+			</div>
+		</div>
+	</li>
+	<li>
+		<h3>1.0 (17/01/2016)</h3>
+		<div class="acc-section">
+			<div class="acc-content">
+				<ul>
+					<li>Site: Enlarge fields site code and site name to deal with stores CCU</li>
+					<li>Stock: Stock per site with context main stock</li>
+					<li>IP: Help to build CSV import of IP addresses</li>
+					<li>Admin: CSV Import/Export CSV of application main tables</li>
+					<li>Admin: Mails Management</li>
+					<li>Norme: In subnets list management within surnet, unaffected subnets are displayed as soon as context is choosed</li>
+					<li>Bug: URL Encoding missing on search chain within excel export resulting in empty file</li>
+					<li>Bug: Trim missing on differents elements in case of IP addresses add</li>
+					<li>Bug: No compliance check in dates when adding IP addresses</li>
+					<li>Bug: When a new context is created, crash of session if user choosed this new context</li>
+				</ul>
+			</div>
+		</div>
+	</li>
+	<li>
+		<h3>0.9.9 (19/11/2014)</h3>
+		<div class="acc-section">
+			<div class="acc-content">
+				<ul>
+					<li>General: Internal authentication</li>
+					<li>General: External authentication LDAP/AD</li>
+					<li>General: Storage of encrypted passwords</li>
+					<li>General: Split between Admin and Network rights</li>
+					<li>General: New rights management per context</li>
+					<li>Login: Add Enter key management for login and password fields</li>
+					<li>IP: Removal of talkman page</li>
+				</ul>
+			</div>
+		</div>
+	</li>
+	<li>
+		<h3>0.9.8 (08/11/2014)</h3>
+		<div class="acc-section">
+			<div class="acc-content">
+				<ul>
+					<li>Migration to :<ul>
+						<li>Oracle Database 10gR2 -> 11gR2</li>
+						<li>Oracle Weblogic 10.0.2 -> 10.3.6.0 (11gR1)</li>
+						<li>JDK 1.5 -> JDK 1.6</li>
+					</ul></li>
+					<li>Java libraries upgrade :<ul>
+						<li>JSP 2.0 -> JSP 2.1</li>
+						<li>Java Servlet 2.4 -> Java Servlet 2.5</li>
+						<li>CommonFileUpload 1.0 -> CommonFileUpload 1.3</li>
+						<li>JCIFS 1.3.12 -> JCIFS 1.3.17</li>
+						<li>JMail 1.4.2 -> JMail 1.5.1</li>
+					</ul></li>
+					<li>General: Check correct rights on all pages</li>
+					<li>General: Encoding on jsp and javascript pages, servlets, ajax flow in Unicode UTF-8</li>
+					<li>General: JAvascript common functions code optimisation</li>
+					<li>Vlan : Removal unique constraint on vlan id in a site</li>
+					<li>Norme : Add wait bar when elements are unfold</li>
+					<li>NAS: Add Excel Export</li>
+					<li>Admin: Add tool : List of subnets without vlan</li>
+					<li>Admin: Add tool : Liste of subnets not in the norm</li>
+					<li>Bug: Photo or rack name modification : problem with quotes</li>
+					<li>Bug: When you change vid on a vlan, if a subnet is associated you lost the association</li>
+					<li>Bug: Error in norm when all subnets in a subnet are removed</li>
+				</ul>
+			</div>
+		</div>
+	</li>
+	<li>
+		<h3>0.9.7 (18/05/2014)</h3>
+		<div class="acc-section">
+			<div class="acc-content">
+				<ul>
+					<li>Add NAS module</li>
+				</ul>
+			</div>
+		</div>
+	</li>
+	<li>
+		<h3>0.9.6 (05/10/2013)</h3>
+		<div class="acc-section">
+			<div class="acc-content">
+				<ul>
+					<li>General : Add network Norm</li>
+					<li>Admin : Rewrite vlan management page</li>
+					<li>Admin : Add redundancy management (VRRP, HSRP, etc...)</li>
+					<li>IP : Add few tooltips and replace action buttons with icons</li>
+					<li>Photos : Rewrite room, set and racks admin pages</li>
+					<li>Photos : Rewrite album page with fixing display glitches</li>
+					<li>Photos : The album page no more reloads after a modification</li>
+					<li>Infos : Display all contexts data with search and navigation</li>
+					<li>Infos : Add redundancy protocols informations</li>
+					<li>Stock : Excel exports are back within stock page</li>
+					<li>Bug : When deleting a vlan with subnet associated, the subnet doesn't take back default vlan</li>
+					<li>Bug : When modifying vlan on a site, if subnets associated, those doesn't take back default vlan</li>
+					<li>Bug : When modifying subnet on a site, IP addresses stay in site</li>
+					<li>Bug : When changing context in another tab and validate IP addresses addition, they were recorded in the wrong context</li>
+				</ul>
+			</div>
+		</div>
+	</li>
+	<li>
+		<h3>0.9.5 (07/11/2012)</h3>
+		<div class="acc-section">
+			<div class="acc-content">
+				<ul>
+					<li>Global : Fix compatibility with IE9, Chrome, Safari</li>
+					<li>Global : Timeout from 30mn to 6h</li>
+					<li>Global : Remove ping function in IP available search</li>
+					<li>Global : Rewrite main menu</li>
+					<li>Global : Create section Infos</li>
+					<li>Global : Move into Infos subnet fill rate page</li>
+					<li>Global : Action with icon+tooltip instead of text buttons (all except Photo/Album, IP)</li>
+					<li>Global : Modify data directly in each line (all except IP)</li>
+					<li>Global : Rewrite some common ajax functions</li>
+					<li>IP : Add tooltip on column site to display site code</li>
+					<li>IP : Bakc of excel export function according to many criterias (Global, Context, Search)</li>
+					<li>Stock : Stock sorted by Index when page loads</li>
+					<li>Stock : Stock index from 4 to 8 characters</li>
+					<li>Stock : When reception of ongoing order, track it in movement history</li>
+					<li>Stock : Each context has its own stock</li>
+					<li>Admin : Add vlans per context and full rewrite of vlan/subnet/site scheme</li>
+					<li>Bug - IP : When IP add fails, IP stay in database format</li>
+					<li>Bug - IP : Rewrite of IP available search engine to slice subnet in /24 maximum</li>
+					<li>Bug - Stock : Special characters taken into account in type description</li>
+				</ul>
+			</div>
+		</div>
+	</li>
+	<li>
+		<h3>0.9.4 (04/01/2010)</h3>
+		<div class="acc-section">
+			<div class="acc-content">
+				<ul>
+					<li>General : Compatibility tests with IE7, IE8, Opera 10.10, Firefox 3.5.6</li>
+					<li>General : Add pages About, Changelog</li>
+					<li>General : Rewriting photos and stock pages to apply W3C XHTML 1.0 norm</li>
+					<li>General : Navigation menu present on all pages</li>
+					<li>General : Complete restructuration of help pages</li>
+					<li>Oracle : Triggers rewrited</li>
+					<li>Login : Login page rewrited</li>
+					<li>Stock : Code rewrited</li>
+					<li>Stock : Remove movements page, write box with ajax call</li>
+					<li>Stock : Add field, number of movements to display</li>
+					<li>Stock : In/Out fields merge in only one : Variation</li>
+					<li>Stock : Validate icon on each line</li>
+					<li>Photo : Code rewrited</li>
+					<li>Photo : Clean split between Room/Set/Rack pages</li>
+					<li>Photo : Removal Photos notes</li>
+					<li>Photo : Removal Videos</li>
+					<li>Photo : Rack poisitoning in drag and drop</li>
+				</ul>
+			</div>
+		</div>
+	</li>
+	<li>
+		<h3>0.9.3 (24/12/2009)</h3>
+		<div class="acc-section">
+			<div class="acc-content">
+				<ul>
+					<li>Oracle : Structure change in tables adresses,sites,subnets</li>
+					<li>General : Navigation change with menu on all pages except photo and stock</li>
+					<li>General : Add contexts</li>
+					<li>General : Tooltip and alert window modification</li>
+					<li>General : Rewriting pages to apply W3C XHTML 1.0 norm except photo and stock</li>
+					<li>General : Rewriting ajax calls</li>
+					<li>General : Down from CommonFileUpload 1.2.1 to 1.0 to resolve libraries conflict</li>
+					<li>IP : Migrate/modify/add could be on multiple objects</li>
+					<li>IP : Available IP search in Add/modify section</li>
+				</ul>
+			</div>
+		</div>
+	</li>
+	<li>
+		<h3>0.9.2 (26/08/2009)</h3>
+		<div class="acc-section">
+			<div class="acc-content">
+				<ul>
+					<li>Oracle : Structure change in photos tables</li>
+					<li>Photos : Temporary directory management for photos storage</li>
+					<li>Photos : PHotos storage in application directory or via CIFS</li>
+					<li>Photos : Modifiy rack display for bug fix when top front view is deleted</li>
+				</ul>
+			</div>
+		</div>
+	</li>
+	<li>
+		<h3>0.9.1 (16/08/2009)</h3>
+		<div class="acc-section">
+			<div class="acc-content">
+				<ul>
+					<li>General : Migration Taglib 1.2 -> 2.1</li>
+					<li>General : All database errors catched and logged</li>
+					<li>General : Direct sort on columns for IP and Stock</li>
+					<li>General : Encoding ISO-8859-1 on all pages</li>
+					<li>Oracle : Add database trigger to modify ip address records when subnet description is modified</li>
+					<li>Oracle : Unique description in addresses</li>
+					<li>Admin : User bean removal when login problems</li>
+					<li>Admin : Subnet Management : description could be modified without unique constraint error</li>
+					<li>Ip : Code Optimisation</li>
+					<li>Stock : Add category field</li>
+					<li>Stock : Add ongoing order field with reception function</li>
+					<li>Stock : Threshold alert take ongoing order into account</li>
+					<li>Stock : Movement : Full history instead of just index one</li>
+					<li>Stock : Movement : Full Excel Export</li>
+				</ul>
+			</div>
+		</div>
+	</li>
+	<li>
+		<h3>0.9.0 (03/08/2009)</h3>
+		<div class="acc-section">
+			<div class="acc-content">
+				<ul>
+					<li>General : Migration JSP 1.2->2.1</li>
+					<li>General : Migration JSTL 1.0->1.2</li>
+					<li>General : Migration Servlet 2.3->2.5</li>
+					<li>General : Migration CommonFileUpload 1.0->1.2.1</li>
+					<li>General : Migration JAI 1.1.2->1.1.3</li>
+					<li>General : Migration JDK 1.4 -> Jrockit MC 3.1.0 (JEE5)</li>
+					<li>General : Removal modules referencement ports, workflow travaux, secu, ddc and associated java classes</li>
+					<li>General : Application settings in web.xml env-entry</li>
+					<li>General : admin/root merge</li>
+					<li>General : File renaming</li>
+					<li>Oracle : Removal fields manager,useragent in users</li>
+					<li>Admin : Add tool Network fill rate</li>
+					<li>Admin : Rights Management rewriting</li>
+					<li>Ip : Removal IPX field</li>
+					<li>Ip : Add sort and search on type field</li>
+					<li>Ip : Rewrite available IP page and code PingServlet in JEE5 to insert result in page</li>
+				</ul>
+			</div>
+		</div>
+	</li>
+	<li>
+		<h3>0.8.2 (20/07/2008)</h3>
+		<div class="acc-section">
+			<div class="acc-content">No informations</div>
+		</div>
+	</li>
+	<li>
+		<h3>0.8.1 (20/06/2006)</h3>
+		<div class="acc-section">
+			<div class="acc-content">No informations</div>
+		</div>
+	</li>
+	<li>
+		<h3>0.8.0 (01/09/2005)</h3>
+		<div class="acc-section">
+			<div class="acc-content">No informations</div>
+		</div>
+	</li>
+	<li>
+		<h3>0.7.3 (28/07/2005)</h3>
+		<div class="acc-section">
+			<div class="acc-content">No informations</div>
+		</div>
+	</li>
+	<li>
+		<h3>0.7.2 (23/04/2005)</h3>
+		<div class="acc-section">
+			<div class="acc-content">No informations</div>
+		</div>
+	</li>
+	<li>
+		<h3>0.7.1 (12/01/2005)</h3>
+		<div class="acc-section">
+			<div class="acc-content">No informations</div>
+		</div>
+	</li>
+	<li>
+		<h3>0.7.0 (29/10/2004)</h3>
+		<div class="acc-section">
+			<div class="acc-content">First release into production</div>
+		</div>
+	</li>
+	<li>
+		<h3>0.1 (07/01/2004)</h3>
+		<div class="acc-section">
+			<div class="acc-content">First development version</div>
+		</div>
+	</li>
+</ul>
+<script type="text/javascript" charset="utf-8">
+var accordion=new TINY.accordion.slider("accordion");
+accordion.init("acc","h3",1,1);
+</script>
+</body>
+</html>

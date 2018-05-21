@@ -1,0 +1,16 @@
+div.caldiv {position:absolute; background-color:#fff; padding:3px; margin-top:3px; border:2px outset #cacaff}
+ul.caltr {list-style:none; margin:0; padding:0; font-family:Verdana, Arial, Helvetica; color:#000; font-size:x-small; position:relative; z-index:999}
+ul.caltr * {margin:0; padding:0; text-align: center; width:20px}
+ul.caltr a {display:block; color:#000; text-decoration:none; background-color:#dedeff; cursor:pointer}
+ul.caltr a:hover {background-color:#cacaff}
+ul.caltr a.calcurrent {color:#f00}
+ul.caltr li {position:relative; float:left; margin-right:2px; margin-bottom:2px}
+ul.caltr li.calendtd {clear:left}
+ul.caltr li.calempty {line-height:2px}
+ul.caltr li.calmonth {width:94px; vertical-align:bottom; font-weight:bold; padding-top:8px}
+ul.caltr li.calprev, li.calnext {cursor:pointer; width:12px; height:13px; margin-left:3px; margin-right:3px; padding:8px 6px} 
+ul.caltr li.calprev {background:transparent url('../img/calleft.png') center no-repeat}
+ul.caltr li.calprev:hover {background-image:url('../img/callefthover.png')}
+ul.caltr li.calnext {background:transparent url('../img/calright.png') center no-repeat}
+ul.caltr li.calnext:hover {background-image:url('../img/calrighthover.png')}
+img.picker {cursor:pointer; margin-left:2px}

@@ -1,0 +1,35 @@
+<html>
+<head><title>Aide adrezo</title>
+<link rel="stylesheet" href="../../stylesheet/common.css" type="text/css" />
+</head>
+<body>
+<h2>Gestion des Subnets</h2>
+<p>Avec les droits nécessaires, vous pouvez gérer les subnets.<hr />
+Vous trouverez dans la page deux zones :
+<ul>
+	<li>une zone d'ajout/modification</li>
+	<li>la liste des subnets existants avec leurs informations</li>
+</ul>
+Pour chaque ligne de la liste, vous pouvez :
+<ul>
+	<li>Effacer un subnet en cliquant sur <img src="../../img/icon_delete.jpg" alt="DeleteIcon" />. <b>Attention cela entraine la suppression de tous les objets associés</b></li>
+	<li>Modifier un subnet en cliquant sur <img src="../../img/icon_modify.jpg" alt="ModifyIcon" /></li>
+</ul>
+En cas d'ajout ou de modification, entrez ou modifiez les différentes informations puis cliquez sur <img src="../../img/icon_valid.png" alt="ValidIcon" /> pour valider.<br />
+Vous pouvez également cliquer sur <img src="../../img/icon_refuse.png" alt="ResetIcon" /> pour annuler, tous les champs redeviennent vides.<hr />
+Un subnet est défini par plusieurs champs :
+<ul>
+	<li>le site de rattachement</li>
+	<li>l'ip de depart du subnet</li>
+	<li>le masque de sous-reseau</li>
+	<li>son libellé</li>
+	<li>l'adresse IP de la passerelle (pour information à l'utilisateur)</li>
+	<li>l'adresse IP de broadcast (pour avoir une borne finie dans la recherche d'IP dispo)</li>
+	<li>le vlan, représenté par son ID, auquel est rattaché ce subnet. Si aucun, choisir l'ID 0 qui signifie 'Pas de vlan'</li>
+</ul>
+L'adresse IP de broadcast est automatiquement calculé quand vous entrez l'ip et le masque du subnet.<br />
+Une vérification si le subnet entré est bien une adresse de subnet est effectuée en cas d'ajout ou de modification.
+</p>
+
+</body>
+</html>

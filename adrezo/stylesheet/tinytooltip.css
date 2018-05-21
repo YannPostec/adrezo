@@ -1,0 +1,5 @@
+.hotspot {cursor:pointer}
+#tt {position:absolute; display:block; z-index:3}
+#tttop {display:block; height:1px; margin-left:1px; overflow:hidden}
+#ttcont {display:block; padding:2px 12px 3px 7px; margin-left:1px; background:#dedeff; color:#000}
+#ttbot {display:block; height:1px; margin-left:1px; overflow:hidden}

@@ -1,0 +1,7 @@
+.acc h3[data-style="surnet"] {font-size:11px; border:1px solid #e84a67; border-radius:15px;}
+.admin {display:none;}
+.pic {display:block; margin-bottom:30px;}
+.acc .acc-content {padding-left:20px;}
+h2 {margin:3px;float:left;}
+#options {clear:both;}
+div[id^=surinfos] p {margin:0px;}

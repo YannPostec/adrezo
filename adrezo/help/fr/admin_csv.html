@@ -1,0 +1,77 @@
+<html>
+<head><title>Aide adrezo</title>
+<link rel="stylesheet" href="../../stylesheet/common.css" type="text/css" />
+</head>
+<body>
+<h2>Export et Import CSV</h2>
+<h3>Exports de fichiers CSV</h3>
+<p>Avec les droits nécessaires, vous pouvez exporter et importer des fichiers CSV.</p>
+Seuls les tables suivantes sont concernées :
+<ul>
+	<li>Contexte</li>
+	<li>Site</li>
+	<li>Vlan</li>
+	<li>Subnet</li>
+	<li>IP</li>
+</ul>
+<p>L'export se fait en cliquant sur le bouton <input type="button" value="Export" /></p>
+<ul>NB : Il y'a deux exports possibles pour la table IP :
+	<li>Format Complet : toutes les informations mais ne fonctionnera pas à l'import</li>
+	<li>Format Import : juste les informations qui peuvent etre traitées en import</li>
+</ul>
+<h3>Import de fichiers CSV</h3>
+<p>Pour importer, choisir un fichier texte au format CSV et cliquer sur <input type="button" value="Upload" /><br />
+Une barre de progression apparait ainsi qu'un status du traitement.<br />
+Des informations apparaissent au fur et à mesure que les traitements sont réalisés.</p>
+<ul>Informations de progression du traitement
+<li>25% : Upload du fichier</li>
+<li>15% : Ajout/Modification des contextes</li>
+<li>15% : Ajout/Modification des sites</li>
+<li>15% : Ajout/Modification des vlans</li>
+<li>15% : Ajout/Modification des subnets</li>
+<li>15% : Ajout/Modification des adresses ip</li>
+</ul>
+<p>Si une erreur survient ou si le traitement est terminé, le bouton <input type="button" value="Reset" /> apparaît permettant de refaire un import</p>
+<h3>Restrictions sur les fichiers CSV</h3>
+<p>Le fichier ne doit pas être supérieur en taille à 3Mo.<br />
+<ul>Il y'a un maximum de lignes qui peuvent être traité par type d'objet :
+<li>Contexte : 5000 lignes</li>
+<li>Site : 2500 lignes</li>
+<li>Vlan : 2000 lignes</li>
+<li>Subnet : 1000 lignes</li>
+<li>IP : 1000 lignes</li>
+</ul></p>
+<h3>Généralités sur les fichiers CSV</h3>
+<p>Les lignes vides ou commencant par autre chose qu'une lettre majuscule sont ignorés.<br />
+L'import de fichiers CSV effectue les memes opérations qu'en utilisant l'interface web, excepté pour les adresses IP ou le traitement est plus léger avec les fichiers CSV.<br />
+Les adresses IP doivent au format base, 12 chiffres, chaque partie de l'adresse IP donnant un bloc de 3 chiffres (complétion à gauche par des 0).<br />
+Tous les champs sont obligatoires sauf si précisé.</p>
+<p>Le premier champ de chaque ligne détermine le type d'objet
+<ul>
+	<li>Contexte = CTX</li>
+	<li>Site = SITE</li>
+	<li>Vlan = VLAN</li>
+	<li>Subnet = SUBNET</li>
+	<li>IP = IP</li>
+</ul></p>
+<p>Le deuxieme champ est l'identifiant (ID) dans la base de données. Si cet ID est égal à 0, ce sera une création, sinon une modification de l'ID indiqué.<br />
+Attention, une modification d'un ID inconnu dans la base ne générera aucune action mais ne renverra pas d'erreur.</p>
+<h3>Prototype fichiers</h3>
+<p><b>Contexte</b> : CTX,ID,NAME,SITE_MAIN<br />
+en détail : CTX, id (0 ou existant), nom, paramètre non utilisé (non obligatoire)</p>
+<p><b>Site</b> : SITE,ID,CTX,COD,NAME<br />
+en détail : SITE, id (O ou existant), id du contexte, code site, nom<br />
+En modification seuls les changements de nom et code site sont pris en compte</p>
+<p><b>Vlan</b> : VLAN,ID,CTX,SITE,VID,DEF<br />
+en détail : VLAN, id (0 ou existant), id du contexte, id du site, VLAN ID, libellé<br />
+En modification seuls les changements de vlan id et de libellé sont pris en compte<br />
+Les enregistrements avec vlan id 0 sont non modifiables.</p>
+<p><b>Subnet</b> : SUBNET,ID,CTX,SITE,VLAN,IP,MASK,DEF,GW,BC<br />
+en détail : SUBNET, id (0 ou existant), id du contexte, id du site, id du vlan, ip du sous-réseau, masque format CIDR, libellé, ip de la passerelle, ip de broadcast<br />
+En modification seuls les changements de libellé, ip subnet/masque, ip passerelle et ip broadcast sont pris en compte</p>
+<p><b>IP</b> : IP,ID,CTX,SITE,SUBNET,IP,MASK,NAME,DEF,MAC<br />
+en détail : IP, id (0 ou existant), id du contexte, id du site, id du subnet, adresse ip, masque format CIDR, nom, libellé, mac (non obligatoire)<br/>
+Il n'est pas possible d'intégrer toutes les notions d'ip temporaire ou de migration dans l'import CSV.<br />
+De ce fait, en modification seuls les changements des champs nom, libellé et mac sont pris en compte.</p>
+</body>
+</html>

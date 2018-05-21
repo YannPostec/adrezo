@@ -1,0 +1,94 @@
+<html>
+<head><title>Adrezo Help</title>
+<link rel="stylesheet" href="../../stylesheet/common.css" type="text/css" />
+</head>
+<body>
+<h2>API Syntax, Stock section</h2>
+
+<h3>Supply List</h3>
+Return array with informations on each supply for a given site.<br />
+Required Roles : API, STOCK
+<ul>
+<li>URL<ul><li><b>GET /api/stock/supply/list/&lt;site&gt;</b></li></ul></li>
+<li>In (URI)
+<ul><li>site : integer, site id in database</li></ul></li>
+<li>Out (JSON)
+<ul><li>{"stocksupply_list": [ {"id":&lt;id&gt;,"name":&lt;name&gt;,"stock":&lt;stock&gt;,"threshold":"&lt;threshold&gt;","category":&lt;category&gt;,"index":&lt;index&gt;,"ongoing":&lt;ongoing&gt;},{...} ] }
+<ul><li>id : integer, supply id in database</li>
+<li>name : string, supply name</li>
+<li>stock : integer, quantity of elements in stock</li>
+<li>threshold : integer, optional, alert threshold</li>
+<li>category : integer, category id in database</li>
+<li>index : string, supply index in stock</li>
+<li>ongoing : integer, optional, number of elements arriving</li></ul></li></ul></li>
+<li>HTTP return code, if not ok return informations in text format
+<ul><li>500 : internal error in API</li>
+<li>404 : supply not found</li>
+<li>200 : ok, return result in JSON format</li></ul></li>
+</ul>
+<hr />
+
+<h3>Informations on supply</h3>
+Return informations over a given supply.<br />
+Required Roles : API, STOCK
+<ul>
+<li>URL<ul><li><b>GET /api/stock/supply/&lt;id&gt;</b></li></ul></li>
+<li>In (URI)
+<ul><li>id : integer, supply id in database</li></ul></li>
+<li>Out (JSON)
+<ul><li>{ "id":&lt;id&gt;,"name":&lt;name&gt;,"stock":&lt;stock&gt;,"threshold":"&lt;threshold&gt;","category":&lt;category&gt;,"index":&lt;index&gt;,"ongoing":&lt;ongoing&gt; }
+<ul><li>id : integer, supply id in database</li>
+<li>name : string, supply name</li>
+<li>stock : integer, quantity of elements in stock</li>
+<li>threshold : integer, optional, alert threshold</li>
+<li>category : integer, category id in database</li>
+<li>index : string, supply index in stock</li>
+<li>ongoing : integer, optional, number of elements arriving</li></ul></li></ul></li>
+<li>HTTP return code, if not ok return informations in text format
+<ul><li>500 : internal error in API</li>
+<li>404 : supply not found</li>
+<li>200 : ok, return result in JSON format</li></ul></li>
+</ul>
+<hr />
+
+<h3>Movements History</h3>
+Return array with movements history of a given supply.<br />
+Required Roles : API, STOCK
+<ul>
+<li>URL<ul><li><b>GET /api/stock/supply/history/&lt;id&gt;</b></li></ul></li>
+<li>In (URI)
+<ul><li>id : integer, supply id in database</li></ul></li>
+<li>Out (JSON)
+<ul><li>{ "stockhistory_list": [ {"stamp":"2018-05-01 14:18:54","user":"ypostec","movement":2,"inventory":true,"ongoing":false},{...} ] }
+<ul><li>stamp : date, movement date</li>
+<li>user : string, user who performed the movement</li>
+<li>movement : integer, stock mouvement</li>
+<li>inventory : boolean, movement in inventory mode</li>
+<li>threshold : boolean, movement which triggered threshold overrun</li></ul></li></ul></li>
+<li>HTTP return code, if not ok return informations in text format
+<ul><li>500 : internal error in API</li>
+<li>404 : supply not found</li>
+<li>200 : ok, return result in JSON format</li></ul></li>
+</ul>
+<hr />
+
+<h3>Stock movement</h3>
+Provide movement over a given supply.<br />
+Required Roles : API, STOCK
+<ul>
+<li>URL<ul><li><b>PATCH /api/stock/supply/&lt;id&gt;</b></li></ul></li>
+<li>In (URI)<ul><li>id : integer, supply id in database</li></ul></li>
+<li>In (JSON)
+<ul><li>{ "variation":&lt;variation&gt;,"inventory":&lt;inventory&gt; }
+<ul><li>variation : integer, supply quantity positive or negative from stock</li>
+<li>inventory : boolean, optional, inventory mode</li></ul></li></ul></li>
+<li>Out (text/plain) : none except errors</li>
+<li>HTTP return code, if not ok return informations in text format
+<ul><li>500 : internal error in API</li>
+<li>404 : supply not found</li>
+<li>200 : ok, return result in JSON format</li></ul></li>
+</ul>
+<hr />
+
+</body>
+</html>

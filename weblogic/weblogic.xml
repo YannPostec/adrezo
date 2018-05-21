@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<weblogic-web-app> 
+	<resource-description>
+		<res-ref-name>jdbc/adrezo-pool</res-ref-name>
+		<jndi-name>jdbc/adrezo-pool</jndi-name>
+	</resource-description>
+	<jsp-descriptor>
+		<backward-compatible>false</backward-compatible>
+	</jsp-descriptor>
+	<container-descriptor>
+		<prefer-web-inf-classes>true</prefer-web-inf-classes>
+	</container-descriptor>
+	<context-root>/adrezo</context-root>
+</weblogic-web-app>

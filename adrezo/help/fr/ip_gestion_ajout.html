@@ -1,0 +1,30 @@
+<html>
+<head><title>Aide adrezo</title>
+<link rel="stylesheet" href="../../stylesheet/common.css" type="text/css" />
+</head>
+<body>
+<h2>Ajout d'adresse IP</h2>
+<p>Les champs obligatoires sont Nom et Adresse, il est préférable de remplir un libellé<br />
+Lors d'une entrée dans le champ <i>Adresse</i>, les champs <i>Masque</i>, <i>Site</i> et <i>Subnet</i> sont automatiquement remplis.</p>
+<p>Si l'adresse IP est temporaire, cocher la case dans la colonne <i>Temporaire</i>.<br />
+Ceci fait apparaître une nouvelle colonne <i>jusqu'à</i> permettant de choisir une date de résiliation<br />
+Pour cela cliquer sur <img src="../../img/calendar.gif" /> qui ouvre un calendrier où vous pouvez sélectionnez une date</p>
+<p>Si l'adresse IP sera migré, cocher la case dans la colonne <i>Migration</i><br />
+Deux colonnes aparaissent : <i>le</i> pour choisir une date de migration avec <img src="../../img/calendar.gif" /> et <i>Adresse IP future</i> pour rentrez la future adresse IP<br />
+Comme pour le champ adresse IP,  masque, site et subnet de migration seront automatiquement remplis.<br />
+Un icône apparaît <img src="../../img/icon_help.png" /> vous permettant de visualiser ces informations ainsi que de savoir si l'adresse IP existe déjà ou non.<br />
+Une réservation de la future adresse portant le libellé 'Reservation de XXX.XXX.XXX.XXX' est également ajouté dans la table. Cet enregistrement est de type 'dynamic' (non modifiable).<br />
+Il est supprimé en même temps que la supression ou la migration de l'adresse IP.</p>
+<p>La gestion des lignes permet:
+<ul>
+	<li><img src="../../img/icon_add.png" />l'ajout d'une ligne à la fin du tableau</li>
+	<li><input type="button" value="Effacer" />la suppression d'une ligne</li>
+	<li><img src="../../img/icon_delete.jpg" />la suppression de toutes les lignes</li>
+</ul>
+</p>
+<p>Afin d'ajouter/modifier votre enregistrement, cliquez sur <img src="../../img/icon_valid.png" /><br />
+Si certaines valeurs obligatoires manquent ou si certaines valeurs sont erronées, une fenêtre vous avertit et la requête n'est pas exécutée.<br />
+Vous pouvez alors effacer les lignes dont le résultat est correct et retravailler les lignes en erreurs.<br />
+Si aucune erreur n'est détectée, les listes ajout/modification et adresses IP se réinitialisent.</p>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<html>
+<head><title>Adrezo Help</title>
+<link rel="stylesheet" href="../../stylesheet/common.css" type="text/css" />
+</head>
+<body>
+<h2>Network norm Management</h2>
+<p>With proper permissions, you can manage surnets defining the norm.<br />
+Use <img src="../../img/button_admin_red.png" /> to enter or leave admin mode.</p>
+<p>On each surnet, you find four icons :
+<ul>
+<li><img src="../../img/icon_delete.jpg" /> Delete the surnet</li>
+<li><img src="../../img/icon_add.png" /> Add a child surnet to this surnet</li>
+<li><img src="../../img/icon_modify.jpg" /> Modify surnet informations</li>
+<li><img src="../../img/icon_database.png" /> Manage the subnet list of this surnet</li>
+<li><img src="../../img/icon_calc.png" /> Compute available subnets in this surnet</li>
+</ul>
+<hr />
+<h3>Delete</h3>
+Clicking on it display a confirmation window<br />
+<b>Be careful, it's a recursive delete within all subnets/surnets attached. However, there is no modifications to subnets</b>
+<h3>Add</h3>
+Clicking on it display a window where you enter informations on the surnet child :
+<ul>
+<li>its IP</li>
+<li>its mask</li>
+<li>its description</li>
+<li>its informations in a text editor</li>
+<li>if surnet permit to launch the subnet calculator</li>
+</ul>
+Validate by clicking on <img src="../../img/icon_valid.png" /><br />
+If IP/mask you entered don't make a valid subnet address, a warn message appears.<br />
+However, it is still possible to add a surnet with invalid subnet address.
+<h3>Modify</h3>
+In the same way that adding a surnet, a window is dispayed with the same informations
+<h3>Manage Subnets List</h3>
+This list represent the subnets attached to this surnet.<br />
+In the right area are the attached subnets.<br />
+In the left area are the subnets you could attached.<br />
+The left area is filled each time you choose a context, you could reduce the choice by selecting a site.<br />
+You move the subnets between the areas using the icons :
+<ul>
+<li><img src="../../img/choice_right.png" /> From left to right</li>
+<li><img src="../../img/choice_left.png" /> From right to left</li>
+</ul>
+To attach the subnets defined to the surnet, click on <img src="../../img/icon_valid.png" />
+<h3>Available Subnets Calculator</h3>
+In the opening box, you just have to enter the desired mask of subnets you search.<br />
+After validation, a list of available subnets will be displayed.

@@ -1,0 +1,319 @@
+<html>
+<head><title>Adrezo Help</title>
+<link rel="stylesheet" href="../../stylesheet/common.css" type="text/css" />
+</head>
+<body>
+<h2>API Syntax, Photo section</h2>
+
+<h3>Room List</h3>
+Return array with informations on each room for a given site.<br />
+Required Roles : API, PHOTO
+<ul>
+<li>URL<ul><li><b>GET /api/photo/room/list/&lt;site&gt;</b></li></ul></li>
+<li>In (URI)
+<ul><li>site : integer, site id in database</li></ul></li>
+<li>Out (JSON)
+<ul><li>{"photoroom_list": [ {"id":&lt;id&gt;,"name":&lt;name&gt;},{...} ] }
+<ul><li>id : integer, room id in database</li>
+<li>name : string, room name</li></ul></li></ul></li>
+<li>HTTP return code, if not ok return informations in text format
+<ul><li>500 : internal error in API</li>
+<li>404 : empty room list or site not found</li>
+<li>200 : ok, return result in JSON format</li></ul></li>
+</ul>
+<hr />
+
+<h3>Informations on room</h3>
+Return informations on given room.<br />
+Required Roles : API, PHOTO
+<ul>
+<li>URL<ul><li><b>GET /api/photo/room/&lt;id&gt;</b></li></ul></li>
+<li>In (URI)
+<ul><li>id : integer, room id in database</li></ul></li>
+<li>Out (JSON)
+<ul><li>{ "id":&lt;id&gt;,"name":&lt;name&gt;,"site":&lt;site&gt; }
+<ul><li>id : integer, room id in database</li>
+<li>name : string, room name</li>
+<li>site : integer, site id in database</li></ul></li></ul></li>
+<li>HTTP return code, if not ok return informations in text format
+<ul><li>500 : internal error in API</li>
+<li>404 : room not found</li>
+<li>200 : ok, return result in JSON format</li></ul></li>
+</ul>
+<hr />
+
+<h3>Delete a room</h3>
+Provide suppression of given room.<br />
+Required Roles : API, PHOTO
+<ul>
+<li>URL<ul><li><b>DELETE /api/photo/room/&lt;id&gt;</b></li></ul></li>
+<li>In (URI)
+<ul><li>id : integer, room id in database</li></ul></li>
+<li>Out (text/plain) : none except errors</li>
+<li>HTTP return code, if not ok return informations in text format
+<ul><li>500 : internal error in API</li>
+<li>404 : room not found</li>
+<li>200 : ok, room deleted</li></ul></li>
+</ul>
+<hr />
+
+<h3>Add a room</h3>
+Provide creation of a room describe with given attributes in given site.<br />
+Required Roles : API, PHOTO
+<ul>
+<li>URL<ul><li><b>POST /api/photo/room</b></li></ul></li>
+<li>In (JSON)
+<ul><li>{ "name":&lt;name&gt;,"site":&lt;site&gt; }
+<ul><li>name : string, room name</li>
+<li>site : integer, site id in database</li></ul></li></ul></li>
+<li>Out (text/plain) : Photo Room &lt;id&gt; created
+<ul><li>id : integer, room id in database</li></ul></li>
+<li>HTTP return code, if not ok return informations in text format
+<ul><li>500 : internal error in API</li>
+<li>404 : site not found</li>
+<li>201 : ok, room created</li></ul></li>
+</ul>
+<hr />
+
+<h3>Modify a room</h3>
+Provide modification of some room parameters with given attributes.<br />
+Required Roles : API, PHOTO
+<ul>
+<li>URL<ul><li><b>PATCH /api/photo/room/&lt;id&gt;</b></li></ul></li>
+<li>In (URI)<ul><li>id : integer, room id in database</li></ul></li>
+<li>In (JSON)
+<ul><li>{ "name":&lt;name&gt;,"site":&lt;site&gt; }
+<ul><li>name : string, optional, room name</li>
+<li>site : integer, optional, site id in database</li></ul></li></ul></li>
+<li>Out (text/plain) : none except errors</li>
+<li>HTTP return code, if not ok return informations in text format
+<ul><li>500 : internal error in API</li>
+<li>404 : room not found</li>
+<li>200 : ok, room modified</li></ul></li>
+</ul>
+<hr />
+
+<h3>Set List</h3>
+Return array with informations on each set for a given room.<br />
+Required Roles : API, PHOTO
+<ul>
+<li>URL<ul><li><b>GET /api/photo/set/list/&lt;room&gt;</b></li></ul></li>
+<li>In (URI)
+<ul><li>room : integer, room id in database</li></ul></li>
+<li>Out (JSON)
+<ul><li>{"photoset_list": [ {"id":&lt;id&gt;,"name":&lt;name&gt;},{...} ] }
+<ul><li>id : integer, set id in database</li>
+<li>name : string, set name</li></ul></li></ul></li>
+<li>HTTP return code, if not ok return informations in text format
+<ul><li>500 : internal error in API</li>
+<li>404 : empty set list or room not found</li>
+<li>200 : ok, return result in JSON format</li></ul></li>
+</ul>
+<hr />
+
+<h3>Informations on set</h3>
+Return informations on given set.<br />
+Required Roles : API, PHOTO
+<ul>
+<li>URL<ul><li><b>GET /api/photo/set/&lt;id&gt;</b></li></ul></li>
+<li>In (URI)
+<ul><li>id : integer, set id in database</li></ul></li>
+<li>Out (JSON)
+<ul><li>{ "id":&lt;id&gt;,"name":&lt;name&gt;,"room":&lt;room&gt; }
+<ul><li>id : integer, set id in database</li>
+<li>name : string, set name</li>
+<li>room : integer, room id in database</li></ul></li></ul></li>
+<li>HTTP return code, if not ok return informations in text format
+<ul><li>500 : internal error in API</li>
+<li>404 : set not found</li>
+<li>200 : ok, return result in JSON format</li></ul></li>
+</ul>
+<hr />
+
+<h3>Delete a set</h3>
+Provide suppression of given set.<br />
+Required Roles : API, PHOTO
+<ul>
+<li>URL<ul><li><b>DELETE /api/photo/set/&lt;id&gt;</b></li></ul></li>
+<li>In (URI)
+<ul><li>id : integer, set id in database</li></ul></li>
+<li>Out (text/plain) : none except errors</li>
+<li>HTTP return code, if not ok return informations in text format
+<ul><li>500 : internal error in API</li>
+<li>404 : set not found</li>
+<li>200 : ok, set deleted</li></ul></li>
+</ul>
+<hr />
+
+<h3>Add a set</h3>
+Provide creation of a set describe with given attributes in given room.<br />
+Required Roles : API, PHOTO
+<ul>
+<li>URL<ul><li><b>POST /api/photo/set</b></li></ul></li>
+<li>In (JSON)
+<ul><li>{ "name":&lt;name&gt;,"room":&lt;room&gt; }
+<ul><li>name : string, set name</li>
+<li>room : integer, room id in database</li></ul></li></ul></li>
+<li>Out (text/plain) : Photo Set &lt;id&gt; created
+<ul><li>id : integer, set id in database</li></ul></li>
+<li>HTTP return code, if not ok return informations in text format
+<ul><li>500 : internal error in API</li>
+<li>404 : room not found</li>
+<li>201 : ok, set created</li></ul></li>
+</ul>
+<hr />
+
+<h3>Modify a set</h3>
+Provide modification of some set parameters with given attributes.<br />
+Required Roles : API, PHOTO
+<ul>
+<li>URL<ul><li><b>PATCH /api/photo/set/&lt;id&gt;</b></li></ul></li>
+<li>In (URI)<ul><li>id : integer, set id in database</li></ul></li>
+<li>In (JSON)
+<ul><li>{ "name":&lt;name&gt;,"room":&lt;room&gt; }
+<ul><li>name : string, optional, set name</li>
+<li>room : integer, optional, room id in database</li></ul></li></ul></li>
+<li>Out (text/plain) : none except errors</li>
+<li>HTTP return code, if not ok return informations in text format
+<ul><li>500 : internal error in API</li>
+<li>404 : set not found</li>
+<li>200 : ok, set modified</li></ul></li>
+</ul>
+<hr />
+
+<h3>Rack List</h3>
+Return array with informations on each rack for a given set.<br />
+Required Roles : API, PHOTO
+<ul>
+<li>URL<ul><li><b>GET /api/photo/rack/list/&lt;set&gt;</b></li></ul></li>
+<li>In (URI)
+<ul><li>set : integer, set id in database</li></ul></li>
+<li>Out (JSON)
+<ul><li>{"photorack_list": [ {"id":&lt;id&gt;,"name":&lt;name&gt;,"position":&lt;position&gt;},{...} ] }
+<ul><li>id : integer, rack id in database</li>
+<li>name : string, rack name</li>
+<li>position : integer, rack position in the set</li></ul></li></ul></li>
+<li>HTTP return code, if not ok return informations in text format
+<ul><li>500 : internal error in API</li>
+<li>404 : empty rack list or set not found</li>
+<li>200 : ok, return result in JSON format</li></ul></li>
+</ul>
+<hr />
+
+<h3>Informations on rack</h3>
+Return informations on given rack.<br />
+Required Roles : API, PHOTO
+<ul>
+<li>URL<ul><li><b>GET /api/photo/rack/&lt;id&gt;</b></li></ul></li>
+<li>In (URI)
+<ul><li>id : integer, rack id in database</li></ul></li>
+<li>Out (JSON)
+<ul><li>{ "id":&lt;id&gt;,"name":&lt;name&gt;,"position":&lt;position&gt;,"set":&lt;set&gt; }
+<ul><li>id : integer, rack id in database</li>
+<li>name : string, rack name</li>
+<li>position : integer, rack position in the set</li>
+<li>set : integer, set id in database</li></ul></li></ul></li>
+<li>HTTP return code, if not ok return informations in text format
+<ul><li>500 : internal error in API</li>
+<li>404 : rack not found</li>
+<li>200 : ok, return result in JSON format</li></ul></li>
+</ul>
+<hr />
+
+<h3>Delete a rack</h3>
+Provide suppression of given rack.<br />
+Required Roles : API, PHOTO
+<ul>
+<li>URL<ul><li><b>DELETE /api/photo/rack/&lt;id&gt;</b></li></ul></li>
+<li>In (URI)
+<ul><li>id : integer, rack id in database</li></ul></li>
+<li>Out (text/plain) : none except errors</li>
+<li>HTTP return code, if not ok return informations in text format
+<ul><li>500 : internal error in API</li>
+<li>404 : rack not found</li>
+<li>200 : ok, rack deleted, other racks position has been shifted</li></ul></li>
+</ul>
+<hr />
+
+<h3>Add a rack</h3>
+Provide creation of a rack describe with given attributes in given set.<br />
+Required Roles : API, PHOTO
+<ul>
+<li>URL<ul><li><b>POST /api/photo/rack</b></li></ul></li>
+<li>In (JSON)
+<ul><li>{ "name":&lt;name&gt;,"position":&lt;position&gt;,"set":&lt;set&gt; }
+<ul><li>name : string, room name</li>
+<li>position : integer, rack position in the set</li>
+<li>set : integer, set id in database</li></ul></li></ul></li>
+<li>Out (text/plain) : Photo Rack &lt;id&gt; created
+<ul><li>id : integer, rack id in database</li></ul></li>
+<li>HTTP return code, if not ok return informations in text format
+<ul><li>500 : internal error in API</li>
+<li>404 : set not found</li>
+<li>201 : ok, rack created</li></ul></li>
+</ul>
+<hr />
+
+<h3>Modify a rack</h3>
+Provide modification of some rack parameters with given attributes.<br />
+Required Roles : API, PHOTO
+<ul>
+<li>URL<ul><li><b>PATCH /api/photo/rack/&lt;id&gt;</b></li></ul></li>
+<li>In (URI)<ul><li>id : integer, rack id in database</li></ul></li>
+<li>In (JSON)
+<ul><li>{ "name":&lt;name&gt;,"position":&lt;position&gt;,"set":&lt;set&gt; }
+<ul><li>name : string, optional, rack name</li>
+<li>position : integer, required if set not null, rack position in the set</li>
+<li>set : integer, optional, set id in database</li></ul></li></ul></li>
+<li>Out (text/plain) : none except errors</li>
+<li>HTTP return code, if not ok return informations in text format
+<ul><li>500 : internal error in API</li>
+<li>404 : rack not found</li>
+<li>200 : ok, rack modified</li></ul></li>
+</ul>
+<hr />
+
+<h3>Photos List of a room</h3>
+Return array with informations on each photo for a given room.<br />
+Required Roles : API, PHOTO
+<ul>
+<li>URL<ul><li><b>GET /api/photo/room/pictures/&lt;room&gt;</b></li></ul></li>
+<li>In (URI)
+<ul><li>room : integer, room id in database</li></ul></li>
+<li>Out (JSON)
+<ul><li>{"photo_list": [ {"id":&lt;id&gt;,"name":&lt;name&gt;,"directory":&lt;directory&gt;,"suffix":&lt;suffix&gt;,"update":&lt;update&gt;},{...} ] }
+<ul><li>id : integer, photo id in database</li>
+<li>name : string, photo name</li>
+<li>directory : integer, stroage directory of the photo</li>
+<li>suffix : string, photo filename suffix</li>
+<li>update : date, photo last update</li></ul></li></ul></li>
+<li>HTTP return code, if not ok return informations in text format
+<ul><li>500 : internal error in API</li>
+<li>404 : empty photos list or room not found</li>
+<li>200 : ok, return result in JSON format</li></ul></li>
+</ul>
+<hr />
+
+<h3>Photos List of a rack</h3>
+Return array with informations on each photo for a given rack.<br />
+Required Roles : API, PHOTO
+<ul>
+<li>URL<ul><li><b>GET /api/photo/rack/pictures/&lt;rack&gt;</b></li></ul></li>
+<li>In (URI)
+<ul><li>rack : integer, rack id in database</li></ul></li>
+<li>Out (JSON)
+<ul><li>{"photo_list": [ {"id":&lt;id&gt;,"name":&lt;name&gt;,"directory":&lt;directory&gt;,"suffix":&lt;suffix&gt;,"update":&lt;update&gt;},{...} ] }
+<ul><li>id : integer, photo id in database</li>
+<li>name : string, photo name</li>
+<li>directory : integer, stroage directory of the photo</li>
+<li>suffix : string, photo filename suffix</li>
+<li>update : date, photo last update</li></ul></li></ul></li>
+<li>HTTP return code, if not ok return informations in text format
+<ul><li>500 : internal error in API</li>
+<li>404 : empty photos list or rack not found</li>
+<li>200 : ok, return result in JSON format</li></ul></li>
+</ul>
+<hr />
+
+</body>
+</html>
