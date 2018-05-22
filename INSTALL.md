@@ -3,8 +3,8 @@
 This section will cover installation on Tomcat with PostgreSQL database
 
 For others installation types :
-- Refer to [the weblogic section](./weblogic/README.md) 
-- Refer to [the oracle section](./oracle/README.md)
+- Refer to [the weblogic section](./weblogic/) 
+- Refer to [the oracle section](./oracle/)
 
 ## Install web application
 Clone `adrezo` directory to your tomcat webapps folder
