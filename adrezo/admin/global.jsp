@@ -28,11 +28,13 @@
 <link rel="stylesheet" href="../stylesheet/tinydropdown.css" type="text/css" />
 <link rel="stylesheet" href="../stylesheet/tinydialog.css" type="text/css" />
 <link rel="stylesheet" href="../stylesheet/tinytooltip.css" type="text/css" />
+<link rel="stylesheet" href="../stylesheet/tinybox.css" type="text/css" />
 <script type="text/javascript" charset="utf-8" src="../js/common.js"></script>
 <script type="text/javascript" charset="utf-8" src="../js/admin_global.js"></script>
 <script type="text/javascript" charset="utf-8" src="../js/tinydropdown.js"></script>
 <script type="text/javascript" charset="utf-8" src="../js/tinytooltip.js"></script>
 <script type="text/javascript" charset="utf-8" src="../js/tinydialog.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/tinybox.js"></script>
 </head>
 <body>
 <%@ include file="../menu.jsp" %>
@@ -95,6 +97,7 @@ Adrezo Version : ${applangs.rows[0].mail}
 <li><a href="javascript:getListenerLog()"><fmt:message key="admin.global.loglistener" /></a></li>
 <li><a href="javascript:getQuartzLog()"><fmt:message key="admin.global.logquartz" /></a></li>
 <li><a href="javascript:getQuartzJobsLog()"><fmt:message key="admin.global.logjobs" /></a></li>
+<li><a href="javascript:TestMySQL()"><fmt:message key="admin.global.mysql" /></a></li>
 </ul>
 <h2><fmt:message key="admin.global.logo" /></h2>
 <img id="logoimg" src="../img/login_company.png" alt="logo" width="100" height="90" />

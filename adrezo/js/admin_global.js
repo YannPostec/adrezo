@@ -237,3 +237,9 @@ function backUpload() {
 	ajax.open("POST", "../uploadlogo");
 	ajax.send(formdata);
 }
+function TestMySQL() {
+	TINY.box.show({url:'box_global_mysql.jsp',openjs:function(){opensql()}});
+}
+function opensql() {
+	TINY.box.dim();
+}
