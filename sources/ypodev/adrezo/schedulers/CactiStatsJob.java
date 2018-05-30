@@ -199,8 +199,7 @@ public class CactiStatsJob implements Job {
 						stmta.execute("insert into "+slatable+" (device,stamp,availability) values ("+String.valueOf(myadrezo.id)+",'"+stamp+"',"+mydispo.toPlainString()+")");
 					} else { mylog.debug("Not gathering stats for device "+String.valueOf(myadrezo.id)); }
 				} else {
-					mylog.error("ID Cacti ("+String.valueOf(key)+") not in adrezo");
-					erreur=true;
+					mylog.warn("ID Cacti ("+String.valueOf(key)+") not in adrezo");
 				}
 			}
 			mylog.info("Statistics collected");
