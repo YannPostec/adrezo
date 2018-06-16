@@ -21,6 +21,8 @@
 						<sql:update>create sequence contextes_seq start with 2 increment by 1 minvalue 1 nomaxvalue nocache nocycle noorder</sql:update>
 						<sql:update>create sequence auth_roles_seq start with 2 increment by 1 minvalue 1 nomaxvalue nocache nocycle noorder</sql:update>
 						<sql:update>create sequence auth_users_seq start with 1 increment by 1 minvalue 1 nomaxvalue nocache nocycle noorder</sql:update>
+						<sql:update>create sequence dhcp_server_seq start with 1 increment by 1 minvalue 1 nomaxvalue nocache nocycle noorder</sql:update>
+						<sql:update>create sequence dhcp_exclu_seq start with 1 increment by 1 minvalue 1 nomaxvalue nocache nocycle noorder</sql:update>
 						<sql:update>create sequence ipurl_seq start with 3 increment by 1 minvalue 1 nomaxvalue nocache nocycle noorder</sql:update>
 						<sql:update>create sequence photo_baie_seq start with 1 increment by 1 minvalue 1 nomaxvalue nocache nocycle noorder</sql:update>
 						<sql:update>create sequence photo_box_seq start with 1 increment by 1 minvalue 1 nomaxvalue nocache nocycle noorder</sql:update>
@@ -49,6 +51,8 @@
 						<sql:update>create sequence contextes_seq start with 2 increment by 1 minvalue 1 no maxvalue no cycle</sql:update>
 						<sql:update>create sequence auth_roles_seq start with 2 increment by 1 minvalue 1 no maxvalue no cycle</sql:update>
 						<sql:update>create sequence auth_users_seq start with 1 increment by 1 minvalue 1 no maxvalue no cycle</sql:update>
+						<sql:update>create sequence dhcp_server_seq start with 1 increment by 1 minvalue 1 no maxvalue no cycle</sql:update>
+						<sql:update>create sequence dhcp_exclu_seq start with 1 increment by 1 minvalue 1 no maxvalue no cycle</sql:update>
 						<sql:update>create sequence ipurl_seq start with 3 increment by 1 minvalue 1 no maxvalue no cycle</sql:update>
 						<sql:update>create sequence photo_baie_seq start with 1 increment by 1 minvalue 1 no maxvalue no cycle</sql:update>
 						<sql:update>create sequence photo_box_seq start with 1 increment by 1 minvalue 1 no maxvalue no cycle</sql:update>

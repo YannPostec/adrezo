@@ -160,6 +160,14 @@
 <option value="0" <c:if test="${cactimonthsJob.enabled == 0}">selected="selected"</c:if>><fmt:message key="common.no" /></option>
 </select>
 </c:forEach>
+<hr />
+<h2>Job 11 : <fmt:message key="admin.schedulers.job11.title" /></h2>
+<sql:query var="DHCPJobs">select enabled from schedulers where id=11</sql:query>
+<c:forEach items="${DHCPJobs.rows}" var="DHCPJob">
+<span onmouseover="javascript:tooltip.show('${lang_commonclickvalid}')" onmouseout="javascript:tooltip.hide()"><img src="../img/icon_valid.png" alt="${lang_commonclickvalid}" onclick="javascript:modSubmit()" /></span> <fmt:message key="common.enabled" /> : <select id="sel11"><option value="1" <c:if test="${DHCPJob.enabled == 1}">selected="selected"</c:if>><fmt:message key="common.yes" /></option>
+<option value="0" <c:if test="${DHCPJob.enabled == 0}">selected="selected"</c:if>><fmt:message key="common.no" /></option>
+</select>
+</c:forEach>
 <div id="dlgcontent"/>
 </body></html>
 </c:if>

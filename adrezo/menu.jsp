@@ -26,6 +26,7 @@
 			<li><a href="${pageContext.request.contextPath}/admin/csv.jsp"><fmt:message key="menu.admin.csv" bundle="${bunmenu}" /></a></li>
 			<li><a href="${pageContext.request.contextPath}/admin/api.jsp"><fmt:message key="menu.admin.api" bundle="${bunmenu}" /></a></li>
 			<li><a href="${pageContext.request.contextPath}/admin/schedulers.jsp"><fmt:message key="menu.admin.schedulers" bundle="${bunmenu}" /></a></li>
+			<li><a href="${pageContext.request.contextPath}/admin/dhcp.jsp"><fmt:message key="menu.admin.dhcp" bundle="${bunmenu}" /></a></li>
 			<li>
 				<a href="#" class="sub"><fmt:message key="menu.tools" bundle="${bunmenu}" /></a>
 				<ul>

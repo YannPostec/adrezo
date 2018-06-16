@@ -9,7 +9,7 @@
 <%@ taglib prefix="adrezo" uri="adrezotaglib" %>
 <%request.setCharacterEncoding("UTF-8");%>
 <c:choose>
-	<c:when test="${validUser != null && pageContext.request.method == 'POST' && validUser.admin && !empty param.s1 && !empty param.s2 && !empty param.s3 && !empty param.s4 && !empty param.s5 && !empty param.d1 && !empty param.d2 && !empty param.s6 && !empty param.s7 && !empty param.s8 && !empty param.s9 && !empty param.s10 && !empty param.p8}">
+	<c:when test="${validUser != null && pageContext.request.method == 'POST' && validUser.admin && !empty param.s1 && !empty param.s2 && !empty param.s3 && !empty param.s4 && !empty param.s5 && !empty param.d1 && !empty param.d2 && !empty param.s6 && !empty param.s7 && !empty param.s8 && !empty param.s9 && !empty param.s10 && !empty param.p8 && !empty param.s11}">
 	<c:set var="message"><valid>true</valid></c:set>
 	<c:catch var="errUpdate">
 		<sql:transaction>
@@ -23,6 +23,7 @@
 			<sql:update>update schedulers set enabled = ?${adrezo:dbCast('INTEGER')}, param = ?${adrezo:dbCast('INTEGER')} where id=8<sql:param value="${param.s8}" /><sql:param value="${param.p8}" /></sql:update>
 			<sql:update>update schedulers set enabled = ?${adrezo:dbCast('INTEGER')} where id=9<sql:param value="${param.s9}" /></sql:update>
 			<sql:update>update schedulers set enabled = ?${adrezo:dbCast('INTEGER')} where id=10<sql:param value="${param.s10}" /></sql:update>
+			<sql:update>update schedulers set enabled = ?${adrezo:dbCast('INTEGER')} where id=11<sql:param value="${param.s11}" /></sql:update>
 		</sql:transaction>
 	</c:catch>
 	<c:choose>

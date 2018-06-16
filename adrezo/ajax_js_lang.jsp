@@ -177,5 +177,8 @@
 	<json:property name="stkdst"><fmt:message key="js.stkdst" /></json:property>
 	<json:property name="stkqty"><fmt:message key="js.stkqty" /></json:property>
 	<json:property name="planning"><fmt:message key="js.planning" /></json:property>
+	<json:property name="dhcpscopeerror"><fmt:message key="js.dhcpscopeerror" /></json:property>
+	<json:property name="dhcpscopeno"><fmt:message key="js.dhcpscopeno" /></json:property>
+	<json:property name="dhcpscopewait"><fmt:message key="js.dhcpscopewait" /></json:property>
 </json:object>	
 </c:if>

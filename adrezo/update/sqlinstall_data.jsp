@@ -23,6 +23,7 @@
 				<sql:update>insert into auth_rights (ctx,role,rights) values (1,0,0)</sql:update>
 				<sql:update>insert into auth_rights (ctx,role,rights) values (1,1,255)</sql:update>
 				<sql:update>insert into auth_users (login,pwd,mail,role,auth,id) values ('admin','hjK/szAmjNFtn2V7UktrRkjwXaCqXslE','root@adrezo',1,0,0)</sql:update>
+				<sql:update>insert into dhcp_type (id,name) values (1,'MS Windows DHCP Server')</sql:update>
 				<sql:update>insert into ipurl (id,proto,port,uri) values (1,'http',null,'')</sql:update>
 				<sql:update>insert into ipurl (id,proto,port,uri) values (2,'https',null,'')</sql:update>
 				<sql:update>insert into langues (code,name) values ('fr','Francais')</sql:update>
@@ -41,6 +42,8 @@
 				<sql:update>insert into mail (id,destinataire,subject,message,location,lang) values (6,'USERDEF','[Cacti Aggregate Hours] Error','Error in aggregation of Cacti hourly statistics. Please review scheduled tasks log','SLAHOURS','en')</sql:update>
 				<sql:update>insert into mail (id,destinataire,subject,message,location,lang) values (7,'USERDEF','[Cacti Aggrégation Jours] Erreur','Erreur dans la consolidation des statistiques quotidiennes de Cacti. Veuillez consulter le log des tâches planifiées','SLADAYS','fr')</sql:update>
 				<sql:update>insert into mail (id,destinataire,subject,message,location,lang) values (7,'USERDEF','[Cacti Aggregate Days] Error','Error in aggregation of Cacti daily statistics. Please review scheduled tasks log','SLADAYS','en')</sql:update>				
+				<sql:update>insert into mail (id,destinataire,subject,message,location,lang) values (8,'USERDEF','[DHCP] Erreur','Erreur dans la collecte des informations DHCP. Veuillez consulter le log des tâches planifiées','DHCP_SERVER','fr')</sql:update>
+				<sql:update>insert into mail (id,destinataire,subject,message,location,lang) values (8,'USERDEF','[DHCP] Error','Error in gathering DHCP informations. Please review scheduled tasks log','DHCP_SERVER','en')</sql:update>
 				<sql:update>insert into schedulers (id,param,enabled) values (1,750,1)</sql:update>
 				<sql:update>insert into schedulers (id,param,enabled) values (2,1830,1)</sql:update>
 				<sql:update>insert into schedulers (id,param,enabled) values (3,0,1)</sql:update>
@@ -51,6 +54,7 @@
 				<sql:update>insert into schedulers (id,param,enabled) values (8,1,0)</sql:update>
 				<sql:update>insert into schedulers (id,param,enabled) values (9,0,0)</sql:update>
 				<sql:update>insert into schedulers (id,param,enabled) values (10,0,0)</sql:update>
+				<sql:update>insert into schedulers (id,param,enabled) values (11,0,0)</sql:update>
 				<sql:update>insert into settings (exppref,expsuff) values (null,null)</sql:update>
 				<sql:update>insert into slaplanning (id,name,h1,h2,h3,h4,h5,h6,h7) values (0,'Anytime',16777215,16777215,16777215,16777215,16777215,16777215,16777215)</sql:update>
 				<sql:update>insert into slaclient (id,name,disp) values (0,'Unknown',0)</sql:update>

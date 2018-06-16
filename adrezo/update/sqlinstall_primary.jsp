@@ -23,6 +23,9 @@
 				<sql:update>alter table auth_roles add constraint pk_auth_roles primary key (id)</sql:update>
 				<sql:update>alter table auth_users add constraint pk_auth_users primary key (id)</sql:update>
 				<sql:update>alter table contextes add constraint pk_contextes primary key (id)</sql:update>
+				<sql:update>alter table dhcp_server add constraint pk_dhcpserver primary key (id)</sql:update>
+				<sql:update>alter table dhcp_type add constraint pk_dhcptype primary key (id)</sql:update>
+				<sql:update>alter table dhcp_exclu add constraint pk_dhcpexclu primary key (id)</sql:update>
 				<sql:update>alter table ipurl add constraint pk_ipurl primary key (id)</sql:update>
 				<sql:update>alter table langues add constraint pk_langues primary key (code)</sql:update>
 				<sql:update>alter table mail add constraint pk_mail primary key (id,lang)</sql:update>

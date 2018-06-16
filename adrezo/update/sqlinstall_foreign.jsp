@@ -22,6 +22,7 @@
 				<sql:update>alter table auth_rights add constraint fgn_auth_rights_role foreign key (role) references auth_roles (id)</sql:update>
 				<sql:update>alter table auth_roles add constraint fgn_auth_roles_annu foreign key (annu) references auth_annu (id)</sql:update>
 				<sql:update>alter table auth_roles add constraint fgn_auth_roles_pref foreign key (pref_ctx) references contextes (id)</sql:update>
+				<sql:update>alter table dhcp_server add constraint fgn_dhcpserver_type foreign key (type) references dhcp_type (id)</sql:update>
 				<sql:update>alter table photo_baie add constraint fgn_photobaie_box foreign key (idbox) references photo_box (id)</sql:update>
 				<sql:update>alter table photo_box add constraint fgn_photobox_salle foreign key (idsalle) references salles (id)</sql:update>
 				<sql:update>alter table salles add constraint fgn_salles_site foreign key (idsite) references sites (id)</sql:update>

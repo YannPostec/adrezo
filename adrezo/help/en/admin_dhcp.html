@@ -1,0 +1,42 @@
+<html>
+<head><title>Aide adrezo</title>
+<link rel="stylesheet" href="../../stylesheet/common.css" type="text/css" />
+</head>
+<body>
+<h2>DHCP Servers Management</h2>
+<p>With proper permissions, you can manage DHCP servers used by the scheduled task gathering the DHCP informations.<hr />
+On this page, you will find two zones :
+<ul>
+	<li>An Add/Modify zone</li>
+	<li>the list of existing servers with their informations</li>
+</ul>
+Within each line, you could :
+<ul>
+	<li>Delete a server when you click on <img src="../../img/icon_delete.jpg" alt="DeleteIcon" /></li>
+	<li>Modify a server when you click on <img src="../../img/icon_modify.jpg" alt="ModifyIcon" /></li>
+</ul>
+When adding or modifying, enter or modify informations then click on <img src="../../img/icon_valid.png" alt="ValidIcon" /> to validate.<br />
+You could also click on <img src="../../img/icon_refuse.png" alt="ResetIcon" /> to cancel, going back to empty values.<hr />
+
+You could also manage, server by server, scopes which will not be taken into account during the gathering of informations :
+<ul>
+	<li>Add an exclusion when you click on <img src="../../img/icon_add2.png" alt="Add2Icon" /></li>
+	<li>List and delete exclusions when you click on <img src="../../img/icon_database.png" alt="DatabaseIcon" /></li>
+</ul>
+Deletion is processed by clicking on <img src="../../img/icon_delete.jpg" alt="DeleteIcon" /><br />
+Within the add box, a server scope list is provided (without the already excluded), you could add an exclusion by clicking on <img src="../../img/icon_valid.png" alt="ValidIcon" /> next to the selected scope.
+<hr />
+A server is defined by many fields :
+<ul>
+	<li>DHCP server type</li>
+	<li>server hostname or ip</li>
+	<li>port used to access the API on the server</li>
+	<li>the access method: SSL (HTTPS) or not (HTTP)</li>
+	<li>if you use Basic Web Authentication to connect to the server</li>
+	<li>if authentication, the login used</li>
+	<li>if authentication, the password used (this password is never displayed)</li>
+	<li>list of its excluded scopes, if any</li>
+</ul>
+</p>
+</body>
+</html>

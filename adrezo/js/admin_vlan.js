@@ -1,11 +1,4 @@
 //@Author: Yann POSTEC
-function EmptySelect(sel) {
-	sel.selectedIndex = 0;
-	var options = T$$("option",sel);
-	while (sel.options.length > 1) {
-		sel.removeChild(sel.lastChild);
-	}
-}
 function ResetAdd() {
 	T$("add_def").value = "";
 	T$("add_id").value = "";

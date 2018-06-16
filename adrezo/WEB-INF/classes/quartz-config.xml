@@ -66,6 +66,12 @@
 			<description>Aggregate daily cacti stats</description>
 			<job-class>ypodev.adrezo.schedulers.CactiAggregateDaysJob</job-class>
 		</job>
+		<job>
+			<name>DHCPJob</name>
+			<group>AdminGroup</group>
+			<description>Gather DHCP informations from servers</description>
+			<job-class>ypodev.adrezo.schedulers.DHCPJob</job-class>
+		</job>
 		<trigger>
 			<cron>
 				<name>PurgeUsersTrigger</name>
@@ -144,6 +150,14 @@
 				<job-name>CactiAggregateDaysJob</job-name>
 				<job-group>AdminGroup</job-group>
 				<cron-expression>0 0 3 1 * ?</cron-expression>
+			</cron>
+		</trigger>
+		<trigger>
+			<cron>
+				<name>DHCPTrigger</name>
+				<job-name>DHCPJob</job-name>
+				<job-group>AdminGroup</job-group>
+				<cron-expression>0 10 4 ? * *</cron-expression>
 			</cron>
 		</trigger>
 	</schedule>

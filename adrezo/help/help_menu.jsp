@@ -80,6 +80,7 @@ d.add(49,4,'<fmt:message key="admin.tools" />','${validUser.lang}/admin_tools.ht
 d.add(410,4,'<fmt:message key="admin.global" />','${validUser.lang}/admin_global.html','','','ressource/page.gif','ressource/page.gif',false);
 d.add(411,4,'<fmt:message key="admin.api" />','${validUser.lang}/admin_api.html','','','ressource/page.gif','ressource/page.gif',false);
 d.add(412,4,'<fmt:message key="admin.schedulers" />','${validUser.lang}/admin_schedulers.html','','','ressource/page.gif','ressource/page.gif',false);
+d.add(413,4,'<fmt:message key="admin.dhcp" />','${validUser.lang}/admin_dhcp.html','','','ressource/page.gif','ressource/page.gif',false);
 </c:if>
 <c:if test="${validUser.rezo}">
 d.add(5,0,'<fmt:message key="rezo" />','','','','ressource/FlecheVert_F.gif','ressource/FlecheVert_O.gif',false);

@@ -1,0 +1,7 @@
+#addtablewrapper { margin:auto}
+#addtableheader {height:40px}
+#addtableheader select {float:left; padding:2px 4px 4px}
+#addtableheader input {float:left; padding:2px 4px 4px; margin-left:4px}
+#addtablenav {float:left}
+#addtablenav img {cursor:pointer}
+#addtablenav div {float:left; margin-right:15px}

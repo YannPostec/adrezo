@@ -1,0 +1,43 @@
+<html>
+<head><title>Aide adrezo</title>
+<link rel="stylesheet" href="../../stylesheet/common.css" type="text/css" />
+</head>
+<body>
+<h2>Gestion des Serveurs DHCP</h2>
+<p>Avec les droits nécessaires, vous pouvez gérer les serveurs DHCP utilisé par la tache planifiée de collecte des informations DHCP.<hr />
+Vous trouverez dans la page deux zones :
+<ul>
+	<li>une zone d'ajout/modification</li>
+	<li>la liste des serveurs existants avec leurs informations</li>
+</ul>
+Pour chaque ligne de la liste, vous pouvez :
+<ul>
+	<li>Effacer un serveur en cliquant sur <img src="../../img/icon_delete.jpg" alt="DeleteIcon" /></li>
+	<li>Modifier un serveur en cliquant sur <img src="../../img/icon_modify.jpg" alt="ModifyIcon" /></li>
+</ul>
+En cas d'ajout ou de modification, entrez ou modifiez les différentes informations puis cliquez sur <img src="../../img/icon_valid.png" alt="ValidIcon" /> pour valider.<br />
+Vous pouvez également cliquer sur <img src="../../img/icon_refuse.png" alt="ResetIcon" /> pour annuler, tous les champs redeviennent vides.<hr />
+
+Vous pouvez également gérer par serveur des scopes qui ne seront pas traités lors de la collecte d'informations.
+Pour cela :
+<ul>
+	<li>Ajouter une exclusion en cliquant sur <img src="../../img/icon_add2.png" alt="Add2Icon" /></li>
+	<li>Lister et supprimer les exclusions en cliquant sur <img src="../../img/icon_database.png" alt="DatabaseIcon" /></li>
+</ul>
+La suppression se fait en cliquant sur <img src="../../img/icon_delete.jpg" alt="DeleteIcon" /><br />
+Lors de l'ajout, la liste des scopes du serveur vous est proposé moins ceux déjà exclus, vous pouvez ajouter une exclusion en cliquant sur <img src="../../img/icon_valid.png" alt="ValidIcon" /> près du scope voulu.
+<hr />
+Un serveur est défini par plusieurs champs :
+<ul>
+	<li>le type de serveur DHCP</li>
+	<li>le nom ou l'ip du serveur</li>
+	<li>le port utilisé pour atteindre l'API sur le serveur</li>
+	<li>la méthode d'accès SSL (HTTPS) ou non (HTTP)</li>
+	<li>l'utilisation ou non de l'authentification basique web pour se connecter</li>
+	<li>si authentification, le login utilisé</li>
+	<li>si authentification, le mot de passe utilisé (le mot de passe n'est jamais affiché)</li>
+	<li>la liste de ses scopes exclues, si existante</li>
+</ul>
+</p>
+</body>
+</html>

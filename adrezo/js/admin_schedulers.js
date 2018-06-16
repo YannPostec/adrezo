@@ -11,6 +11,7 @@ function modSubmit() {
 	var seljob8 = T$("sel8").value;
 	var seljob9 = T$("sel9").value;
 	var seljob10 = T$("sel10").value;
+	var seljob11 = T$("sel11").value;
 	var djob1 = T$("day1").value;
 	var djob2 = T$("day2").value;
 	if (!djob1 || isNaN(djob1) || djob1 < 1) { strAlert += "- Job 1: "+langdata.verifnumber+"<br />"; }
@@ -22,7 +23,7 @@ function modSubmit() {
 	if (strAlert != "") {
 		showDialog(langdata.invalidfield+" :",strAlert,"warning",0,1);
 	} else {
-		DBAjax("ajax_schedulers_store.jsp","s1="+seljob1+"&s2="+seljob2+"&s3="+seljob3+"&s4="+seljob4+"&s5="+seljob5+"&d1="+djob1+"&d2="+djob2+"&s6="+seljob6+"&s7="+seljob7+"&s8="+seljob8+"&s9="+seljob9+"&s10="+seljob10+"&p8="+param8);
+		DBAjax("ajax_schedulers_store.jsp","s1="+seljob1+"&s2="+seljob2+"&s3="+seljob3+"&s4="+seljob4+"&s5="+seljob5+"&d1="+djob1+"&d2="+djob2+"&s6="+seljob6+"&s7="+seljob7+"&s8="+seljob8+"&s9="+seljob9+"&s10="+seljob10+"&p8="+param8+"&s11="+seljob11);
 	}
 }
 function displayJobs() {

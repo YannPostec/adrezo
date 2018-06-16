@@ -26,6 +26,9 @@
 				<sql:update>create table auth_roles (id number not null,name varchar2(40) not null,new_ctx number default 0,annu number default 0,grp varchar2(40),pref_ctx number,grp_dn varchar2(512))</sql:update>
 				<sql:update>create table auth_users (login varchar2(20) not null,pwd varchar2(128),mail varchar2(100),role number default null,auth number(1,0) not null,id number not null)</sql:update>
 				<sql:update>create table contextes (id number not null,name varchar2(30) not null,site_main number not null)</sql:update>
+				<sql:update>create table dhcp_server (id number not null,hostname varchar2(50) not null,port number not null,ssl number(1,0) default 0,auth number(1,0) not null,login varchar2(64),pwd varchar2(64),type number not null)</sql:update>
+				<sql:update>create table dhcp_type (id number not null, name varchar2(100) not null)</sql:update>
+				<sql:update>create table dhcp_exclu (id number not null,srv number not null, scope varchar2(15) not null)</sql:update>
 				<sql:update>create table ipurl (id number not null,proto varchar2(10) not null,port number default null,uri varchar2(100))</sql:update>
 				<sql:update>create table langues (code varchar2(2) not null,name varchar2(50) not null)</sql:update>
 				<sql:update>create table mail (id number not null,destinataire varchar2(100) not null,subject varchar2(150) not null,message varchar2(400) not null,location varchar2(20) not null,lang varchar2(2) not null)</sql:update>
@@ -68,6 +71,9 @@
 				<sql:update>create table auth_roles (id integer not null,name varchar(40) not null,new_ctx integer default 0,annu integer default 0,grp varchar(40),pref_ctx integer,grp_dn varchar(512))</sql:update>
 				<sql:update>create table auth_users (login varchar(20) not null,pwd varchar(128),mail varchar(100),role integer default null,auth integer not null,id integer not null)</sql:update>
 				<sql:update>create table contextes (id integer not null,name varchar(30) not null,site_main integer not null)</sql:update>
+				<sql:update>create table dhcp_server (id integer not null,hostname varchar(50) not null,port integer not null,ssl integer default 0,auth integer not null,login varchar(64),pwd varchar(64),type integer not null)</sql:update>
+				<sql:update>create table dhcp_type (id integer not null, name varchar(100) not null)</sql:update>
+				<sql:update>create table dhcp_exclu (id integer not null,srv integer not null, scope varchar(15) not null)</sql:update>
 				<sql:update>create table ipurl (id integer not null,proto varchar(10) not null,port integer default null,uri varchar(100))</sql:update>
 				<sql:update>create table langues (code varchar(2) not null,name varchar(50) not null)</sql:update>
 				<sql:update>create table mail (id integer not null,destinataire varchar(100) not null,subject varchar(150) not null,message varchar(400) not null,location varchar(20) not null,lang varchar(2) not null)</sql:update>
