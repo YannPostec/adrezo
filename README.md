@@ -31,6 +31,27 @@ and with browsers :
 
 See [Install section](./INSTALL.md)
 
+# Upgrade
+
+Prepare the new adrezo directory with an upgraded version.
+
+You must copy or modify some files from the actual version :
+- log/ directory or let the application start new ones
+- pictures/ directory if you store pictures locally
+- WEB-INF/web.xml if needed
+- WEB-INF/classes/adrezo.properties if needed
+- WEB-INF/classes/log4j.xml if needed
+- WEB-INF/classes/quartz-config.xml if needed
+- META-INF/context.xml
+
+See the release notes to know if some of those files have their structure changed.  
+If it is the case, you must put your configuration in those new files, otherwise you can just copy them.
+
+Start the instance on this new directory.
+
+If there is a difference in database version and application version, a page invites you to enter the admin password to proceed.  
+After the upgrade, you are redirected to login page.
+
 # First start
 
 Check inline application help by clicking on ![Help Icon](./icon_help.png) in the top menu bar

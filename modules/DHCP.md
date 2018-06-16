@@ -1,3 +1,7 @@
+___Starting with version 1.9.7, the application can query adrezo client located on DHCP servers___  
+___A Windows client is under construction___  
+___The perl scripts will then be removed when this client is ready___
+
 Retrieving DHCP informations from your DHCP servers are not fully integrated in this application at the moment.  
 A solution is on the application roadmap.
 

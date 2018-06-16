@@ -7,7 +7,8 @@ For others installation types :
 - Refer to [the oracle section](./oracle/)
 
 ## Install web application
-Clone `adrezo` directory to your tomcat webapps folder
+Make the `adrezo` directory accessible from your tomcat webapps folder.
+You can clone it to a directory of your choice, suffix it with the version and link it from the tomcat webapps folder.
 
 ## Prepare database connection
 
