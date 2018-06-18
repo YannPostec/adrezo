@@ -31,7 +31,7 @@
 <c:if test="${adrezo:envEntry('db_type') == 'oracle'}"><sql:query var="installs">select count(*) as install from user_tables</sql:query></c:if>
 <c:if test="${adrezo:envEntry('db_type') == 'postgresql'}"><sql:query var="installs">select count(*) as install from pg_stat_user_tables</sql:query></c:if>
 <c:choose>
-	<c:when test="${installs.rows[0].install != 0}">
+	<c:when test="${installs.rows[0].install == 0}">
 		<p><fmt:message key="install.list" /></p>
 		<p><input type="checkbox" id="checkTable" checked="true" /> <fmt:message key="install.table" /></p>
 		<p><input type="checkbox" id="checkPrimary" checked="true" /> <fmt:message key="install.primary" /></p>
