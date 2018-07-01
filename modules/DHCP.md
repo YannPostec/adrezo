@@ -33,8 +33,7 @@ Create a scheduled task or launch manually the script `bin\ExportDhcpConf.pl` un
 Example : every day at 9 pm
 
 # Analyze Server
-__This script has not yet been tested with PostgreSQL database, only Oracle database__  
-Tested with linux server with perl environnement installed.
+Tested with linux server with perl environnement installed for Oracle and PostgreSQL databases.  
 The perl script use those modules :
 - NetAddr::IP
 - Net::IP
@@ -56,3 +55,8 @@ Inside this directory, for each server, create a directory named with the server
 
 Schedule this script after the windows dhcp server script schedule time  
 Example : every day at 10pm
+
+## Perl DBI Connection Strings
+Change `$sqlnet_str`
+- Oracle : `Oracle:<database tnsname>`
+- PostgreSQL : `Pg:dbname=<dbname>;host=<host>;port=<port>`

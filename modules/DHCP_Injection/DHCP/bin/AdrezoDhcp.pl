@@ -55,7 +55,6 @@ my $FIC_SQL_UPDATE = $DATADIR . '/dhcp_all.sql';
 
 # set pgsql to 1 if PostgreSQL database
 my $pgsql = 0;
-my $datefunc = 'to_date';
 
 my $sqlnet_str = '<DBI Connection String>';
 my $db_user = '<Database username>';
@@ -367,7 +366,11 @@ sub analyse() {
 				}
 				### Avoid double information when 2 DHCP servers have same scope
 				if (scalar(grep(/$ipc/,@{$resa{$subnet}}))==1) {
-					print REZA "INSERT INTO ADRESSES (ID,CTX,SITE,NAME,DEF,IP,MASK,MAC,SUBNET,TYPE,USR_MODIF,DATE_MODIF) VALUES(0," . $infos{$subnet}{ctx} . "," . $infos{$subnet}{site} . ",'" . $name . "','DHCP Static Reservation','" . $ipc . "'," . $infos{$subnet}{mask} . ",'" . $mac . "'," . $infos{$subnet}{id} . ",'dhcp','dhcp','" . $madate . "')\n"
+					if ($pgsql) {
+						print REZA "INSERT INTO ADRESSES (ID,CTX,SITE,NAME,DEF,IP,MASK,MAC,SUBNET,TYPE,USR_MODIF,DATE_MODIF) VALUES(0," . $infos{$subnet}{ctx} . "," . $infos{$subnet}{site} . ",'" . $name . "','DHCP Static Reservation','" . $ipc . "'," . $infos{$subnet}{mask} . ",'" . $mac . "'," . $infos{$subnet}{id} . ",'dhcp','dhcp',to_timestamp('" . $madate . "','DD/MM/YYYY'))\n";
+					} else {
+						print REZA "INSERT INTO ADRESSES (ID,CTX,SITE,NAME,DEF,IP,MASK,MAC,SUBNET,TYPE,USR_MODIF,DATE_MODIF) VALUES(0," . $infos{$subnet}{ctx} . "," . $infos{$subnet}{site} . ",'" . $name . "','DHCP Static Reservation','" . $ipc . "'," . $infos{$subnet}{mask} . ",'" . $mac . "'," . $infos{$subnet}{id} . ",'dhcp','dhcp','" . $madate . "')\n";
+					}
 				}
 			} else { printLog("Reservation $ip on scope $subnet dont exist"); }
 		}
@@ -388,7 +391,11 @@ sub analyse() {
 					my @mylease = ($ipc);
 					$lease{$subnet} = \@mylease;
 				}
-				print LEA "INSERT INTO ADRESSES (ID,CTX,SITE,NAME,DEF,IP,MASK,MAC,SUBNET,TEMP,DATE_TEMP,USR_TEMP,TYPE,USR_MODIF,DATE_MODIF) VALUES(0," . $infos{$subnet}{ctx} . "," . $infos{$subnet}{site} . ",'" . $name . "','DHCP Address','" . $ipc . "'," . $infos{$subnet}{mask} . ",'" . $mac . "'," . $infos{$subnet}{id} . ",1," . $datefunc . "('" . $leas  . "','DD/MM/YYYY HH24:MI:SS'),'dhcp','dhcp','dhcp','" . $madate . "')\n"
+				if ($pgsql) {
+					print LEA "INSERT INTO ADRESSES (ID,CTX,SITE,NAME,DEF,IP,MASK,MAC,SUBNET,TEMP,DATE_TEMP,USR_TEMP,TYPE,USR_MODIF,DATE_MODIF) VALUES(0," . $infos{$subnet}{ctx} . "," . $infos{$subnet}{site} . ",'" . $name . "','DHCP Address','" . $ipc . "'," . $infos{$subnet}{mask} . ",'" . $mac . "'," . $infos{$subnet}{id} . ",1,to_timestamp('" . $leas  . "','DD/MM/YYYY HH24:MI:SS'),'dhcp','dhcp','dhcp',to_timestamp('" . $madate . "','DD/MM/YYYY'))\n";
+				} else {
+					print LEA "INSERT INTO ADRESSES (ID,CTX,SITE,NAME,DEF,IP,MASK,MAC,SUBNET,TEMP,DATE_TEMP,USR_TEMP,TYPE,USR_MODIF,DATE_MODIF) VALUES(0," . $infos{$subnet}{ctx} . "," . $infos{$subnet}{site} . ",'" . $name . "','DHCP Address','" . $ipc . "'," . $infos{$subnet}{mask} . ",'" . $mac . "'," . $infos{$subnet}{id} . ",1,to_date('" . $leas  . "','DD/MM/YYYY HH24:MI:SS'),'dhcp','dhcp','dhcp','" . $madate . "')\n";
+				}
 			} else { printLog("Lease $ip on scope $subnet dont exist"); }
 		}
 	}
@@ -490,7 +497,11 @@ sub updateDB($) {
 	my $cptError = 0;
 	
 	printLog("Connection to database to process $FIC_SQL");
-	$baseh=DBI->connect("DBI:$sqlnet_str",$db_user,$db_pwd) or die 'Unable to connect to database ' . $sqlnet_str . ": $DBI::errstr\n";
+	if ($pgsql) {
+		$baseh=DBI->connect("DBI:$sqlnet_str",$db_user,$db_pwd,{AutoCommit => 1, PrintError => 1, RaiseError => 0, ShowErrorStatement => 1}) or die 'Unable to connect to database ' . $sqlnet_str . ": $DBI::errstr\n";
+	} else {
+		$baseh=DBI->connect("DBI:$sqlnet_str",$db_user,$db_pwd) or die 'Unable to connect to database ' . $sqlnet_str . ": $DBI::errstr\n";
+	}
 	open(SQL,"$FIC_SQL") or die "Can't open file $FIC_SQL : $!\n";
 	
 	while(<SQL>) {
@@ -534,7 +545,9 @@ sub ParseDhcpConf() {
 	# Open result file
 	open(RES,">$FIC_SQL_UPDATE") or die "Can't open file $FIC_SQL_UPDATE : $!\n";
 	# Delete all DHCP records
-	print RES "alter session set nls_date_format='DD/MM/YYYY'\n";
+	if ($pgsql<1) {
+		print RES "alter session set nls_date_format='DD/MM/YYYY'\n";
+	}
 	print RES "DELETE FROM ADRESSES WHERE TYPE='dhcp'\n";
 	
 	# Loop on scopes
@@ -549,7 +562,11 @@ sub ParseDhcpConf() {
 		printLog("Scope $key, Final Dynamic IP = ".scalar(@{$conf{$key}}));
 		# Write SQL insert for each @IP
 		foreach my $subn (@{$conf{$key}}) {
-			print RES "INSERT INTO ADRESSES (ID,CTX,SITE,NAME,DEF,IP,MASK,SUBNET,TYPE,USR_MODIF,DATE_MODIF) VALUES(0," . $infos{$key}{ctx} . "," . $infos{$key}{site} . ",'RESA_DHCP','DHCP Reservation','" . $subn. "'," . $infos{$key}{mask} . "," . $infos{$key}{id} . ",'dhcp','dhcp','" . $madate . "')\n"
+			if ($pgsql) {
+				print RES "INSERT INTO ADRESSES (ID,CTX,SITE,NAME,DEF,IP,MASK,SUBNET,TYPE,USR_MODIF,DATE_MODIF) VALUES(0," . $infos{$key}{ctx} . "," . $infos{$key}{site} . ",'RESA_DHCP','DHCP Reservation','" . $subn. "'," . $infos{$key}{mask} . "," . $infos{$key}{id} . ",'dhcp','dhcp',to_timestamp('" . $madate . "','DD/MM/YYYY'))\n";
+			} else {
+				print RES "INSERT INTO ADRESSES (ID,CTX,SITE,NAME,DEF,IP,MASK,SUBNET,TYPE,USR_MODIF,DATE_MODIF) VALUES(0," . $infos{$key}{ctx} . "," . $infos{$key}{site} . ",'RESA_DHCP','DHCP Reservation','" . $subn. "'," . $infos{$key}{mask} . "," . $infos{$key}{id} . ",'dhcp','dhcp','" . $madate . "')\n";
+			}
 		}
 	}
 	
@@ -566,7 +583,9 @@ sub ParseDhcpConf() {
 	printLog("Add lease informations OK");
 	
 	# Add final commit
-	print RES "commit";
+	if ($pgsql<1) {
+		print RES "commit";
+	}
 	
 	# Close result file
 	close(RES) or die "Can't close file $FIC_SQL_UPDATE : $!\n";
@@ -581,7 +600,6 @@ sub ParseDhcpConf() {
 
 # Main Loop
 sub main() {
-	if ($pgsql) { $datefunc = 'to_timestamp'; }
 	PurgeTmpData();
 	foreach my $server (keys %servers) {
 		$TMPDIR = $TMPROOT . $server;
