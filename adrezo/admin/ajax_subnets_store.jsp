@@ -13,27 +13,40 @@
 <c:set var="message"><valid>true</valid></c:set>
 <c:choose>
 	<c:when test="${empty param.id}">
-		<c:catch var="errInsert">
-			<sql:update>
-				INSERT INTO subnets (id,ctx,site,ip,mask,def,gw,bc,vlan)
-				VALUES (${adrezo:dbSeqNextval('subnets_seq')}, ?${adrezo:dbCast('INTEGER')}, ?${adrezo:dbCast('INTEGER')}, ?, ?${adrezo:dbCast('INTEGER')}, ?, ?, ?, ?${adrezo:dbCast('INTEGER')})
-				<sql:param value="${param.ctx}"/>
-				<sql:param value="${param.site}"/>
-				<sql:param value="${param.ip}"/>
-				<sql:param value="${param.mask}"/>
-				<sql:param value="${param.def}"/>
-				<sql:param value="${param.gw}"/>
-				<sql:param value="${param.bc}"/>
-				<sql:param value="${param.vlan}"/>
-			</sql:update>
-		</c:catch>
+		<sql:query var="exists">
+			select id from subnets where site=?${adrezo:dbCast('INTEGER')} and ip=? and mask=?${adrezo:dbCast('INTEGER')}
+			<sql:param value="${param.site}"/>
+			<sql:param value="${param.ip}"/>
+			<sql:param value="${param.mask}"/>
+		</sql:query>
 		<c:choose>
-			<c:when test="${errInsert != null}">
-				<adrezo:fileDB value="${errInsert}"/>
-				<c:set var="message" scope="page">${message}<erreur>true</erreur><msg><fmt:message key="common.add" /><fmt:message key="admin.subnet" /> : <fmt:message key="common.error" />, <adrezo:trim value="${errInsert}"/></msg></c:set>
+			<c:when test="${empty exists.rows}">
+				<c:catch var="errInsert">
+					<sql:update>
+						INSERT INTO subnets (id,ctx,site,ip,mask,def,gw,bc,vlan)
+						VALUES (${adrezo:dbSeqNextval('subnets_seq')}, ?${adrezo:dbCast('INTEGER')}, ?${adrezo:dbCast('INTEGER')}, ?, ?${adrezo:dbCast('INTEGER')}, ?, ?, ?, ?${adrezo:dbCast('INTEGER')})
+						<sql:param value="${param.ctx}"/>
+						<sql:param value="${param.site}"/>
+						<sql:param value="${param.ip}"/>
+						<sql:param value="${param.mask}"/>
+						<sql:param value="${param.def}"/>
+						<sql:param value="${param.gw}"/>
+						<sql:param value="${param.bc}"/>
+						<sql:param value="${param.vlan}"/>
+					</sql:update>
+				</c:catch>
+				<c:choose>
+					<c:when test="${errInsert != null}">
+						<adrezo:fileDB value="${errInsert}"/>
+						<c:set var="message" scope="page">${message}<erreur>true</erreur><msg><fmt:message key="common.add" /><fmt:message key="admin.subnet" /> : <fmt:message key="common.error" />, <adrezo:trim value="${errInsert}"/></msg></c:set>
+					</c:when>
+					<c:otherwise>
+						<c:set var="message" scope="page">${message}<erreur>false</erreur><msg><fmt:message key="common.add" /><fmt:message key="admin.subnet" /> : <fmt:message key="common.ok" /></msg></c:set>
+					</c:otherwise>
+				</c:choose>
 			</c:when>
 			<c:otherwise>
-				<c:set var="message" scope="page">${message}<erreur>false</erreur><msg><fmt:message key="common.add" /><fmt:message key="admin.subnet" /> : <fmt:message key="common.ok" /></msg></c:set>
+				<c:set var="message" scope="page">${message}<erreur>true</erreur><msg><fmt:message key="common.add" /><fmt:message key="admin.subnet" /> : <fmt:message key="common.error" />, <fmt:message key="admin.subnet.exist" /></msg></c:set>
 			</c:otherwise>
 		</c:choose>
 	</c:when>
