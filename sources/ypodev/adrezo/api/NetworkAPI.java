@@ -63,7 +63,6 @@ public class NetworkAPI {
 		private String name;
 		private Integer vid;
 		private Integer site;
-		private Integer ctx;
 	}
 		
 	@GET
@@ -408,14 +407,13 @@ public class NetworkAPI {
 				javax.sql.DataSource ds = (javax.sql.DataSource) env.lookup (jdbc_jndi);
 				conn = ds.getConnection();
 				stmt = conn.createStatement();
-				rs = stmt.executeQuery("select id,def,vid,site,ctx from vlan where id="+vlan);
+				rs = stmt.executeQuery("select id,def,vid,site from vlan where id="+vlan);
 				if (rs.next()) {
 					ApiVlan myvlan = new ApiVlan();
 						myvlan.id = rs.getInt("id");
     				myvlan.name = rs.getString("def");
 		    		myvlan.vid = rs.getInt("vid");
     				myvlan.site = rs.getInt("site");
-    				myvlan.ctx = rs.getInt("ctx");
 						Gson gson = new Gson();
 						result = gson.toJson(myvlan);
 				} else {
@@ -506,18 +504,15 @@ public class NetworkAPI {
 		this.errLog="";
 		String invid="";
 		String inname="";
-		String inctx="";
 		String insite="";
 		try {
 			Gson gson = new Gson();
 			ApiVlan obj = gson.fromJson(new InputStreamReader(incomingData, "UTF-8"),ApiVlan.class);
 			invid = String.valueOf(obj.vid);
 			inname = obj.name;
- 			inctx = String.valueOf(obj.ctx);
  			insite = String.valueOf(obj.site);
 		} catch (Exception e) { printLog("VlanAdd/ReadJSON: ",e); }
 		if (inname!=null&&inname.length()>50) { printLog("VlanAdd/Check: name too long",null); }
-		try { Integer.parseInt(inctx); } catch (NumberFormatException e) { printLog("VlanAdd/Check: ctx not a number",null); }
 		try { Integer.parseInt(insite); } catch (NumberFormatException e) { printLog("VlanAdd/Check: site not a number",null); }
 		try { Integer.parseInt(invid); } catch (NumberFormatException e) { printLog("VlanAdd/Check: vid not a number",null); }
 		if (!erreur) {
@@ -533,11 +528,11 @@ public class NetworkAPI {
 				javax.sql.DataSource ds = (javax.sql.DataSource) env.lookup (jdbc_jndi);
 				conn = ds.getConnection();
 				stmt = conn.createStatement();
-				rs = stmt.executeQuery("select id from sites where id="+insite+" and ctx="+inctx);					
+				rs = stmt.executeQuery("select id from sites where id="+insite);					
 				if (rs.next()) {
   				try {
 	   				stmtup = conn.createStatement();
-						stmtup.executeUpdate("insert into vlan (id,def,vid,site,ctx) values ("+DbSeqNextval.dbSeqNextval("vlan_seq")+",'"+inname+"',"+invid+","+insite+","+inctx+")");
+						stmtup.executeUpdate("insert into vlan (id,def,vid,site) values ("+DbSeqNextval.dbSeqNextval("vlan_seq")+",'"+inname+"',"+invid+","+insite+")");
 						String myquery = "select "+DbSeqCurrval.dbSeqCurrval("vlan_seq")+" as seq";
 						if (db_type.equals("oracle")) { myquery += " from dual"; }
 						rsv = stmtup.executeQuery(myquery);
@@ -548,7 +543,7 @@ public class NetworkAPI {
 					} catch (Exception e) { printLog("VlanAdd/Failed: ",e); }
 				} else {
 					errcode=404;
-					result="Context,Site not found";
+					result="Site not found";
 				}
 				rs.close();rs=null;
 				stmt.close();stmt=null;
@@ -596,7 +591,6 @@ public class NetworkAPI {
     				myvlan.name = rs.getString("def");
 		    		myvlan.vid = rs.getInt("vid");
     				myvlan.site = rs.getInt("site");
-    				myvlan.ctx = rs.getInt("ctx");
 						mylist.vlan_list.add(myvlan);
 					}
 					Gson gson = new Gson();

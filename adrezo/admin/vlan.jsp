@@ -42,7 +42,7 @@
 	<td><span onmouseover="javascript:tooltip.show('${lang_commonclickadd}')" onmouseout="javascript:tooltip.hide()"><img src="../img/icon_valid.png" alt="${lang_commonclickadd}" onclick="javascript:addSubmit()" /></span><span onmouseover="javascript:tooltip.show('${lang_commonclickreset}')" onmouseout="javascript:tooltip.hide()"><img src="../img/icon_refuse.png" alt="${lang_commonclickreset}" onclick="javascript:ResetAdd()" /></span></td>
 	<td><select id="add_site"><option><fmt:message key="common.select.site" /></option><c:forEach items="${sites.rows}" var="site"><option value="${site.id}">${site.name}</option></c:forEach></select></td>
 	<td><input type="hidden" id="add_id" value="" /><input type="text" size="5" id="add_vid" value="" /></td>
-	<td><input type="hidden" id="add_ctx" value="${validUser.ctx}" /><input type="text" size="30" id="add_def" value="" /></td>
+	<td><input type="text" size="30" id="add_def" value="" /></td>
 </tr></tbody></table>
 <h3><fmt:message key="admin.vlan.list" /> :</h3>
 <div id="tablewrapper">

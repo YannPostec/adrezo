@@ -14,7 +14,6 @@
 <c:set var="cptUpdate" scope="page" value="0"/>
 <c:forEach items="${param.listCpt}" var="cpt">
 	<c:set var="id" scope="page">id${cpt}</c:set>
-	<c:set var="ctx" scope="page">ctx${cpt}</c:set>
 	<c:set var="site" scope="page">site${cpt}</c:set>
 	<c:set var="vid" scope="page">vid${cpt}</c:set>
 	<c:set var="def" scope="page">def${cpt}</c:set>
@@ -23,12 +22,11 @@
 			<c:if test="${param[vid] > 0}">
 			<c:catch var="errInsert">
 			<sql:update>
-				INSERT INTO vlan (id,vid,def,site,ctx)
-				VALUES (${adrezo:dbSeqNextval('vlan_seq')}, ?${adrezo:dbCast('INTEGER')}, ?, ?${adrezo:dbCast('INTEGER')}, ?${adrezo:dbCast('INTEGER')})
+				INSERT INTO vlan (id,vid,def,site)
+				VALUES (${adrezo:dbSeqNextval('vlan_seq')}, ?${adrezo:dbCast('INTEGER')}, ?, ?${adrezo:dbCast('INTEGER')})
 				<sql:param value="${param[vid]}"/>
 				<sql:param value="${param[def]}"/>
 				<sql:param value="${param[site]}"/>
-				<sql:param value="${param[ctx]}"/>
 			</sql:update>
 			</c:catch>
 			<c:choose>

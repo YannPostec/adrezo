@@ -91,16 +91,15 @@ public class ImportCSVServlet extends HttpServlet {
 	}
 	private void parseVLAN(String myline) {
 		String[] arrLine = myline.split(",",-1);
-		if (arrLine.length != 6) { printLog(prop.getString("csv.error")+myline+" : "+prop.getString("verif.nbvar")); }
+		if (arrLine.length != 5) { printLog(prop.getString("csv.error")+myline+" : "+prop.getString("verif.nbvar")); }
 		else {
 			boolean errParse = false;
 			if (!arrLine[1].matches("\\d+")) { printLog(prop.getString("csv.error")+myline+" : ID : "+prop.getString("verif.number"));errParse=true; }
-			if (!arrLine[2].matches("\\d+")) { printLog(prop.getString("csv.error")+myline+" : CTX : "+prop.getString("verif.number"));errParse=true; }
-			if (!arrLine[3].matches("\\d+")) { printLog(prop.getString("csv.error")+myline+" : SITE : "+prop.getString("verif.number"));errParse=true; }
-			if (!arrLine[4].matches("\\d+")) { printLog(prop.getString("csv.error")+myline+" : VID : "+prop.getString("verif.number"));errParse=true; }
-			if (arrLine[5].equals("") || arrLine[5].length() > 50) { printLog(prop.getString("csv.error")+myline+" : NAME : "+prop.getString("verif.null")+" - "+prop.getString("verif.max")+" : 50");errParse=true; }
+			if (!arrLine[2].matches("\\d+")) { printLog(prop.getString("csv.error")+myline+" : SITE : "+prop.getString("verif.number"));errParse=true; }
+			if (!arrLine[3].matches("\\d+")) { printLog(prop.getString("csv.error")+myline+" : VID : "+prop.getString("verif.number"));errParse=true; }
+			if (arrLine[4].equals("") || arrLine[5].length() > 50) { printLog(prop.getString("csv.error")+myline+" : NAME : "+prop.getString("verif.null")+" - "+prop.getString("verif.max")+" : 50");errParse=true; }
 			if (!errParse) {
-				this.xmlResult += "<vlan><vlanid>"+arrLine[1]+"</vlanid><vlanctx>"+arrLine[2]+"</vlanctx><vlansite>"+arrLine[3]+"</vlansite><vlanvid>"+arrLine[4]+"</vlanvid><vlanname>"+arrLine[5]+"</vlanname></vlan>";
+				this.xmlResult += "<vlan><vlanid>"+arrLine[1]+"</vlanid><vlansite>"+arrLine[2]+"</vlansite><vlanvid>"+arrLine[3]+"</vlanvid><vlanname>"+arrLine[4]+"</vlanname></vlan>";
 			}
 		}		
 	}

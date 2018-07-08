@@ -202,7 +202,7 @@ public class AdminAPI {
 						if (rsv.next()) { result="Site "+String.valueOf(rsv.getInt("seq"))+" created"; }
 						else { result="Site created, no id returned"; }
 						rsv.close();rsv=null;
-						stmtup.executeUpdate("insert into vlan (id,vid,def,site,ctx) values ("+DbSeqNextval.dbSeqNextval("vlan_seq")+",0,'No Vlan',"+DbSeqCurrval.dbSeqCurrval("sites_seq")+","+inctx+")");
+						stmtup.executeUpdate("insert into vlan (id,vid,def,site) values ("+DbSeqNextval.dbSeqNextval("vlan_seq")+",0,'No Vlan',"+DbSeqCurrval.dbSeqCurrval("sites_seq")+")");
 						stmtup.close();stmtup=null;
 					} catch (Exception e) { printLog("SiteAdd/Failed: ",e); }
 				} else {

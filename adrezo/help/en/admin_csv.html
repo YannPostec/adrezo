@@ -61,8 +61,8 @@ detail : CTX, id (0 or existing one), name, non used parameter (non mandatory)</
 <p><b>Site</b> : SITE,ID,CTX,COD,NAME<br />
 detail : SITE, id (O or existing one), context id, site code, name<br />
 Only changes of name or site code are taken into account when modifying records</p>
-<p><b>Vlan</b> : VLAN,ID,CTX,SITE,VID,DEF<br />
-detail : VLAN, id (0 or existing one), context id, site id, VLAN ID, description<br />
+<p><b>Vlan</b> : VLAN,ID,SITE,VID,DEF<br />
+detail : VLAN, id (0 or existing one), site id, VLAN ID, description<br />
 Only changes of vlan id or description are taken into account when modifying records<br />
 Records with vlan id 0 are not alterable.</p>
 <p><b>Subnet</b> : SUBNET,ID,CTX,SITE,VLAN,IP,MASK,DEF,GW,BC<br />

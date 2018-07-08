@@ -91,12 +91,11 @@ function completeUploadHandler(event) {
 			var aelt = new Array();
 			for (i=0;i<vlans.length;i++) {
 				var id="id"+i+"="+T$$("vlanid",vlans[i])[0].firstChild.nodeValue;
-				var ctx="&ctx"+i+"="+T$$("vlanctx",vlans[i])[0].firstChild.nodeValue;
 				var site="&site"+i+"="+T$$("vlansite",vlans[i])[0].firstChild.nodeValue;
 				var vid="&vid"+i+"="+T$$("vlanvid",vlans[i])[0].firstChild.nodeValue;
 				var def="&def"+i+"="+T$$("vlanname",vlans[i])[0].firstChild.nodeValue;
 				mycpt[i]=i;
-				aelt[i]=id+ctx+site+vid+def;
+				aelt[i]=id+site+vid+def;
 			}
 			var myelt = "listCpt=" + mycpt.join(",") + "&" + aelt.join("&");
 			var xhrvlan=new XMLHttpRequest();

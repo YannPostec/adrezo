@@ -14,7 +14,6 @@ function addSubmit() {
 	var site = selectsite.value;
 	var id = T$("add_id").value;
 	var vid = T$("add_vid").value;
-	var ctx = T$("add_ctx").value;
 	var def = T$("add_def").value;
 
 	if (selectsite.selectedIndex == 0) { strAlert += "- "+langdata.site+": "+langdata.verifchoose+"<br />"; }	
@@ -25,7 +24,7 @@ function addSubmit() {
 	if (strAlert != "") {
 		showDialog(langdata.invalidfield+" :",strAlert,"warning",0,1);
 	} else {
-		DBAjax("ajax_vlan_store.jsp","id="+id+"&vid="+vid+"&def="+def+"&site="+site+"&ctx="+ctx);
+		DBAjax("ajax_vlan_store.jsp","id="+id+"&vid="+vid+"&def="+def+"&site="+site);
 	}
 }
 function delSubmit(id) {

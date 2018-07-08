@@ -9,18 +9,17 @@
 <%@ taglib prefix="adrezo" uri="adrezotaglib" %>
 <%request.setCharacterEncoding("UTF-8");%>
 <c:choose>
-<c:when test="${validUser != null && pageContext.request.method == 'POST' && validUser.rezo && !empty param.ctx}">
+<c:when test="${validUser != null && pageContext.request.method == 'POST' && validUser.rezo}">
 <c:set var="message"><valid>true</valid></c:set>
 <c:choose>
 	<c:when test="${empty param.id}">
 		<c:catch var="errInsert">
 			<sql:update>
-				INSERT INTO vlan (id,vid,def,site,ctx)
-				VALUES (${adrezo:dbSeqNextval('vlan_seq')}, ?${adrezo:dbCast('INTEGER')}, ?, ?${adrezo:dbCast('INTEGER')}, ?${adrezo:dbCast('INTEGER')})
+				INSERT INTO vlan (id,vid,def,site)
+				VALUES (${adrezo:dbSeqNextval('vlan_seq')}, ?${adrezo:dbCast('INTEGER')}, ?, ?${adrezo:dbCast('INTEGER')})
 				<sql:param value="${param.vid}"/>
 				<sql:param value="${param.def}"/>
 				<sql:param value="${param.site}"/>
-				<sql:param value="${param.ctx}"/>
 			</sql:update>
 		</c:catch>
 		<c:choose>

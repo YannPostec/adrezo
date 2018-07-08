@@ -23,8 +23,8 @@
 					<sql:param value="${param.name}"/>
 				</sql:update>
 				<sql:update>
-					INSERT INTO vlan (id,vid,def,site,ctx)
-					VALUES (${adrezo:dbSeqNextval('vlan_seq')}, 0, 'No Vlan', ${adrezo:dbSeqCurrval('sites_seq')}, ${param.ctx})
+					INSERT INTO vlan (id,vid,def,site)
+					VALUES (${adrezo:dbSeqNextval('vlan_seq')}, 0, 'No Vlan', ${adrezo:dbSeqCurrval('sites_seq')})
 				</sql:update>
 			</sql:transaction>			
 		</c:catch>

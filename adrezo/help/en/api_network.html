@@ -117,12 +117,11 @@ Required Roles : API, NETWORK
 <li>In (URI)
 <ul><li>vlan : integer, vlan id in database</li></ul></li>
 <li>Out (JSON)
-<ul><li>{ "id":&lt;id&gt;,"name":&lt;name&gt;,"vid":"&lt;vid&gt;","site":&lt;site&gt;,"ctx":&lt;ctx&gt; }
+<ul><li>{ "id":&lt;id&gt;,"name":&lt;name&gt;,"vid":"&lt;vid&gt;","site":&lt;site&gt; }
 <ul><li>id : integer, vlan id in database</li>
 <li>name : string, vlan name</li>
 <li>vid : integer, Network Vlan ID</li>
-<li>site : integer, site id in database</li>
-<li>ctx : integer, context id in database</li></ul></li></ul></li>
+<li>site : integer, site id in database</li></ul></li></ul></li>
 <li>HTTP return code, if not ok return informations in text format
 <ul><li>500 : internal error in API</li>
 <li>404 : vlan not found</li>
@@ -150,11 +149,10 @@ Required Roles : API, NETWORK
 <ul>
 <li>URL<ul><li><b>POST /api/network/vlan</b></li></ul></li>
 <li>In (JSON)
-<ul><li>{ "name":&lt;name&gt;,"vid":"&lt;vid&gt;","site":&lt;site&gt;,"ctx":&lt;ctx&gt; }
+<ul><li>{ "name":&lt;name&gt;,"vid":"&lt;vid&gt;","site":&lt;site&gt; }
 <ul><li>name : string, vlan name</li>
 <li>vid : integer, Network Vlan ID</li>
-<li>site : integer, site id in database</li>
-<li>ctx : integer, context id in database</li></ul></li></ul></li>
+<li>site : integer, site id in database</li></ul></li></ul></li>
 <li>Out (text/plain) : Vlan &lt;id&gt; created
 <ul><li>id : integer, vlan id in database</li></ul></li>
 <li>HTTP return code, if not ok return informations in text format
@@ -171,12 +169,11 @@ Required Roles : API, NETWORK
 <li>URL<ul><li><b>GET /api/network/vlan/list/&lt;site&gt;</b></li></ul></li>
 <li>In (URI)<ul><li>site : integer, site id in database</li></ul></li>
 <li>Out (JSON)
-<ul><li>{ "vlan_list": [ {"id":&lt;id&gt;,"name":&lt;name&gt;,"vid":"&lt;vid&gt;","site":&lt;site&gt;,"ctx":&lt;ctx&gt;},{...} ] }
+<ul><li>{ "vlan_list": [ {"id":&lt;id&gt;,"name":&lt;name&gt;,"vid":"&lt;vid&gt;","site":&lt;site&gt;},{...} ] }
 <ul><li>id : integer, vlan id in database</li>
 <li>name : string, vlan name</li>
 <li>vid : integer, Network Vlan ID</li>
-<li>site : integer, site id in database</li>
-<li>ctx : integer, context id in database</li></ul></li></ul></li>
+<li>site : integer, site id in database</li></ul></li></ul></li>
 <li>HTTP return code, if not ok return informations in text format
 <ul><li>500 : internal error in API</li>
 <li>404 : vlans list empty</li>

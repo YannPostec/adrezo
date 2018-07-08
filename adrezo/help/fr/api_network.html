@@ -117,12 +117,11 @@ Roles requis : API, NETWORK
 <li>Entrée (URI)
 <ul><li>vlan : entier, id du vlan dans la base</li></ul></li>
 <li>Sortie (JSON)
-<ul><li>{ "id":&lt;id&gt;,"name":&lt;name&gt;,"vid":"&lt;vid&gt;","site":&lt;site&gt;,"ctx":&lt;ctx&gt; }
+<ul><li>{ "id":&lt;id&gt;,"name":&lt;name&gt;,"vid":"&lt;vid&gt;","site":&lt;site&gt; }
 <ul><li>id : entier, id du vlan dans la base</li>
 <li>name : chaine, nom du vlan</li>
 <li>vid : entier, Vlan ID du vlan</li>
-<li>site : entier, id du site dans la base</li>
-<li>ctx : entier, id du contexte dans la base</li></ul></li></ul></li>
+<li>site : entier, id du site dans la base</li></ul></li></ul></li>
 <li>Code de retour HTTP, si non ok retour d'informations en format texte
 <ul><li>500 : erreur interne dans l'API</li>
 <li>404 : vlan non trouvé</li>
@@ -150,11 +149,10 @@ Roles requis : API, NETWORK
 <ul>
 <li>URL<ul><li><b>POST /api/network/vlan</b></li></ul></li>
 <li>Entrée (JSON)
-<ul><li>{ "name":&lt;name&gt;,"vid":"&lt;vid&gt;","site":&lt;site&gt;,"ctx":&lt;ctx&gt; }
+<ul><li>{ "name":&lt;name&gt;,"vid":"&lt;vid&gt;","site":&lt;site&gt; }
 <ul><li>name : chaine, nom du vlan</li>
 <li>vid : entier, Vlan ID du vlan</li>
-<li>site : entier, id du site dans la base</li>
-<li>ctx : entier, id du contexte dans la base</li></ul></li></ul></li>
+<li>site : entier, id du site dans la base</li></ul></li></ul></li>
 <li>Sortie (text/plain) : Vlan &lt;id&gt; created
 <ul><li>id : entier, id du vlan dans la base</li></ul></li>
 <li>Code de retour HTTP, si non ok retour d'informations en format texte
@@ -171,12 +169,11 @@ Roles requis : API, NETWORK
 <li>URL<ul><li><b>GET /api/network/vlan/list/&lt;site&gt;</b></li></ul></li>
 <li>Entrée (URI)<ul><li>site : entier, id du site dans la base</li></ul></li>
 <li>Sortie (JSON)
-<ul><li>{ "vlan_list": [ {"id":&lt;id&gt;,"name":&lt;name&gt;,"vid":"&lt;vid&gt;","site":&lt;site&gt;,"ctx":&lt;ctx&gt;},{...} ] }
+<ul><li>{ "vlan_list": [ {"id":&lt;id&gt;,"name":&lt;name&gt;,"vid":"&lt;vid&gt;","site":&lt;site&gt;},{...} ] }
 <ul><li>id : entier, id du vlan dans la base</li>
 <li>name : chaine, nom du vlan</li>
 <li>vid : entier, Vlan ID du vlan</li>
-<li>site : entier, id du site dans la base</li>
-<li>ctx : entier, id du contexte dans la base</li></ul></li></ul></li>
+<li>site : entier, id du site dans la base</li></ul></li></ul></li>
 <li>Code de retour HTTP, si non ok retour d'informations en format texte
 <ul><li>500 : erreur interne dans l'API</li>
 <li>404 : liste des vlans vide</li>

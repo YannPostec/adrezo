@@ -7,4 +7,4 @@
 <% pageContext.setAttribute("newLineChar", "\n"); %>
 <c:if test="${validUser == null}"><jsp:forward page="../login.jsp"><jsp:param name="origURL" value="${pageContext.request.requestURL}" /><jsp:param name="errorKey" value="login.err" /></jsp:forward></c:if>
 <sql:query var="vlans">select * from vlan order by id</sql:query>
-<c:forEach items="${vlans.rows}" var="vlan">VLAN,${vlan.id},${vlan.ctx},${vlan.site},${vlan.vid},${vlan.def}${newLineChar}</c:forEach>
+<c:forEach items="${vlans.rows}" var="vlan">VLAN,${vlan.id},${vlan.site},${vlan.vid},${vlan.def}${newLineChar}</c:forEach>
