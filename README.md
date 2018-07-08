@@ -30,7 +30,7 @@ and with browsers :
 # Installation
 
 See [Install section](./INSTALL.md)  
-Take the last release from [Releases](./releases)  
+Take the last release from [Releases](../../releases)  
 or see below for Beta versions
 
 ## Installation of Beta Version
