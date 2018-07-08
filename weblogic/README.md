@@ -3,7 +3,7 @@
 If you have a Weblogic server instead of Tomcat server, follow the instructions below
 
 ## Install web application
-Clone `adrezo` directory to your weblogic applications folder  
+Copy `adrezo` directory to your weblogic applications folder  
 Something like `/oracle/wls12212/mycompany/mydomain/applications/`
 
 ## Add weblogic.xml file

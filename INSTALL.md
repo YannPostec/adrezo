@@ -8,7 +8,7 @@ For others installation types :
 
 ## Install web application
 Make the `adrezo` directory accessible from your tomcat webapps folder.
-You can clone it to a directory of your choice, suffix it with the version and link it from the tomcat webapps folder.
+You can copy it to a directory of your choice, suffix it with the version and link it from the tomcat webapps folder.
 
 ## Prepare database connection
 

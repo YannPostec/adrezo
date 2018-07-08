@@ -29,7 +29,14 @@ and with browsers :
 
 # Installation
 
-See [Install section](./INSTALL.md)
+See [Install section](./INSTALL.md)  
+Take the last release from [Releases](./releases)  
+or see below for Beta versions
+
+## Installation of Beta Version
+If you clone this repository for upgrade, you will have all current developments (Beta) since the last release and you must modify the database if needed.
+To do that check for the last ./update/sqlupdate_xxx.jsp file and inject the sql lines you will find inside that file, except the last one which changes the database version.
+After that when upgrading from release, you must rollback those instructions for the upgrade process to perform without errors.
 
 # Upgrade
 
