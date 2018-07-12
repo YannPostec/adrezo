@@ -100,10 +100,11 @@ public class IpDispoBean implements Serializable {
     	if (stmt != null) { try { stmt.close(); } catch (SQLException e) { ; } stmt = null; }
 		}
 	}
-	private void GetIPTotal() {
+	private void GetIPTotal(boolean split) {
 		try {
 			this.ipTotal = new Vector();
 			this.ipTotal = IPFmt.VectorIP(realStartIP,realEndIP);
+			if (split) { ipTotal.add(realEndIP); }
 		} catch (Exception e) { printLog("GetIPTotal: ",e); }
 	}
 	private void GetIPSubnet() {
@@ -112,10 +113,10 @@ public class IpDispoBean implements Serializable {
 		ResultSet rs = null;
 		try {
 			stmt = conn.createStatement();
-			rs = stmt.executeQuery("SELECT IP FROM ADRESSES WHERE SUBNET = " + this.subnet + " AND IP > '" + this.realStartIP + "' AND IP < '" + this.realEndIP + "' ORDER BY IP");
+			rs = stmt.executeQuery("select ip from adresses where subnet = " + this.subnet + " and ip > '" + this.realStartIP + "' and ip <= '" + this.realEndIP + "' order by ip");
 			rs = stmt.getResultSet(); 	
 			while (rs.next()) {
-				ipSubnet.add(rs.getString("IP"));
+				ipSubnet.add(rs.getString("ip"));
 			}
 			rs.close();
 			rs = null;
@@ -134,16 +135,15 @@ public class IpDispoBean implements Serializable {
     	}
 		}
 	}
-	private void DiffVector() {
+	private void DiffVector(int alreadyFound) {
 		try {
 			int borne;
 		
 			for (int i=0;i<ipSubnet.size();i++) { ipTotal.remove(ipSubnet.get(i).toString()); }
-			if (ipTotal.size()>nbIP) { borne = nbIP; } else { borne = ipTotal.size(); }
-
+			if (ipTotal.size()>nbIP-alreadyFound) { borne = nbIP-alreadyFound; } else { borne = ipTotal.size(); }
 			for (int i=0;i<borne;i++) {
 				ipFinal += IPFmt.displayIP(ipTotal.get(i).toString());
-				if (i!=borne-1) { ipFinal += ","; }
+				ipFinal += ",";
 			}
 		} catch (Exception e) { printLog("DiffVector: ",e); }
 	}
@@ -172,30 +172,31 @@ public class IpDispoBean implements Serializable {
 						if (startIP == null || bFound) {
 							realStartIP = newsubnet;
 							realEndIP = IPFmt.GetBroadcast(newsubnet,"24");
-							GetIPTotal();
+							GetIPTotal(true);
 							GetIPSubnet();
-							DiffVector();
+							DiffVector(cptRequest);
 						} else {
 							if (validStartIP(startIP,newsubnet,"24")) {
 								realStartIP = startIP;
 								bFound = true;
 								realEndIP = IPFmt.GetBroadcast(newsubnet,"24");
-								GetIPTotal();
+								GetIPTotal(true);
 								GetIPSubnet();
-								DiffVector();
+								DiffVector(cptRequest);
 							}
 						}
 					} else {
 						realEndIP = subnetBC;
-						GetIPTotal();
+						GetIPTotal(false);
 						GetIPSubnet();
-						DiffVector();
+						DiffVector(cptRequest);
 					}
 					if (Integer.parseInt((String)subnetMASK) < 24) {
 						if (!(startIP != null && !bFound)) { cptRequest += ipTotal.size(); }
 						if (subnetVector.size() == 0) {cptRequest = nbIP; }
 					} else { cptRequest = nbIP; }
 				}
+				if (ipFinal.lastIndexOf(',') == ipFinal.length()-1) { ipFinal = ipFinal.substring(0,ipFinal.length()-1); }
 			} else { printLog(prop.getString("ipdispo.err"),null); }
 			CloseDB();	
 		} catch (Exception e) { printLog("Main: ",e); }	
