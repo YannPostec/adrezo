@@ -9,14 +9,14 @@
 <%@ taglib prefix="adrezo" uri="adrezotaglib" %>
 <%request.setCharacterEncoding("UTF-8");%>
 <c:choose>
-<c:when test="${validUser != null && pageContext.request.method == 'POST' && validUser.admin && !empty param.hostname && !empty param.type && !empty param.port && !empty param.ssl && !empty param.auth}">
+<c:when test="${validUser != null && pageContext.request.method == 'POST' && validUser.admin && !empty param.hostname && !empty param.type && !empty param.port && !empty param.ssl && !empty param.auth && !empty param.enable}">
 <c:set var="message"><valid>true</valid></c:set>
 <c:choose>
 	<c:when test="${empty param.id}">
 		<c:catch var="errInsert">
 			<sql:update>
-				insert into dhcp_server (id,hostname,port,ssl,auth,login,pwd,type)
-				VALUES (${adrezo:dbSeqNextval('dhcp_server_seq')}, ?, ?${adrezo:dbCast('INTEGER')}, ?${adrezo:dbCast('INTEGER')}, ?${adrezo:dbCast('INTEGER')}, ?, ?, ?${adrezo:dbCast('INTEGER')})
+				insert into dhcp_server (id,hostname,port,ssl,auth,login,pwd,type,enable)
+				VALUES (${adrezo:dbSeqNextval('dhcp_server_seq')}, ?, ?${adrezo:dbCast('INTEGER')}, ?${adrezo:dbCast('INTEGER')}, ?${adrezo:dbCast('INTEGER')}, ?, ?, ?${adrezo:dbCast('INTEGER')}, ?${adrezo:dbCast('INTEGER')})
 				<sql:param value="${param.hostname}"/>
 				<sql:param value="${param.port}"/>
 				<sql:param value="${param.ssl}"/>
@@ -24,6 +24,7 @@
 				<sql:param value="${param.login}"/>
 				<sql:param value="${param.pwd}"/>
 				<sql:param value="${param.type}"/>
+				<sql:param value="${param.enable}"/>
 			</sql:update>
 		</c:catch>
 		<c:choose>
@@ -46,7 +47,8 @@
 					port = ?${adrezo:dbCast('INTEGER')},
 					ssl = ?${adrezo:dbCast('INTEGER')},
 					auth = ?${adrezo:dbCast('INTEGER')},
-					type = ?${adrezo:dbCast('INTEGER')}
+					type = ?${adrezo:dbCast('INTEGER')},
+					enable = ?${adrezo:dbCast('INTEGER')}
 				where id = ?${adrezo:dbCast('INTEGER')}
 				<c:if test="${!empty param.pwd}"><sql:param value="${param.pwd}"/></c:if>
 				<sql:param value="${param.login}"/>
@@ -55,8 +57,15 @@
 				<sql:param value="${param.ssl}"/>
 				<sql:param value="${param.auth}"/>
 				<sql:param value="${param.type}"/>
+				<sql:param value="${param.enable}"/>
    			<sql:param value="${param.id}" />
 			</sql:update>
+			<c:if test="${empty param.login && empty param.pwd}">
+			<sql:update>
+				update dhcp_server set pwd = '', login = '' where id = ?${adrezo:dbCast('INTEGER')}
+				<sql:param value="${param.id}" />
+			</sql:update>
+			</c:if>
 		</c:catch>
 		<c:choose>
 			<c:when test="${errUpdate != null}">

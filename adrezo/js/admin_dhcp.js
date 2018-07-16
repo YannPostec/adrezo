@@ -27,6 +27,7 @@ function ResetAdd() {
 	T$("add_type").selectedIndex = 0;
 	T$("add_ssl").selectedIndex = 0;
 	T$("add_auth").selectedIndex = 0;
+	T$("add_enable").selectedIndex = 0;
 }
 function ConfirmDlg(id) {
 	showDialog(langdata.confirm,langdata.objdel+"<br/><br/><input type='button' value='"+langdata.dlgyes+"' onclick='javascript:delSubmit("+id+");'/>  <input type='button' value='"+langdata.dlgno+"' onclick='hideDialog();'/>","prompt",0,1);
@@ -36,6 +37,7 @@ function addSubmit() {
 	var selecttype = T$("add_type");
 	var selectssl = T$("add_ssl");
 	var selectauth = T$("add_auth");
+	var selectenable = T$("add_enable");
 	var type = selecttype.value;
 	var ssl = selectssl.value;
 	var auth = selectauth.value;
@@ -44,6 +46,7 @@ function addSubmit() {
 	var port = T$("add_port").value;
 	var login = T$("add_login").value;
 	var pwd = T$("add_pwd").value;
+	var enable = selectenable.value;
 
 	if (selecttype.selectedIndex == 0) { strAlert += "- "+langdata.type+": "+langdata.verifchoose+"<br />"; }	
 	if (!port || isNaN(port) || port < 0) { strAlert += "- "+langdata.port+": "+langdata.verifnumber+"<br />"; }
@@ -58,7 +61,7 @@ function addSubmit() {
 	if (strAlert != "") {
 		showDialog(langdata.invalidfield+" :",strAlert,"warning",0,1);
 	} else {
-		DBAjax("ajax_dhcp_store.jsp","id="+id+"&hostname="+hostname+"&port="+port+"&login="+login+"&pwd="+pwd+"&type="+type+"&ssl="+ssl+"&auth="+auth);
+		DBAjax("ajax_dhcp_store.jsp","id="+id+"&hostname="+hostname+"&port="+port+"&login="+login+"&pwd="+pwd+"&type="+type+"&ssl="+ssl+"&auth="+auth+"&enable="+enable);
 	}
 }
 function delSubmit(id) {
@@ -73,8 +76,14 @@ function sendModif(e) {
 	T$("add_port").value = tds[3].firstChild.nodeValue;
 	T$("add_ssl").value = tds[4].firstChild.value;
 	T$("add_auth").value = tds[5].firstChild.value;
-	T$("add_login").value = tds[6].firstChild.nodeValue;
+	T$("add_login").value = tds[6].firstChild?tds[6].firstChild.nodeValue:"";
 	T$("add_pwd").value = "";
+	T$("add_enable").value = tds[8].firstChild.value;
+}
+function defaultTypePort() {
+	if (T$("add_type").selectedIndex > 0) {
+		T$("add_port").value = typedefaultport[T$("add_type").value];
+	}
 }
 function addExclu(id,name) {
 	TINY.box.show({url:'box_dhcp_addexclu.jsp',openjs:function(){ExcluLoad(id)},post:'id='+id+'&name='+name});

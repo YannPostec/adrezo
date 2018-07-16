@@ -39,19 +39,26 @@
 <body>
 <%@ include file="../menu.jsp" %>
 <sql:query var="dhcps">select * from dhcp_server_display order by id</sql:query>
-<sql:query var="types">select id,name from dhcp_type order by name</sql:query>
+<sql:query var="types">select * from dhcp_type order by name</sql:query>
+<script type="text/javascript" charset="utf-8">
+ var typedefaultport = new Array();
+ <c:forEach items="${types.rows}" var="type">
+ typedefaultport[${type.id}] = ${type.port};
+ </c:forEach>
+</script>
 <h3><fmt:message key="admin.mgt" /> :</h3>
 <table>
-<thead><tr><th /><th><fmt:message key="common.table.type" /></th><th><fmt:message key="common.table.hostname" /></th><th><fmt:message key="common.table.port" /></th><th><fmt:message key="common.table.ssl" /></th><th><fmt:message key="common.table.authentication" /></th><th><fmt:message key="common.table.login" /></th><th><fmt:message key="common.table.pwd" /></th></tr></thead>
+<thead><tr><th /><th><fmt:message key="common.table.type" /></th><th><fmt:message key="common.table.hostname" /></th><th><fmt:message key="common.table.port" /></th><th><fmt:message key="common.table.ssl" /></th><th><fmt:message key="common.table.authentication" /></th><th><fmt:message key="common.table.login" /></th><th><fmt:message key="common.table.pwd" /></th><th><fmt:message key="sla.active" /></th></tr></thead>
 <tbody><tr>
 	<td><span onmouseover="javascript:tooltip.show('${lang_commonclickadd}')" onmouseout="javascript:tooltip.hide()"><img src="../img/icon_valid.png" alt="${lang_commonclickadd}" onclick="javascript:addSubmit()" /></span><span onmouseover="javascript:tooltip.show('${lang_commonclickreset}')" onmouseout="javascript:tooltip.hide()"><img src="../img/icon_refuse.png" alt="${lang_commonclickreset}" onclick="javascript:ResetAdd()" /></span></td>
-	<td><select id="add_type"><option><fmt:message key="common.select.type" /></option><c:forEach items="${types.rows}" var="type"><option value="${type.id}">${type.name}</option></c:forEach></select></td>
+	<td><select id="add_type" onchange="javascript:defaultTypePort()"><option><fmt:message key="common.select.type" /></option><c:forEach items="${types.rows}" var="type"><option value="${type.id}">${type.name}</option></c:forEach></select></td>
 	<td><input type="hidden" id="add_id" value="" /><input type="text" size="50" id="add_hostname" value="" /></td>
-	<td><input type="text" size="5" id="add_port" value="80" /></td>
+	<td><input type="text" size="5" id="add_port" /></td>
 	<td><select id="add_ssl"><option value="0" selected="selected"><fmt:message key="common.no" /></option><option value="1"><fmt:message key="common.yes" /></option></select></td>
 	<td><select id="add_auth"><option value="0" selected="selected"><fmt:message key="common.no" /></option><option value="1"><fmt:message key="common.yes" /></option></select></td>
 	<td><input type="text" size="30" id="add_login" value="" /></td>
 	<td><input type="password" size="30" id="add_pwd" value="" /></td>
+	<td><select id="add_enable"><option value="1" selected="selected"><fmt:message key="common.yes" /></option><option value="0"><fmt:message key="common.no" /></option></select></td>
 </tr></tbody></table>
 <h3><fmt:message key="admin.dhcp.list" /> :</h3>
 <div id="tablewrapper">
@@ -67,7 +74,7 @@
 		</span>
 	</div>
 	<table id="table" class="tinytable">
-		<thead><tr><th class="nosort"><h3 class="nosearch" /></th><th><h3><fmt:message key="common.table.type" /></h3></th><th><h3><fmt:message key="common.table.hostname" /></h3></th><th><h3><fmt:message key="common.table.port" /></h3></th><th><h3 class="nosearch"><fmt:message key="common.table.ssl" /></h3></th><th><h3 class="nosearch"><fmt:message key="common.table.authentication" /></h3></th><th><h3><fmt:message key="common.table.login" /></h3></th><th><h3 class="nosearch"><fmt:message key="common.table.pwd" /></h3></th><th class="nosort"><h3 class="nosearch"><fmt:message key="common.table.exclu" /></h3></th></tr></thead>
+		<thead><tr><th class="nosort"><h3 class="nosearch" /></th><th><h3><fmt:message key="common.table.type" /></h3></th><th><h3><fmt:message key="common.table.hostname" /></h3></th><th><h3><fmt:message key="common.table.port" /></h3></th><th><h3 class="nosearch"><fmt:message key="common.table.ssl" /></h3></th><th><h3 class="nosearch"><fmt:message key="common.table.authentication" /></h3></th><th><h3><fmt:message key="common.table.login" /></h3></th><th><h3 class="nosearch"><fmt:message key="common.table.pwd" /></h3></th><th><h3><fmt:message key="sla.active" /></h3></th><th class="nosort"><h3 class="nosearch"><fmt:message key="common.table.exclu" /></h3></th></tr></thead>
 		<tbody><c:forEach items="${dhcps.rows}" var="dhcp"><tr>
 			<td style="text-align:center"><span onmouseover="javascript:tooltip.show('${lang_commonclickdel}')" onmouseout="javascript:tooltip.hide()"><img src="../img/icon_delete.jpg" alt="${lang_commonclickdel}" onclick="javascript:ConfirmDlg(${dhcp.id})" /></span> <span onmouseover="javascript:tooltip.show('${lang_commonclickmod}')" onmouseout="javascript:tooltip.hide()"><img src="../img/icon_modify.jpg" alt="${lang_commonclickmod}" onclick="javascript:sendModif(event)" /></span></td>
 			<td><input type="hidden" value="${dhcp.type}" />${dhcp.type_name}</td>
@@ -77,6 +84,7 @@
 			<td><input type="hidden" value="${dhcp.auth}" /><c:choose><c:when test="${dhcp.auth == 0}"><fmt:message key="common.no" /></c:when><c:otherwise><fmt:message key="common.yes" /></c:otherwise></c:choose></td>
 			<td>${dhcp.login}</td>
 			<td><c:if test="${!empty dhcp.pwd}">***</c:if></td>
+			<td><input type="hidden" value="${dhcp.enable}" /><c:choose><c:when test="${dhcp.enable == 0}"><fmt:message key="common.no" /></c:when><c:otherwise><fmt:message key="common.yes" /></c:otherwise></c:choose></td>
 			<td style="text-align:center"><span onmouseover="javascript:tooltip.show('${lang_addexclu}')" onmouseout="javascript:tooltip.hide()"><img src="../img/icon_add2.png" alt="${lang_addexclu}" onclick="javascript:addExclu(${dhcp.id},'${dhcp.hostname}')" /></span> <span onmouseover="javascript:tooltip.show('${lang_listexclu}')" onmouseout="javascript:tooltip.hide()"><img src="../img/icon_database.png" alt="${lang_listexclu}" onclick="javascript:listExclu(${dhcp.id},'${dhcp.hostname}')" /></span></td>
 		</tr></c:forEach></tbody>
 	</table>
