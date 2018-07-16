@@ -11,9 +11,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//Dtd XHTML 1.0 Transitional//EN" "http://www.w3.org/tr/xhtml1/Dtd/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"><head><title><fmt:message key="stock.xls.stock" /></title>
 <meta http-equiv="Content-Type" content="application/vnd.ms-excel; charset=UTF-8" /></head><body>
-<sql:query var="types">
-	select ctx_name,site_name,cat,idx,def,seuil,stock,encours from stock_etat_display order by ctx_name,site_name,idx
-</sql:query>
+<sql:query var="types">select ctx_name,site_name,cat,idx,def,seuil,stock,encours from stock_etat_display order by ctx_name,site_name,idx</sql:query>
 <table border="1">
 <thead><tr><th><fmt:message key="admin.ctx" /></th><th><fmt:message key="admin.site" /></th><th><fmt:message key="common.table.cat" /></th><th><fmt:message key="common.table.idx" /></th><th><fmt:message key="common.table.def" /></th><th><fmt:message key="common.table.stock" /></th><th><fmt:message key="common.table.threshold" /></th><th><fmt:message key="common.table.ongoing" /></th></tr></thead>
 <tbody><c:forEach items="${types.rows}" var="type">

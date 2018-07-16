@@ -16,15 +16,13 @@
 	<c:when test="${empty param.id}">
 		<c:catch var="errInsert">
 			<sql:update>
-				INSERT INTO STOCK_ETAT
-					(id,idx,def,seuil,cat,encours,ctx,site)
-				VALUES (${adrezo:dbSeqNextval('stock_seq')}, ?, ?, ?${adrezo:dbCast('INTEGER')}, ?${adrezo:dbCast('INTEGER')}, ?${adrezo:dbCast('INTEGER')}, ?${adrezo:dbCast('INTEGER')}, ?${adrezo:dbCast('INTEGER')})
+				insert into stock_etat (id,idx,def,seuil,cat,encours,site)
+				values (${adrezo:dbSeqNextval('stock_seq')}, ?, ?, ?${adrezo:dbCast('INTEGER')}, ?${adrezo:dbCast('INTEGER')}, ?${adrezo:dbCast('INTEGER')}, ?${adrezo:dbCast('INTEGER')})
 				<sql:param value="${param.idx}"/>
 				<sql:param value="${param.def}"/>
 				<sql:param value="${param.seuil}"/>
 				<sql:param value="${param.cat}"/>
 				<sql:param value="${param.encours}"/>
-				<sql:param value="${validUser.ctx}"/>
 				<sql:param value="${param.site}"/>
 			</sql:update>
 		</c:catch>
@@ -41,13 +39,13 @@
 	<c:otherwise>
 		<c:catch var="errUpdate">
 			<sql:update>
-				UPDATE STOCK_ETAT
-				SET def = ?,
+				update stock_etat
+				set def = ?,
 					seuil = ?${adrezo:dbCast('INTEGER')},
 					idx = ?,
 					cat = ?${adrezo:dbCast('INTEGER')},
 					encours = ?${adrezo:dbCast('INTEGER')}
-				WHERE ID = ?${adrezo:dbCast('INTEGER')}
+				where id = ?${adrezo:dbCast('INTEGER')}
 		    <sql:param value="${param.def}"/>
 		    <sql:param value="${param.seuil}"/>
 		    <sql:param value="${param.idx}"/>

@@ -26,8 +26,8 @@
 				<sql:update>create table auth_roles (id number not null,name varchar2(40) not null,new_ctx number default 0,annu number default 0,grp varchar2(40),pref_ctx number,grp_dn varchar2(512))</sql:update>
 				<sql:update>create table auth_users (login varchar2(20) not null,pwd varchar2(128),mail varchar2(100),role number default null,auth number(1,0) not null,id number not null)</sql:update>
 				<sql:update>create table contextes (id number not null,name varchar2(30) not null,site_main number not null)</sql:update>
-				<sql:update>create table dhcp_server (id number not null,hostname varchar2(50) not null,port number not null,ssl number(1,0) default 0,auth number(1,0) not null,login varchar2(64),pwd varchar2(64),type number not null)</sql:update>
-				<sql:update>create table dhcp_type (id number not null, name varchar2(100) not null)</sql:update>
+				<sql:update>create table dhcp_server (id number not null,hostname varchar2(50) not null,port number not null,ssl number(1,0) default 0,auth number(1,0) not null,login varchar2(64),pwd varchar2(64),type number not null, enable number(1,0) default 1)</sql:update>
+				<sql:update>create table dhcp_type (id number not null, name varchar2(100) not null,port number)</sql:update>
 				<sql:update>create table dhcp_exclu (id number not null,srv number not null, scope varchar2(15) not null)</sql:update>
 				<sql:update>create table ipurl (id number not null,proto varchar2(10) not null,port number default null,uri varchar2(100))</sql:update>
 				<sql:update>create table langues (code varchar2(2) not null,name varchar2(50) not null)</sql:update>
@@ -49,7 +49,7 @@
 				<sql:update>create table slahours (device number not null,stamp varchar2(10) not null,availability number(8,5))</sql:update>
 				<sql:update>create table sladays (device number not null,stamp varchar2(8) not null,availability number(8,5))</sql:update>
 				<sql:update>create table stock_cat (id number not null,name varchar2(30) not null)</sql:update>
-				<sql:update>create table stock_etat (id number(4,0) not null,def varchar2(255) not null,stock number(4,0) default 0,seuil number(4,0) default 0,idx varchar2(8) not null,cat number not null,encours number default 0,ctx number not null,site number not null)</sql:update>
+				<sql:update>create table stock_etat (id number(4,0) not null,def varchar2(255) not null,stock number(4,0) default 0,seuil number(4,0) default 0,idx varchar2(8) not null,cat number not null,encours number default 0,site number not null)</sql:update>
 				<sql:update>create table stock_mvt (stamp date not null,usr varchar2(20) not null,mvt number(5,0) not null,invent number(1,0) default 0 not null,seuil number(1,0) default 0,id number (4,0) not null)</sql:update>
 				<sql:update>create table subnets (ip varchar2(12) not null,mask number not null,def varchar2(40) not null,gw varchar2(12),bc varchar2(12) not null,id number not null,ctx number not null,site number not null,vlan number not null,surnet number default 0 not null)</sql:update>
 				<sql:update>create table surnets (id number not null,ip varchar2(30) not null,mask number not null,infos varchar2(2000),def varchar2(100) not null,parent number not null,calc number (1.0) not null)</sql:update>
@@ -71,8 +71,8 @@
 				<sql:update>create table auth_roles (id integer not null,name varchar(40) not null,new_ctx integer default 0,annu integer default 0,grp varchar(40),pref_ctx integer,grp_dn varchar(512))</sql:update>
 				<sql:update>create table auth_users (login varchar(20) not null,pwd varchar(128),mail varchar(100),role integer default null,auth integer not null,id integer not null)</sql:update>
 				<sql:update>create table contextes (id integer not null,name varchar(30) not null,site_main integer not null)</sql:update>
-				<sql:update>create table dhcp_server (id integer not null,hostname varchar(50) not null,port integer not null,ssl integer default 0,auth integer not null,login varchar(64),pwd varchar(64),type integer not null)</sql:update>
-				<sql:update>create table dhcp_type (id integer not null, name varchar(100) not null)</sql:update>
+				<sql:update>create table dhcp_server (id integer not null,hostname varchar(50) not null,port integer not null,ssl integer default 0,auth integer not null,login varchar(64),pwd varchar(64),type integer not null, enable integer default 1)</sql:update>
+				<sql:update>create table dhcp_type (id integer not null, name varchar(100) not null, port integer)</sql:update>
 				<sql:update>create table dhcp_exclu (id integer not null,srv integer not null, scope varchar(15) not null)</sql:update>
 				<sql:update>create table ipurl (id integer not null,proto varchar(10) not null,port integer default null,uri varchar(100))</sql:update>
 				<sql:update>create table langues (code varchar(2) not null,name varchar(50) not null)</sql:update>
@@ -94,7 +94,7 @@
 				<sql:update>create table slahours (device integer not null,stamp varchar(10) not null,availability numeric(8,5))</sql:update>
 				<sql:update>create table sladays (device integer not null,stamp varchar(8) not null,availability numeric(8,5))</sql:update>
 				<sql:update>create table stock_cat (id integer not null,name varchar(30) not null)</sql:update>
-				<sql:update>create table stock_etat (id integer not null,def varchar(255) not null,stock integer default 0,seuil integer default 0,idx varchar(8) not null,cat integer not null,encours integer default 0,ctx integer not null,site integer not null)</sql:update>
+				<sql:update>create table stock_etat (id integer not null,def varchar(255) not null,stock integer default 0,seuil integer default 0,idx varchar(8) not null,cat integer not null,encours integer default 0,site integer not null)</sql:update>
 				<sql:update>create table stock_mvt (stamp timestamp not null,usr varchar(20) not null,mvt integer not null,invent integer default 0 not null,seuil integer default 0,id integer not null)</sql:update>
 				<sql:update>create table subnets (ip varchar(12) not null,mask integer not null,def varchar(40) not null,gw varchar(12),bc varchar(12) not null,id integer not null,ctx integer not null,site integer not null,vlan integer not null,surnet integer default 0 not null)</sql:update>
 				<sql:update>create table surnets (id integer not null,ip varchar(30) not null,mask integer not null,infos varchar(2000),def varchar(100) not null,parent integer not null,calc integer not null)</sql:update>

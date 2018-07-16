@@ -32,14 +32,13 @@ Required Roles : API, STKADMIN
 <li>In (URI)
 <ul><li>site : integer, site id in database</li></ul></li>
 <li>Out (JSON)
-<ul><li>{"stocktype_list": [ {"id":&lt;id&gt;,"name":&lt;name&gt;,"threshold":&lt;threshold&gt;,"category":&lt;category&gt;,"index":&lt;index&gt;,"ongoing":&lt;ongoing&gt;,"ctx":&lt;ctx&gt;,"site":&lt;site&gt;},{...} ] }
+<ul><li>{"stocktype_list": [ {"id":&lt;id&gt;,"name":&lt;name&gt;,"threshold":&lt;threshold&gt;,"category":&lt;category&gt;,"index":&lt;index&gt;,"ongoing":&lt;ongoing&gt;,"site":&lt;site&gt;},{...} ] }
 <ul><li>id : integer, type id in database</li>
 <li>name : string, type name</li>
 <li>threshold : integer, alert threshold</li>
 <li>category : integer, category id in database</li>
 <li>index : string, type index in stock</li>
 <li>ongoing : integer, number of elements arriving</li>
-<li>ctx : integer, context id in database</li>
 <li>site : integer, site id in database</li></ul></li></ul></li>
 <li>HTTP return code, if not ok return informations in text format
 <ul><li>500 : internal error in API</li>
@@ -56,14 +55,13 @@ Required Roles : API, STKADMIN
 <li>In (URI)
 <ul><li>id : integer, type id in database</li></ul></li>
 <li>Out (JSON)
-<ul><li>{ "id":&lt;id&gt;,"name":&lt;name&gt;,"threshold":&lt;threshold&gt;,"category":&lt;category&gt;,"index":&lt;index&gt;,"ongoing":&lt;ongoing&gt;,"ctx":&lt;ctx&gt;,"site":&lt;site&gt; }
+<ul><li>{ "id":&lt;id&gt;,"name":&lt;name&gt;,"threshold":&lt;threshold&gt;,"category":&lt;category&gt;,"index":&lt;index&gt;,"ongoing":&lt;ongoing&gt;,"site":&lt;site&gt; }
 <ul><li>id : integer, type id in database</li>
 <li>name : string, type name</li>
 <li>threshold : integer, alert threshold</li>
 <li>category : integer, category id in database</li>
 <li>index : string, type index in stock</li>
 <li>ongoing : integer, number of elements arriving</li>
-<li>ctx : integer, context id in database</li>
 <li>site : integer, site id in database</li></ul></li></ul></li>
 <li>HTTP return code, if not ok return informations in text format
 <ul><li>500 : internal error in API</li>
@@ -93,13 +91,12 @@ Required Roles : API, STKADMIN
 <ul>
 <li>URL<ul><li><b>POST /api/stockadmin/type</b></li></ul></li>
 <li>In (JSON)
-<ul><li>{ "name":&lt;name&gt;,"threshold":&lt;threshold&gt;,"category":&lt;category&gt;,"index":&lt;index&gt;,"ongoing":&lt;ongoing&gt;,"ctx":&lt;ctx&gt;,"site":&lt;site&gt; }
+<ul><li>{ "name":&lt;name&gt;,"threshold":&lt;threshold&gt;,"category":&lt;category&gt;,"index":&lt;index&gt;,"ongoing":&lt;ongoing&gt;,"site":&lt;site&gt; }
 <ul><li>name : string, type name</li>
 <li>threshold : integer, optional, default 0, alert threshold</li>
 <li>category : integer, category id in database</li>
 <li>index : string, type index in stock</li>
 <li>ongoing : integer, optional, default 0, number of elements arriving</li>
-<li>ctx : integer, context id in database</li>
 <li>site : integer, site id in database</li></ul></li></ul></li>
 <li>Out (text/plain) : Type &lt;id&gt; created
 <ul><li>id : integer, type id in database</li></ul></li>

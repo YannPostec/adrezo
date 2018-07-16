@@ -32,14 +32,13 @@ Roles requis : API, STKADMIN
 <li>Entrée (URI)
 <ul><li>site : entier, id du site dans la base</li></ul></li>
 <li>Sortie (JSON)
-<ul><li>{"stocktype_list": [ {"id":&lt;id&gt;,"name":&lt;name&gt;,"threshold":&lt;threshold&gt;,"category":&lt;category&gt;,"index":&lt;index&gt;,"ongoing":&lt;ongoing&gt;,"ctx":&lt;ctx&gt;,"site":&lt;site&gt;},{...} ] }
+<ul><li>{"stocktype_list": [ {"id":&lt;id&gt;,"name":&lt;name&gt;,"threshold":&lt;threshold&gt;,"category":&lt;category&gt;,"index":&lt;index&gt;,"ongoing":&lt;ongoing&gt;,"site":&lt;site&gt;},{...} ] }
 <ul><li>id : entier, id du type dans la base</li>
 <li>name : chaine, nom du type</li>
 <li>threshold : entier, seuil d'alerte</li>
 <li>category : entier, id de la categorie dans la base</li>
 <li>index : chaine, classification du type dans le stock</li>
 <li>ongoing : entier, nombre d'elements en cours d'approvisionnement</li>
-<li>ctx : entier, id du contexte dans la base</li>
 <li>site : entier, id du site dans la base</li></ul></li></ul></li>
 <li>Code de retour HTTP, si non ok retour d'informations en format texte
 <ul><li>500 : erreur interne dans l'API</li>
@@ -56,14 +55,13 @@ Roles requis : API, STKADMIN
 <li>Entrée (URI)
 <ul><li>id : entier, id du type dans la base</li></ul></li>
 <li>Sortie (JSON)
-<ul><li>{ "id":&lt;id&gt;,"name":&lt;name&gt;,"threshold":&lt;threshold&gt;,"category":&lt;category&gt;,"index":&lt;index&gt;,"ongoing":&lt;ongoing&gt;,"ctx":&lt;ctx&gt;,"site":&lt;site&gt; }
+<ul><li>{ "id":&lt;id&gt;,"name":&lt;name&gt;,"threshold":&lt;threshold&gt;,"category":&lt;category&gt;,"index":&lt;index&gt;,"ongoing":&lt;ongoing&gt;,"site":&lt;site&gt; }
 <ul><li>id : entier, id du type dans la base</li>
 <li>name : chaine, nom du type</li>
 <li>threshold : entier, seuil d'alerte</li>
 <li>category : entier, id de la categorie dans la base</li>
 <li>index : chaine, classification du type dans le stock</li>
 <li>ongoing : entier, nombre d'elements en cours d'approvisionnement</li>
-<li>ctx : entier, id du contexte dans la base</li>
 <li>site : entier, id du site dans la base</li></ul></li></ul></li>
 <li>Code de retour HTTP, si non ok retour d'informations en format texte
 <ul><li>500 : erreur interne dans l'API</li>
@@ -93,13 +91,12 @@ Roles requis : API, STKADMIN
 <ul>
 <li>URL<ul><li><b>POST /api/stockadmin/type</b></li></ul></li>
 <li>Entrée (JSON)
-<ul><li>{ "name":&lt;name&gt;,"threshold":&lt;threshold&gt;,"category":&lt;category&gt;,"index":&lt;index&gt;,"ongoing":&lt;ongoing&gt;,"ctx":&lt;ctx&gt;,"site":&lt;site&gt; }
+<ul><li>{ "name":&lt;name&gt;,"threshold":&lt;threshold&gt;,"category":&lt;category&gt;,"index":&lt;index&gt;,"ongoing":&lt;ongoing&gt;,"site":&lt;site&gt; }
 <ul><li>name : chaine, nom du type</li>
 <li>threshold : entier, optionnel, défaut 0, seuil d'alerte</li>
 <li>category : entier, id de la categorie dans la base</li>
 <li>index : chaine, classification du type dans le stock</li>
 <li>ongoing : entier, optionnel, défaut 0, nombre d'elements en cours d'approvisionnement</li>
-<li>ctx : entier, id du contexte dans la base</li>
 <li>site : entier, id du site dans la base</li></ul></li></ul></li>
 <li>Sortie (text/plain) : Type &lt;id&gt; created
 <ul><li>id : entier, id du type dans la base</li></ul></li>

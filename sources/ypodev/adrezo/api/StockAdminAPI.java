@@ -57,7 +57,6 @@ public class StockAdminAPI {
 		private Integer category;
 		private String index;
 		private Integer ongoing;
-		private Integer ctx;
 		private Integer site;
 	}
 	private class ApiStockCategoryList {
@@ -151,7 +150,6 @@ public class StockAdminAPI {
     				mytype.category = rs.getInt("cat");
     				mytype.index = rs.getString("idx");
     				mytype.ongoing = rs.getInt("encours");
-    				mytype.ctx = rs.getInt("ctx");
    					mytype.site = rs.getInt("site");
 						mylist.stocktype_list.add(mytype);
 					}
@@ -254,7 +252,6 @@ public class StockAdminAPI {
    				mytype.category = rs.getInt("cat");
    				mytype.index = rs.getString("idx");
    				mytype.ongoing = rs.getInt("encours");
-   				mytype.ctx = rs.getInt("ctx");
    				mytype.site = rs.getInt("site");
 					Gson gson = new Gson();
 					result = gson.toJson(mytype);
@@ -341,7 +338,6 @@ public class StockAdminAPI {
 		String incategory="";
 		String inindex="";
 		String inongoing="";
-		String inctx="";
 		String insite="";
 		try {
 			Gson gson = new Gson();
@@ -351,7 +347,6 @@ public class StockAdminAPI {
  			incategory = obj.category==null?null:String.valueOf(obj.category);
  			inindex = obj.index;
  			inongoing = obj.ongoing==null?null:String.valueOf(obj.ongoing);
- 			inctx = String.valueOf(obj.ctx);
  			insite = String.valueOf(obj.site);
 		} catch (Exception e) { printLog("StockTypeAdd/ReadJSON: ",e); }
 		if (inname==null) { printLog("StockTypeAdd/Check: name not null",null); }
@@ -376,7 +371,6 @@ public class StockAdminAPI {
 				if (test>9999) { printLog("StockTypeMod/Check: ongoing must be < 10000",null); }
 			} else { inongoing = "0"; }
 		} catch (NumberFormatException e) { printLog("StockTypeAdd/Check: ongoing not a number",null); }
-		try { Integer.parseInt(inctx); } catch (NumberFormatException e) { printLog("StockTypeAdd/Check: ctx not a number",null); }
 		try { Integer.parseInt(insite); } catch (NumberFormatException e) { printLog("StockTypeAdd/Check: site not a number",null); }		
 		if (!erreur) {
 			Connection conn = null;
@@ -391,11 +385,11 @@ public class StockAdminAPI {
 				javax.sql.DataSource ds = (javax.sql.DataSource) env.lookup (jdbc_jndi);
 				conn = ds.getConnection();
 				stmt = conn.createStatement();
-				rs = stmt.executeQuery("select id from sites where id="+insite+" and ctx="+inctx);					
+				rs = stmt.executeQuery("select id from sites where id="+insite);					
 				if (rs.next()) {
   				try {
 	   				stmtup = conn.createStatement();
-						stmtup.executeUpdate("insert into stock_etat (id,idx,def,seuil,cat,encours,ctx,site) values ("+DbSeqNextval.dbSeqNextval("stock_seq")+",'"+inindex+"','"+inname+"',"+inthreshold+","+incategory+","+inongoing+","+inctx+","+insite+")");
+						stmtup.executeUpdate("insert into stock_etat (id,idx,def,seuil,cat,encours,site) values ("+DbSeqNextval.dbSeqNextval("stock_seq")+",'"+inindex+"','"+inname+"',"+inthreshold+","+incategory+","+inongoing+","+insite+")");
 						String myquery = "select "+DbSeqCurrval.dbSeqCurrval("stock_seq")+" as seq";
 						if (db_type.equals("oracle")) { myquery += " from dual"; }
 						rsv = stmtup.executeQuery(myquery);

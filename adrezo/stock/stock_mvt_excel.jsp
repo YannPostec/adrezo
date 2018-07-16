@@ -12,10 +12,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml"><head><title><fmt:message key="stock.xls.mvt" /></title>
 <meta http-equiv="Content-Type" content="application/vnd.ms-excel; charset=UTF-8" /></head><body>
 <sql:query var="mvts">
-	SELECT e.IDX, m.STAMP, m.USR, m.MVT, m.INVENT, m.SEUIL, e.DEF, e.CAT, e.CTX_NAME, e.SITE_NAME
-	FROM STOCK_ETAT_DISPLAY e, STOCK_MVT m
-	WHERE m.ID = e.ID
-	ORDER BY m.STAMP DESC
+	select e.idx, m.stamp, m.usr, m.mvt, m.invent, m.seuil, e.def, e.cat, e.ctx_name, e.site_name
+	from stock_etat_display e, stock_mvt m
+	where m.id = e.id
+	order by m.stamp desc
 </sql:query>
 <table border="1"><thead>
 <tr><th><fmt:message key="admin.ctx" /></th><th><fmt:message key="admin.site" /></th><th><fmt:message key="common.table.date" /></th><th><fmt:message key="common.table.cat" /></th><th><fmt:message key="common.table.idx" /></th><th><fmt:message key="common.table.def" /></th><th><fmt:message key="admin.user" /></th><th><fmt:message key="common.table.move" /></th><th><fmt:message key="common.table.inventory" /></th><th><fmt:message key="common.table.thresholdcross" /></th></tr></thead>

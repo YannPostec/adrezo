@@ -27,11 +27,11 @@ td.mvt {white-space:nowrap; text-align:center}
 		<sql:query var="mvts">
 			select * from (
 				select idx,stamp,usr,mvt,invent,seuil,def,cat,rownum n from (
-					SELECT e.IDX, m.STAMP, m.USR, m.MVT, m.INVENT, m.SEUIL, e.DEF, e.CAT
-					FROM STOCK_ETAT_DISPLAY e, STOCK_MVT m
-					WHERE m.ID = e.ID
-					AND e.ID = ?
-					ORDER BY m.STAMP DESC
+					select e.idx, m.stamp, m.usr, m.mvt, m.invent, m.seuil, e.def, e.cat
+					from stock_etat_display e, stock_mvt m
+					where m.id = e.id
+					and e.id = ?
+					order by m.stamp desc
 			)) where n <= ?
 			<sql:param value="${param.type}"/>
 			<sql:param value="${limit}"/>

@@ -32,7 +32,7 @@
 				<sql:update>alter table slastats add constraint fgn_slastats_device foreign key (device) references sladevice (id)</sql:update>
 				<sql:update>alter table sladays add constraint fgn_sladays_device foreign key (device) references sladevice (id)</sql:update>
 				<sql:update>alter table slahours add constraint fgn_slahours_device foreign key (device) references sladevice (id)</sql:update>
-				<sql:update>alter table stock_etat add constraint fgn_stock_ctx foreign key (ctx) references contextes (id)</sql:update>
+				<sql:update>alter table stock_etat add constraint fgn_stock_site foreign key (site) references sites (id)</sql:update>
 				<sql:update>alter table stock_etat add constraint fgn_stock_etat_cat foreign key (cat) references stock_cat (id)</sql:update>
 				<sql:update>alter table stock_mvt add constraint fgn_stock_id foreign key (id) references stock_etat (id)</sql:update>
 				<sql:update>alter table subnets add constraint fgn_subnets_ctx foreign key (ctx) references contextes (id)</sql:update>
