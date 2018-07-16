@@ -172,7 +172,8 @@ public class IpDispoBean implements Serializable {
 						if (startIP == null || bFound) {
 							realStartIP = newsubnet;
 							realEndIP = IPFmt.GetBroadcast(newsubnet,"24");
-							GetIPTotal(true);
+							if (subnetVector.size() == 0) { GetIPTotal(false); }
+							else { GetIPTotal(true); }
 							GetIPSubnet();
 							DiffVector(cptRequest);
 						} else {
@@ -180,7 +181,8 @@ public class IpDispoBean implements Serializable {
 								realStartIP = startIP;
 								bFound = true;
 								realEndIP = IPFmt.GetBroadcast(newsubnet,"24");
-								GetIPTotal(true);
+								if (subnetVector.size() == 0) { GetIPTotal(false); }
+								else { GetIPTotal(true); }
 								GetIPSubnet();
 								DiffVector(cptRequest);
 							}
