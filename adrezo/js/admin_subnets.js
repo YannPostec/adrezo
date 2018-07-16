@@ -16,6 +16,8 @@ function ResetAdd() {
 	T$("add_site").selectedIndex = 0;
 	selectvlan = T$("add_vlan");
 	EmptySelect(selectvlan);
+	T$("init_ip").value = "";
+	T$("init_mask").value = "";
 }
 function ConfirmDlg(id) {
 	showDialog(langdata.confirm,langdata.objdel+"<br/><br/><input type='button' value='"+langdata.dlgyes+"' onclick='javascript:delSubmit("+id+");'/>  <input type='button' value='"+langdata.dlgno+"' onclick='hideDialog();'/>","prompt",0,1);
@@ -97,8 +99,15 @@ function addSubmit() {
 	if (strAlert != "") {
 		showDialog(langdata.invalidfield+" :",strAlert,"warning",0,1);
 	} else {
-		DBAjax("ajax_subnets_store.jsp","site="+site+"&id="+id+"&ip="+ip+"&mask="+mask+"&def="+def+"&gw="+gw+"&bc="+bc+"&vlan="+vlan+"&ctx="+ctx);
+		if ( (T$("add_mask").value!=T$("init_mask").value) || (T$("add_ip").value!=T$("init_ip").value)) {
+			showDialog(langdata.confirm,langdata.subnetchange+"<br/><br/><input type='button' value='"+langdata.dlgyes+'\' onclick="javascript:addAjaxSubmit('+site+','+id+',\''+ip+'\','+mask+',\''+def+'\',\''+gw+'\',\''+bc+'\','+vlan+','+ctx+');"/>'+"  <input type='button' value='"+langdata.dlgno+"' onclick='hideDialog();'/>","warning",0,1);
+		} else {
+			addAjaxSubmit(site,id,ip,mask,def,gw,bc,vlan,ctx);
+		}		
 	}
+}
+function addAjaxSubmit(site,id,ip,mask,def,gw,bc,vlan,ctx) {
+	DBAjax("ajax_subnets_store.jsp","site="+site+"&id="+id+"&ip="+ip+"&mask="+mask+"&def="+def+"&gw="+gw+"&bc="+bc+"&vlan="+vlan+"&ctx="+ctx);
 }
 function delSubmit(id) {
 	DBAjax("ajax_subnets_delete.jsp","id="+id);
@@ -108,7 +117,9 @@ function sendModif(e) {
 	var tds = T$$("td",node.parentNode.parentNode.parentNode);
 	T$("add_id").value = tds[2].firstChild.value;
 	T$("add_ip").value = tds[2].firstChild.nextSibling.nodeValue;
+	T$("init_ip").value = tds[2].firstChild.nextSibling.nodeValue;
 	T$("add_mask").value = tds[3].firstChild.nodeValue;
+	T$("init_mask").value = tds[3].firstChild.nodeValue;
 	T$("add_def").value = tds[4].firstChild.nodeValue;
 	T$("add_gw").value = tds[5].firstChild?tds[5].firstChild.nodeValue:"";
 	T$("add_bc").value = tds[6].firstChild.nodeValue;

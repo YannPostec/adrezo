@@ -180,5 +180,6 @@
 	<json:property name="dhcpscopeerror"><fmt:message key="js.dhcpscopeerror" /></json:property>
 	<json:property name="dhcpscopeno"><fmt:message key="js.dhcpscopeno" /></json:property>
 	<json:property name="dhcpscopewait"><fmt:message key="js.dhcpscopewait" /></json:property>
+	<json:property name="subnetchange"><fmt:message key="js.subnetchange" /></json:property>
 </json:object>	
 </c:if>

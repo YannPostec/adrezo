@@ -11,16 +11,16 @@
 <c:choose>
 <c:when test="${validUser != null && pageContext.request.method == 'POST' && validUser.rezo && !empty param.ctx}">
 	<c:set var="message"><valid>true</valid></c:set>
-	<sql:query var="exists">
-		select id from subnets where site=?${adrezo:dbCast('INTEGER')} and ip=? and mask=?${adrezo:dbCast('INTEGER')}
-		<sql:param value="${param.site}"/>
-		<sql:param value="${param.ip}"/>
-		<sql:param value="${param.mask}"/>
-	</sql:query>
 	<c:choose>
-	<c:when test="${empty exists.rows}">
+	<c:when test="${empty param.id}">
+		<sql:query var="exists">
+			select id from subnets where site=?${adrezo:dbCast('INTEGER')} and ip=? and mask=?${adrezo:dbCast('INTEGER')}
+			<sql:param value="${param.site}"/>
+			<sql:param value="${param.ip}"/>
+			<sql:param value="${param.mask}"/>
+		</sql:query>
 		<c:choose>
-		<c:when test="${empty param.id}">
+		<c:when test="${empty exists.rows}">
 			<c:catch var="errInsert">
 				<sql:update>
 					INSERT INTO subnets (id,ctx,site,ip,mask,def,gw,bc,vlan)
@@ -46,63 +46,63 @@
 			</c:choose>
 		</c:when>
 		<c:otherwise>
-			<c:catch var="errUpdate">
-				<sql:transaction>
-					<sql:update>
-						UPDATE adresses
-						SET site = ?${adrezo:dbCast('INTEGER')},
-							mask = ?${adrezo:dbCast('INTEGER')}
-						WHERE subnet = ?${adrezo:dbCast('INTEGER')}
-						<sql:param value="${param.site}"/>
-						<sql:param value="${param.mask}"/>
-						<sql:param value="${param.id}"/>
-					</sql:update>
-					<sql:update>
-						UPDATE adresses
-						SET site_mig = ?${adrezo:dbCast('INTEGER')},
-							mask_mig = ?${adrezo:dbCast('INTEGER')}
-						WHERE subnet_mig = ?${adrezo:dbCast('INTEGER')}
-						<sql:param value="${param.site}"/>
-						<sql:param value="${param.mask}"/>
-						<sql:param value="${param.id}"/>
-					</sql:update>
-					<sql:update>
-						UPDATE subnets
-						SET def =?,
-							gw = ?,
-							bc = ?,
-							ip = ?,
-							mask = ?${adrezo:dbCast('INTEGER')},
-							site = ?${adrezo:dbCast('INTEGER')},
-							ctx = ?${adrezo:dbCast('INTEGER')},
-							vlan = ?${adrezo:dbCast('INTEGER')}
-						WHERE id = ?${adrezo:dbCast('INTEGER')}
-						<sql:param value="${param.def}"/>
-						<sql:param value="${param.gw}"/>
-						<sql:param value="${param.bc}"/>
-						<sql:param value="${param.ip}"/>
-						<sql:param value="${param.mask}"/>
-						<sql:param value="${param.site}"/>
-						<sql:param value="${param.ctx}"/>
-						<sql:param value="${param.vlan}"/>
-						<sql:param value="${param.id}"/>
-					</sql:update>
-				</sql:transaction>
-			</c:catch>
-			<c:choose>
-			<c:when test="${errUpdate != null}">
-				<adrezo:fileDB value="${errUpdate}"/>
-				<c:set var="message" scope="page">${message}<erreur>true</erreur><msg><fmt:message key="common.modify" /><fmt:message key="admin.subnet" /> : <fmt:message key="common.error" />, <adrezo:trim value="${errUpdate}"/></msg></c:set>
-			</c:when>
-			<c:otherwise>
-				<c:set var="message" scope="page">${message}<erreur>false</erreur><msg><fmt:message key="common.modify" /><fmt:message key="admin.subnet" /> : <fmt:message key="common.ok" /></msg></c:set>
-			</c:otherwise>
-			</c:choose>	
+			<c:set var="message" scope="page">${message}<erreur>true</erreur><msg><fmt:message key="common.add" /><fmt:message key="admin.subnet" /> : <fmt:message key="common.error" />, <fmt:message key="admin.subnet.exist" /></msg></c:set>
 		</c:otherwise>
 		</c:choose>
 	</c:when>
 	<c:otherwise>
-		<c:set var="message" scope="page">${message}<erreur>true</erreur><msg><fmt:message key="common.add" /><fmt:message key="admin.subnet" /> : <fmt:message key="common.error" />, <fmt:message key="admin.subnet.exist" /></msg></c:set>
+		<c:catch var="errUpdate">
+			<sql:transaction>
+				<sql:update>
+					UPDATE adresses
+					SET site = ?${adrezo:dbCast('INTEGER')},
+						mask = ?${adrezo:dbCast('INTEGER')}
+					WHERE subnet = ?${adrezo:dbCast('INTEGER')}
+					<sql:param value="${param.site}"/>
+					<sql:param value="${param.mask}"/>
+					<sql:param value="${param.id}"/>
+				</sql:update>
+				<sql:update>
+					UPDATE adresses
+					SET site_mig = ?${adrezo:dbCast('INTEGER')},
+						mask_mig = ?${adrezo:dbCast('INTEGER')}
+					WHERE subnet_mig = ?${adrezo:dbCast('INTEGER')}
+					<sql:param value="${param.site}"/>
+					<sql:param value="${param.mask}"/>
+					<sql:param value="${param.id}"/>
+				</sql:update>
+				<sql:update>
+					UPDATE subnets
+					SET def =?,
+						gw = ?,
+						bc = ?,
+						ip = ?,
+						mask = ?${adrezo:dbCast('INTEGER')},
+						site = ?${adrezo:dbCast('INTEGER')},
+						ctx = ?${adrezo:dbCast('INTEGER')},
+						vlan = ?${adrezo:dbCast('INTEGER')}
+					WHERE id = ?${adrezo:dbCast('INTEGER')}
+					<sql:param value="${param.def}"/>
+					<sql:param value="${param.gw}"/>
+					<sql:param value="${param.bc}"/>
+					<sql:param value="${param.ip}"/>
+					<sql:param value="${param.mask}"/>
+					<sql:param value="${param.site}"/>
+					<sql:param value="${param.ctx}"/>
+					<sql:param value="${param.vlan}"/>
+					<sql:param value="${param.id}"/>
+				</sql:update>
+			</sql:transaction>
+		</c:catch>
+		<c:choose>
+		<c:when test="${errUpdate != null}">
+			<adrezo:fileDB value="${errUpdate}"/>
+			<c:set var="message" scope="page">${message}<erreur>true</erreur><msg><fmt:message key="common.modify" /><fmt:message key="admin.subnet" /> : <fmt:message key="common.error" />, <adrezo:trim value="${errUpdate}"/></msg></c:set>
+		</c:when>
+		<c:otherwise>
+			<c:set var="message" scope="page">${message}<erreur>false</erreur><msg><fmt:message key="common.modify" /><fmt:message key="admin.subnet" /> : <fmt:message key="common.ok" /></msg></c:set>
+		</c:otherwise>
+		</c:choose>	
 	</c:otherwise>
 	</c:choose>
 </c:when>
