@@ -173,21 +173,24 @@ public class DHCPJob implements Job {
 				Integer srv_bauth = rs.getInt("auth");
 				String srv_user = rs.getString("login");
 				String srv_pwd = rs.getString("pwd");
-				String srv_method = "http";
-				if (srv_ssl==1) { srv_method = srv_method+"s"; }
-				String srv_httpport = "";
-				if ((srv_ssl==0 && srv_port!=80) || (srv_ssl==1 && srv_port!=443)) { srv_httpport = ":"+String.valueOf(srv_port); }
-				WebClient client;
-				if (srv_bauth==1) {
-					client = WebClient.create(srv_method+"://"+srv_host+srv_httpport,srv_user,srv_pwd,null);
-				} else {
-					client = WebClient.create(srv_method+"://"+srv_host+srv_httpport);
-				}
-        HTTPConduit conduit = WebClient.getConfig(client).getHttpConduit();
-        conduit.getClient().setReceiveTimeout(dhcp_receive);
-        conduit.getClient().setConnectionTimeout(dhcp_cnx);
-				mylog.debug("Add server "+srv_method+"://"+srv_host+srv_httpport+",auth:"+String.valueOf(srv_bauth)+",login:"+srv_user+",pwd:"+srv_pwd);
-				servers.put(srv_host,client);
+				Integer srv_enable = rs.getInt("enable");
+				if (srv_enable==1) {
+					String srv_method = "http";
+					if (srv_ssl==1) { srv_method = srv_method+"s"; }
+					String srv_httpport = "";
+					if ((srv_ssl==0 && srv_port!=80) || (srv_ssl==1 && srv_port!=443)) { srv_httpport = ":"+String.valueOf(srv_port); }
+					WebClient client;
+					if (srv_bauth==1) {
+						client = WebClient.create(srv_method+"://"+srv_host+srv_httpport,srv_user,srv_pwd,null);
+					} else {
+						client = WebClient.create(srv_method+"://"+srv_host+srv_httpport);
+					}
+        	HTTPConduit conduit = WebClient.getConfig(client).getHttpConduit();
+      	  conduit.getClient().setReceiveTimeout(dhcp_receive);
+    	    conduit.getClient().setConnectionTimeout(dhcp_cnx);
+					mylog.debug("Add server "+srv_method+"://"+srv_host+srv_httpport+",auth:"+String.valueOf(srv_bauth)+",login:"+srv_user+",pwd:"+srv_pwd);
+					servers.put(srv_host,client);
+				} else { mylog.debug("Server "+srv_host+" is disabled"); }
 			}
 			rs.close();rs=null;
 			mylog.info("Retrieving "+String.valueOf(servers.size())+" servers informations");
