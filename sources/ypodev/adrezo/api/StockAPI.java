@@ -68,7 +68,7 @@ public class StockAPI {
 	}
 
 	@GET
-	@Secured({Role.STOCK})
+	@Secured
 	@Path("/supply/list/{site}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response stocksupplylistRESTService(@PathParam("site") String site) {
@@ -123,7 +123,7 @@ public class StockAPI {
 	}
 	
 	@GET
-	@Secured({Role.STOCK})
+	@Secured
 	@Path("/supply/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response stocksupplyinfoRESTService(@PathParam("id") String id) {
@@ -174,7 +174,7 @@ public class StockAPI {
 	}
 
 	@GET
-	@Secured({Role.STOCK})
+	@Secured
 	@Path("/supply/history/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response stocksupplyhistoryRESTService(@PathParam("id") String id) {

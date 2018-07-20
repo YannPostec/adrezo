@@ -1,9 +1,0 @@
-open <Inject Server>
-<FTP login>
-<FTP password>
-bin
-prompt
-lcd <adrezo_dhcp path> c:\adrezo_dhcp\data
-cd <Server>
-mput *
-bye

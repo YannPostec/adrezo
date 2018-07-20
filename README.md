@@ -1,3 +1,4 @@
+# Adrezo
 Adrezo is a light IPv4 Address Management software written in JSP.  
 It allows you to maintain IP Address database organised in subnets within sites.  
 It comes with various modules to also :
@@ -10,7 +11,7 @@ Some features available are :
 - CSV Import/Export of some application data
 - REST API to access and manage most of the application data
 
-# Environment
+## Environment
 
 The application has been tested on :
 - Applications Servers
@@ -27,18 +28,18 @@ and with browsers :
 - Google Chrome
 - Internet Explorer 11
 
-# Installation
+## Installation
 
 See [Install section](./INSTALL.md)  
 Take the last release from [Releases](../../releases)  
 or see below for Beta versions
 
-## Installation of Beta Version
+### Installation of Beta Version
 If you clone this repository for upgrade, you will have all current developments (Beta) since the last release and you must modify the database if needed.
 To do that check for the last ./update/sqlupdate_xxx.jsp file and inject the sql lines you will find inside that file, except the last one which changes the database version.
 After that when upgrading from release, you must rollback those instructions for the upgrade process to perform without errors.
 
-# Upgrade
+## Upgrade
 
 Prepare the new adrezo directory with an upgraded version.
 
@@ -59,11 +60,11 @@ Start the instance on this new directory.
 If there is a difference in database version and application version, a page invites you to enter the admin password to proceed.  
 After the upgrade, you are redirected to login page.
 
-# First start
+## First start
 
 Check inline application help by clicking on ![Help Icon](./icon_help.png) in the top menu bar
 
-# Modules
+## Modules
 
 Some modules required configuration :
 - [NAS](./modules/NAS.md)
@@ -71,7 +72,7 @@ Some modules required configuration :
 - [Mail](./modules/mail.md)
 - [DHCP](./modules/DHCP.md)
 
-# License
+## License
 
 Adrezo is released under the [Apache 2.0 license](./LICENSE).
 
@@ -91,5 +92,5 @@ See the License for the specific language governing permissions and
 limitations under the License.
 ````
 
-## Used libraries Licenses
+### Used libraries Licenses
 All licenses for java libraries, javascript libraries and image collections are in [licenses directory](./licenses/README.md)

@@ -75,7 +75,7 @@ public class PhotoAPI {
 	}
 
 	@GET
-	@Secured({Role.PHOTO})
+	@Secured
 	@Path("/room/list/{site}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response photoroomlistRESTService(@PathParam("site") String site) {
@@ -125,7 +125,7 @@ public class PhotoAPI {
 	}
 
 	@GET
-	@Secured({Role.PHOTO})
+	@Secured
 	@Path("/room/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response photoroominfoRESTService(@PathParam("id") String id) {
@@ -363,7 +363,7 @@ public class PhotoAPI {
 	}
 
 	@GET
-	@Secured({Role.PHOTO})
+	@Secured
 	@Path("/set/list/{room}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response photosetlistRESTService(@PathParam("room") String room) {
@@ -413,7 +413,7 @@ public class PhotoAPI {
 	}
 	
 	@GET
-	@Secured({Role.PHOTO})
+	@Secured
 	@Path("/set/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response photosetinfoRESTService(@PathParam("id") String id) {
@@ -651,7 +651,7 @@ public class PhotoAPI {
 	}
 	
 	@GET
-	@Secured({Role.PHOTO})
+	@Secured
 	@Path("/rack/list/{set}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response photoracklistRESTService(@PathParam("set") String set) {
@@ -702,7 +702,7 @@ public class PhotoAPI {
 	}
 
 	@GET
-	@Secured({Role.PHOTO})
+	@Secured
 	@Path("/rack/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response photorackinfoRESTService(@PathParam("id") String id) {
@@ -958,7 +958,7 @@ public class PhotoAPI {
 	}	
 
 	@GET
-	@Secured({Role.PHOTO})
+	@Secured
 	@Path("/room/pictures/{room}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response photoroompicturesRESTService(@PathParam("room") String room) {
@@ -1014,7 +1014,7 @@ public class PhotoAPI {
 	}
 
 	@GET
-	@Secured({Role.PHOTO})
+	@Secured
 	@Path("/rack/pictures/{rack}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response photorackpicturesRESTService(@PathParam("rack") String rack) {

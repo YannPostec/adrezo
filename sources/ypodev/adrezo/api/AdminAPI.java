@@ -55,7 +55,7 @@ public class AdminAPI {
 
 
 	@GET
-	@Secured({Role.ADMIN})
+	@Secured
 	@Path("/site/{site}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response siteinfoRESTService(@PathParam("site") String site) {
@@ -296,7 +296,7 @@ public class AdminAPI {
 	}
 
 	@GET
-	@Secured({Role.ADMIN})
+	@Secured
 	@Path("/context/{ctx}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response ctxinfoRESTService(@PathParam("ctx") String ctx) {
@@ -343,7 +343,7 @@ public class AdminAPI {
 	}
 	
 	@GET
-	@Secured({Role.ADMIN})
+	@Secured
 	@Path("/context/listsite/{ctx}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response ctxlistsiteRESTService(@PathParam("ctx") String ctx) {
@@ -394,7 +394,7 @@ public class AdminAPI {
 	}
 	
 	@GET
-	@Secured({Role.ADMIN})
+	@Secured
 	@Path("/context/list")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response ctxlistRESTService() {

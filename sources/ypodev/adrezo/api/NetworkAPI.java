@@ -114,7 +114,7 @@ public class NetworkAPI {
 	}
 	
 	@GET
-	@Secured({Role.NETWORK})
+	@Secured
 	@Path("/subnet/{subnet}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response subnetinfoRESTService(@PathParam("subnet") String subnet) {
@@ -330,7 +330,7 @@ public class NetworkAPI {
 	}
 	
 	@GET
-	@Secured({Role.NETWORK})
+	@Secured
 	@Path("/subnet/list/{site}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response subnetlistRESTService(@PathParam("site") String site) {
@@ -388,7 +388,7 @@ public class NetworkAPI {
 	}
 	
 	@GET
-	@Secured({Role.NETWORK})
+	@Secured
 	@Path("/vlan/{vlan}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response vlaninfoRESTService(@PathParam("vlan") String vlan) {
@@ -563,7 +563,7 @@ public class NetworkAPI {
 	}
 	
 	@GET
-	@Secured({Role.NETWORK})
+	@Secured
 	@Path("/vlan/list/{site}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response vlanlistRESTService(@PathParam("site") String site) {
