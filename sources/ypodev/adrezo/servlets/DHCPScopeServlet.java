@@ -29,7 +29,7 @@ public class DHCPScopeServlet extends HttpServlet {
 	private Logger mylog = Logger.getLogger(DHCPScopeServlet.class);
 	private Integer dhcp_receive=5000;
 	private Integer dhcp_cnx=3000;
-	private String basePath = "adrezo/dhcp";
+	private String basePath = "dhcp";
 	private List<String> scopes = new ArrayList<String>();
 	private List<String> exclus = new ArrayList<String>();
 

@@ -71,7 +71,7 @@ public class DHCPJob implements Job {
 	private boolean mailauth=false;
 	private Integer dhcp_receive=5000;
 	private Integer dhcp_cnx=3000;
-	private String basePath = "adrezo/dhcp";
+	private String basePath = "dhcp";
 	
 	private void ReadConf() {
 		Configurations cfgs = new Configurations();

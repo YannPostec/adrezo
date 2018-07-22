@@ -99,11 +99,15 @@ function addSubmit() {
 	if (strAlert != "") {
 		showDialog(langdata.invalidfield+" :",strAlert,"warning",0,1);
 	} else {
-		if ( (T$("add_mask").value!=T$("init_mask").value) || (T$("add_ip").value!=T$("init_ip").value)) {
-			showDialog(langdata.confirm,langdata.subnetchange+"<br/><br/><input type='button' value='"+langdata.dlgyes+'\' onclick="javascript:addAjaxSubmit('+site+','+id+',\''+ip+'\','+mask+',\''+def+'\',\''+gw+'\',\''+bc+'\','+vlan+','+ctx+');"/>'+"  <input type='button' value='"+langdata.dlgno+"' onclick='hideDialog();'/>","warning",0,1);
-		} else {
+		if (id=="") {
 			addAjaxSubmit(site,id,ip,mask,def,gw,bc,vlan,ctx);
-		}		
+		} else {
+			if ( (mask!=T$("init_mask").value) || (T$("add_ip").value!=T$("init_ip").value)) {
+				showDialog(langdata.confirm,langdata.subnetchange+"<br/><br/><input type='button' value='"+langdata.dlgyes+'\' onclick="javascript:addAjaxSubmit('+site+','+id+',\''+ip+'\','+mask+',\''+def+'\',\''+gw+'\',\''+bc+'\','+vlan+','+ctx+');"/>'+"  <input type='button' value='"+langdata.dlgno+"' onclick='hideDialog();'/>","warning",0,1);
+			} else {
+				addAjaxSubmit(site,id,ip,mask,def,gw,bc,vlan,ctx);
+			}
+		}
 	}
 }
 function addAjaxSubmit(site,id,ip,mask,def,gw,bc,vlan,ctx) {

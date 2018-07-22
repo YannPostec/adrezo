@@ -31,5 +31,40 @@ Dans le role déclaré pour l'utilisateur, l'API prend en compte la déclaration
 <h3>Limitation à certains subnets</h3>
 Par défaut, l'utilisateur a accès aux opérations IP et Réseau sur l'ensemble des subnets.<br />
 Il est possible de restreindre l'accès à certains subnets seulement, voir Admin/Gestion API dans l'aide.
+
+<h3>Liste des entrées API</h3>
+<table style="text-align:center">
+<tr><th>URI</th><th>GET</th><th>POST</th><th>DELETE</th><th>PATCH</th></tr>
+<tr><td style="text-align:left">/api/admin/context/&lt;ctx&gt;</td><td>X</td><td></td><td></td><td>X</td></tr>
+<tr><td style="text-align:left">/api/admin/context/list</td><td>X</td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:left">/api/admin/context/listsite/&lt;ctx&gt;</td><td>X</td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:left">/api/admin/site/&lt;site&gt;</td><td>X</td><td>X</td><td>X</td><td>X</td></tr>
+<tr><td style="text-align:left">/api/ip/&lt;ip&gt;</td><td>X</td><td>X</td><td>X</td><td></td></tr>
+<tr><td style="text-align:left">/api/ip/dispo/&lt;subnet&gt;</td><td>X</td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:left">/api/ip/name/&lt;name&gt;</td><td>X</td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:left">/api/ip/list/&lt;subnet&gt;</td><td>X</td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:left">/api/network/subnet/&lt;subnet&gt;</td><td>X</td><td>X</td><td>X</td><td></td></tr>
+<tr><td style="text-align:left">/api/network/subnet/my</td><td>X</td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:left">/api/network/subnet/list/&lt;site&gt;</td><td>X</td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:left">/api/network/vlan/&lt;vlan&gt;</td><td>X</td><td>X</td><td>X</td><td></td></tr>
+<tr><td style="text-align:left">/api/network/vlan/list/&lt;site&gt;</td><td>X</td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:left">/api/photo/room/&lt;id&gt;</td><td>X</td><td>X</td><td>X</td><td>X</td></tr>
+<tr><td style="text-align:left">/api/photo/room/list/&lt;site&gt;</td><td>X</td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:left">/api/photo/room/pictures/&lt;room&gt;</td><td>X</td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:left">/api/photo/set/&lt;id&gt;</td><td>X</td><td>X</td><td>X</td><td>X</td></tr>
+<tr><td style="text-align:left">/api/photo/set/list/&lt;room&gt;</td><td>X</td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:left">/api/photo/rack/&lt;id&gt;</td><td>X</td><td>X</td><td>X</td><td>X</td></tr>
+<tr><td style="text-align:left">/api/photo/rack/list/&lt;set&gt;</td><td>X</td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:left">/api/photo/rack/pictures/&lt;rack&gt;</td><td>X</td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:left">/api/stock/supply/&lt;id&gt;</td><td>X</td><td></td><td></td><td>X</td></tr>
+<tr><td style="text-align:left">/api/stock/supply/list/&lt;site&gt;</td><td>X</td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:left">/api/stock/supply/history/&lt;id&gt;</td><td>X</td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:left">/api/stockadmin/site/list/&lt;ctx&gt;</td><td>X</td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:left">/api/stockadmin/type/&lt;id&gt;</td><td>X</td><td>X</td><td>X</td><td>X</td></tr>
+<tr><td style="text-align:left">/api/stockadmin/type/&lt;id&gt;/reception<td></td><td></td><td></td><td>X</td></tr>
+<tr><td style="text-align:left">/api/stockadmin/type/list/&lt;site&gt;</td><td>X</td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:left">/api/stockadmin/category/&lt;id&gt;</td><td>X</td><td>X</td><td>X</td><td>X</td></tr>
+<tr><td style="text-align:left">/api/stockadmin/category/list/</td><td>X</td><td></td><td></td><td></td></tr>
+</table>
 </body>
 </html>

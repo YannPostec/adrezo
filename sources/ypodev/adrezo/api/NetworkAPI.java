@@ -286,41 +286,53 @@ public class NetworkAPI {
 			Connection conn = null;
 			Statement stmt = null;
 			Statement stmtup = null;
+			Statement stmtcheck = null;
 			ResultSet rs = null;
 			ResultSet rsv = null;
+			ResultSet rscheck = null;
 			try {
 				javax.naming.Context env = (javax.naming.Context) new InitialContext().lookup("java:comp/env");
 				String jdbc_jndi = (String) env.lookup("jdbc_jndi");
 				db_type = (String) env.lookup("db_type");
 				javax.sql.DataSource ds = (javax.sql.DataSource) env.lookup (jdbc_jndi);
 				conn = ds.getConnection();
-				stmt = conn.createStatement();
-				rs = stmt.executeQuery("select id from vlan where id="+invlan+" and site="+insite+" and ctx="+inctx);					
-				if (rs.next()) {
-  				try {
-	   				stmtup = conn.createStatement();
-						stmtup.executeUpdate("insert into subnets (id,ip,mask,def,gw,bc,ctx,site,vlan,surnet) values ("+DbSeqNextval.dbSeqNextval("subnets_seq")+",'"+inip+"',"+inmask+",'"+indesc+"','"+ingw+"','"+inbc+"',"+inctx+","+insite+","+invlan+",0)");
-						String myquery = "select "+DbSeqCurrval.dbSeqCurrval("subnets_seq")+" as seq";
-						if (db_type.equals("oracle")) { myquery += " from dual"; }
-						rsv = stmtup.executeQuery(myquery);
-						if (rsv.next()) { result="Subnet "+String.valueOf(rsv.getInt("seq"))+" created"; }
-						else { result="Subnet created, no id returned"; }
-						rsv.close();rsv=null;
-						stmtup.close();stmtup=null;
-					} catch (Exception e) { printLog("SubnetAdd/Failed: ",e); }
+				stmtcheck = conn.createStatement();
+				rscheck = stmtcheck.executeQuery("select id from subnets where site="+insite+" and mask="+inmask+" and ip='"+inip+"'");
+				if (rscheck.next()) {
+					printLog("Subnet already exists in site",null);
 				} else {
-					errcode=404;
-					result="Context,Site,Vlan not found";
+					stmt = conn.createStatement();
+					rs = stmt.executeQuery("select id from vlan where id="+invlan+" and site="+insite);					
+					if (rs.next()) {
+	  				try {
+	   					stmtup = conn.createStatement();
+							stmtup.executeUpdate("insert into subnets (id,ip,mask,def,gw,bc,ctx,site,vlan,surnet) values ("+DbSeqNextval.dbSeqNextval("subnets_seq")+",'"+inip+"',"+inmask+",'"+indesc+"','"+ingw+"','"+inbc+"',"+inctx+","+insite+","+invlan+",0)");
+							String myquery = "select "+DbSeqCurrval.dbSeqCurrval("subnets_seq")+" as seq";
+							if (db_type.equals("oracle")) { myquery += " from dual"; }
+							rsv = stmtup.executeQuery(myquery);
+							if (rsv.next()) { result="Subnet "+String.valueOf(rsv.getInt("seq"))+" created"; }
+							else { result="Subnet created, no id returned"; }
+							rsv.close();rsv=null;
+							stmtup.close();stmtup=null;
+						} catch (Exception e) { printLog("SubnetAdd/Failed: ",e); }
+					} else {
+						errcode=404;
+						result="Site,Vlan not found";
+					}
+					rs.close();rs=null;
+					stmt.close();stmt=null;
 				}
-				rs.close();rs=null;
-				stmt.close();stmt=null;
+				rscheck.close();rscheck=null;
+				stmtcheck.close();stmtcheck=null;
 				conn.close();conn=null;
 			} catch (Exception e) { printLog("SubnetAdd/Global: ",e); }
 			finally {
 				if (rs != null) { try { rs.close(); } catch (SQLException e) { printLog("SubnetAdd/Close rs",e); } rs = null; }
 				if (rsv != null) { try { rsv.close(); } catch (SQLException e) { printLog("SubnetAdd/Close rsv",e); } rsv = null; }
+				if (rscheck != null) { try { rscheck.close(); } catch (SQLException e) { printLog("SubnetAdd/Close rscheck",e); } rscheck = null; }
 				if (stmt != null) { try { stmt.close(); } catch (SQLException e) { printLog("SubnetAdd/Close stmt",e); } stmt = null; }
 				if (stmtup != null) { try { stmtup.close(); } catch (SQLException e) { printLog("SubnetAdd/Close stmtup",e); } stmtup = null; }
+				if (stmtcheck != null) { try { stmtcheck.close(); } catch (SQLException e) { printLog("SubnetAdd/Close stmtcheck",e); } stmtcheck = null; }
 				if (conn != null) { try { conn.close(); } catch (SQLException e) { printLog("SubnetAdd/Close conn",e); } conn = null; }				
 			}
 		}

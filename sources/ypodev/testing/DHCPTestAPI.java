@@ -165,13 +165,6 @@ public class DHCPTestAPI {
 		} else { return Response.status(errcode).entity(result).build(); }
 	}
 
-		private String ip;
-		private String mac;
-		private String stamp;
-		private String name;
-		private String def;
-		private Integer type;
-
 	@GET
 	@Path("/reserve/{scope}")
 	@Produces(MediaType.APPLICATION_JSON)
