@@ -35,8 +35,8 @@ public class PurgeSupplyMvtJob implements Job {
 			if (rsg.next()) {
 				if (rsg.getInt("enabled")>0) {
 					mylog.debug("Job 2 enabled");
-					int days = 0-rsg.getInt("days");
-					mylog.debug("days="+String.valueOf(days));
+					int days = 0-rsg.getInt("param");
+					mylog.debug("param="+String.valueOf(days));
 					stmt = conn.createStatement();
 					rs = stmt.executeQuery("select count(*) as nb from stock_mvt where stamp<"+DbFunc.ToDateStr()+"('"+new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(DateUtils.addDays(new java.util.Date(),days))+"','YYYY-MM-DD HH24:MI:SS')");
 					while (rs.next()) {

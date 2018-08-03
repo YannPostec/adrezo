@@ -35,8 +35,8 @@ public class PurgeUsersJob implements Job {
 			if (rsg.next()) {
 				if (rsg.getInt("enabled")>0) {
 					mylog.debug("Job 1 enabled");
-					int days = 0-rsg.getInt("days");
-					mylog.debug("days="+String.valueOf(days));
+					int days = 0-rsg.getInt("param");
+					mylog.debug("param="+String.valueOf(days));
 					rs = stmt.executeQuery("select login from usercookie where last<"+DbFunc.ToDateStr()+"('"+new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(DateUtils.addDays(new java.util.Date(),days))+"','YYYY-MM-DD HH24:MI:SS') and login <> 'admin'");
 					while (rs.next()) {
 						String dellogin = rs.getString("login");
