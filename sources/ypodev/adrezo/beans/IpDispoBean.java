@@ -198,7 +198,9 @@ public class IpDispoBean implements Serializable {
 						if (subnetVector.size() == 0) {cptRequest = nbIP; }
 					} else { cptRequest = nbIP; }
 				}
-				if (ipFinal.lastIndexOf(',') == ipFinal.length()-1) { ipFinal = ipFinal.substring(0,ipFinal.length()-1); }
+				if (ipFinal.length()>0) {
+					if (ipFinal.lastIndexOf(',') == ipFinal.length()-1) { ipFinal = ipFinal.substring(0,ipFinal.length()-1); }
+				}
 			} else { printLog(prop.getString("ipdispo.err"),null); }
 			CloseDB();	
 		} catch (Exception e) { printLog("Main: ",e); }	
