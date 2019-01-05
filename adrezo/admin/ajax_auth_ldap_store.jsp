@@ -50,8 +50,8 @@
 			<sql:update>
 				UPDATE auth_ldap
 				SET server = ?,
-					port = ?,
-					method = ?,
+					port = ?${adrezo:dbCast('INTEGER')},
+					method = ?${adrezo:dbCast('INTEGER')},
 					basedn = ?,
 					binddn = ?,
 					<c:if test="${!empty param.bindpwd}">bindpwd = ?,</c:if>
@@ -64,7 +64,7 @@
 					grpnameattr = ?,
 					grpmemberattr = ?,
 					grpclass= ?
-				WHERE id = ?
+				WHERE id = ?${adrezo:dbCast('INTEGER')}
 				<sql:param value="${param.server}"/>
 				<sql:param value="${param.port}"/>
 				<sql:param value="${param.method}"/>
