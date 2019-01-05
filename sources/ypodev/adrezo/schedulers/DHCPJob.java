@@ -86,6 +86,7 @@ public class DHCPJob implements Job {
 			mailauth = cfg.getBoolean("mail.auth");
 			dhcp_receive = cfg.getInt("dhcp.receive_timeout");
 			dhcp_cnx = cfg.getInt("dhcp.cnx_timeout");
+			basePath = cfg.getString("dhcp.basePath");
 		} catch (Exception cex) { mylog.error("DHCP/ReadConf: "+cex.getMessage(),cex); }
 	}
 	
@@ -420,10 +421,12 @@ public class DHCPJob implements Job {
 							GetScopeReserve(srv,key,iplease,iprange);
 							GetScopeLease(srv,key,iplease,iprange);
 							Statement stmtu = conn.createStatement();
+							String strSQL = "empty";
 							try {
 								String today = DbFunc.ToDateStr()+"('"+new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new java.util.Date())+"','YYYY-MM-DD HH24:MI:SS')";
 								for (String ip : iprange) {
-									stmtu.executeUpdate("insert into adresses (id,ctx,site,name,def,ip,mask,subnet,type,usr_modif,date_modif) values (0,"+ctx+","+site+",'"+prop.getString("dhcp.blockname")+"','"+prop.getString("dhcp.blockdef")+"','"+ip+"',"+mask+","+subnet+",'dhcp','dhcp',"+today+")");
+									strSQL = "insert into adresses (id,ctx,site,name,def,ip,mask,subnet,type,usr_modif,date_modif) values (0,"+ctx+","+site+",'"+prop.getString("dhcp.blockname")+"','"+prop.getString("dhcp.blockdef")+"','"+ip+"',"+mask+","+subnet+",'dhcp','dhcp',"+today+")";
+									stmtu.executeUpdate(strSQL);
 								}
 								mylog.debug(srv+"/"+key+": SQL Processed IP list with "+iprange.size()+" inserts");
 								globalcpt+=iprange.size();
@@ -431,16 +434,18 @@ public class DHCPJob implements Job {
 								while (lilea.hasNext()) {
 									Lease l = (Lease) lilea.next();
 									if (l.type==1) {
-										stmtu.executeUpdate("insert into adresses (id,ctx,site,name,def,ip,mask,mac,subnet,temp,date_temp,usr_temp,type,usr_modif,date_modif) values (0,"+ctx+","+site+",'"+l.name+"','"+l.def+"','"+l.ip+"',"+mask+",'"+l.mac+"',"+subnet+",1,"+DbFunc.ToDateStr()+"('"+l.stamp+"','YYYY-MM-DD HH24:MI:SS'),'dhcp','dhcp','dhcp',"+today+")");
+										strSQL = "insert into adresses (id,ctx,site,name,def,ip,mask,mac,subnet,temp,date_temp,usr_temp,type,usr_modif,date_modif) values (0,"+ctx+","+site+",'"+l.name+"','"+l.def+"','"+l.ip+"',"+mask+",'"+l.mac+"',"+subnet+",1,"+DbFunc.ToDateStr()+"('"+l.stamp+"','YYYY-MM-DD HH24:MI:SS'),'dhcp','dhcp','dhcp',"+today+")";
+										stmtu.executeUpdate(strSQL);
 									}
 									if (l.type==2) {
-										stmtu.executeUpdate("insert into adresses (id,ctx,site,name,def,ip,mask,mac,subnet,type,usr_modif,date_modif) values (0,"+ctx+","+site+",'"+l.name+"','"+l.def+"','"+l.ip+"',"+mask+",'"+l.mac+"',"+subnet+",'dhcp','dhcp',"+today+")");
+										strSQL = "insert into adresses (id,ctx,site,name,def,ip,mask,mac,subnet,type,usr_modif,date_modif) values (0,"+ctx+","+site+",'"+l.name+"','"+l.def+"','"+l.ip+"',"+mask+",'"+l.mac+"',"+subnet+",'dhcp','dhcp',"+today+")";
+										stmtu.executeUpdate(strSQL);
 									}
 								}
 								mylog.debug(srv+"/"+key+": SQL Processed Reserve and lease with "+iplease.size()+" inserts");
 								globalcpt+=iplease.size();
 								stmtu.close();stmtu=null;
-							} catch (SQLException e) { erreur=true;mylog.warn("DHCP/GetScopeInfos-UpdateSQL: "+e.getMessage(),null); }
+							} catch (SQLException e) { erreur=true;mylog.warn("DHCP/GetScopeInfos-UpdateSQL: in SQL "+strSQL+" : "+e.getMessage(),null); }
 							finally {
 								if (stmtu != null) { try { stmtu.close(); } catch (SQLException e) { mylog.error("DHCP/GetScopeInfos-stmtu",e); } stmtu = null; }
 							}

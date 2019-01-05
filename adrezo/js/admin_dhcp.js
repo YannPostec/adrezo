@@ -167,3 +167,6 @@ function ExcluLoad(id) {
 	xhr.setRequestHeader('Content-type','application/x-www-form-urlencoded');
 	xhr.send("id="+id);
 }
+function testServer(id) {
+	TINY.box.show({url:'box_dhcp_test.jsp',post:'id='+id,openjs:function(){TINY.box.dim()}});
+}

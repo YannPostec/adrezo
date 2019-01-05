@@ -15,6 +15,7 @@
 <fmt:message key="common.click.reset" var="lang_commonclickreset" />
 <fmt:message key="admin.dhcp.addexclu" var="lang_addexclu" />
 <fmt:message key="admin.dhcp.listexclu" var="lang_listexclu" />
+<fmt:message key="admin.dhcp.test" var="lang_testdhcp" />
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -74,7 +75,7 @@
 		</span>
 	</div>
 	<table id="table" class="tinytable">
-		<thead><tr><th class="nosort"><h3 class="nosearch" /></th><th><h3><fmt:message key="common.table.type" /></h3></th><th><h3><fmt:message key="common.table.hostname" /></h3></th><th><h3><fmt:message key="common.table.port" /></h3></th><th><h3 class="nosearch"><fmt:message key="common.table.ssl" /></h3></th><th><h3 class="nosearch"><fmt:message key="common.table.authentication" /></h3></th><th><h3><fmt:message key="common.table.login" /></h3></th><th><h3 class="nosearch"><fmt:message key="common.table.pwd" /></h3></th><th><h3><fmt:message key="sla.active" /></h3></th><th class="nosort"><h3 class="nosearch"><fmt:message key="common.table.exclu" /></h3></th></tr></thead>
+		<thead><tr><th class="nosort"><h3 class="nosearch" /></th><th><h3><fmt:message key="common.table.type" /></h3></th><th><h3><fmt:message key="common.table.hostname" /></h3></th><th><h3><fmt:message key="common.table.port" /></h3></th><th><h3 class="nosearch"><fmt:message key="common.table.ssl" /></h3></th><th><h3 class="nosearch"><fmt:message key="common.table.authentication" /></h3></th><th><h3><fmt:message key="common.table.login" /></h3></th><th><h3 class="nosearch"><fmt:message key="common.table.pwd" /></h3></th><th><h3><fmt:message key="sla.active" /></h3></th><th class="nosort"><h3 class="nosearch"><fmt:message key="common.table.exclu" /></h3></th><th class="nosort"><h3 class="nosearch"><fmt:message key="common.table.test" /></h3></th></tr></thead>
 		<tbody><c:forEach items="${dhcps.rows}" var="dhcp"><tr>
 			<td style="text-align:center"><span onmouseover="javascript:tooltip.show('${lang_commonclickdel}')" onmouseout="javascript:tooltip.hide()"><img src="../img/icon_delete.jpg" alt="${lang_commonclickdel}" onclick="javascript:ConfirmDlg(${dhcp.id})" /></span> <span onmouseover="javascript:tooltip.show('${lang_commonclickmod}')" onmouseout="javascript:tooltip.hide()"><img src="../img/icon_modify.jpg" alt="${lang_commonclickmod}" onclick="javascript:sendModif(event)" /></span></td>
 			<td><input type="hidden" value="${dhcp.type}" />${dhcp.type_name}</td>
@@ -86,6 +87,7 @@
 			<td><c:if test="${!empty dhcp.pwd}">***</c:if></td>
 			<td><input type="hidden" value="${dhcp.enable}" /><c:choose><c:when test="${dhcp.enable == 0}"><fmt:message key="common.no" /></c:when><c:otherwise><fmt:message key="common.yes" /></c:otherwise></c:choose></td>
 			<td style="text-align:center"><span onmouseover="javascript:tooltip.show('${lang_addexclu}')" onmouseout="javascript:tooltip.hide()"><img src="../img/icon_add2.png" alt="${lang_addexclu}" onclick="javascript:addExclu(${dhcp.id},'${dhcp.hostname}')" /></span> <span onmouseover="javascript:tooltip.show('${lang_listexclu}')" onmouseout="javascript:tooltip.hide()"><img src="../img/icon_database.png" alt="${lang_listexclu}" onclick="javascript:listExclu(${dhcp.id},'${dhcp.hostname}')" /></span></td>
+			<td style="text-align:center"><span onmouseover="javascript:tooltip.show('${lang_testdhcp}')" onmouseout="javascript:tooltip.hide()"><img src="../img/icon_info.png" alt="${lang_testdhcp}" onclick="javascript:testServer(${dhcp.id})" /></span></td>
 		</tr></c:forEach></tbody>
 	</table>
 	<div id="tablefooter">
