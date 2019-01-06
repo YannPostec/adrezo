@@ -40,8 +40,7 @@
 				<c:when test="${adrezo:envEntry('db_type') == 'postgresql'}">
 					<sql:update>alter table schedulers alter column jobname set not null</sql:update>
 				</c:when>
-				</c:choose>				
-				
+				</c:choose>
 				<sql:update>update usercookie set mail='199' where login='admin'</sql:update>
 			</sql:transaction>
 		</c:catch>

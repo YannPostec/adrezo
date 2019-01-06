@@ -44,17 +44,17 @@
 				<sql:update>insert into mail (id,destinataire,subject,message,location,lang) values (7,'USERDEF','[Cacti Aggregate Days] Error','Error in aggregation of Cacti daily statistics. Please review scheduled tasks log','SLADAYS','en')</sql:update>				
 				<sql:update>insert into mail (id,destinataire,subject,message,location,lang) values (8,'USERDEF','[DHCP] Erreur','Erreur dans la collecte des informations DHCP. Veuillez consulter le log des tâches planifiées','DHCP_SERVER','fr')</sql:update>
 				<sql:update>insert into mail (id,destinataire,subject,message,location,lang) values (8,'USERDEF','[DHCP] Error','Error in gathering DHCP informations. Please review scheduled tasks log','DHCP_SERVER','en')</sql:update>
-				<sql:update>insert into schedulers (id,param,enabled) values (1,750,1)</sql:update>
-				<sql:update>insert into schedulers (id,param,enabled) values (2,1830,1)</sql:update>
-				<sql:update>insert into schedulers (id,param,enabled) values (3,0,1)</sql:update>
-				<sql:update>insert into schedulers (id,param,enabled) values (4,0,0)</sql:update>
-				<sql:update>insert into schedulers (id,param,enabled) values (5,0,0)</sql:update>
-				<sql:update>insert into schedulers (id,param,enabled) values (6,0,1)</sql:update>
-				<sql:update>insert into schedulers (id,param,enabled) values (7,0,0)</sql:update>
-				<sql:update>insert into schedulers (id,param,enabled) values (8,1,0)</sql:update>
-				<sql:update>insert into schedulers (id,param,enabled) values (9,0,0)</sql:update>
-				<sql:update>insert into schedulers (id,param,enabled) values (10,0,0)</sql:update>
-				<sql:update>insert into schedulers (id,param,enabled) values (11,0,0)</sql:update>
+				<sql:update>insert into schedulers (id,param,enabled,jobname) values (1,750,1,'PurgeUsersJob')</sql:update>
+				<sql:update>insert into schedulers (id,param,enabled,jobname) values (2,1830,1,'PurgeSupplyMvtJob')</sql:update>
+				<sql:update>insert into schedulers (id,param,enabled,jobname) values (3,0,1,'PurgePhotosJob')</sql:update>
+				<sql:update>insert into schedulers (id,param,enabled,jobname) values (4,0,0,'MailTempIPJob')</sql:update>
+				<sql:update>insert into schedulers (id,param,enabled,jobname) values (5,0,0,'MailMigIPJob')</sql:update>
+				<sql:update>insert into schedulers (id,param,enabled,jobname) values (6,0,1,'NormAddSubnetJob')</sql:update>
+				<sql:update>insert into schedulers (id,param,enabled,jobname) values (7,0,0,'CactiDevicesJob')</sql:update>
+				<sql:update>insert into schedulers (id,param,enabled,jobname) values (8,1,0,'CactiStatsJob')</sql:update>
+				<sql:update>insert into schedulers (id,param,enabled,jobname) values (9,0,0,'CactiAggregateHoursJob')</sql:update>
+				<sql:update>insert into schedulers (id,param,enabled,jobname) values (10,0,0,'CactiAggregateDaysJob')</sql:update>
+				<sql:update>insert into schedulers (id,param,enabled,jobname) values (11,0,0,'DHCPJob')</sql:update>
 				<sql:update>insert into settings (exppref,expsuff) values (null,null)</sql:update>
 				<sql:update>insert into slaplanning (id,name,h1,h2,h3,h4,h5,h6,h7) values (0,'Anytime',16777215,16777215,16777215,16777215,16777215,16777215,16777215)</sql:update>
 				<sql:update>insert into slaclient (id,name,disp) values (0,'Unknown',0)</sql:update>

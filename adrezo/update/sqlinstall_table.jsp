@@ -38,7 +38,7 @@
 				<sql:update>create table redundancy (id number not null,ipid number not null,pid number not null,ptype number not null)</sql:update>
 				<sql:update>create table redund_ptype (id number not null,name varchar2(10) not null)</sql:update>
 				<sql:update>create table salles (name varchar2(6) not null,idsite number not null,id number not null)</sql:update>
-				<sql:update>create table schedulers (id number not null,param number,enabled number(1,0) default 1)</sql:update>
+				<sql:update>create table schedulers (id number not null,param number,enabled number(1,0) default 1,jobname varchar2(50) not null)</sql:update>
 				<sql:update>create table settings (exppref varchar2(20) default null,expsuff varchar2(20) default null)</sql:update>
 				<sql:update>create table sites (cod_site varchar2(8) not null,name varchar2(60),id number not null,ctx number not null)</sql:update>
 				<sql:update>create table slaclient (id number not null,name varchar2(100) not null,disp number(1,0) default 1,plan integer default 0 not null)</sql:update>
@@ -83,7 +83,7 @@
 				<sql:update>create table redundancy (id integer not null,ipid integer not null,pid integer not null,ptype integer not null)</sql:update>
 				<sql:update>create table redund_ptype (id integer not null,name varchar(10) not null)</sql:update>
 				<sql:update>create table salles (name varchar(6) not null,idsite integer not null,id integer not null)</sql:update>
-				<sql:update>create table schedulers (id integer not null,param integer,enabled integer default 1)</sql:update>
+				<sql:update>create table schedulers (id integer not null,param integer,enabled integer default 1,jobname varchar(50) not null)</sql:update>
 				<sql:update>create table settings (exppref varchar(20) default null,expsuff varchar(20) default null)</sql:update>
 				<sql:update>create table sites (cod_site varchar(8) not null,name varchar(60),id integer not null,ctx integer not null)</sql:update>
 				<sql:update>create table slaclient (id integer not null,name varchar(100) not null,disp integer default 1,plan integer default 0 not null)</sql:update>
