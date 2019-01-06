@@ -55,6 +55,7 @@ public class DHCPScopeServlet extends HttpServlet {
 			Configuration cfg = cfgs.properties(new File("adrezo.properties"));
 			dhcp_receive = cfg.getInt("dhcp.receive_timeout");
 			dhcp_cnx = cfg.getInt("dhcp.cnx_timeout");
+			basePath = cfg.getString("dhcp.basePath");
 			mylog.debug("Reading Configuration Properties");
 		} catch (Exception cex) { mylog.error("DHCPScope/ReadConf: "+cex.getMessage(),cex); }
 	}

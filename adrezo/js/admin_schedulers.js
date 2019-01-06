@@ -89,4 +89,6 @@ function displayJobs() {
 function getPurgePhoto() {
 	DBAjax("../purge","",true);
 }
-
+function launchJob(jobname) {
+	DBAjax("../firejob","name="+jobname,false);
+}
