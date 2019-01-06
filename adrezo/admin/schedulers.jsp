@@ -44,7 +44,7 @@
 
 <sql:query var="userJobs">select * from schedulers where id=1</sql:query>
 <c:forEach items="${userJobs.rows}" var="userJob">
-<tr><td>1</td>
+<tr class="sideA"><td>1</td>
 <td><select id="sel1"><option value="1" <c:if test="${userJob.enabled == 1}">selected="selected"</c:if>><fmt:message key="common.yes" /></option><option value="0" <c:if test="${userJob.enabled == 0}">selected="selected"</c:if>><fmt:message key="common.no" /></option></select></td>
 <td><h3><fmt:message key="admin.schedulers.job1.title" /></h3></td>
 <td><fmt:message key="admin.schedulers.days" /> : <input type="text" id="day1" value="${userJob.param}"></td>
@@ -58,7 +58,7 @@
 
 <sql:query var="stkJobs">select * from schedulers where id=2</sql:query>
 <c:forEach items="${stkJobs.rows}" var="stkJob">
-<tr><td>2</td>
+<tr class="sideB"><td>2</td>
 <td><select id="sel2"><option value="1" <c:if test="${stkJob.enabled == 1}">selected="selected"</c:if>><fmt:message key="common.yes" /></option><option value="0" <c:if test="${stkJob.enabled == 0}">selected="selected"</c:if>><fmt:message key="common.no" /></option></select></td>
 <td><h3><fmt:message key="admin.schedulers.job2.title" /></h3></td>
 <td><fmt:message key="admin.schedulers.days" /> : <input type="text" id="day2" value="${stkJob.param}"></td>
@@ -72,7 +72,7 @@
 
 <sql:query var="photoJobs">select enabled from schedulers where id=3</sql:query>
 <c:forEach items="${photoJobs.rows}" var="photoJob">
-<tr><td>3</td>
+<tr class="sideA"><td>3</td>
 <td><select id="sel3"><option value="1" <c:if test="${photoJob.enabled == 1}">selected="selected"</c:if>><fmt:message key="common.yes" /></option><option value="0" <c:if test="${photoJob.enabled == 0}">selected="selected"</c:if>><fmt:message key="common.no" /></option></select></td>
 <td><h3><fmt:message key="admin.schedulers.job3.title" /></h3></td>
 <td><ul class="prefs"><li><a href="javascript:getPurgePhoto()"><fmt:message key="admin.schedulers.purgephoto" /></a></li></ul></td>
@@ -81,7 +81,7 @@
 
 <sql:query var="tmpipJobs">select enabled from schedulers where id=4</sql:query>
 <c:forEach items="${tmpipJobs.rows}" var="tmpipJob">
-<tr><td>4</td>
+<tr class="sideB"><td>4</td>
 <td><select id="sel4"><option value="1" <c:if test="${tmpipJob.enabled == 1}">selected="selected"</c:if>><fmt:message key="common.yes" /></option><option value="0" <c:if test="${tmpipJob.enabled == 0}">selected="selected"</c:if>><fmt:message key="common.no" /></option></select></td>
 <td><h3><fmt:message key="admin.schedulers.job4.title" /></h3></td>
 <td />
@@ -91,7 +91,7 @@
 
 <sql:query var="migipJobs">select enabled from schedulers where id=5</sql:query>
 <c:forEach items="${migipJobs.rows}" var="migipJob">
-<tr><td>5</td>
+<tr class="sideA"><td>5</td>
 <td><select id="sel5"><option value="1" <c:if test="${migipJob.enabled == 1}">selected="selected"</c:if>><fmt:message key="common.yes" /></option><option value="0" <c:if test="${migipJob.enabled == 0}">selected="selected"</c:if>><fmt:message key="common.no" /></option></select></td>
 <td><h3><fmt:message key="admin.schedulers.job5.title" /></h3></td>
 <td />
@@ -101,7 +101,7 @@
 
 <sql:query var="NormAddSubnetJobs">select enabled from schedulers where id=6</sql:query>
 <c:forEach items="${NormAddSubnetJobs.rows}" var="nasJob">
-<tr><td>6</td>
+<tr class="sideB"><td>6</td>
 <td><select id="sel6"><option value="1" <c:if test="${nasJob.enabled == 1}">selected="selected"</c:if>><fmt:message key="common.yes" /></option><option value="0" <c:if test="${nasJob.enabled == 0}">selected="selected"</c:if>><fmt:message key="common.no" /></option></select></td>
 <td><h3><fmt:message key="admin.schedulers.job6.title" /></h3></td>
 <td />
@@ -111,7 +111,7 @@
 
 <sql:query var="CactiDevicesJobs">select enabled from schedulers where id=7</sql:query>
 <c:forEach items="${CactiDevicesJobs.rows}" var="cactidJob">
-<tr><td>7</td>
+<tr class="sideA"><td>7</td>
 <td><select id="sel7"><option value="1" <c:if test="${cactidJob.enabled == 1}">selected="selected"</c:if>><fmt:message key="common.yes" /></option><option value="0" <c:if test="${cactidJob.enabled == 0}">selected="selected"</c:if>><fmt:message key="common.no" /></option></select></td>
 <td><h3><fmt:message key="admin.schedulers.job7.title" /></h3></td>
 <td />
@@ -120,7 +120,7 @@
 
 <sql:query var="CactiStatsJobs">select param,enabled from schedulers where id=8</sql:query>
 <c:forEach items="${CactiStatsJobs.rows}" var="cactisJob">
-<tr><td>8</td>
+<tr class="sideB"><td>8</td>
 <td><select id="sel8"><option value="1" <c:if test="${cactisJob.enabled == 1}">selected="selected"</c:if>><fmt:message key="common.yes" /></option><option value="0" <c:if test="${cactisJob.enabled == 0}">selected="selected"</c:if>><fmt:message key="common.no" /></option></select></td>
 <td><h3><fmt:message key="admin.schedulers.job8.title" /></h3></td>
 <td><fmt:message key="admin.schedulers.job8.param" />
@@ -130,7 +130,7 @@
 
 <sql:query var="CactiDaysJobs">select enabled from schedulers where id=9</sql:query>
 <c:forEach items="${CactiDaysJobs.rows}" var="cactidaysJob">
-<tr><td>9</td>
+<tr class="sideA"><td>9</td>
 <td><select id="sel9"><option value="1" <c:if test="${cactidaysJob.enabled == 1}">selected="selected"</c:if>><fmt:message key="common.yes" /></option><option value="0" <c:if test="${cactidaysJob.enabled == 0}">selected="selected"</c:if>><fmt:message key="common.no" /></option></select></td>
 <td><h3><fmt:message key="admin.schedulers.job9.title" /></h3></td>
 <td />
@@ -139,7 +139,7 @@
 
 <sql:query var="CactiMonthsJobs">select enabled from schedulers where id=10</sql:query>
 <c:forEach items="${CactiMonthsJobs.rows}" var="cactimonthsJob">
-<tr><td>10</td>
+<tr class="sideB"><td>10</td>
 <td><select id="sel10"><option value="1" <c:if test="${cactimonthsJob.enabled == 1}">selected="selected"</c:if>><fmt:message key="common.yes" /></option><option value="0" <c:if test="${cactimonthsJob.enabled == 0}">selected="selected"</c:if>><fmt:message key="common.no" /></option></select></td>
 <td><h3><fmt:message key="admin.schedulers.job10.title" /></h3></td>
 <td />
@@ -148,7 +148,7 @@
 
 <sql:query var="DHCPJobs">select enabled from schedulers where id=11</sql:query>
 <c:forEach items="${DHCPJobs.rows}" var="DHCPJob">
-<tr><td>11</td>
+<tr class="sideA"><td>11</td>
 <td><select id="sel11"><option value="1" <c:if test="${DHCPJob.enabled == 1}">selected="selected"</c:if>><fmt:message key="common.yes" /></option><option value="0" <c:if test="${DHCPJob.enabled == 0}">selected="selected"</c:if>><fmt:message key="common.no" /></option></select></td>
 <td><h3><fmt:message key="admin.schedulers.job11.title" /></h3></td>
 <td />

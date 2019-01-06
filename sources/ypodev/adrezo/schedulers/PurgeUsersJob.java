@@ -37,14 +37,19 @@ public class PurgeUsersJob implements Job {
 					mylog.debug("Job 1 enabled");
 					int days = 0-rsg.getInt("param");
 					mylog.debug("param="+String.valueOf(days));
+					stmt = conn.createStatement();
 					rs = stmt.executeQuery("select login from usercookie where last<"+DbFunc.ToDateStr()+"('"+new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(DateUtils.addDays(new java.util.Date(),days))+"','YYYY-MM-DD HH24:MI:SS') and login <> 'admin'");
+					mylog.debug("Executing SQL :"+"select login from usercookie where last<"+DbFunc.ToDateStr()+"('"+new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(DateUtils.addDays(new java.util.Date(),days))+"','YYYY-MM-DD HH24:MI:SS') and login <> 'admin'");
+					Integer nbdel=0;
 					while (rs.next()) {
 						String dellogin = rs.getString("login");
 						mylog.info("Deleted: "+dellogin);
+						nbdel++;
 						stmtdel = conn.createStatement();
 						stmtdel.executeUpdate("delete from usercookie where login='"+dellogin+"'");
 						stmtdel.close();stmtdel=null;
 					}
+					if (nbdel==0) { mylog.info("No login to delete"); }
 					rs.close();rs=null;
 					stmt.close();stmt=null;
 				} else mylog.debug("Job 1 disabled");
