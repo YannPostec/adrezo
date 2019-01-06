@@ -79,32 +79,26 @@ public class TestDHCPServerBean implements Serializable {
 				Integer srv_bauth = rs.getInt("auth");
 				String srv_user = rs.getString("login");
 				String srv_pwd = rs.getString("pwd");
-				Integer srv_enable = rs.getInt("enable");
-				if (srv_enable==1) {
-					String srv_method = "http";
-					if (srv_ssl==1) { srv_method = srv_method+"s"; }
-					String srv_httpport = "";
-					if ((srv_ssl==0 && srv_port!=80) || (srv_ssl==1 && srv_port!=443)) { srv_httpport = ":"+String.valueOf(srv_port); }
-					WebClient client;
-					if (srv_bauth==1) {
-						client = WebClient.create(srv_method+"://"+srv_host+srv_httpport,srv_user,srv_pwd,null);
-					} else {
-						client = WebClient.create(srv_method+"://"+srv_host+srv_httpport);
-					}
-        	HTTPConduit conduit = WebClient.getConfig(client).getHttpConduit();
-      	  conduit.getClient().setReceiveTimeout(dhcp_receive);
-    	    conduit.getClient().setConnectionTimeout(dhcp_cnx);
-					mylog.debug("Testing Server "+srv_method+"://"+srv_host+srv_httpport+",auth:"+String.valueOf(srv_bauth)+",login:"+srv_user+",pwd:"+srv_pwd);
-					Response r = client.path(basePath+"/scopelist").type(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON).get();
-        	if (r.getStatus()==200) {
-						mylog.debug("Server OK");
-					} else {
-						mylog.debug("Server Timeout");
-						printLog(prop.getString("testdhcp.timeout"),null);
-					}
+				String srv_method = "http";
+				if (srv_ssl==1) { srv_method = srv_method+"s"; }
+				String srv_httpport = "";
+				if ((srv_ssl==0 && srv_port!=80) || (srv_ssl==1 && srv_port!=443)) { srv_httpport = ":"+String.valueOf(srv_port); }
+				WebClient client;
+				if (srv_bauth==1) {
+					client = WebClient.create(srv_method+"://"+srv_host+srv_httpport,srv_user,srv_pwd,null);
 				} else {
-					mylog.debug("Server "+srv_host+" is disabled");
-					printLog(prop.getString("testdhcp.inactive"),null);					
+					client = WebClient.create(srv_method+"://"+srv_host+srv_httpport);
+				}
+       	HTTPConduit conduit = WebClient.getConfig(client).getHttpConduit();
+     	  conduit.getClient().setReceiveTimeout(dhcp_receive);
+   	    conduit.getClient().setConnectionTimeout(dhcp_cnx);
+				mylog.debug("Testing Server "+srv_method+"://"+srv_host+srv_httpport+",auth:"+String.valueOf(srv_bauth)+",login:"+srv_user+",pwd:"+srv_pwd);
+				Response r = client.path(basePath+"/scopelist").type(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON).get();
+       	if (r.getStatus()==200) {
+					mylog.debug("Server OK");
+				} else {
+					mylog.debug("Server Timeout");
+					printLog(prop.getString("testdhcp.timeout"),null);
 				}
 			}
 			rs.close();rs = null;

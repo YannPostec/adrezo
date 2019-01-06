@@ -39,7 +39,7 @@
 <tbody />
 </table>
 <hr />
-<span onmouseover="javascript:tooltip.show('${lang_commonclickvalid}')" onmouseout="javascript:tooltip.hide()"><img src="../img/icon_valid.png" alt="${lang_commonclickvalid}" onclick="javascript:modSubmit()" /></span>Sauvegarder les changements
+<h3><fmt:message key="admin.schedulers.save" /> <span onmouseover="javascript:tooltip.show('${lang_commonclickvalid}')" onmouseout="javascript:tooltip.hide()"><img src="../img/icon_valid.png" alt="${lang_commonclickvalid}" onclick="javascript:modSubmit()" /></span></h3>
 <table>
 <tr><th>Job</th><th><fmt:message key="common.enabled" /></th><th><fmt:message key="common.table.def" /></th><th><fmt:message key="admin.schedulers.launch" /></th><th><fmt:message key="admin.settings" /></th><th><fmt:message key="sla.purge.stats" /></th></tr>
 
