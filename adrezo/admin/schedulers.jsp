@@ -41,7 +41,7 @@
 <hr />
 <h3><fmt:message key="admin.schedulers.save" /> <span onmouseover="javascript:tooltip.show('${lang_commonclickvalid}')" onmouseout="javascript:tooltip.hide()"><img src="../img/icon_valid.png" alt="${lang_commonclickvalid}" onclick="javascript:modSubmit()" /></span></h3>
 <table>
-<tr><th>Job</th><th><fmt:message key="common.enabled" /></th><th><fmt:message key="common.table.def" /></th><th><fmt:message key="admin.schedulers.launch" /></th><th><fmt:message key="admin.settings" /></th><th><fmt:message key="sla.purge.stats" /></th></tr>
+<tr><th>Job</th><th><fmt:message key="common.enabled" /></th><th><fmt:message key="common.table.def" /></th><th><fmt:message key="admin.schedulers.launch" /></th><th><fmt:message key="admin.settings" /></th><th><fmt:message key="sla.purge.stats" /></th><th>Job</th></tr>
 
 <sql:query var="userJobs">select * from schedulers where id=1</sql:query>
 <c:forEach items="${userJobs.rows}" var="userJob">
@@ -56,7 +56,8 @@
 <table>
 <thead><tr><th><fmt:message key="common.table.year" /></th><th><fmt:message key="common.table.count" /></th></tr></thead>
 <tbody><c:forEach items="${users.rows}" var="user"><tr><td>${user.annee}</td><td>${user.nb}</td></tr></c:forEach></tbody>
-</table></td></tr>
+</table></td>
+<td>PurgeUsersJob</td></tr>
 
 <sql:query var="stkJobs">select * from schedulers where id=2</sql:query>
 <c:forEach items="${stkJobs.rows}" var="stkJob">
@@ -71,7 +72,8 @@
 <table>
 <thead><tr><th><fmt:message key="common.table.year" /></th><th><fmt:message key="common.table.count" /></th></tr></thead>
 <tbody><c:forEach items="${stks.rows}" var="stk"><tr><td>${stk.annee}</td><td>${stk.nb}</td></tr></c:forEach></tbody>
-</table></td></tr>
+</table></td>
+<td>PurgeSupplyMvtJob</td></tr>
 
 <sql:query var="photoJobs">select * from schedulers where id=3</sql:query>
 <c:forEach items="${photoJobs.rows}" var="photoJob">
@@ -81,7 +83,8 @@
 <td align="center"><span onmouseover="javascript:tooltip.show('${lang_adminschedclick}')" onmouseout="javascript:tooltip.hide()"><img src="../img/icon_script.png" alt="${lang_adminschedclick}" onclick="javascript:launchJob('${photoJob.jobname}')" /></span></td>
 <td><ul class="prefs"><li><a href="javascript:getPurgePhoto()"><fmt:message key="admin.schedulers.purgephoto" /></a></li></ul></td>
 </c:forEach>
-<td /></tr>
+<td />
+<td>PurgePhotosJob</td></tr>
 
 <sql:query var="tmpipJobs">select * from schedulers where id=4</sql:query>
 <c:forEach items="${tmpipJobs.rows}" var="tmpipJob">
@@ -92,7 +95,8 @@
 <td />
 </c:forEach>
 <sql:query var="tmps">select count(*) as nb from adresses where temp = 1 and type = 'static' and date_temp < ?<sql:dateParam value="${today}" /></sql:query>
-<td><fmt:message key="admin.schedulers.job4.stats" /> : <c:forEach items="${tmps.rows}" var="tmp">${tmp.nb}</c:forEach></td></tr>
+<td><fmt:message key="admin.schedulers.job4.stats" /> : <c:forEach items="${tmps.rows}" var="tmp">${tmp.nb}</c:forEach></td>
+<td>MailTempIPJob</td></tr>
 
 <sql:query var="migipJobs">select * from schedulers where id=5</sql:query>
 <c:forEach items="${migipJobs.rows}" var="migipJob">
@@ -103,7 +107,8 @@
 <td />
 </c:forEach>
 <sql:query var="migs">select count(*) as nb from adresses where mig = 1 and type = 'static' and date_mig < ?<sql:dateParam value="${today}" /></sql:query>
-<td><fmt:message key="admin.schedulers.job5.stats" /> : <c:forEach items="${migs.rows}" var="mig">${mig.nb}</c:forEach></td></tr>
+<td><fmt:message key="admin.schedulers.job5.stats" /> : <c:forEach items="${migs.rows}" var="mig">${mig.nb}</c:forEach></td>
+<td>MailMigIPJob</td></tr>
 
 <sql:query var="NormAddSubnetJobs">select * from schedulers where id=6</sql:query>
 <c:forEach items="${NormAddSubnetJobs.rows}" var="nasJob">
@@ -114,7 +119,8 @@
 <td />
 </c:forEach>
 <sql:query var="nass">select count(*) as nb from subnets where surnet = 0</sql:query>
-<td><fmt:message key="admin.schedulers.job6.stats" /> : <c:forEach items="${nass.rows}" var="nas">${nas.nb}</c:forEach></td></tr>
+<td><fmt:message key="admin.schedulers.job6.stats" /> : <c:forEach items="${nass.rows}" var="nas">${nas.nb}</c:forEach></td>
+<td>NormAddSubnetJob</td></tr>
 
 <sql:query var="CactiDevicesJobs">select * from schedulers where id=7</sql:query>
 <c:forEach items="${CactiDevicesJobs.rows}" var="cactidJob">
@@ -124,7 +130,8 @@
 <td align="center"><span onmouseover="javascript:tooltip.show('${lang_adminschedclick}')" onmouseout="javascript:tooltip.hide()"><img src="../img/icon_script.png" alt="${lang_adminschedclick}" onclick="javascript:launchJob('${cactidJob.jobname}')" /></span></td>
 <td />
 </c:forEach>
-<td /></tr>
+<td />
+<td>CactiDevicesJob</td></tr>
 
 <sql:query var="CactiStatsJobs">select * from schedulers where id=8</sql:query>
 <c:forEach items="${CactiStatsJobs.rows}" var="cactisJob">
@@ -135,7 +142,8 @@
 <td><fmt:message key="admin.schedulers.job8.param" />
 <p><input type="radio" id="job8_param_hour" name="job8_param" <c:if test="${cactisJob.param == 1}"> checked="checked"</c:if> value="1" /><label for="job8_param_hour"><fmt:message key="admin.schedulers.job8.hourly" /></label> <input type="radio" id="job8_param_day" name="job8_param" <c:if test="${cactisJob.param == 2}"> checked="checked"</c:if> value="2" /><label for="job8_param_day"><fmt:message key="admin.schedulers.job8.daily" /></label> <input type="radio" id="job8_param_month" name="job8_param" <c:if test="${cactisJob.param == 3}"> checked="checked"</c:if> value="3" /><label for="job8_param_month"><fmt:message key="admin.schedulers.job8.monthly" /></label><br /><i><fmt:message key="admin.schedulers.job8.warning" /></i></p></td>
 </c:forEach>
-<td /></tr>
+<td />
+<td>CactiStatsJob</td></tr>
 
 <sql:query var="CactiDaysJobs">select * from schedulers where id=9</sql:query>
 <c:forEach items="${CactiDaysJobs.rows}" var="cactidaysJob">
@@ -145,7 +153,8 @@
 <td />
 <td />
 </c:forEach>
-<td /></tr>
+<td />
+<td>CactiAggregateHoursJob</td></tr>
 
 <sql:query var="CactiMonthsJobs">select * from schedulers where id=10</sql:query>
 <c:forEach items="${CactiMonthsJobs.rows}" var="cactimonthsJob">
@@ -155,7 +164,8 @@
 <td />
 <td />
 </c:forEach>
-<td /></tr>
+<td />
+<td>CactiAggregateDaysJob</td></tr>
 
 <sql:query var="DHCPJobs">select * from schedulers where id=11</sql:query>
 <c:forEach items="${DHCPJobs.rows}" var="DHCPJob">
@@ -165,7 +175,8 @@
 <td align="center"><span onmouseover="javascript:tooltip.show('${lang_adminschedclick}')" onmouseout="javascript:tooltip.hide()"><img src="../img/icon_script.png" alt="${lang_adminschedclick}" onclick="javascript:launchJob('${DHCPJob.jobname}')" /></span></td>
 <td />
 </c:forEach>
-<td /></tr>
+<td />
+<td>DHCPJob</td></tr>
 
 </table>
 

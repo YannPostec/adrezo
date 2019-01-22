@@ -7,14 +7,18 @@
 <p>With proper permissions, you could manage scheduled task pre-programmed in application.<hr />
 On this page, you will find a list of jobs with :
 <ul>
-	<li>its purpose</li>
+	<li>its ID</li>
 	<li>if job is enabled</li>
+	<li>its purpose</li>
+	<li>manual launch of the job</li>
 	<li>additional parameters for some jobs</li>
 	<li>statistics on elements used in job</li>
+	<li>job name to find it in the first list</li>
 </ul>
 After modification, click on <img src="../../img/icon_valid.png" alt="ValidIcon" /> to validate.<br />
-You will also find at the bottom of the page a scheduled task list with their next execution time.<br />
-This list display when clicking on <img src="../../img/icon_valid.png" alt="ValidIcon" /></p>
+You will also find at the top of the page a scheduled task list with their next execution time.<br />
+This list display when clicking on <img src="../../img/icon_valid.png" alt="ValidIcon" /><br />
+Some jobs can be launch manually by clicking on <img src="../../img/icon_script.png" alt="ScriptIcon" />. Review logs to follow execution.</p>
 <p>Jobs Details:
 <ul>
 <li>Job 1 : Each time a user connect to the application, date is recorded in a table with his preferences<br />
@@ -33,6 +37,7 @@ If user don't exist anymore, informations are sent to the admin account</li>
 <li>Job 8 : Gathering network availability statistics in cacti database, injection in adrezo database and zeroize cacti statistics data. Hourly, Daily or Monthly execution.</li>
 <li>Job 9 : Average of hourly statistics to create daily statistics</li>
 <li>Job 10 : Average of daily statistics to create monthly statistics</li>
+<li>Job 11 : Gather DHCP informations from servers</li>
 </ul>
 </p>
 <p>Tasks scheduling is managed in file quartz-config.xml which resides in WEB-INF/classes<br />

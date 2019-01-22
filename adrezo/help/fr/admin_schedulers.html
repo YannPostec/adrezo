@@ -7,14 +7,18 @@
 <p>Avec les droits nécessaires, vous pouvez agir sur les tâches planifiées pré-programmées de l'application.<hr />
 Vous trouverez dans la page une liste des tâches (job) avec :
 <ul>
-	<li>son action</li>
+	<li>son ID</li>
 	<li>si la tâche doit être activée</li>
+	<li>son action</li>
+	<li>la possibilité d'exécuter manuellement la tâche</li>
 	<li>des paramètres additionnels pour certaines tâches</li>
 	<li>des statistiques sur des éléments se rapportant à la tâche</li>
+	<li>le nom du job pour le retrouver dans la liste des tâches</li>
 </ul>
 Après modification d'un des paramètres, cliquer sur <img src="../../img/icon_valid.png" alt="ValidIcon" /> pour valider.<br />
-Vous trouverez également en fin de page le moyen d'afficher la liste des tâches planifiées et leur prochaine exécution.<br />
-Cette liste s'affiche en cliquant sur <img src="../../img/icon_valid.png" alt="ValidIcon" /></p>
+Vous trouverez également en début de page le moyen d'afficher la liste des tâches planifiées et leur prochaine exécution.<br />
+Cette liste s'affiche en cliquant sur <img src="../../img/icon_valid.png" alt="ValidIcon" /><br />
+Certaines tâches peuvent être exécutés manuellement en cliquant sur <img src="../../img/icon_script.png" alt="ScriptIcon" />. Consultez ensuite les logs pour suivre l'exécution.</p>
 <p>Détails des jobs :
 <ul>
 <li>Job 1 : A chaque connexion d'un utilisateur, la date est enregistrée dans une table avec ses préférences<br />
@@ -33,6 +37,7 @@ Si l'utilisateur n'existe plus, les informations sont envoyées au compte admin<
 <li>Job 8 : Recuperation des statistiques de disponibilité réseau depuis la base de données Cacti, injection dans celle d'Adrezo et remise à zéro des données dans Cacti. Récurrence horaire,quotidienne ou mensuelle.</li>
 <li>Job 9 : Aggregation des statistiques horaires vers la moyenne journalière</li>
 <li>Job 10 : Aggregation des statistiques journalières vers la moyenne mensuelle</li>
+<li>Job 11 : Collecte des informations DHCP de chaque serveur déclaré</li>
 </ul>
 </p>
 <p>Les planifications des tâches sont gérées dans le fichier quartz-config.xml présents dans WEB-INF/classes<br />
