@@ -54,24 +54,34 @@ public class SQLQueryServlet extends HttpServlet {
 
 	public void init() throws ServletException {
 		// Initialize Hashmaps
-		// ID 1 : Infos Subnets
-		this.selectlist.put(1,"select id,ctx_name,cod_site,site_name,ip,mask,def,gw,vid,vdef from subnets_display");
-		this.searchlist.put(1,"lower(ctx_name) like lower('%#SEARCHSTR#%') or lower(cod_site) like lower('%#SEARCHSTR#%') or lower(site_name) like lower('%#SEARCHSTR#%') or ip like '%#SEARCHSTR#%' or lower(def) like lower('%#SEARCHSTR#%') or gw like '%#SEARCHSTR#%' or lower(vdef) like lower('%#SEARCHSTR#%') or cast(vid as varchar) like '%#SEARCHSTR#%' or cast(mask as varchar) like '%#SEARCHSTR#%'");
-		// ID 2 : Infos Sites
-		this.selectlist.put(2,"select id,ctx_name,cod_site,name from sites_display");
-		this.searchlist.put(2,"lower(ctx_name) like lower('%#SEARCHSTR#%') or lower(cod_site) like lower('%#SEARCHSTR#%') or lower(name) like lower ('%#SEARCHSTR#%')");
-		// ID 3 : Infos Vlans
-		this.selectlist.put(3,"select id,vid,def,site_name,cod_site,ctx_name from vlan_display");
-		this.searchlist.put(3,"lower(def) like lower('%#SEARCHSTR#%') or lower(site_name) like lower('%#SEARCHSTR#%') or lower(cod_site) like lower('%#SEARCHSTR#%') or lower(ctx_name) like lower('%#SEARCHSTR#%') or cast(vid as varchar) like '%#SEARCHSTR#%'");
-		this.wherelist.put(3,"vid != 0");
-		// ID 4 : Infos Subnet Fill
-		this.selectlist.put(4,"select subnets_display.ctx_name,subnets_display.cod_site,subnets_display.site_name,subnets_display.ip,subnets_display.mask,subnets_display.def,count(adresses.ip) as mycount,power(2,32-subnets_display.mask)-2 as mymax,round((count(adresses.ip)*100/(power(2,32-subnets_display.mask)-2))"+DbCast.dbCast("NUMERIC")+",1) as mypercent from subnets_display left outer join adresses on subnets_display.id = adresses.subnet");
-		this.wherelist.put(4,"(adresses.def is null or adresses.def != 'Reservation DHCP')");
-		this.groupbylist.put(4,"subnets_display.ctx_name,subnets_display.cod_site,subnets_display.site_name,subnets_display.ip,subnets_display.mask,subnets_display.def");
-		this.searchlist.put(4,"lower(subnets_display.ctx_name) like lower('%#SEARCHSTR#%') or lower(subnets_display.cod_site) like lower('%#SEARCHSTR#%') or lower(subnets_display.site_name) like lower('%#SEARCHSTR#%') or lower(subnets_display.def) like lower('%#SEARCHSTR#%') or subnets_display.ip like '%#SEARCHSTR#%' or cast(subnets_display.mask as varchar) like '%#SEARCHSTR#%'");
-		// ID 5 : Infos Redundancy
-		this.selectlist.put(5,"select ctx_name,site_name,subnet_name,ptype_name,pid,ip,mask,ip_name from redundancy_display");
-		this.searchlist.put(5,"lower(ctx_name) like lower('%#SEARCHSTR#%') or lower(site_name) like lower('%#SEARCHSTR#%') or lower(subnet_name) like lower('%#SEARCHSTR#%') or lower(ptype_name) like lower('%#SEARCHSTR#%') or cast(pid as varchar) like '%#SEARCHSTR#%' or ip like '%#SEARCHSTR#%' or cast(mask as varchar) like '%#SEARCHSTR#%' or lower(ip_name) like lower('%#SEARCHSTR#%')");
+		try {
+			Context env = (Context) new InitialContext().lookup("java:comp/env");
+			String db_type = (String) env.lookup("db_type");
+			String castchar = "";
+			if (db_type.equals("postgresql")) {
+				castchar="varchar";
+			} else if (db_type.equals("oracle")) {
+				castchar="varchar2(5)";
+			}
+			// ID 1 : Infos Subnets
+			this.selectlist.put(1,"select id,ctx_name,cod_site,site_name,ip,mask,def,gw,vid,vdef from subnets_display");
+			this.searchlist.put(1,"lower(ctx_name) like lower('%#SEARCHSTR#%') or lower(cod_site) like lower('%#SEARCHSTR#%') or lower(site_name) like lower('%#SEARCHSTR#%') or ip like '%#SEARCHSTR#%' or lower(def) like lower('%#SEARCHSTR#%') or gw like '%#SEARCHSTR#%' or lower(vdef) like lower('%#SEARCHSTR#%') or cast(vid as "+castchar+") like '%#SEARCHSTR#%' or cast(mask as "+castchar+") like '%#SEARCHSTR#%'");
+			// ID 2 : Infos Sites
+			this.selectlist.put(2,"select id,ctx_name,cod_site,name from sites_display");
+			this.searchlist.put(2,"lower(ctx_name) like lower('%#SEARCHSTR#%') or lower(cod_site) like lower('%#SEARCHSTR#%') or lower(name) like lower ('%#SEARCHSTR#%')");
+			// ID 3 : Infos Vlans
+			this.selectlist.put(3,"select id,vid,def,site_name,cod_site,ctx_name from vlan_display");
+			this.searchlist.put(3,"lower(def) like lower('%#SEARCHSTR#%') or lower(site_name) like lower('%#SEARCHSTR#%') or lower(cod_site) like lower('%#SEARCHSTR#%') or lower(ctx_name) like lower('%#SEARCHSTR#%') or cast(vid as "+castchar+") like '%#SEARCHSTR#%'");
+			this.wherelist.put(3,"vid != 0");
+			// ID 4 : Infos Subnet Fill
+			this.selectlist.put(4,"select subnets_display.ctx_name,subnets_display.cod_site,subnets_display.site_name,subnets_display.ip,subnets_display.mask,subnets_display.def,count(adresses.ip) as mycount,power(2,32-subnets_display.mask)-2 as mymax,round((count(adresses.ip)*100/(power(2,32-subnets_display.mask)-2))"+DbCast.dbCast("NUMERIC")+",1) as mypercent from subnets_display left outer join adresses on subnets_display.id = adresses.subnet");
+			this.wherelist.put(4,"(adresses.def is null or adresses.def != 'Reservation DHCP')");
+			this.groupbylist.put(4,"subnets_display.ctx_name,subnets_display.cod_site,subnets_display.site_name,subnets_display.ip,subnets_display.mask,subnets_display.def");
+			this.searchlist.put(4,"lower(subnets_display.ctx_name) like lower('%#SEARCHSTR#%') or lower(subnets_display.cod_site) like lower('%#SEARCHSTR#%') or lower(subnets_display.site_name) like lower('%#SEARCHSTR#%') or lower(subnets_display.def) like lower('%#SEARCHSTR#%') or subnets_display.ip like '%#SEARCHSTR#%' or cast(subnets_display.mask as "+castchar+") like '%#SEARCHSTR#%'");
+			// ID 5 : Infos Redundancy
+			this.selectlist.put(5,"select ctx_name,site_name,subnet_name,ptype_name,pid,ip,mask,ip_name from redundancy_display");
+			this.searchlist.put(5,"lower(ctx_name) like lower('%#SEARCHSTR#%') or lower(site_name) like lower('%#SEARCHSTR#%') or lower(subnet_name) like lower('%#SEARCHSTR#%') or lower(ptype_name) like lower('%#SEARCHSTR#%') or cast(pid as "+castchar+") like '%#SEARCHSTR#%' or ip like '%#SEARCHSTR#%' or cast(mask as "+castchar+") like '%#SEARCHSTR#%' or lower(ip_name) like lower('%#SEARCHSTR#%')");
+		} catch (Exception e) { printLog("Init: ",e); }
 	}
 
   public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
@@ -89,6 +99,7 @@ public class SQLQueryServlet extends HttpServlet {
 			mylog.debug("Starting whith id: "+queryid+", limit: "+querylimit+",offset: "+queryoffset+",search: "+querysearch+", order: "+queryorder+", sort: "+querysort);
 			Context env = (Context) new InitialContext().lookup("java:comp/env");
 			String jdbc_jndi = (String) env.lookup("jdbc_jndi");
+			String db_type = (String) env.lookup("db_type");
 			javax.sql.DataSource ds = (javax.sql.DataSource) env.lookup (jdbc_jndi);
 			conn = ds.getConnection();
 			stmt = conn.createStatement();
@@ -102,7 +113,11 @@ public class SQLQueryServlet extends HttpServlet {
 			if (groupbylist.containsKey(this.id)) { myquery += " group by "+groupbylist.get(this.id); }
 			if (!queryorder.equals("")) { myquery += " order by "+queryorder; }
 			if (!queryorder.equals("") && querysort.equals("desc")) { myquery += " desc"; }
-			myquery+=" limit "+this.querylimit+" offset "+this.queryoffset;
+			if (db_type.equals("postgresql")) {
+				myquery+=" limit "+this.querylimit+" offset "+this.queryoffset;
+			} else if (db_type.equals("oracle")) {
+				myquery+=" offset "+this.queryoffset+" rows fetch next "+this.querylimit+" rows only";
+			}
 			mylog.debug("Executing SQL: "+myquery);
 			rs = stmt.executeQuery(myquery);
 			while (rs.next()) {

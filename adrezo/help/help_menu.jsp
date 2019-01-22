@@ -107,9 +107,10 @@ d.add(84,8,'<fmt:message key="api.admin" />','${validUser.lang}/api_admin.html',
 d.add(85,8,'<fmt:message key="api.photo" />','${validUser.lang}/api_photo.html','','','ressource/page.gif','ressource/page.gif',false);
 d.add(86,8,'<fmt:message key="api.stock" />','${validUser.lang}/api_stock.html','','','ressource/page.gif','ressource/page.gif',false);
 d.add(87,8,'<fmt:message key="api.stkadmin" />','${validUser.lang}/api_stkadmin.html','','','ressource/page.gif','ressource/page.gif',false);
-d.add(1000,0,'<fmt:message key="userprefs" />','${validUser.lang}/user_prefs.html','','','ressource/prefs.png','ressource/prefs.png',false);
-d.add(1001,0,'<fmt:message key="chglog" />','${validUser.lang}/Versions.html','','','ressource/changelog.png','ressource/changelog.png',false);
-d.add(1002,0,'<fmt:message key="about" />','${validUser.lang}/about.html','','','ressource/yellow_star.gif','ressource/yellow_star.gif',false);
+d.add(1000,0,'<fmt:message key="infos" />','${validUser.lang}/infos.html','','','ressource/FlecheVert_F.gif','ressource/FlecheVert_O.gif',false);
+d.add(1001,0,'<fmt:message key="userprefs" />','${validUser.lang}/user_prefs.html','','','ressource/prefs.png','ressource/prefs.png',false);
+d.add(1002,0,'<fmt:message key="chglog" />','${validUser.lang}/Versions.html','','','ressource/changelog.png','ressource/changelog.png',false);
+d.add(1003,0,'<fmt:message key="about" />','${validUser.lang}/about.html','','','ressource/yellow_star.gif','ressource/yellow_star.gif',false);
 document.write(d);
 </script>
 <hr/>
