@@ -16,64 +16,43 @@
 <meta http-equiv="Pragma" content="no-cache" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <link rel="stylesheet" href="../stylesheet/common.css" type="text/css" />
+<link rel="stylesheet" href="../stylesheet/infos.css" type="text/css" />
 <link rel="stylesheet" href="../stylesheet/tinydropdown.css" type="text/css" />
 <link rel="stylesheet" href="../stylesheet/tinytable.css" type="text/css" />
 <script type="text/javascript" charset="utf-8" src="../js/common.js"></script>
 <script type="text/javascript" charset="utf-8" src="../js/tinydropdown.js"></script>
-<script type="text/javascript" charset="utf-8" src="../js/tinytable.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/tinyinfotable.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/scrolltable.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/info_subnet_fill.js"></script>
 </head>
-<body>
+<body onload='javascript:loadTable()'>
 <%@ include file="../menu.jsp" %>
 <h2><fmt:message key="info.fill.list" /></h2>
-<sql:query var="subs">
-	select subnets.ip,subnets.mask,subnets.def,count(adresses.ip) as COUNT,power(2,32-subnets.mask)-2 as MAX,round((count(adresses.ip)*100/(power(2,32-subnets.mask)-2))${adrezo:dbCast('NUMERIC')},1) as PERCENT
-	from subnets left outer join adresses
-	on subnets.id = adresses.subnet
-	where (adresses.def is null or adresses.def != 'Reservation DHCP')
-	and adresses.ctx = ${validUser.ctx}
-	group by subnets.ip,subnets.mask,subnets.def
-order by PERCENT DESC
-</sql:query>
+<input type="hidden" id="sqs_id" value="4" />
+<input type="hidden" id="sqs_limit" value="32" />
+<input type="hidden" id="sqs_offset" value="0" />
+<input type="hidden" id="sqs_order" value="mypercent" />
+<input type="hidden" id="sqs_sort" value="desc" />
+<input type="hidden" id="sortiny_column" value="7" />
+<input type="hidden" id="sortiny_dir" value="0" />
 <div id="tablewrapper">
 	<div id="tableheader">
-  	<div class="search">
-			<select id="columns" onchange="sortiny.search('query')"></select>
-			<input type="text" id="query" onkeyup="sortiny.search('query')" />
-		</div>
-		<span class="details">
-			<div><fmt:message key="tiny.table.record" /> <span id="startrecord"></span>-<span id="endrecord"></span> / <span id="totalrecords"></span></div>
-			<div><a href="javascript:sortiny.showall()"><fmt:message key="tiny.table.showall" /></a></div>
-			<div><a href="javascript:sortiny.reset()"><fmt:message key="common.click.reset" /></a></div>
-		</span>
-	</div>
-<table id="table" class="tinytable">
-<thead><tr><th><h3><fmt:message key="admin.subnet" /></h3></th><th><h3><fmt:message key="common.table.ipmask" /></h3></th><th><h3><fmt:message key="common.table.used" /></h3></th><th><h3><fmt:message key="common.table.max" /></h3></th><th><h3><fmt:message key="common.table.percent" /></h3></th></tr></thead>
-<tbody><c:forEach items="${subs.rows}" var="sub"><tr><td>${sub.DEF}</td><td><adrezo:displayIP value="${sub.IP}"/>/${sub.MASK}</td><td>${sub.COUNT}</td><td>${sub.MAX}</td><td>${sub.PERCENT}</td></tr></c:forEach></tbody>
-</table>
-	<div id="tablefooter">
-		<div id="tablenav">
-			<div>
-				<img src="../img/nav_first.gif" alt="First Page" onclick="sortiny.move(-1,true)" />
-				<img src="../img/nav_previous.gif" alt="Previous Page" onclick="sortiny.move(-1)" />
-				<img src="../img/nav_next.gif" alt="Next Page" onclick="sortiny.move(1)" />
-				<img src="../img/nav_end.gif" alt="Last Page" onclick="sortiny.move(1,true)" />
-			</div>
-		</div>
-		<div id="tablelocation">
-			<div>
-				<select onchange="sortiny.size(this.value)">
-					<option value="15">15</option>
-					<option value="30" selected="selected">30</option>
-					<option value="50">50</option>
-				</select>
-				<span><fmt:message key="tiny.table.recordpage" /></span>
-			</div>
-			<div class="page"><fmt:message key="tiny.table.page" /> <span id="currentpage"></span> / <span id="totalpages"></span></div>
+	  <div class="search">
+	  	<div class="searchtext"><fmt:message key="ip.click.search" /></div>
+			<input type="text" id="sqs_search" oninput="searchTable()" value="" />
 		</div>
 	</div>
+	<table id="tableheaders" class="overheaders">
+		<thead><tr><th><h3><fmt:message key="admin.ctx" /></h3></th><th><h3><fmt:message key="common.table.codesite" /></h3></th><th><h3><fmt:message key="admin.site" /></h3></th><th><h3><fmt:message key="admin.subnet" /></h3></th><th><h3><fmt:message key="common.table.ipmask" /></h3></th><th><h3><fmt:message key="common.table.used" />&nbsp;<img src="../img/tinytable_nosearch.png"></h3></th><th><h3><fmt:message key="common.table.max" />&nbsp;<img src="../img/tinytable_nosearch.png"></h3></th><th><h3><fmt:message key="common.table.percent" />&nbsp;<img src="../img/tinytable_nosearch.png"></h3></th></tr></thead>
+	</table>
+	<table id="tableinfos" class="tinytable">
+		<thead><tr><th><h3><fmt:message key="admin.ctx" /></h3></th><th><h3><fmt:message key="common.table.codesite" /></h3></th><th><h3><fmt:message key="admin.site" /></h3></th><th><h3><fmt:message key="admin.subnet" /></h3></th><th><h3><fmt:message key="common.table.ipmask" /></h3></th><th><h3><fmt:message key="common.table.used" />&nbsp;<img src="../img/tinytable_nosearch.png"></h3></th><th><h3><fmt:message key="common.table.max" />&nbsp;<img src="../img/tinytable_nosearch.png"></h3></th><th><h3><fmt:message key="common.table.percent" />&nbsp;<img src="../img/tinytable_nosearch.png"></h3></th></tr></thead>
+		<tbody></tbody>
+	</table>
 </div>
+<div id="tablefooter"></div>
 <script type="text/javascript" charset="utf-8">
-	var sortiny = new TINY.table.sorter('sortiny','table',{
+	var sortiny = new TINY.table.sorter('sortiny','tableinfos',{
 		headclass:'head',
 		ascclass:'asc',
 		descclass:'desc',
@@ -81,19 +60,8 @@ order by PERCENT DESC
 		oddclass:'oddrow',
 		evenselclass:'evenselected',
 		oddselclass:'oddselected',
-		paginate:true	,
-		size:30,
-		colddid:'columns',
-		currentid:'currentpage',
-		totalid:'totalpages',
-		startingrecid:'startrecord',
-		endingrecid:'endrecord',
-		totalrecid:'totalrecords',
-		hoverid:'selectedrow',
-		navid:'tablenav',
-		sortcolumn:4,
-		sortdir:-1,
-		init:true
+		hoverid:'selectedrow'
 	});
 </script>
+<a href="#" id="upscroll" class="scrollup" onclick="javascript:ScrollUp()">Scroll</a>
 </body></html>

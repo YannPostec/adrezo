@@ -88,6 +88,11 @@
 		<load-on-startup>0</load-on-startup>
 	</servlet>
 	<servlet>
+		<servlet-name>sqlquery</servlet-name>
+		<servlet-class>ypodev.adrezo.servlets.SQLQueryServlet</servlet-class>
+		<load-on-startup>0</load-on-startup>
+	</servlet>	
+	<servlet>
     <servlet-name>APIServlet</servlet-name>
     <servlet-class>org.apache.cxf.jaxrs.servlet.CXFNonSpringJaxrsServlet</servlet-class>
     <init-param>
@@ -154,6 +159,10 @@
 	<servlet-mapping>
 		<servlet-name>firejob</servlet-name>
 		<url-pattern>/firejob</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>sqlquery</servlet-name>
+		<url-pattern>/sqs</url-pattern>
 	</servlet-mapping>	
 
 	<session-config>

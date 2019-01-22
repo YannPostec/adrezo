@@ -13,56 +13,43 @@
 <head><title><fmt:message key="info.vlan.title" /></title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <link rel="stylesheet" href="../stylesheet/common.css" type="text/css" />
+<link rel="stylesheet" href="../stylesheet/infos.css" type="text/css" />
 <link rel="stylesheet" href="../stylesheet/tinydropdown.css" type="text/css" />
 <link rel="stylesheet" href="../stylesheet/tinytable.css" type="text/css" />
 <script type="text/javascript" charset="utf-8" src="../js/common.js"></script>
 <script type="text/javascript" charset="utf-8" src="../js/tinydropdown.js"></script>
-<script type="text/javascript" charset="utf-8" src="../js/tinytable.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/tinyinfotable.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/scrolltable.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/info_vlans.js"></script>
 </head>
-<body>
+<body onload='javascript:loadTable()'>
 <%@ include file="../menu.jsp" %>
 <h2><fmt:message key="info.vlan.list" /></h2>
-<sql:query var="vlans">select vid,def,site_name,cod_site,ctx_name from vlan_display where vid != 0 order by ctx_name,site_name,vid</sql:query>
+<input type="hidden" id="sqs_id" value="3" />
+<input type="hidden" id="sqs_limit" value="32" />
+<input type="hidden" id="sqs_offset" value="0" />
+<input type="hidden" id="sqs_order" value="cod_site" />
+<input type="hidden" id="sqs_sort" value="asc" />
+<input type="hidden" id="sortiny_column" value="2" />
+<input type="hidden" id="sortiny_dir" value="1" />
 <div id="tablewrapper">
 	<div id="tableheader">
-  	<div class="search">
-			<select id="columns" onchange="sortiny.search('query')"></select>
-			<input type="text" id="query" onkeyup="sortiny.search('query')" />
+	  <div class="search">
+	  	<div class="searchtext"><fmt:message key="ip.click.search" /></div>
+			<input type="text" id="sqs_search" oninput="searchTable()" value="" />
 		</div>
-		<span class="details">
-			<div><fmt:message key="tiny.table.record" /> <span id="startrecord"></span>-<span id="endrecord"></span> / <span id="totalrecords"></span></div>
-			<div><a href="javascript:sortiny.showall()"><fmt:message key="tiny.table.showall" /></a></div>
-			<div><a href="javascript:sortiny.reset()"><fmt:message key="common.click.reset" /></a></div>
-		</span>
 	</div>
-	<table id="table" class="tinytable">
-		<thead><tr><th><h3><fmt:message key="admin.ctx" /></h3></th><th><h3><fmt:message key="common.table.codesite" /></h3></th><th><h3><fmt:message key="admin.site" /></h3></th><th><h3><fmt:message key="common.table.vid" /></h3></th><th><h3><fmt:message key="common.table.name" /></h3></th></tr></thead>
-		<tbody><c:forEach items="${vlans.rows}" var="vlan"><tr><td>${vlan.ctx_name}</td><td>${vlan.cod_site}</td><td>${vlan.site_name}</td><td>${vlan.vid}</td><td>${vlan.def}</td></tr></c:forEach></tbody>
+	<table id="tableheaders" class="overheaders">
+		<thead><tr><th><h3>ID</h3></th><th><h3><fmt:message key="admin.ctx" /></h3></th><th><h3><fmt:message key="common.table.codesite" /></h3></th><th><h3><fmt:message key="admin.site" /></h3></th><th><h3><fmt:message key="common.table.vid" /></h3></th><th><h3><fmt:message key="common.table.name" /></h3></th></tr></thead>
 	</table>
-	<div id="tablefooter">
-		<div id="tablenav">
-			<div>
-				<img src="../img/nav_first.gif" alt="First Page" onclick="sortiny.move(-1,true)" />
-				<img src="../img/nav_previous.gif" alt="Previous Page" onclick="sortiny.move(-1)" />
-				<img src="../img/nav_next.gif" alt="Next Page" onclick="sortiny.move(1)" />
-				<img src="../img/nav_end.gif" alt="Last Page" onclick="sortiny.move(1,true)" />
-			</div>
-		</div>
-		<div id="tablelocation">
-			<div>
-				<select onchange="sortiny.size(this.value)">
-					<option value="15">15</option>
-					<option value="30" selected="selected">30</option>
-					<option value="50">50</option>
-				</select>
-				<span><fmt:message key="tiny.table.recordpage" /></span>
-			</div>
-			<div class="page"><fmt:message key="tiny.table.page" /> <span id="currentpage"></span> / <span id="totalpages"></span></div>
-		</div>
-	</div>
+	<table id="tableinfos" class="tinytable">
+		<thead><tr><th><h3>ID</h3></th><th><h3><fmt:message key="admin.ctx" /></h3></th><th><h3><fmt:message key="common.table.codesite" /></h3></th><th><h3><fmt:message key="admin.site" /></h3></th><th><h3><fmt:message key="common.table.vid" /></h3></th><th><h3><fmt:message key="common.table.name" /></h3></th></tr></thead>
+		<tbody></tbody>
+	</table>
 </div>
+<div id="tablefooter"></div>
 <script type="text/javascript" charset="utf-8">
-	var sortiny = new TINY.table.sorter('sortiny','table',{
+	var sortiny = new TINY.table.sorter('sortiny','tableinfos',{
 		headclass:'head',
 		ascclass:'asc',
 		descclass:'desc',
@@ -70,19 +57,8 @@
 		oddclass:'oddrow',
 		evenselclass:'evenselected',
 		oddselclass:'oddselected',
-		paginate:true	,
-		size:30,
-		colddid:'columns',
-		currentid:'currentpage',
-		totalid:'totalpages',
-		startingrecid:'startrecord',
-		endingrecid:'endrecord',
-		totalrecid:'totalrecords',
-		hoverid:'selectedrow',
-		navid:'tablenav',
-		sortcolumn:1,
-		sortdir:1,
-		init:true
+		hoverid:'selectedrow'
 	});
 </script>
+<a href="#" id="upscroll" class="scrollup" onclick="javascript:ScrollUp()">Scroll</a>
 </body></html>

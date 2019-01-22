@@ -1,0 +1,16 @@
+p {font-size:12px; font-family:monospace; }
+p.err {color:#f00; font-weight:bold; padding:2px;}
+.scrollup {
+    width:48px; height:48px; opacity:0.7; position:fixed; border-radius:48px;
+    bottom:50px; right:50px; display:none; text-indent:-9999px;
+    background: rgba(255,255,255,0.8) url("../img/scrollup.png") no-repeat;
+    z-index:1000; border:5px solid #505050; text-decoration:none;
+}
+.scrollup:hover { opacity:1; }
+.overheaders {z-index:500;display:none;position:fixed;top:0px;left:0px;}
+.overheaders .head h3 {background:url(../img/tinytable_sort.gif) 7px center no-repeat; cursor:pointer; padding:0 15px}
+.overheaders .desc, .asc {background:#9d9dec}
+.overheaders .desc h3 {background:url(../img/tinytable_desc.gif) 7px center no-repeat; cursor:pointer; padding:0 15px}
+.overheaders .asc h3 {background:url(../img/tinytable_asc.gif) 7px  center no-repeat; cursor:pointer; padding:0 15px}
+.overheaders .head:hover {color:#fff}
+.searchtext {float:left; padding:4px;}
