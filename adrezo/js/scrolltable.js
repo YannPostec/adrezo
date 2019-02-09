@@ -22,6 +22,12 @@ function loadTable() {
 	var s=T$("sqs_search").value;
 	// Render IP for database search
 	if (/^[0-9.]+$/.test(s)) { s = renderip(s); }
+	// Escaping Single Quote
+	s = s.replace(/'/g,"''");
+	// Escaping Backslash
+	s = s.replace(/\\/g,"\\\\\\");
+	// URI Compliance
+	s=encodeURIComponent(s);
 	fillTable(T$("sqs_id").value,T$("sqs_limit").value,T$("sqs_offset").value,s,T$("sqs_order").value,T$("sqs_sort").value);
 	resizeHeaders();
 	sortiny.init();
