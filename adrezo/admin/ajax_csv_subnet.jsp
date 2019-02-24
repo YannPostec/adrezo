@@ -57,13 +57,15 @@
 						gw = ?,
 						bc = ?,
 						ip = ?,
-						mask = ?${adrezo:dbCast('INTEGER')}
+						mask = ?${adrezo:dbCast('INTEGER')},
+						vlan = ?${adrezo:dbCast('INTEGER')}
 					WHERE id = ?${adrezo:dbCast('INTEGER')}
 					<sql:param value="${param[def]}"/>
 					<sql:param value="${param[gw]}"/>
 					<sql:param value="${param[bc]}"/>
 					<sql:param value="${param[ip]}"/>
 					<sql:param value="${param[mask]}"/>
+					<sql:param value="${param[vlan]}"/>
 					<sql:param value="${param[id]}"/>
 				</sql:update>
 			</c:catch>
