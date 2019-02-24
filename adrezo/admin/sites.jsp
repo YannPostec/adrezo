@@ -8,7 +8,7 @@
 <fmt:setBundle basename="ypodev.adrezo.props.lang" />
 <%request.setCharacterEncoding("UTF-8");%>
 <c:if test="${validUser == null}"><jsp:forward page="../login.jsp"><jsp:param name="origURL" value="${pageContext.request.requestURL}" /><jsp:param name="errorKey" value="login.err" /></jsp:forward></c:if>
-<c:if test="${validUser.admin}">
+<c:if test="${validUser.rezo}">
 <fmt:message key="common.click.add" var="lang_commonclickadd" />
 <fmt:message key="common.click.mod" var="lang_commonclickmod" />
 <fmt:message key="common.click.del" var="lang_commonclickdel" />

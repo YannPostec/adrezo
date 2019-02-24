@@ -21,8 +21,7 @@
 			<li><a href="${pageContext.request.contextPath}/admin/auth_roles.jsp"><fmt:message key="menu.admin.role" bundle="${bunmenu}" /></a></li>
 			<li><a href="${pageContext.request.contextPath}/admin/auth_users.jsp"><fmt:message key="menu.admin.usr" bundle="${bunmenu}" /></a></li>
 			<li><a href="${pageContext.request.contextPath}/admin/contextes.jsp"><fmt:message key="menu.admin.ctx" bundle="${bunmenu}" /></a></li>
-			<li><a href="${pageContext.request.contextPath}/admin/sites.jsp"><fmt:message key="menu.admin.site" bundle="${bunmenu}" /></a></li>
-			<li><a href="${pageContext.request.contextPath}/admin/mails.jsp"><fmt:message key="menu.admin.mail" bundle="${bunmenu}" /></a></li>
+						<li><a href="${pageContext.request.contextPath}/admin/mails.jsp"><fmt:message key="menu.admin.mail" bundle="${bunmenu}" /></a></li>
 			<li><a href="${pageContext.request.contextPath}/admin/csv.jsp"><fmt:message key="menu.admin.csv" bundle="${bunmenu}" /></a></li>
 			<li><a href="${pageContext.request.contextPath}/admin/api.jsp"><fmt:message key="menu.admin.api" bundle="${bunmenu}" /></a></li>
 			<li><a href="${pageContext.request.contextPath}/admin/schedulers.jsp"><fmt:message key="menu.admin.schedulers" bundle="${bunmenu}" /></a></li>
@@ -40,6 +39,7 @@
 <c:if test="${validUser.rezo}">
 	<li><a href="#" class="menulink"><fmt:message key="menu.rezo" bundle="${bunmenu}" /></a>
 		<ul>
+			<li><a href="${pageContext.request.contextPath}/admin/sites.jsp"><fmt:message key="menu.rezo.site" bundle="${bunmenu}" /></a></li>
 			<li><a href="${pageContext.request.contextPath}/admin/subnets.jsp"><fmt:message key="menu.rezo.subnet" bundle="${bunmenu}" /></a></li>
 			<li><a href="${pageContext.request.contextPath}/admin/vlan.jsp"><fmt:message key="menu.rezo.vlan" bundle="${bunmenu}" /></a></li>
 			<li>
