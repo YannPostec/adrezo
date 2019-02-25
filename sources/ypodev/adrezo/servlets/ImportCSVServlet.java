@@ -97,7 +97,7 @@ public class ImportCSVServlet extends HttpServlet {
 			if (!arrLine[1].matches("\\d+")) { printLog(prop.getString("csv.error")+myline+" : ID : "+prop.getString("verif.number"));errParse=true; }
 			if (!arrLine[2].matches("\\d+")) { printLog(prop.getString("csv.error")+myline+" : SITE : "+prop.getString("verif.number"));errParse=true; }
 			if (!arrLine[3].matches("\\d+")) { printLog(prop.getString("csv.error")+myline+" : VID : "+prop.getString("verif.number"));errParse=true; }
-			if (arrLine[4].equals("") || arrLine[5].length() > 50) { printLog(prop.getString("csv.error")+myline+" : NAME : "+prop.getString("verif.null")+" - "+prop.getString("verif.max")+" : 50");errParse=true; }
+			if (arrLine[4].equals("") || arrLine[4].length() > 50) { printLog(prop.getString("csv.error")+myline+" : NAME : "+prop.getString("verif.null")+" - "+prop.getString("verif.max")+" : 50");errParse=true; }
 			if (!errParse) {
 				this.xmlResult += "<vlan><vlanid>"+arrLine[1]+"</vlanid><vlansite>"+arrLine[2]+"</vlansite><vlanvid>"+arrLine[3]+"</vlanvid><vlanname>"+arrLine[4]+"</vlanname></vlan>";
 			}

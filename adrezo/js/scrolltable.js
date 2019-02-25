@@ -32,6 +32,10 @@ function loadTable() {
 	resizeHeaders();
 	sortiny.init();
 }
+function refreshTable(init) {
+	resizeHeaders();
+	if (init) { sortiny.init(); }
+}
 function searchTable() {
 	clearTimeout(timer);
 	

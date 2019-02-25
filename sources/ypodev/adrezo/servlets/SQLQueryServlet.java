@@ -12,6 +12,7 @@ import javax.servlet.http.*;
 import javax.naming.*;
 import org.apache.log4j.Logger;
 import ypodev.adrezo.util.DbCast;
+import ypodev.adrezo.beans.UserInfoBean;
 
 public class SQLQueryServlet extends HttpServlet {
 	//Properties
@@ -81,6 +82,14 @@ public class SQLQueryServlet extends HttpServlet {
 			// ID 5 : Infos Redundancy
 			this.selectlist.put(5,"select ctx_name,site_name,subnet_name,ptype_name,pid,ip,mask,ip_name from redundancy_display");
 			this.searchlist.put(5,"lower(ctx_name) like lower('%#SEARCHSTR#%') or lower(site_name) like lower('%#SEARCHSTR#%') or lower(subnet_name) like lower('%#SEARCHSTR#%') or lower(ptype_name) like lower('%#SEARCHSTR#%') or cast(pid as "+castchar+") like '%#SEARCHSTR#%' or ip like '%#SEARCHSTR#%' or cast(mask as "+castchar+") like '%#SEARCHSTR#%' or lower(ip_name) like lower('%#SEARCHSTR#%')");
+			// ID 6 : Network Sites
+			this.selectlist.put(6,"select id,ctx,cod_site,name from sites");
+			this.searchlist.put(6,"lower(name) like lower('%#SEARCHSTR#%') or lower(cod_site) like lower('%#SEARCHSTR#%')");
+			this.wherelist.put(6,"ctx=#VALIDUSERCTX#");
+			// ID 7 : Network Subnets
+			this.selectlist.put(7,"select id,ctx,site,site_name,ip,mask,def,gw,bc,vlan,vid,vdef from subnets_display");
+			this.searchlist.put(7,"lower(site_name) like lower('%#SEARCHSTR#%') or ip like '%#SEARCHSTR#%' or gw like '%#SEARCHSTR#%' or bc like '%#SEARCHSTR#%' or lower(vdef) like lower('%#SEARCHSTR#%') or lower(def) like lower('%#SEARCHSTR#%') or cast(vid as "+castchar+") like '%#SEARCHSTR#%' or cast(mask as "+castchar+") like '%#SEARCHSTR#%'");
+			this.wherelist.put(7,"ctx=#VALIDUSERCTX#");
 		} catch (Exception e) { printLog("Init: ",e); }
 	}
 
@@ -96,6 +105,7 @@ public class SQLQueryServlet extends HttpServlet {
 			this.querysearch = req.getParameter("search");
 			this.queryorder = req.getParameter("order");
 			this.querysort = req.getParameter("sort");
+			UserInfoBean validUser = (UserInfoBean) req.getSession().getAttribute("validUser");
 			mylog.debug("Starting whith id: "+queryid+", limit: "+querylimit+",offset: "+queryoffset+",search: "+querysearch+", order: "+queryorder+", sort: "+querysort);
 			Context env = (Context) new InitialContext().lookup("java:comp/env");
 			String jdbc_jndi = (String) env.lookup("jdbc_jndi");
@@ -105,8 +115,8 @@ public class SQLQueryServlet extends HttpServlet {
 			stmt = conn.createStatement();
 			String myquery = selectlist.get(this.id);
 			if (wherelist.containsKey(this.id)) {
-				myquery += " where "+wherelist.get(this.id);
-				if (!querysearch.equals("")) { myquery += " and "+searchlist.get(this.id).replaceAll("#SEARCHSTR#",querysearch); }
+				myquery += " where "+wherelist.get(this.id).replaceAll("#VALIDUSERCTX#",validUser.getCtx());
+				if (!querysearch.equals("")) { myquery += " and ( "+searchlist.get(this.id).replaceAll("#SEARCHSTR#",querysearch)+" )"; }
 			} else {
 				if (!querysearch.equals("")) { myquery += " where "+searchlist.get(this.id).replaceAll("#SEARCHSTR#",querysearch); }
 			}
@@ -126,6 +136,8 @@ public class SQLQueryServlet extends HttpServlet {
 				if (this.id==3) {	result += "<line><id>"+String.valueOf(rs.getInt("id"))+"</id><ctx_name>"+shapeXML(rs.getString("ctx_name"))+"</ctx_name><cod_site>"+shapeXML(rs.getString("cod_site"))+"</cod_site><site_name>"+shapeXML(rs.getString("site_name"))+"</site_name><def>"+shapeXML(rs.getString("def"))+"</def><vid>"+String.valueOf(rs.getInt("vid"))+"</vid></line>"; }
 				if (this.id==4) {	result += "<line><ctx_name>"+shapeXML(rs.getString("ctx_name"))+"</ctx_name><cod_site>"+shapeXML(rs.getString("cod_site"))+"</cod_site><site_name>"+shapeXML(rs.getString("site_name"))+"</site_name><def>"+shapeXML(rs.getString("def"))+"</def><ip>"+rs.getString("ip")+"</ip><mask>"+String.valueOf(rs.getInt("mask"))+"</mask><mycount>"+String.valueOf(rs.getInt("mycount"))+"</mycount><mymax>"+String.valueOf(rs.getInt("mymax"))+"</mymax><mypercent>"+String.valueOf(rs.getInt("mypercent"))+"</mypercent></line>"; }
 				if (this.id==5) {	result += "<line><ctx_name>"+shapeXML(rs.getString("ctx_name"))+"</ctx_name><site_name>"+shapeXML(rs.getString("site_name"))+"</site_name><subnet_name>"+shapeXML(rs.getString("subnet_name"))+"</subnet_name><ptype_name>"+shapeXML(rs.getString("ptype_name"))+"</ptype_name><pid>"+String.valueOf(rs.getInt("pid"))+"</pid><ip>"+rs.getString("ip")+"</ip><mask>"+String.valueOf(rs.getInt("mask"))+"</mask><ip_name>"+shapeXML(rs.getString("ip_name"))+"</ip_name></line>"; }
+				if (this.id==6) {	result += "<line><id>"+String.valueOf(rs.getInt("id"))+"</id><ctx>"+String.valueOf(rs.getInt("ctx"))+"</ctx><cod_site>"+shapeXML(rs.getString("cod_site"))+"</cod_site><name>"+shapeXML(rs.getString("name"))+"</name></line>"; }
+				if (this.id==7) {	result += "<line><id>"+String.valueOf(rs.getInt("id"))+"</id><ctx>"+String.valueOf(rs.getInt("ctx"))+"</ctx><site>"+String.valueOf(rs.getInt("site"))+"</site><site_name>"+shapeXML(rs.getString("site_name"))+"</site_name><ip>"+rs.getString("ip")+"</ip><mask>"+String.valueOf(rs.getInt("mask"))+"</mask><def>"+shapeXML(rs.getString("def"))+"</def><gw>"+rs.getString("gw")+"</gw><bc>"+rs.getString("bc")+"</bc><vlan>"+String.valueOf(rs.getInt("vlan"))+"</vlan><vid>"+String.valueOf(rs.getInt("vid"))+"</vid><vdef>"+shapeXML(rs.getString("vdef"))+"</vdef></line>"; }
 			}
 			mylog.debug("Finish Processing SQL");
 			rs.close();rs=null;
