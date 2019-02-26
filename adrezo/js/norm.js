@@ -83,21 +83,26 @@ function showAdmin(invert) {
 	var node = T$("adminchoice");
 	var choice = node.dataset.choice;
 	var n=TC$("admin");
+	var r=TC$("readonly");
 	if (choice == "no") {
 		if (invert) {
 			node.src = "../img/button_admin_green.png";
 			node.dataset.choice = "yes";
 			for (i=0;i<n.length;i++) { n[i].style.display = "inline"; }
+			for (j=0;j<r.length;j++) { r[j].style.display = "none"; }
 		} else {
 			for (i=0;i<n.length;i++) { n[i].style.display = ""; }
+			for (j=0;j<r.length;j++) { r[j].style.display = "inline"; }
 		}
 	} else if (choice == "yes") {
 		if (invert) {
 			node.src = "../img/button_admin_red.png";
 			node.dataset.choice = "no";
 			for (i=0;i<n.length;i++) { n[i].style.display = ""; }
+			for (j=0;j<r.length;j++) { r[j].style.display = "inline"; }
 		} else {
 			for (i=0;i<n.length;i++) { n[i].style.display = "inline"; }
+			for (j=0;j<r.length;j++) { r[j].style.display = "none"; }
 		}
 	}
 }
