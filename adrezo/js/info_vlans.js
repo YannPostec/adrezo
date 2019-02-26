@@ -1,5 +1,5 @@
 //@Author: Yann POSTEC
-function fillTable(sqlid,limit,offset,search,order,sqlsort) {
+function fillTable(sqlid,limit,offset,search,searchip,order,sqlsort) {
 	var xhr=new XMLHttpRequest();
 	xhr.onreadystatechange=function(){
 		if (xhr.readyState==4 && xhr.status!=200) { createP(xhr.status+", "+xhr.statusText); }
@@ -36,7 +36,7 @@ function fillTable(sqlid,limit,offset,search,order,sqlsort) {
 	T$("tablefooter").appendChild(img);
 	xhr.open("POST","../sqs",false);
 	xhr.setRequestHeader('Content-type','application/x-www-form-urlencoded');
-	xhr.send("id="+sqlid+"&limit="+limit+"&offset="+offset+"&search="+search+"&order="+order+"&sort="+sqlsort);
+	xhr.send("id="+sqlid+"&limit="+limit+"&offset="+offset+"&search="+search+"&searchip="+searchip+"&order="+order+"&sort="+sqlsort);
 }
 function SwitchSearch(i) {
 		switch(i) {

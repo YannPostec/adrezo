@@ -23,6 +23,7 @@ public class SQLQueryServlet extends HttpServlet {
 	private String querylimit = "";
 	private String queryoffset = "";
 	private String querysearch = "";
+	private String querysearchip = "";
 	private String queryorder = "";
 	private String querysort = "";
 	private String result = "";
@@ -66,7 +67,7 @@ public class SQLQueryServlet extends HttpServlet {
 			}
 			// ID 1 : Infos Subnets
 			this.selectlist.put(1,"select id,ctx_name,cod_site,site_name,ip,mask,def,gw,vid,vdef from subnets_display");
-			this.searchlist.put(1,"lower(ctx_name) like lower('%#SEARCHSTR#%') or lower(cod_site) like lower('%#SEARCHSTR#%') or lower(site_name) like lower('%#SEARCHSTR#%') or ip like '%#SEARCHSTR#%' or lower(def) like lower('%#SEARCHSTR#%') or gw like '%#SEARCHSTR#%' or lower(vdef) like lower('%#SEARCHSTR#%') or cast(vid as "+castchar+") like '%#SEARCHSTR#%' or cast(mask as "+castchar+") like '%#SEARCHSTR#%'");
+			this.searchlist.put(1,"lower(ctx_name) like lower('%#SEARCHSTR#%') or lower(cod_site) like lower('%#SEARCHSTR#%') or lower(site_name) like lower('%#SEARCHSTR#%') or ip like '%#SEARCHIPSTR#%' or lower(def) like lower('%#SEARCHSTR#%') or gw like '%#SEARCHIPSTR#%' or lower(vdef) like lower('%#SEARCHSTR#%') or cast(vid as "+castchar+") like '%#SEARCHSTR#%' or cast(mask as "+castchar+") like '%#SEARCHSTR#%'");
 			// ID 2 : Infos Sites
 			this.selectlist.put(2,"select id,ctx_name,cod_site,name from sites_display");
 			this.searchlist.put(2,"lower(ctx_name) like lower('%#SEARCHSTR#%') or lower(cod_site) like lower('%#SEARCHSTR#%') or lower(name) like lower ('%#SEARCHSTR#%')");
@@ -78,18 +79,23 @@ public class SQLQueryServlet extends HttpServlet {
 			this.selectlist.put(4,"select subnets_display.ctx_name,subnets_display.cod_site,subnets_display.site_name,subnets_display.ip,subnets_display.mask,subnets_display.def,count(adresses.ip) as mycount,power(2,32-subnets_display.mask)-2 as mymax,round((count(adresses.ip)*100/(power(2,32-subnets_display.mask)-2))"+DbCast.dbCast("NUMERIC")+",1) as mypercent from subnets_display left outer join adresses on subnets_display.id = adresses.subnet");
 			this.wherelist.put(4,"(adresses.def is null or adresses.def != 'Reservation DHCP')");
 			this.groupbylist.put(4,"subnets_display.ctx_name,subnets_display.cod_site,subnets_display.site_name,subnets_display.ip,subnets_display.mask,subnets_display.def");
-			this.searchlist.put(4,"lower(subnets_display.ctx_name) like lower('%#SEARCHSTR#%') or lower(subnets_display.cod_site) like lower('%#SEARCHSTR#%') or lower(subnets_display.site_name) like lower('%#SEARCHSTR#%') or lower(subnets_display.def) like lower('%#SEARCHSTR#%') or subnets_display.ip like '%#SEARCHSTR#%' or cast(subnets_display.mask as "+castchar+") like '%#SEARCHSTR#%'");
+			this.searchlist.put(4,"lower(subnets_display.ctx_name) like lower('%#SEARCHSTR#%') or lower(subnets_display.cod_site) like lower('%#SEARCHSTR#%') or lower(subnets_display.site_name) like lower('%#SEARCHSTR#%') or lower(subnets_display.def) like lower('%#SEARCHSTR#%') or subnets_display.ip like '%#SEARCHIPSTR#%' or cast(subnets_display.mask as "+castchar+") like '%#SEARCHSTR#%'");
 			// ID 5 : Infos Redundancy
 			this.selectlist.put(5,"select ctx_name,site_name,subnet_name,ptype_name,pid,ip,mask,ip_name from redundancy_display");
-			this.searchlist.put(5,"lower(ctx_name) like lower('%#SEARCHSTR#%') or lower(site_name) like lower('%#SEARCHSTR#%') or lower(subnet_name) like lower('%#SEARCHSTR#%') or lower(ptype_name) like lower('%#SEARCHSTR#%') or cast(pid as "+castchar+") like '%#SEARCHSTR#%' or ip like '%#SEARCHSTR#%' or cast(mask as "+castchar+") like '%#SEARCHSTR#%' or lower(ip_name) like lower('%#SEARCHSTR#%')");
+			this.searchlist.put(5,"lower(ctx_name) like lower('%#SEARCHSTR#%') or lower(site_name) like lower('%#SEARCHSTR#%') or lower(subnet_name) like lower('%#SEARCHSTR#%') or lower(ptype_name) like lower('%#SEARCHSTR#%') or cast(pid as "+castchar+") like '%#SEARCHSTR#%' or ip like '%#SEARCHIPSTR#%' or cast(mask as "+castchar+") like '%#SEARCHSTR#%' or lower(ip_name) like lower('%#SEARCHSTR#%')");
 			// ID 6 : Network Sites
 			this.selectlist.put(6,"select id,ctx,cod_site,name from sites");
 			this.searchlist.put(6,"lower(name) like lower('%#SEARCHSTR#%') or lower(cod_site) like lower('%#SEARCHSTR#%')");
 			this.wherelist.put(6,"ctx=#VALIDUSERCTX#");
 			// ID 7 : Network Subnets
 			this.selectlist.put(7,"select id,ctx,site,site_name,ip,mask,def,gw,bc,vlan,vid,vdef from subnets_display");
-			this.searchlist.put(7,"lower(site_name) like lower('%#SEARCHSTR#%') or ip like '%#SEARCHSTR#%' or gw like '%#SEARCHSTR#%' or bc like '%#SEARCHSTR#%' or lower(vdef) like lower('%#SEARCHSTR#%') or lower(def) like lower('%#SEARCHSTR#%') or cast(vid as "+castchar+") like '%#SEARCHSTR#%' or cast(mask as "+castchar+") like '%#SEARCHSTR#%'");
+			this.searchlist.put(7,"lower(site_name) like lower('%#SEARCHSTR#%') or ip like '%#SEARCHIPSTR#%' or gw like '%#SEARCHIPSTR#%' or bc like '%#SEARCHIPSTR#%' or lower(vdef) like lower('%#SEARCHSTR#%') or lower(def) like lower('%#SEARCHSTR#%') or cast(vid as "+castchar+") like '%#SEARCHSTR#%' or cast(mask as "+castchar+") like '%#SEARCHSTR#%'");
 			this.wherelist.put(7,"ctx=#VALIDUSERCTX#");
+			// ID 8 : Network Vlans
+			this.selectlist.put(8,"select id,site,site_name,vid,def from vlan_display");
+			this.searchlist.put(8,"lower(site_name) like lower('%#SEARCHSTR#%') or lower(def) like lower('%#SEARCHSTR#%') or cast(vid as "+castchar+") like '%#SEARCHSTR#%'");
+			this.wherelist.put(8,"ctx=#VALIDUSERCTX# and vid!=0");
+			
 		} catch (Exception e) { printLog("Init: ",e); }
 	}
 
@@ -103,6 +109,7 @@ public class SQLQueryServlet extends HttpServlet {
 			this.querylimit = req.getParameter("limit");
 			this.queryoffset = req.getParameter("offset");
 			this.querysearch = req.getParameter("search");
+			this.querysearchip = req.getParameter("searchip");
 			this.queryorder = req.getParameter("order");
 			this.querysort = req.getParameter("sort");
 			UserInfoBean validUser = (UserInfoBean) req.getSession().getAttribute("validUser");
@@ -114,11 +121,13 @@ public class SQLQueryServlet extends HttpServlet {
 			conn = ds.getConnection();
 			stmt = conn.createStatement();
 			String myquery = selectlist.get(this.id);
+			String mysearch = searchlist.get(this.id).replaceAll("#SEARCHSTR#",querysearch);
+			mysearch = mysearch.replaceAll("#SEARCHIPSTR#",querysearchip);
 			if (wherelist.containsKey(this.id)) {
 				myquery += " where "+wherelist.get(this.id).replaceAll("#VALIDUSERCTX#",validUser.getCtx());
-				if (!querysearch.equals("")) { myquery += " and ( "+searchlist.get(this.id).replaceAll("#SEARCHSTR#",querysearch)+" )"; }
+				if (!querysearch.equals("")) { myquery += " and ( "+mysearch+" )"; }
 			} else {
-				if (!querysearch.equals("")) { myquery += " where "+searchlist.get(this.id).replaceAll("#SEARCHSTR#",querysearch); }
+				if (!querysearch.equals("")) { myquery += " where "+mysearch; }
 			}
 			if (groupbylist.containsKey(this.id)) { myquery += " group by "+groupbylist.get(this.id); }
 			if (!queryorder.equals("")) { myquery += " order by "+queryorder; }
@@ -138,6 +147,7 @@ public class SQLQueryServlet extends HttpServlet {
 				if (this.id==5) {	result += "<line><ctx_name>"+shapeXML(rs.getString("ctx_name"))+"</ctx_name><site_name>"+shapeXML(rs.getString("site_name"))+"</site_name><subnet_name>"+shapeXML(rs.getString("subnet_name"))+"</subnet_name><ptype_name>"+shapeXML(rs.getString("ptype_name"))+"</ptype_name><pid>"+String.valueOf(rs.getInt("pid"))+"</pid><ip>"+rs.getString("ip")+"</ip><mask>"+String.valueOf(rs.getInt("mask"))+"</mask><ip_name>"+shapeXML(rs.getString("ip_name"))+"</ip_name></line>"; }
 				if (this.id==6) {	result += "<line><id>"+String.valueOf(rs.getInt("id"))+"</id><ctx>"+String.valueOf(rs.getInt("ctx"))+"</ctx><cod_site>"+shapeXML(rs.getString("cod_site"))+"</cod_site><name>"+shapeXML(rs.getString("name"))+"</name></line>"; }
 				if (this.id==7) {	result += "<line><id>"+String.valueOf(rs.getInt("id"))+"</id><ctx>"+String.valueOf(rs.getInt("ctx"))+"</ctx><site>"+String.valueOf(rs.getInt("site"))+"</site><site_name>"+shapeXML(rs.getString("site_name"))+"</site_name><ip>"+rs.getString("ip")+"</ip><mask>"+String.valueOf(rs.getInt("mask"))+"</mask><def>"+shapeXML(rs.getString("def"))+"</def><gw>"+rs.getString("gw")+"</gw><bc>"+rs.getString("bc")+"</bc><vlan>"+String.valueOf(rs.getInt("vlan"))+"</vlan><vid>"+String.valueOf(rs.getInt("vid"))+"</vid><vdef>"+shapeXML(rs.getString("vdef"))+"</vdef></line>"; }
+				if (this.id==8) {	result += "<line><id>"+String.valueOf(rs.getInt("id"))+"</id><site>"+String.valueOf(rs.getInt("site"))+"</site><site_name>"+shapeXML(rs.getString("site_name"))+"</site_name><def>"+shapeXML(rs.getString("def"))+"</def><vid>"+String.valueOf(rs.getInt("vid"))+"</vid></line>"; }
 			}
 			mylog.debug("Finish Processing SQL");
 			rs.close();rs=null;
@@ -171,6 +181,7 @@ public class SQLQueryServlet extends HttpServlet {
 		querylimit = "";
 		queryoffset = "";
 		querysearch = "";
+		querysearchip = "";
 		queryorder = "";
 		querysort = "";
 		result = "";
