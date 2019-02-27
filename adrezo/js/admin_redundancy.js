@@ -266,6 +266,7 @@ function fillTable(sqlid,limit,offset,search,searchip,order,sqlsort) {
 					if (T$$("ptype",lines[i])[0].hasChildNodes() && T$$("ptype_name",lines[i])[0].hasChildNodes()) {
 						var mytd = mytr.insertCell(-1);
 						var mysel = T$("add_ptype").cloneNode(true);
+						mysel.removeAttribute("id");
 						mysel.value = T$$("ptype",lines[i])[0].firstChild.nodeValue;
 						mysel.style.display="none";
 						mytd.appendChild(mysel);

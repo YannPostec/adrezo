@@ -373,6 +373,7 @@ function fillTable(sqlid,limit,offset,search,searchip,order,sqlsort) {
 					if (T$$("site",lines[i])[0].hasChildNodes() && T$$("site_name",lines[i])[0].hasChildNodes()) {
 						var mytd = mytr.insertCell(-1);
 						var mysel = T$("add_site").cloneNode(true);
+						mysel.removeAttribute("id");
 						mysel.value = T$$("site",lines[i])[0].firstChild.nodeValue;
 						mysel.style.display="none";
 						mytd.appendChild(mysel);
@@ -414,6 +415,7 @@ function fillTable(sqlid,limit,offset,search,searchip,order,sqlsort) {
 					if (T$$("vlan",lines[i])[0].hasChildNodes() && T$$("vid",lines[i])[0].hasChildNodes() && T$$("vdef",lines[i])[0].hasChildNodes()) {
 						var mytd = mytr.insertCell(-1);
 						var mysel = T$("add_vlan").cloneNode(true);
+						mysel.removeAttribute("id");
 						mysel.style.display="none";
 						mytd.appendChild(mysel);						
 						var hid = document.createElement("input");
