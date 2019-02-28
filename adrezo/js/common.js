@@ -73,3 +73,10 @@ function chgLang(l) {
 	T$("txtMenuMain").value=l;
 	T$("frmMenuMain").submit();
 }
+function EmptySelect(sel) {
+	sel.selectedIndex = 0;
+	var options = T$$("option",sel);
+	while (sel.options.length > 1) {
+		sel.removeChild(sel.lastChild);
+	}
+}

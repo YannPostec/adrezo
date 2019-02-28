@@ -20,13 +20,6 @@ function SwitchView(e,id) {
 		DisplayPhoto(id+"_VB");
 	}
 }
-function EmptySelect(mysel) {
-	mysel.selectedIndex = 0;
-	var options = T$$("option",mysel);
-	while (mysel.options.length > 1) {
-		mysel.removeChild(mysel.lastChild);
-	}
-}
 function FillSalle(node,selsalle) {
 	var site = node.value;
 	var selectsalle = T$(selsalle);

@@ -1,11 +1,4 @@
 //@Author: Yann POSTEC
-function EmptySite(selectsite) {
-	selectsite.selectedIndex = 0;
-	var options = T$$("option",selectsite);
-	while (selectsite.options.length > 1) {
-		selectsite.removeChild(selectsite.lastChild);
-	}
-}
 function SearchUnknown() {
 	var cb = T$("cb_unk");
 	var tr = T$$("tr",T$("mytable"));
@@ -21,7 +14,7 @@ function FillSite(node,bModify) {
 	var tds = T$$("td",node.parentNode.parentNode);
 	var client = node.value;
 	var selectsite = tds[2].firstChild;
-	EmptySite(selectsite);
+	EmptySelect(selectsite);
 	
 	if (node.selectedIndex > 0) {
 		var xhr=new XMLHttpRequest();

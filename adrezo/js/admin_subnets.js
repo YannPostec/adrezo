@@ -1,11 +1,4 @@
 //@Author: Yann POSTEC
-function EmptySelect(sel) {
-	sel.selectedIndex = 0;
-	var options = T$$("option",sel);
-	while (sel.options.length > 1) {
-		sel.removeChild(sel.lastChild);
-	}
-}
 function ResetAdd() {
 	T$("add_ip").value = "";
 	T$("add_mask").value = "";
@@ -42,7 +35,7 @@ function FillVlan(node,bModify) {
 						opt.value = T$$("value",rows[i])[0].firstChild.nodeValue;
 						opt.text = T$$("texte",rows[i])[0].firstChild.nodeValue;
 						if (bModify) {
-							var idvlan = tds[8].firstChild.nextSibling.value
+							var idvlan = tds[8].firstChild.nextSibling.value;
 							if (opt.value == idvlan) { opt.selected = true; }
 						}
 						selectvlan.add(opt);

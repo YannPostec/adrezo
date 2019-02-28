@@ -1,11 +1,4 @@
 //@Author: Yann POSTEC
-function EmptySelect(mysel) {
-	mysel.selectedIndex = 0;
-	var options = T$$("option",mysel);
-	while (mysel.options.length > 1) {
-		mysel.removeChild(mysel.lastChild);
-	}
-}
 function FillSite(node,origin) {
 	var ctx = node.value;
 	if (origin == "src" || origin == "dst") {

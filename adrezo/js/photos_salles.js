@@ -43,7 +43,9 @@ function modSubmit(e) {
 	if (strAlert != "") {
 		showDialog(langdata.invalidfield+" :",strAlert,"warning",0,1);
 	} else {
-		DBAjax("ajax_salles_store.jsp","site="+selectsite.value+"&id="+id+"&name="+name);
+		DBAjax("ajax_salles_store.jsp","site="+selectsite.value+"&id="+id+"&name="+name,true,function callback(result) {
+			if (result) { ApplyModif(id); }
+		});
 	}
 }
 function delSubmit(id) {
