@@ -103,7 +103,14 @@ public class SQLQueryServlet extends HttpServlet {
 			this.selectlist.put(10,"select id,name,idsite,site_name from salles_display");
 			this.searchlist.put(10,"lower(name) like lower('%#SEARCHSTR#%') or lower(site_name) like lower('%#SEARCHSTR#%')");
 			this.wherelist.put(10,"ctx=#VALIDUSERCTX#");
-			
+			// ID 11 : Photo Sets
+			this.selectlist.put(11,"select id,idsite,idsalle,site_name,salle_name,name from photo_box_display");
+			this.searchlist.put(11,"lower(name) like lower('%#SEARCHSTR#%') or lower(site_name) like lower('%#SEARCHSTR#%') or lower(salle_name) like lower('%#SEARCHSTR#%')");
+			this.wherelist.put(11,"ctx=#VALIDUSERCTX#");
+			// ID 12 : Photo Racks
+			this.selectlist.put(12,"select id,numero,idsite,idsalle,idbox,site_name,salle_name,box_name,name from photo_baie_display");
+			this.searchlist.put(12,"lower(name) like lower('%#SEARCHSTR#%') or lower(site_name) like lower('%#SEARCHSTR#%') or lower(salle_name) like lower('%#SEARCHSTR#%') or lower(box_name) like lower('%#SEARCHSTR#%') or cast(numero as "+castchar+") like '%#SEARCHSTR#%'");
+			this.wherelist.put(12,"ctx=#VALIDUSERCTX#");			
 		} catch (Exception e) { printLog("Init: ",e); }
 	}
 
@@ -158,6 +165,8 @@ public class SQLQueryServlet extends HttpServlet {
 				if (this.id==8) {	result += "<line><id>"+String.valueOf(rs.getInt("id"))+"</id><site>"+String.valueOf(rs.getInt("site"))+"</site><site_name>"+shapeXML(rs.getString("site_name"))+"</site_name><def>"+shapeXML(rs.getString("def"))+"</def><vid>"+String.valueOf(rs.getInt("vid"))+"</vid></line>"; }
 				if (this.id==9) {	result += "<line><id>"+String.valueOf(rs.getInt("id"))+"</id><ptype>"+String.valueOf(rs.getInt("ptype"))+"</ptype><pid>"+String.valueOf(rs.getInt("pid"))+"</pid><site_name>"+shapeXML(rs.getString("site_name"))+"</site_name><ip>"+rs.getString("ip")+"</ip><mask>"+String.valueOf(rs.getInt("mask"))+"</mask><ptype_name>"+shapeXML(rs.getString("ptype_name"))+"</ptype_name><ipid>"+String.valueOf(rs.getInt("ipid"))+"</ipid><ip_name>"+shapeXML(rs.getString("ip_name"))+"</ip_name><subnet_name>"+shapeXML(rs.getString("subnet_name"))+"</subnet_name></line>"; }
 				if (this.id==10) {	result += "<line><id>"+String.valueOf(rs.getInt("id"))+"</id><idsite>"+String.valueOf(rs.getInt("idsite"))+"</idsite><site_name>"+shapeXML(rs.getString("site_name"))+"</site_name><name>"+shapeXML(rs.getString("name"))+"</name></line>"; }
+				if (this.id==11) {	result += "<line><id>"+String.valueOf(rs.getInt("id"))+"</id><idsite>"+String.valueOf(rs.getInt("idsite"))+"</idsite><idsalle>"+String.valueOf(rs.getInt("idsalle"))+"</idsalle><site_name>"+shapeXML(rs.getString("site_name"))+"</site_name><salle_name>"+shapeXML(rs.getString("salle_name"))+"</salle_name><name>"+shapeXML(rs.getString("name"))+"</name></line>"; }
+				if (this.id==12) {	result += "<line><id>"+String.valueOf(rs.getInt("id"))+"</id><idsite>"+String.valueOf(rs.getInt("idsite"))+"</idsite><idsalle>"+String.valueOf(rs.getInt("idsalle"))+"</idsalle><idbox>"+String.valueOf(rs.getInt("idbox"))+"</idbox><numero>"+String.valueOf(rs.getInt("numero"))+"</numero><site_name>"+shapeXML(rs.getString("site_name"))+"</site_name><salle_name>"+shapeXML(rs.getString("salle_name"))+"</salle_name><box_name>"+shapeXML(rs.getString("box_name"))+"</box_name><name>"+shapeXML(rs.getString("name"))+"</name></line>"; }
 			}
 			mylog.debug("Finish Processing SQL");
 			rs.close();rs=null;
