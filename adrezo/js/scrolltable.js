@@ -25,10 +25,13 @@ function loadTable() {
 	if (/^[0-9.]+$/.test(s)) { sip = renderip(s); }
 	// Escaping Single Quote
 	s = s.replace(/'/g,"''");
+	sip = sip.replace(/'/g,"''");
 	// Escaping Backslash
 	s = s.replace(/\\/g,"\\\\\\");
+	sip = sip.replace(/\\/g,"\\\\\\");
 	// URI Compliance
 	s=encodeURIComponent(s);
+	sip=encodeURIComponent(sip);
 	fillTable(T$("sqs_id").value,T$("sqs_limit").value,T$("sqs_offset").value,s,sip,T$("sqs_order").value,T$("sqs_sort").value);
 	resizeHeaders();
 	sortiny.init();

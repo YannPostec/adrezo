@@ -43,14 +43,16 @@ public class SQLQueryServlet extends HttpServlet {
 	}
 
 	private String shapeXML(String msg) {
-		msg = msg.replaceAll("\\s+"," ");
-		msg = msg.replaceAll("\r","");
-		msg = msg.replaceAll("\n","");
-		msg = msg.replaceAll("&","&amp;");
-  	msg = msg.replaceAll("<","&lt;");
- 	  msg = msg.replaceAll(">","&gt;");
-   	msg = msg.replaceAll("\"","&quot;");
-   	msg = msg.replaceAll("'","&apos;");
+		if (msg!=null) {
+			msg = msg.replaceAll("\\s+"," ");
+			msg = msg.replaceAll("\r","");
+			msg = msg.replaceAll("\n","");
+			msg = msg.replaceAll("&","&amp;");
+  		msg = msg.replaceAll("<","&lt;");
+ 	  	msg = msg.replaceAll(">","&gt;");
+   		msg = msg.replaceAll("\"","&quot;");
+   		msg = msg.replaceAll("'","&apos;");
+   	}
    	return msg;
 	}
 
@@ -182,7 +184,7 @@ public class SQLQueryServlet extends HttpServlet {
 				if (this.id==14) {	result += "<line><mask>"+String.valueOf(rs.getInt("mask"))+"</mask><site_name>"+shapeXML(rs.getString("site_name"))+"</site_name><ctx_name>"+shapeXML(rs.getString("ctx_name"))+"</ctx_name><ip>"+rs.getString("ip")+"</ip><def>"+shapeXML(rs.getString("def"))+"</def></line>"; }
 				if (this.id==15) {
 					String mypwd = rs.getString("pwd");
-					if (!mypwd.equals("")) { mypwd = "password"; }
+					if (mypwd!=null && !mypwd.equals("")) { mypwd = "password"; }
 					result += "<line><type>"+String.valueOf(rs.getInt("type"))+"</type><id>"+String.valueOf(rs.getInt("id"))+"</id><port>"+String.valueOf(rs.getInt("port"))+"</port><ssl>"+String.valueOf(rs.getInt("ssl"))+"</ssl><auth>"+String.valueOf(rs.getInt("auth"))+"</auth><enable>"+String.valueOf(rs.getInt("enable"))+"</enable><type_name>"+shapeXML(rs.getString("type_name"))+"</type_name><hostname>"+shapeXML(rs.getString("hostname"))+"</hostname><login>"+shapeXML(rs.getString("login"))+"</login><pwd>"+mypwd+"</pwd></line>";
 				}
 			}
