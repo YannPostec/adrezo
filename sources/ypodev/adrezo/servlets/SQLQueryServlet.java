@@ -110,7 +110,18 @@ public class SQLQueryServlet extends HttpServlet {
 			// ID 12 : Photo Racks
 			this.selectlist.put(12,"select id,numero,idsite,idsalle,idbox,site_name,salle_name,box_name,name from photo_baie_display");
 			this.searchlist.put(12,"lower(name) like lower('%#SEARCHSTR#%') or lower(site_name) like lower('%#SEARCHSTR#%') or lower(salle_name) like lower('%#SEARCHSTR#%') or lower(box_name) like lower('%#SEARCHSTR#%') or cast(numero as "+castchar+") like '%#SEARCHSTR#%'");
-			this.wherelist.put(12,"ctx=#VALIDUSERCTX#");			
+			this.wherelist.put(12,"ctx=#VALIDUSERCTX#");
+			// ID 13 : Network Subnet no surnet
+			this.selectlist.put(13,"select ctx_name,site_name,ip,mask,def,vid,vdef from subnets_display");
+			this.searchlist.put(13,"lower(ctx_name) like lower('%#SEARCHSTR#%') or lower(site_name) like lower('%#SEARCHSTR#%') or ip like '%#SEARCHIPSTR#%' or lower(def) like lower('%#SEARCHSTR#%') or lower(vdef) like lower('%#SEARCHSTR#%') or cast(vid as "+castchar+") like '%#SEARCHSTR#%' or cast(mask as "+castchar+") like '%#SEARCHSTR#%'");
+			this.wherelist.put(13,"surnet=0");
+			// ID 14 : Network Subnet no vlan
+			this.selectlist.put(14,"select ctx_name,site_name,ip,mask,def from subnets_display");
+			this.searchlist.put(14,"lower(ctx_name) like lower('%#SEARCHSTR#%') or lower(site_name) like lower('%#SEARCHSTR#%') or ip like '%#SEARCHIPSTR#%' or lower(def) like lower('%#SEARCHSTR#%') or cast(mask as "+castchar+") like '%#SEARCHSTR#%'");
+			this.wherelist.put(14,"vid=0");
+			// ID 15 : Admin DHCP
+			this.selectlist.put(15,"select type,type_name,id,hostname,port,ssl,auth,login,pwd,enable from dhcp_server_display");
+			this.searchlist.put(15,"lower(type_name) like lower('%#SEARCHSTR#%') or lower(hostname) like lower('%#SEARCHSTR#%') or lower(login) like lower('%#SEARCHSTR#%') or cast(port as "+castchar+") like '%#SEARCHSTR#%'");
 		} catch (Exception e) { printLog("Init: ",e); }
 	}
 
@@ -167,6 +178,13 @@ public class SQLQueryServlet extends HttpServlet {
 				if (this.id==10) {	result += "<line><id>"+String.valueOf(rs.getInt("id"))+"</id><idsite>"+String.valueOf(rs.getInt("idsite"))+"</idsite><site_name>"+shapeXML(rs.getString("site_name"))+"</site_name><name>"+shapeXML(rs.getString("name"))+"</name></line>"; }
 				if (this.id==11) {	result += "<line><id>"+String.valueOf(rs.getInt("id"))+"</id><idsite>"+String.valueOf(rs.getInt("idsite"))+"</idsite><idsalle>"+String.valueOf(rs.getInt("idsalle"))+"</idsalle><site_name>"+shapeXML(rs.getString("site_name"))+"</site_name><salle_name>"+shapeXML(rs.getString("salle_name"))+"</salle_name><name>"+shapeXML(rs.getString("name"))+"</name></line>"; }
 				if (this.id==12) {	result += "<line><id>"+String.valueOf(rs.getInt("id"))+"</id><idsite>"+String.valueOf(rs.getInt("idsite"))+"</idsite><idsalle>"+String.valueOf(rs.getInt("idsalle"))+"</idsalle><idbox>"+String.valueOf(rs.getInt("idbox"))+"</idbox><numero>"+String.valueOf(rs.getInt("numero"))+"</numero><site_name>"+shapeXML(rs.getString("site_name"))+"</site_name><salle_name>"+shapeXML(rs.getString("salle_name"))+"</salle_name><box_name>"+shapeXML(rs.getString("box_name"))+"</box_name><name>"+shapeXML(rs.getString("name"))+"</name></line>"; }
+				if (this.id==13) {	result += "<line><vid>"+String.valueOf(rs.getInt("vid"))+"</vid><mask>"+String.valueOf(rs.getInt("mask"))+"</mask><site_name>"+shapeXML(rs.getString("site_name"))+"</site_name><ctx_name>"+shapeXML(rs.getString("ctx_name"))+"</ctx_name><ip>"+rs.getString("ip")+"</ip><def>"+shapeXML(rs.getString("def"))+"</def><vdef>"+shapeXML(rs.getString("vdef"))+"</vdef></line>"; }
+				if (this.id==14) {	result += "<line><mask>"+String.valueOf(rs.getInt("mask"))+"</mask><site_name>"+shapeXML(rs.getString("site_name"))+"</site_name><ctx_name>"+shapeXML(rs.getString("ctx_name"))+"</ctx_name><ip>"+rs.getString("ip")+"</ip><def>"+shapeXML(rs.getString("def"))+"</def></line>"; }
+				if (this.id==15) {
+					String mypwd = rs.getString("pwd");
+					if (!mypwd.equals("")) { mypwd = "password"; }
+					result += "<line><type>"+String.valueOf(rs.getInt("type"))+"</type><id>"+String.valueOf(rs.getInt("id"))+"</id><port>"+String.valueOf(rs.getInt("port"))+"</port><ssl>"+String.valueOf(rs.getInt("ssl"))+"</ssl><auth>"+String.valueOf(rs.getInt("auth"))+"</auth><enable>"+String.valueOf(rs.getInt("enable"))+"</enable><type_name>"+shapeXML(rs.getString("type_name"))+"</type_name><hostname>"+shapeXML(rs.getString("hostname"))+"</hostname><login>"+shapeXML(rs.getString("login"))+"</login><pwd>"+mypwd+"</pwd></line>";
+				}
 			}
 			mylog.debug("Finish Processing SQL");
 			rs.close();rs=null;
