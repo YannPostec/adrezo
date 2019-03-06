@@ -186,7 +186,7 @@ function completeUploadHandler(event) {
 function submitUpload() {
 	var f = T$("fUpload");
 	if (f.file.value != "") {
-		if (T$("upFile").files[0].size < 3145728) {
+		if (T$("upFile").files[0].size < 5242880) {
 			T$("upBtnUpload").style.display = "none";
 			T$("upFile").style.display = "none";
 			T$("upProgress").style.display = "inline";

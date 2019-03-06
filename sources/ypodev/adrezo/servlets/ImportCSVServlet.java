@@ -17,11 +17,11 @@ import ypodev.adrezo.beans.UserInfoBean;
 public class ImportCSVServlet extends HttpServlet {
 	//Constants
 	private static final int ctxmax = 5000;
-	private static final int sitemax = 2500;
-	private static final int submax = 1000;
+	private static final int sitemax = 3000;
+	private static final int submax = 2000;
 	private static final int vlanmax = 2000;
-	private static final int ipmax = 1000;
-	private static final int maxFileSize = 3145728;
+	private static final int ipmax = 2000;
+	private static final int maxFileSize = 5242880;
 	//Properties
 	private String errLog;
 	private boolean erreur;

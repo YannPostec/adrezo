@@ -41,10 +41,10 @@
 <fmt:message key="admin.csv.maxfile" /><br />
 <fmt:message key="admin.csv.maxrecord" /> :<ul>
 <li>CTX : <fmt:message key="admin.csv.maxline" /> = 5000</li>
-<li>SITE : <fmt:message key="admin.csv.maxline" /> = 2500</li>
+<li>SITE : <fmt:message key="admin.csv.maxline" /> = 3000</li>
 <li>VLAN : <fmt:message key="admin.csv.maxline" /> = 2000</li>
-<li>SUBNET : <fmt:message key="admin.csv.maxline" /> = 1000</li>
-<li>IP : <fmt:message key="admin.csv.maxline" /> = 1000</li>
+<li>SUBNET : <fmt:message key="admin.csv.maxline" /> = 2000</li>
+<li>IP : <fmt:message key="admin.csv.maxline" /> = 2000</li>
 </ul>
 <b><fmt:message key="admin.csv.warning" /></b>
 <form method="POST" enctype="multipart/form-data" id="fUpload">
