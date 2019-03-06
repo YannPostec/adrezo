@@ -40,10 +40,10 @@
 		</div>
 	</div>
 	<table id="tableheaders" class="overheaders">
-		<thead><tr><th><h3>ID</h3></th><th><h3><fmt:message key="admin.ctx" /></h3></th><th><h3><fmt:message key="common.table.codesite" /></h3></th><th><h3><fmt:message key="admin.site" /></h3></th><th><h3><fmt:message key="admin.subnet" /></h3></th><th><h3><fmt:message key="common.table.name" /></h3></th><th><h3><fmt:message key="common.table.ipgw" /></h3></th><th><h3><fmt:message key="admin.vlan" /></h3></th></tr></thead>
+		<thead><tr><th><h3>ID</h3></th><th><h3><fmt:message key="admin.ctx" /></h3></th><th><h3><fmt:message key="common.table.codesite" /></h3></th><th><h3><fmt:message key="admin.site" /></h3></th><th><h3><fmt:message key="admin.subnet" /></h3></th><th><h3><fmt:message key="common.table.name" /></h3></th><th><h3><fmt:message key="common.table.ipgw" /></h3></th><th><h3><fmt:message key="admin.vlan" /></h3></th><th><h3><fmt:message key="norm.surnet" /></h3></th></tr></thead>
 	</table>
 	<table id="tableinfos" class="tinytable">
-		<thead><tr><th><h3>ID</h3></th><th><h3><fmt:message key="admin.ctx" /></h3></th><th><h3><fmt:message key="common.table.codesite" /></h3></th><th><h3><fmt:message key="admin.site" /></h3></th><th><h3><fmt:message key="admin.subnet" /></h3></th><th><h3><fmt:message key="common.table.name" /></h3></th><th><h3><fmt:message key="common.table.ipgw" /></h3></th><th><h3><fmt:message key="admin.vlan" /></h3></th></tr></thead>
+		<thead><tr><th><h3>ID</h3></th><th><h3><fmt:message key="admin.ctx" /></h3></th><th><h3><fmt:message key="common.table.codesite" /></h3></th><th><h3><fmt:message key="admin.site" /></h3></th><th><h3><fmt:message key="admin.subnet" /></h3></th><th><h3><fmt:message key="common.table.name" /></h3></th><th><h3><fmt:message key="common.table.ipgw" /></h3></th><th><h3><fmt:message key="admin.vlan" /></h3></th><th><h3><fmt:message key="norm.surnet" /></h3></th></tr></thead>
 		<tbody></tbody>
 	</table>
 </div>

@@ -23,6 +23,11 @@ function fillTable(sqlid,limit,offset,search,searchip,order,sqlsort) {
 					if (T$$("def",lines[i])[0].hasChildNodes()) { mytr.insertCell(-1).appendChild(document.createTextNode(T$$("def",lines[i])[0].firstChild.nodeValue)); } else { mytr.insertCell(-1); }
 					if (T$$("gw",lines[i])[0].hasChildNodes()) { mytr.insertCell(-1).appendChild(document.createTextNode(displayip(T$$("gw",lines[i])[0].firstChild.nodeValue))); } else { mytr.insertCell(-1); }
 					if (T$$("vid",lines[i])[0].hasChildNodes()&&T$$("vdef",lines[i])[0].hasChildNodes()) { mytr.insertCell(-1).appendChild(document.createTextNode(T$$("vid",lines[i])[0].firstChild.nodeValue+" ("+T$$("vdef",lines[i])[0].firstChild.nodeValue+")")); } else { mytr.insertCell(-1); }
+					if (T$$("surnet",lines[i])[0].hasChildNodes()&&T$$("surip",lines[i])[0].hasChildNodes()&&T$$("surmask",lines[i])[0].hasChildNodes()&&T$$("surdef",lines[i])[0].hasChildNodes()) {
+						if (T$$("surnet",lines[i])[0].firstChild.nodeValue>0) {
+							mytr.insertCell(-1).appendChild(document.createTextNode(T$$("surdef",lines[i])[0].firstChild.nodeValue+" ("+displayip(T$$("surip",lines[i])[0].firstChild.nodeValue)+"/"+T$$("surmask",lines[i])[0].firstChild.nodeValue+")")); 
+						} else { mytr.insertCell(-1); }
+					} else { mytr.insertCell(-1); }
 				}
 				if (cpt==limit) { createNext(limit); } else { cleanFoot(); }
 			}
@@ -50,5 +55,6 @@ function SwitchSearch(i) {
 			case 5: T$("sqs_order").value="def";break;
 			case 6: T$("sqs_order").value="gw";break;
 			case 7: T$("sqs_order").value="vid";break;
+			case 8: T$("sqs_order").value="surip";break;
 		}
 }
