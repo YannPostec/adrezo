@@ -2,7 +2,7 @@
 var timer;
 window.onscroll=function(){
 	document.documentElement.scrollTop > 100 || document.body.scrollTop > 100 ? T$("upscroll").style.display="block" : T$("upscroll").style.display="none"
-	if (T$("btnFillNext") && ( (document.documentElement.clientHeight+document.documentElement.scrollTop>=T$("tablefooter").offsetTop) || (document.body.clientHeight+document.body.scrollTop>=T$("tablefooter").offsetTop) )) { loadTable(); }
+	if (T$("btnFillNext") && document.documentElement.clientHeight+document.documentElement.scrollTop>=T$("tablefooter").offsetTop) { loadTable(); }
 	document.documentElement.scrollTop>T$("tableinfos").offsetTop || document.body.scrollTop>T$("tableinfos").offsetTop ? T$("tableheaders").style.display="block" : T$("tableheaders").style.display="none"
 }
 function ScrollUp() {
