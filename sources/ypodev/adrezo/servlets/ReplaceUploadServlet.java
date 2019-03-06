@@ -153,18 +153,13 @@ public class ReplaceUploadServlet extends HttpServlet {
 			errLog = errLog.replaceAll("\r","");
 			errLog = errLog.replaceAll("\n","");
 			try{
-				File verifdir = new File(this.getServletContext().getRealPath("/log/"));
-				if (!verifdir.exists()) {	verifdir.mkdirs(); }
-				PrintWriter pw = new PrintWriter(new FileWriter(this.getServletContext().getRealPath("/log/photo.log"), true));
 				UserInfoBean validUser = (UserInfoBean) req.getSession().getAttribute("validUser");
 				String login = null;
 				if (validUser == null) { login = "nologin"; } else { login = validUser.getLogin(); }
-				pw.println("\n" + new java.util.Date().toString() + ", " + login + " in " + req.getRequestURI());
-				pw.println("Params: Filename = " + dir + "/" + id + "." + suf);
-				pw.println("Err: " + errLog);
-				pw.close();
-				pw = null;
-			} catch (IOException e) {	printLog("Err PhotoLog: ",e); }
+				String pms = login + " in " + req.getRequestURI() + ". Params: Filename=" + dir + "/" + id + "." + suf;
+				mylog.info(pms);
+				mylog.warn("Err PhotoReplace: " + errLog);
+			} catch (Exception e) {	printLog("Err PhotoLog: ",e); }
 			errLog = errLog.replaceAll("&","&amp;");
      	errLog = errLog.replaceAll("<","&lt;");
  	   	errLog = errLog.replaceAll(">","&gt;");

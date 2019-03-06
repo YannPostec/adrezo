@@ -96,6 +96,17 @@
 		</layout>
 	</appender>
 
+	<appender name="database.file" class="org.apache.log4j.RollingFileAppender">
+		<param name="append" value="true" />
+		<param name="maxFileSize" value="500KB" />
+		<param name="maxBackupIndex" value="5" />
+		<param name="threshold" value="debug" />
+		<param name="file" value="${catalina.base}/webapps/adrezo/log/database.log" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{yyyy-MM-dd HH:mm} %-5p %m%n" />
+		</layout>
+	</appender>
+
 	<logger name="org.quartz" additivity="false">
 		<level value="info" />
 		<appender-ref ref="quartz.file" />
@@ -124,6 +135,11 @@
 	<logger name="ypodev.adrezo.beans" additivity="false">
 		<level value="info" />
 		<appender-ref ref="beans.file" />
+	</logger>
+	
+	<logger name="ypodev.adrezo.tags.FileDBTag" additivity="false">
+		<level value="info" />
+		<appender-ref ref="database.file" />
 	</logger>
 	
 	<logger name="ypodev.adrezo.tags" additivity="false">

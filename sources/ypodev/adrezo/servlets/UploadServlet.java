@@ -178,18 +178,13 @@ public class UploadServlet extends HttpServlet {
 			errLog = errLog.replaceAll("\r","");
 			errLog = errLog.replaceAll("\n","");
 			try{
-				File verifdir = new File(this.getServletContext().getRealPath("/log/"));
-				if (!verifdir.exists()) {	verifdir.mkdirs(); }
-				PrintWriter pw = new PrintWriter(new FileWriter(this.getServletContext().getRealPath("/log/photo.log"), true));
 				UserInfoBean validUser = (UserInfoBean) req.getSession().getAttribute("validUser");
 				String login = null;
 				if (validUser == null) { login = "nologin"; } else { login = validUser.getLogin(); }
-				pw.println("\n" + new java.util.Date().toString() + ", " + login + " in " + req.getRequestURI());
-				pw.println("Params: idparent: " + idparent + ", Type: " + type + ", Nom: " + name + ", PhotoDir: " + photodir + ", PhotoSuf: " + photosuf + ", PhotoId: " + photoid);
-				pw.println("Err DB: " + errLog);
-				pw.close();
-				pw = null;
-			} catch (IOException e) {	printLog("Err PhotoLog: ",e); }
+				String pms = login + " in " + req.getRequestURI() + ". Params: idparent: " + idparent + ", Type: " + type + ", Nom: " + name + ", PhotoDir: " + photodir + ", PhotoSuf: " + photosuf + ", PhotoId: " + photoid;
+				mylog.info(pms);
+				mylog.warn("Err PhotoUpload: " + errLog);
+			} catch (Exception e) {	printLog("Err PhotoLog: ",e); }
 			errLog = errLog.replaceAll("&","&amp;");
      	errLog = errLog.replaceAll("<","&lt;");
  	   	errLog = errLog.replaceAll(">","&gt;");

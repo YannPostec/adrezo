@@ -29,25 +29,17 @@ public class FileDBTag extends SimpleTagSupport {
 		if (validUser == null) { login = "nologin"; } else { login = validUser.getLogin(); }
 		Map params = req.getParameterMap();
 		
-		PrintWriter pw = null;
-		File verifdir = new File(pageContext.getServletContext().getRealPath("/log/"));
-		if (!verifdir.exists()) { verifdir.mkdirs(); }
-		try{ pw = new PrintWriter(new FileWriter(pageContext.getServletContext().getRealPath("/log/database.log"), true)); }
-		catch (IOException e) {	mylog.error("Error opening database log file: ",e); }
 		try {
-			pw.println(new java.util.Date().toString() + ", " + login + " in " + req.getRequestURI());
-			pw.print("Params  : ");
+			String pms = login + " in " + req.getRequestURI() + ". Params: ";
 			Iterator i = params.keySet().iterator();
-			while ( i.hasNext() )
-      		{
-        		String key = (String) i.next();
-        		String value = ((String[]) params.get( key ))[ 0 ];
-				pw.print(key + "=" + value + ",");
-      		}
-			pw.println("");
-			pw.println("Error Database : " + value);
+			while ( i.hasNext() ) {
+				String key = (String) i.next();
+        String value = ((String[]) params.get( key ))[ 0 ];
+				pms=pms+key+"="+value+",";
+      }
+      mylog.info(pms);
+			mylog.warn("Error Database : " + value);
 		}
 		catch (Exception e) { mylog.error("Error writing in database log file: ",e); }
-		finally { if (pw != null) { pw.close(); } }
 	}
 }
