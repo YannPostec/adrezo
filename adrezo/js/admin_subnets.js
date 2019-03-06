@@ -135,7 +135,7 @@ function modSubmit(e) {
 		showDialog(langdata.invalidfield+" :",strAlert,"warning",0,1);
 	} else {
 		if ( (mask != init_mask) || (myip != init_ip)) {
-			showDialog(langdata.confirm,langdata.subnetchange+"<br/><br/><input type='button' value='"+langdata.dlgyes+'\' onclick="javascript:addAjaxSubmit('+site+','+id+',\''+ip+'\','+mask+',\''+def+'\',\''+gw+'\',\''+bc+'\','+vlan+','+ctx+');"/>'+"  <input type='button' value='"+langdata.dlgno+"' onclick='hideDialog();'/>","warning",0,1);
+			showDialog(langdata.confirm,langdata.subnetchange+"<br/><br/><input type='button' value='"+langdata.dlgyes+'\' onclick="javascript:addAjaxSubmit(false,'+site+','+id+',\''+ip+'\','+mask+',\''+def+'\',\''+gw+'\',\''+bc+'\','+vlan+','+ctx+');"/>'+"  <input type='button' value='"+langdata.dlgno+"' onclick='hideDialog();'/>","warning",0,1);
 		} else {
 			addAjaxSubmit(false,site,id,ip,mask,def,gw,bc,vlan,ctx);
 		}
