@@ -329,7 +329,7 @@ function insRow() {
 	var val=T$('myValue').value;
 	val = replaceAll(val,"'","''");
 	if (txt == "IP") { val = renderip(val); }
-	if (txt == "NAME" || txt == "DEF") { txt = "lower(" + txt + ")"; }
+	if (txt == "NAME" || txt == "DEF" || txt == "MAC") { txt = "lower(" + txt + ")"; }
 	switch(T$('myOp').value) {
 		case '0': txt += " LIKE lower('%" + val + "%')";break;
 		case '1': txt += " LIKE lower('" + val + "%')";break;

@@ -36,7 +36,6 @@
 		<listener-class>ypodev.adrezo.listener.LdapPoolListener</listener-class>
 	</listener>
 
-
 	<servlet>
 		<servlet-name>upload</servlet-name>
 		<servlet-class>ypodev.adrezo.servlets.UploadServlet</servlet-class>
@@ -91,12 +90,12 @@
 		<servlet-name>sqlquery</servlet-name>
 		<servlet-class>ypodev.adrezo.servlets.SQLQueryServlet</servlet-class>
 		<load-on-startup>0</load-on-startup>
-	</servlet>	
+	</servlet>
 	<servlet>
-    <servlet-name>APIServlet</servlet-name>
-    <servlet-class>org.apache.cxf.jaxrs.servlet.CXFNonSpringJaxrsServlet</servlet-class>
-    <init-param>
-      <param-name>jaxrs.serviceClasses</param-name>
+		<servlet-name>APIServlet</servlet-name>
+		<servlet-class>org.apache.cxf.jaxrs.servlet.CXFNonSpringJaxrsServlet</servlet-class>
+		<init-param>
+			<param-name>jaxrs.serviceClasses</param-name>
 			<param-value>
 				ypodev.adrezo.api.AuthAPI,
 				ypodev.adrezo.api.IPAPI,
@@ -107,53 +106,53 @@
 				ypodev.adrezo.api.PhotoAPI
 			</param-value>
 		</init-param>
-    <init-param>
-      <param-name>jaxrs.providers</param-name>
+		<init-param>
+			<param-name>jaxrs.providers</param-name>
 			<param-value>
 				ypodev.adrezo.api.AuthenticationFilter,
 				ypodev.adrezo.api.AuthorizationFilter
 			</param-value>
 		</init-param>
 	</servlet>
-	
+
 	<servlet-mapping>
 		<servlet-name>APIServlet</servlet-name>
 		<url-pattern>/api/*</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
-  	<servlet-name>upload</servlet-name>
+		<servlet-name>upload</servlet-name>
 		<url-pattern>/upload</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
-  	<servlet-name>replaceupload</servlet-name>
+		<servlet-name>replaceupload</servlet-name>
 		<url-pattern>/replaceupload</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
-  	<servlet-name>purge</servlet-name>
+		<servlet-name>purge</servlet-name>
 		<url-pattern>/purge</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
-  	<servlet-name>ldapgroup</servlet-name>
+		<servlet-name>ldapgroup</servlet-name>
 		<url-pattern>/ldapgroup</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
-  	<servlet-name>importcsv</servlet-name>
+		<servlet-name>importcsv</servlet-name>
 		<url-pattern>/importcsv</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
-  	<servlet-name>uploadlogo</servlet-name>
+		<servlet-name>uploadlogo</servlet-name>
 		<url-pattern>/uploadlogo</url-pattern>
 	</servlet-mapping>	
 	<servlet-mapping>
-  	<servlet-name>normcalc</servlet-name>
+		<servlet-name>normcalc</servlet-name>
 		<url-pattern>/normcalc</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
-  	<servlet-name>listjobs</servlet-name>
+		<servlet-name>listjobs</servlet-name>
 		<url-pattern>/jobs</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
-  	<servlet-name>dhcpscope</servlet-name>
+		<servlet-name>dhcpscope</servlet-name>
 		<url-pattern>/dhcpscope</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
@@ -163,7 +162,7 @@
 	<servlet-mapping>
 		<servlet-name>sqlquery</servlet-name>
 		<url-pattern>/sqs</url-pattern>
-	</servlet-mapping>	
+	</servlet-mapping>
 
 	<session-config>
 		<session-timeout>360</session-timeout>	

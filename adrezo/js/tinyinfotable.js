@@ -4,7 +4,10 @@ TINY.table=function(){
 	function sorter(n,t,p){this.n=n; this.id=t; this.p=p;}
 	sorter.prototype.init=function(){
 		this.set(); var t=this.t, i=d=0; t.h=T$$('tr',t)[0];
-		t.l=t.r.length; t.w=t.r[0].cells.length; t.a=[]; t.c=[];
+		t.l=t.r.length;
+		if (typeof t.r[0] === 'undefined') { t.w=0; }
+		else { t.w=t.r[0].cells.length; }
+		t.a=[]; t.c=[];
 		this.cl = T$$("tr",T$("tableheaders"))[0];
 		for(i;i<t.w;i++){
 			var c=t.h.cells[i]; t.c[i]={};
