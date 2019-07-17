@@ -116,8 +116,8 @@
 <p><textarea name="search" id="mytext" rows="2" cols="60" disabled="disabled">${param.search}</textarea></p>
 </td>
 <td class="naviBordRight"><span onmouseover="javascript:tooltip.show('${lang_ipxlsglobal}')" onmouseout="javascript:tooltip.hide()" onclick="javascript:ExcelIP('global',${validUser.ctx})"><img src="../img/icon_excel.jpg" alt="${lang_ipxlsglobal}" /> <fmt:message key="ip.excel.global.click" /></span>
-<br /><br /><span onmouseover="javascript:tooltip.show('${lang_ipxlsctx}')" onmouseout="javascript:tooltip.hide()" onclick="javascript:ExcelIP('contexte',${validUser.ctx})"><img src="../img/icon_excel.jpg" alt="${lang_ipxlsctx}" /> <fmt:message key="ip.excel.ctx.click" /></span>
-<br /><br /><span onmouseover="javascript:tooltip.show('${lang_ipxlssearch}')" onmouseout="javascript:tooltip.hide()" onclick="javascript:ExcelIP('recherche',${validUser.ctx})"><img src="../img/icon_excel.jpg" alt="${lang_ipxlssearch}" /> <fmt:message key="ip.excel.search.click" /></span></td>
+<br /><br /><span onmouseover="javascript:tooltip.show('${lang_ipxlsctx}')" onmouseout="javascript:tooltip.hide()" onclick="javascript:ExcelIP('ctx',${validUser.ctx})"><img src="../img/icon_excel.jpg" alt="${lang_ipxlsctx}" /> <fmt:message key="ip.excel.ctx.click" /></span>
+<br /><br /><span onmouseover="javascript:tooltip.show('${lang_ipxlssearch}')" onmouseout="javascript:tooltip.hide()" onclick="javascript:ExcelIP('search',${validUser.ctx})"><img src="../img/icon_excel.jpg" alt="${lang_ipxlssearch}" /> <fmt:message key="ip.excel.search.click" /></span></td>
 <td id="tdInfosUser" />
 </tr></tbody></table></form>
 </div></div></li></ul>

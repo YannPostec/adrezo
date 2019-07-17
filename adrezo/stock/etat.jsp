@@ -46,8 +46,8 @@
 <div id="wrapper">
 <div class="fl"><fmt:message key="stock.mgt.history" /> : <input type="text" size="2" maxlength="2" id="limit" value="20" /></div>
 <c:if test="${validUser.stockAdmin}"><div class="fl"><fmt:message key="common.table.inventory" /> : <input type="checkbox" id="chkInventaire" /></div></c:if>
-<span class="fl" onmouseover="javascript:tooltip.show('${lang_stkclickstock}')" onmouseout="javascript:tooltip.hide()" onclick="javascript:window.open('${pageContext.request.contextPath}/stock/stock_excel.jsp')"><img class="excel" src="../img/icon_excel.jpg" alt="${lang_stkclickstock}" /><div class="lettrine">S</div></span>
-<span class="fl" onmouseover="javascript:tooltip.show('${lang_stkclickmvt}')" onmouseout="javascript:tooltip.hide()" onclick="javascript:window.open('${pageContext.request.contextPath}/stock/stock_mvt_excel.jsp')"><img class="excel" src="../img/icon_excel.jpg" alt="${lang_stkclickmvt}" /><div class="lettrine">M</div></span>
+<span class="fl" onmouseover="javascript:tooltip.show('${lang_stkclickstock}')" onmouseout="javascript:tooltip.hide()" onclick="javascript:window.open('${pageContext.request.contextPath}/excelstock?type=stock')"><img class="excel" src="../img/icon_excel.jpg" alt="${lang_stkclickstock}" /><div class="lettrine">S</div></span>
+<span class="fl" onmouseover="javascript:tooltip.show('${lang_stkclickmvt}')" onmouseout="javascript:tooltip.hide()" onclick="javascript:window.open('${pageContext.request.contextPath}/excelstock?type=mvt')"><img class="excel" src="../img/icon_excel.jpg" alt="${lang_stkclickmvt}" /><div class="lettrine">M</div></span>
 </div>
 <table class="sortable" id="tableStock">
 <thead>

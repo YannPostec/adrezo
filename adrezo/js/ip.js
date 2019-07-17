@@ -1409,8 +1409,8 @@ function Change() {
 	}
 }
 function ExcelIP(type,ctx) {
-	var uri = "ip_excel.jsp?ctx="+ctx+"&type="+type;
-	if (type == 'recherche') { uri += "&search="+encodeURIComponent(T$("mytext").value); }
+	var uri = "../excelip?ctx="+ctx+"&type="+type;
+	if (type == 'search') { uri += "&search="+encodeURIComponent(T$("mytext").value); }
 	window.open(uri);
 }
 function ClickIP(e) {
