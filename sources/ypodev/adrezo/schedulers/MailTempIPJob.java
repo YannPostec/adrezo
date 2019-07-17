@@ -91,11 +91,11 @@ public class MailTempIPJob implements Job {
 					mylog.debug("Job 4 enabled");
 					// Users presents avec mail
 					rsmail = stmt.executeQuery("select distinct(a.usr_temp) from adresses a, usercookie u where a.usr_temp=u.login and a.temp = 1 and a.type = 'static' and a.date_temp<"+DbFunc.ToDateStr()+"('"+new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new java.util.Date())+"','YYYY-MM-DD HH24:MI:SS')");
+					stmtUser = conn.createStatement();
 					while (rsmail.next()) {
 						String myuser=rsmail.getString("usr_temp");
 						String userlang = this.lang;
 						String usermail = "";
-						stmtUser = conn.createStatement();
 						if (myuser.equals("admin")) {
 							usermail = adminmail;
 						} else {

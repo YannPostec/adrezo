@@ -93,11 +93,11 @@ public class MailMigIPJob implements Job {
 					mylog.debug("Job 5 enabled");
 					// Users presents avec mail
 					rsmail = stmt.executeQuery("select distinct(a.usr_mig) from adresses a, usercookie u where a.usr_mig=u.login and a.mig = 1 and a.type = 'static' and a.date_mig<"+DbFunc.ToDateStr()+"('"+new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new java.util.Date())+"','YYYY-MM-DD HH24:MI:SS')");
+					stmtUser = conn.createStatement();
 					while (rsmail.next()) {
 						String myuser=rsmail.getString("usr_mig");
 						String userlang = this.lang;
 						String usermail = "";
-						stmtUser = conn.createStatement();
 						if (myuser.equals("admin")) {
 							usermail = adminmail;
 						} else {
