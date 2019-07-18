@@ -170,8 +170,8 @@ public class UserInfoBean implements Serializable {
           			  			else {
 													if (exppref != null || expsuff != null) {
 														String unacc = this.login;
-														if (exppref !=null && unacc.startsWith(exppref)) { unacc = unacc.substring(exppref.length()); }
-														if (expsuff !=null && unacc.endsWith(expsuff)) { unacc = unacc.substring(0,unacc.indexOf(expsuff)-1); }
+														if (exppref !=null && !exppref.equals("") && unacc.startsWith(exppref)) { unacc = unacc.substring(exppref.length()); }
+														if (expsuff !=null && !expsuff.equals("") && unacc.endsWith(expsuff)) { unacc = unacc.substring(0,unacc.indexOf(expsuff)-1); }
 														SearchRequest mailreq = new SearchRequestImpl();
   				  								mailreq.setScope(SearchScope.SUBTREE);
 								    				mailreq.addAttributes("*");
