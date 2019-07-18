@@ -67,6 +67,8 @@ public class UploadLogoServlet extends HttpServlet {
 			else {
 				File imgdir = new File(this.getServletContext().getRealPath("/img/"));
 				File uploadedFile = new File(imgdir,"login_company.png");
+				// for larger images store on drive, moveFile is called and no overwrite allowed
+				if (uploadedFile.exists()) { uploadedFile.delete(); }
 				item.write(uploadedFile);
 			}
 		} catch (Exception e) { printLog("Err UpFile: ",e); }
