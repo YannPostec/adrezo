@@ -15,10 +15,10 @@ Some features available are :
 
 The application has been tested on :
 - Applications Servers
-  - Tomcat 7.0, 8.5, 9.0
+  - Tomcat 9.0, 8.5, 7.0
   - Weblogic 12.2.1
 - Database Servers
-  - PostgreSQL 9.4, 10.3
+  - PostgreSQL 11.4, 10.3, 9.4
   - Oracle 12.1
 
 and with browsers :

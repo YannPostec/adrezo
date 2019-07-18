@@ -1,11 +1,11 @@
 # License for Java libraries
-> **Apache Commons FileUpload** version 1.3.3  
+> **Apache Commons FileUpload** version 1.4  
 > https://commons.apache.org/proper/commons-fileupload  
 > **Apache Commons IO** version 2.6  
 > https://commons.apache.org/proper/commons-io  
-> **Apache Commons Lang** version 3.7  
+> **Apache Commons Lang** version 3.9  
 > https://commons.apache.org/proper/commons-lang  
-> **Apache Commons Configuration** version 2.2  
+> **Apache Commons Configuration** version 2.5  
 > https://commons.apache.org/proper/commons-configuration  
 > **Apache Commons BeanUtils** version 1.9.3  
 > https://commons.apache.org/proper/commons-beanutils  
@@ -15,21 +15,25 @@
 > https://commons.apache.org/proper/commons-logging  
 > **Apache Commons Pool** version 1.6, _Used as runtime for Directory LDAP API library_  
 > https://commons.apache.org/proper/commons-pool  
-> **Apache Directory LDAP API** version 1.0.0  
-> http://directory.apache.org/api  
-> **Apache CXF** version 3.2.4  
-> http://cxf.apache.org  
+> **Apache Commons Text** version 1.7  
+> https://commons.apache.org/proper/commons-text  
+> **Apache Directory LDAP API** version 1.0.3  
+> https://directory.apache.org/api  
+> **Apache CXF** version 3.3.2  
+> https://cxf.apache.org  
+> **Apache POI** version 4.1.0  
+> https://poi.apache.org  
 > **ImgScalr** version 4.2  
 > https://github.com/rkalla/imgscalr  
-> **Jasypt** version 1.9.2  
+> **Jasypt** version 1.9.3  
 > http://www.jasypt.org  
 > **Json Taglib** version 0.4.1  
 > http://json-taglib.sourceforge.net  
-> **Gson** version 2.8.3  
+> **Gson** version 2.8.5  
 > https://github.com/google/gson  
-> **Quartz** version 2.2.3  
+> **Quartz** version 2.3.0  
 > http://www.quartz-scheduler.org  
-> **Log4j** version 1.2.16  
+> **Log4j** version 1.2.17  
 > https://logging.apache.org/log4j  
 
 ## Apache License

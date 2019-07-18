@@ -1,5 +1,5 @@
 # License for Java library
-> **SLF4J** version 1.7.25, _Used as runtime for log4j library_  
+> **SLF4J** version 1.7.26, _Used as runtime for log4j library_  
 > https://www.slf4j.org/license.html
 
 

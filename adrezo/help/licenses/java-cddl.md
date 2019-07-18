@@ -1,5 +1,5 @@
 # License for Java libraries
-> **JavaMail** version 1.6.1, _Used as runtime for Apache Commons Email library_  
+> **JavaMail** version 1.6.2, _Used as runtime for Apache Commons Email library_  
 > https://javaee.github.io/javamail/  
 > **JTA** version 1.1, _Used as runtime for Quartz library_  
 > http://www.oracle.com/technetwork/java/javaee/jta/index.html
