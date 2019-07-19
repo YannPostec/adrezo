@@ -178,52 +178,54 @@ function BoxIP_Search(key,elt) {
 	while (t.childNodes.length>0) {t.removeChild(t.firstChild);}
 	if (key == "ip") { var value = renderip(T$("boxip_ip").value); }
 	else if (key == "name") { var value = T$("boxip_name").value; }
-	var xhr=new XMLHttpRequest();
-	xhr.onreadystatechange=function(){
-		if (xhr.readyState==4 && xhr.status!=200) { showDialog(langdata.xhrapperror,langdata.xhrapptext+"!<br/>"+langdata.error+" "+xhr.status+"<br/>"+xhr.statusText,"error",0,1); }
-		if (xhr.readyState==4 && xhr.status==200) {
-			response = xhr.responseXML.documentElement;
-			if (response) { response = cleanXML(response); }
-			var valid = T$$("valid",response)[0].firstChild.nodeValue;
-			if (valid == "true") {
-					var rows = T$$("adr",response);
-					for (var i=0;i<rows.length;i++) {
-						var myid = T$$("id",rows[i])[0].firstChild.nodeValue;
-						var myname = T$$("name",rows[i])[0].firstChild.nodeValue;
-						var myip = displayip(T$$("ip",rows[i])[0].firstChild.nodeValue);
-						var mymask = T$$("mask",rows[i])[0].firstChild.nodeValue;
-						var mysubnet = T$$("subnet",rows[i])[0].firstChild.nodeValue;
-						var mysite = T$$("site",rows[i])[0].firstChild.nodeValue;
-						var mytr = t.insertRow(-1);
-						var mytd = mytr.insertCell(-1);
-						var ipt = document.createElement("input");
-						ipt.type = "hidden";
-						ipt.value = myid;
-						mytd.appendChild(ipt);
-						var ipt = document.createElement("input");
-						ipt.type = "hidden";
-						ipt.value = elt;
-						mytd.appendChild(ipt);
-						var img = document.createElement("img");
-						img.src = "../img/icon_valid.png";
-						img.alt = "Select this IP";
-						img.addEventListener("click",BoxIP_SelectIP,false);
-						mytd.appendChild(img);
-						mytr.insertCell(-1).appendChild(document.createTextNode(myname));
-						mytr.insertCell(-1).appendChild(document.createTextNode(myip+'/'+mymask));
-						mytr.insertCell(-1).appendChild(document.createTextNode(mysubnet));
-						mytr.insertCell(-1).appendChild(document.createTextNode(mysite));
-						TINY.box.resize();
-						TINY.box.dim();
-					}
-			} else {
-				showDialog(langdata.xhrapperror,langdata.xhrapptext+" BoxIP_Search","error",0,1);
+	if (value != "") {
+		var xhr=new XMLHttpRequest();
+		xhr.onreadystatechange=function(){
+			if (xhr.readyState==4 && xhr.status!=200) { showDialog(langdata.xhrapperror,langdata.xhrapptext+"!<br/>"+langdata.error+" "+xhr.status+"<br/>"+xhr.statusText,"error",0,1); }
+			if (xhr.readyState==4 && xhr.status==200) {
+				response = xhr.responseXML.documentElement;
+				if (response) { response = cleanXML(response); }
+				var valid = T$$("valid",response)[0].firstChild.nodeValue;
+				if (valid == "true") {
+						var rows = T$$("adr",response);
+						for (var i=0;i<rows.length;i++) {
+							var myid = T$$("id",rows[i])[0].firstChild.nodeValue;
+							var myname = T$$("name",rows[i])[0].firstChild.nodeValue;
+							var myip = displayip(T$$("ip",rows[i])[0].firstChild.nodeValue);
+							var mymask = T$$("mask",rows[i])[0].firstChild.nodeValue;
+							var mysubnet = T$$("subnet",rows[i])[0].firstChild.nodeValue;
+							var mysite = T$$("site",rows[i])[0].firstChild.nodeValue;
+							var mytr = t.insertRow(-1);
+							var mytd = mytr.insertCell(-1);
+							var ipt = document.createElement("input");
+							ipt.type = "hidden";
+							ipt.value = myid;
+							mytd.appendChild(ipt);
+							var ipt = document.createElement("input");
+							ipt.type = "hidden";
+							ipt.value = elt;
+							mytd.appendChild(ipt);
+							var img = document.createElement("img");
+							img.src = "../img/icon_valid.png";
+							img.alt = "Select this IP";
+							img.addEventListener("click",BoxIP_SelectIP,false);
+							mytd.appendChild(img);
+							mytr.insertCell(-1).appendChild(document.createTextNode(myname));
+							mytr.insertCell(-1).appendChild(document.createTextNode(myip+'/'+mymask));
+							mytr.insertCell(-1).appendChild(document.createTextNode(mysubnet));
+							mytr.insertCell(-1).appendChild(document.createTextNode(mysite));
+							TINY.box.resize();
+							TINY.box.dim();
+						}
+				} else {
+					showDialog(langdata.xhrapperror,langdata.xhrapptext+" BoxIP_Search","error",0,1);
+				}
 			}
-		}
-	};
-	xhr.open("POST","ajax_box_redundancy_search.jsp",true);
-	xhr.setRequestHeader('Content-type','application/x-www-form-urlencoded');
-	xhr.send("ctx="+ctx+"&key="+key+"&value="+value);
+		};
+		xhr.open("POST","ajax_box_redundancy_search.jsp",true);
+		xhr.setRequestHeader('Content-type','application/x-www-form-urlencoded');
+		xhr.send("ctx="+ctx+"&key="+key+"&value="+value);
+	}
 }
 function BoxIP_SelectIP(e) {
 	var node=e.target;
