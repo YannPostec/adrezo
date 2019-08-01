@@ -14,3 +14,5 @@ p.err {color:#f00; font-weight:bold; padding:2px;}
 .overheaders .asc h3 {background:url(../img/tinytable_asc.gif) 7px  center no-repeat; cursor:pointer; padding:0 15px}
 .overheaders .head:hover {color:#fff}
 .searchtext {float:left; padding:4px;}
+span.xls {margin:2px;padding-left:6px;}
+img.image {cursor:pointer;}

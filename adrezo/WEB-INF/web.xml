@@ -107,6 +107,11 @@
 		<load-on-startup>0</load-on-startup>
 	</servlet>
 	<servlet>
+		<servlet-name>excelinfos</servlet-name>
+		<servlet-class>ypodev.adrezo.servlets.ExcelInfosServlet</servlet-class>
+		<load-on-startup>0</load-on-startup>
+	</servlet>
+	<servlet>
     <servlet-name>APIServlet</servlet-name>
     <servlet-class>org.apache.cxf.jaxrs.servlet.CXFNonSpringJaxrsServlet</servlet-class>
     <init-param>
@@ -190,6 +195,10 @@
 		<servlet-name>excelnas</servlet-name>
 		<url-pattern>/excelnas</url-pattern>
 	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>excelinfos</servlet-name>
+		<url-pattern>/excelinfos</url-pattern>
+	</servlet-mapping>	
 	
 	<session-config>
 		<session-timeout>360</session-timeout>	

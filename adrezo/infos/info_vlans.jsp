@@ -8,6 +8,7 @@
 <fmt:setBundle basename="ypodev.adrezo.props.lang" />
 <%request.setCharacterEncoding("UTF-8");%>
 <c:if test="${validUser == null}"><jsp:forward page="../login.jsp"><jsp:param name="origURL" value="${pageContext.request.requestURL}" /><jsp:param name="errorKey" value="login.err" /></jsp:forward></c:if>
+<fmt:message key="common.click.xls" var="lang_commonclickxls" />
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head><title><fmt:message key="info.vlan.title" /></title>
@@ -16,15 +17,17 @@
 <link rel="stylesheet" href="../stylesheet/infos.css" type="text/css" />
 <link rel="stylesheet" href="../stylesheet/tinydropdown.css" type="text/css" />
 <link rel="stylesheet" href="../stylesheet/tinytable.css" type="text/css" />
+<link rel="stylesheet" href="../stylesheet/tinytooltip.css" type="text/css" />
 <script type="text/javascript" charset="utf-8" src="../js/common.js"></script>
 <script type="text/javascript" charset="utf-8" src="../js/tinydropdown.js"></script>
 <script type="text/javascript" charset="utf-8" src="../js/tinyinfotable.js"></script>
 <script type="text/javascript" charset="utf-8" src="../js/scrolltable.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/tinytooltip.js"></script>
 <script type="text/javascript" charset="utf-8" src="../js/info_vlans.js"></script>
 </head>
 <body onload='javascript:loadTable()'>
 <%@ include file="../menu.jsp" %>
-<h2><fmt:message key="info.vlan.list" /></h2>
+<h2><fmt:message key="info.vlan.list" /> <span class="xls" onmouseover="javascript:tooltip.show('${lang_commonclickxls}')" onmouseout="javascript:tooltip.hide()" onclick="javascript:window.open('${pageContext.request.contextPath}/excelinfos?type=vlan')"><img class="image" src="../img/icon_excel.jpg" alt="${lang_commonclickxls}" /></span></h2>
 <input type="hidden" id="sqs_id" value="3" />
 <input type="hidden" id="sqs_limit" value="32" />
 <input type="hidden" id="sqs_offset" value="0" />
