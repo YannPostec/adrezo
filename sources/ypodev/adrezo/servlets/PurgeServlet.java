@@ -17,7 +17,7 @@ import ypodev.adrezo.beans.UserInfoBean;
 
 public class PurgeServlet extends HttpServlet {
 	//Properties
-	private Vector urls = new Vector();
+	private Vector<String> urls = new Vector<String>();
 	private String errLog;
 	private boolean erreur = false;
 	private String dirLog;

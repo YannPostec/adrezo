@@ -140,8 +140,8 @@ public class IPFmt {
 		return res;
 	}
 	
-	public static Vector SplitSubnet(String ipsub, String masksub, String newmask) {
-		Vector res = new Vector();
+	public static Vector<String> SplitSubnet(String ipsub, String masksub, String newmask) {
+		Vector<String> res = new Vector<String>();
 		String initmask = maskBits(masksub);
 		String splitmask = maskBits(newmask);
 		if (ipsub.length() == 12 && Integer.parseInt((String)masksub)<Integer.parseInt((String)newmask)) {
@@ -197,9 +197,9 @@ public class IPFmt {
 		return AddLZeroToInt(a) + AddLZeroToInt(b) + AddLZeroToInt(c) + AddLZeroToInt(d);
 	}
 	
-	public static Vector VectorIP(String start,String end) {
+	public static Vector<String> VectorIP(String start,String end) {
 		start=incIP(start);
-		Vector res = new Vector();
+		Vector<String> res = new Vector<String>();
 		while (start.compareTo(end) <0) {
 			res.add(start);
 			start=incIP(start);

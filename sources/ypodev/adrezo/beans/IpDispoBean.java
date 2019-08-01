@@ -24,9 +24,9 @@ public class IpDispoBean implements Serializable {
 	private String subnetBC;
 	private String subnetMASK;
 	private transient Connection conn;
-	private Vector ipTotal;
-	private Vector ipSubnet;
-	private Vector subnetVector;
+	private Vector<String> ipTotal;
+	private Vector<String> ipSubnet;
+	private Vector<String> subnetVector;
 	private String ipFinal = "";
 	private transient ResourceBundle prop;
 	private String lang;
@@ -102,13 +102,13 @@ public class IpDispoBean implements Serializable {
 	}
 	private void GetIPTotal(boolean split) {
 		try {
-			this.ipTotal = new Vector();
+			this.ipTotal = new Vector<String>();
 			this.ipTotal = IPFmt.VectorIP(realStartIP,realEndIP);
 			if (split) { ipTotal.add(realEndIP); }
 		} catch (Exception e) { printLog("GetIPTotal: ",e); }
 	}
 	private void GetIPSubnet() {
-		this.ipSubnet = new Vector();
+		this.ipSubnet = new Vector<String>();
 		Statement stmt = null;
 		ResultSet rs = null;
 		try {

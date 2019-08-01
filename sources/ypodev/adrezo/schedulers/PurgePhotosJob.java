@@ -17,7 +17,7 @@ import jcifs.smb.*;
 public class PurgePhotosJob implements Job {
 
 	private Logger mylog = Logger.getLogger(PurgePhotosJob.class);
-	private Vector urls = new Vector();
+	private Vector<String> urls = new Vector<String>();
 	private String dirLog = "";
 	private String fileLog = "";
 	private ResourceBundle prop;

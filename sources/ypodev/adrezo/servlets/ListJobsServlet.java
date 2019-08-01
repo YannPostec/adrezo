@@ -47,7 +47,7 @@ public class ListJobsServlet extends HttpServlet {
 					for (JobKey jobKey : scheduler.getJobKeys(GroupMatcher.jobGroupEquals(groupName))) {
 						String jobName = jobKey.getName();
 						String jobGroup = jobKey.getGroup();
-						List<Trigger> triggers = (List<Trigger>) scheduler.getTriggersOfJob(jobKey);
+						List<? extends Trigger> triggers = scheduler.getTriggersOfJob(jobKey);
 						for (int i=0;i<triggers.size();i++) {
 							Trigger trigger = triggers.get(i);
 							Date nextFire = trigger.getNextFireTime();

@@ -22,9 +22,9 @@ public class NormCalcServlet extends HttpServlet {
 	private String oldmask = "";
 	private String oldnet = "";
 	private HashMap<String,String> existing = new HashMap<String,String>();
-	private ArrayList allnet = new ArrayList();
-	private ArrayList existnet = new ArrayList();
-	private ArrayList resnet = new ArrayList();
+	private ArrayList<String> allnet = new ArrayList<String>();
+	private ArrayList<String> existnet = new ArrayList<String>();
+	private ArrayList<String> resnet = new ArrayList<String>();
 	private Logger mylog = Logger.getLogger(NormCalcServlet.class);
 
 	private void printLog(String msg,Exception e) {
@@ -35,7 +35,7 @@ public class NormCalcServlet extends HttpServlet {
 		}
 		this.errLog += msg + "<br />";
 	}
-	private void listAvailable(ArrayList a,ArrayList e) {
+	private void listAvailable(ArrayList<String> a,ArrayList<String> e) {
 		for (int i=0;i<e.size();i++) { a.remove(e.get(i).toString()); }
 		for (int i=0;i<a.size();i++) { resnet.add(IPFmt.displayIP(a.get(i).toString())+"/"+this.newmask); }
 	}
