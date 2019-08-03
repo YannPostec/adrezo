@@ -40,6 +40,7 @@ public class UserInfoBean implements Serializable {
 	private Integer role = 0;
 	private transient ResourceBundle prop;
 	private String url;
+	private String macsearch;
 	private String slidetime;
 	private static Logger mylog = Logger.getLogger(UserInfoBean.class);
 	private static Map session;
@@ -345,16 +346,18 @@ public class UserInfoBean implements Serializable {
 				}
 				rs.close();rs = null;
 				if (!login.equals("admin")) {
-					rscookie = stmt.executeQuery("select ctx,lang,url,slidetime from usercookie where login = '"+login+"'");
+					rscookie = stmt.executeQuery("select ctx,lang,url,slidetime,macsearch from usercookie where login = '"+login+"'");
 					if (rscookie.next()) {
 						this.ctx = String.valueOf(rscookie.getInt("ctx"));
 						this.lang = rscookie.getString("lang");
 						this.url = String.valueOf(rscookie.getInt("url"));
+						this.macsearch = String.valueOf(rscookie.getInt("macsearch"));
 						this.slidetime = String.valueOf(rscookie.getInt("slidetime"));
 						stmt.executeUpdate("update usercookie set mail='"+this.mail+"',last = "+DbFunc.ToDateStr()+"('"+new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new java.util.Date())+"','YYYY-MM-DD HH24:MI:SS') where login = '"+login+"'");
 					} else {
 						stmt.executeUpdate("insert into usercookie (login,mail,ctx,lang,last) values ('"+login+"','"+this.mail+"',"+this.ctx+",'"+this.lang+"',"+DbFunc.ToDateStr()+"('"+new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new java.util.Date())+"','YYYY-MM-DD HH24:MI:SS'))");
 						this.url = "1";
+						this.macsearch = "1";
 						this.slidetime = "2000";
 					}
 					rscookie.close();rscookie = null;
@@ -388,6 +391,7 @@ public class UserInfoBean implements Serializable {
 	public String getRole() { return String.valueOf((Integer)this.role); }
 	public String getUrl() { return (url == null ? "" : url); }
 	public String getSlidetime() { return (slidetime == null ? "" : slidetime); }
+	public String getMacsearch() { return (macsearch == null ? "" : macsearch); }
 	
 	//Public setters
 	public void setPwd(String pwd) {
@@ -399,6 +403,7 @@ public class UserInfoBean implements Serializable {
 	public void setSession(Map session) { this.session = session; }
 	public void setLogin(String login) { this.login = login; }
 	public void setUrl(String url) {this.url = url; }
+	public void setMacsearch(String mac) {this.macsearch = mac; }
 	public void setSlidetime(String st) {this.slidetime = st; }
 	public void setCtx(String ctx) {
 		this.ctx = ctx;

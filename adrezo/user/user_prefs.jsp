@@ -29,7 +29,7 @@
 <body>
 <%@ include file="../menu.jsp" %>
 <c:if test="${validUser.login != 'admin'}">
-<sql:query var="prefs">select ctx,lang,url,slidetime from usercookie where login = '${validUser.login}'</sql:query>
+<sql:query var="prefs">select ctx,lang,url,slidetime,macsearch from usercookie where login = '${validUser.login}'</sql:query>
 <c:choose><c:when test="${prefs.rowCount == 0}"><h2><fmt:message key="userprefs.undefined" /></h2></c:when>
 <c:otherwise>
 	<sql:query var="langues">select * from langues order by code</sql:query>
@@ -41,6 +41,8 @@
 		<ul class="prefs"><c:forEach items="${ctxs.rows}" var="ctx"><li><a <c:if test="${pref.ctx == ctx.id}">class="prefselect" </c:if>href="javascript:chgUsrCtx('${ctx.id}');">${ctx.name}</a></li></c:forEach></ul>
 		<h2><fmt:message key="userprefs.url" /></h2>
 		<ul class="prefs"><li><a <c:if test="${pref.url == 1}">class="prefselect" </c:if>href="javascript:chgUsrUrl(1)"><fmt:message key="common.enabled" /></a></li><li><a <c:if test="${pref.url == 0}">class="prefselect" </c:if>href="javascript:chgUsrUrl(0)"><fmt:message key="common.disabled" /></a></li></ul>
+		<h2><fmt:message key="userprefs.mac" /></h2>
+		<ul class="prefs"><li><a <c:if test="${pref.macsearch == 1}">class="prefselect" </c:if>href="javascript:chgUsrMac(1)"><fmt:message key="common.enabled" /></a></li><li><a <c:if test="${pref.macsearch == 0}">class="prefselect" </c:if>href="javascript:chgUsrMac(0)"><fmt:message key="common.disabled" /></a></li></ul>
 		<h2><fmt:message key="userprefs.slideshow" /></h2>
 		<fmt:message key="userprefs.slideshow.def" /> (ms) : <input type="text" id="slidetime" size="10" value="${pref.slidetime}" /><span onmouseover="javascript:tooltip.show('${lang_commonclickvalid}')" onmouseout="javascript:tooltip.hide()"><img src="../img/icon_valid.png" alt="${lang_commonclickvalid}" onclick="javascript:chgUsrSlideTime()" /></span>
 	</c:forEach>

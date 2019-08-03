@@ -8,6 +8,9 @@ function chgUsrCtx(ctx) {
 function chgUsrUrl(url) {
 	DBAjax("ajax_userurl_update.jsp","url="+url);
 }
+function chgUsrMac(mac) {
+	DBAjax("ajax_usermac_update.jsp","mac="+mac);
+}
 function chgUsrSlideTime() {
 	var st = T$("slidetime").value;
 	DBAjax("ajax_userslidetime_update.jsp","st="+st);

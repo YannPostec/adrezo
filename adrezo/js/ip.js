@@ -1366,8 +1366,9 @@ function ConstructListTable(page,limit,sortKey,sortOrder,search) {
 					}
 					var mytd = mytr.insertCell(-1);
 					if (T$$("mac",rows[i])[0].firstChild) {
-						var txt = document.createTextNode(T$$("mac",rows[i])[0].firstChild.nodeValue);
-						mytd.appendChild(txt);
+						var macsearch = T$("macpref").value>0?' onclick="javascript:ClickMAC(event)"':'';
+						if (macsearch != '') { mytd.innerHTML = '<span class="hotspot"' + macsearch + '>' + T$$("mac",rows[i])[0].firstChild.nodeValue + '</span>'; }
+						else { mytd.innerHTML = T$$("mac",rows[i])[0].firstChild.nodeValue; }
 					}
 					var mytd = mytr.insertCell(-1);
 					var txt = document.createTextNode(T$$("modif",rows[i])[0].firstChild.nodeValue);
@@ -1422,4 +1423,9 @@ function ClickIP(e) {
 function ClickURL(u) {
 	TINY.box.hide();
 	window.open(u);
+}
+function ClickMAC(e) {
+	var node = e.target;
+	var mac = node.firstChild.nodeValue;
+	window.open("https://api.macvendors.com/"+mac);
 }

@@ -51,6 +51,7 @@
 <%@ include file="../menu.jsp" %>
 <input type="hidden" id="myCTX" value="${validUser.ctx}">
 <input type="hidden" id="urlpref" value="${validUser.url}">
+<input type="hidden" id="macpref" value="${validUser.macsearch}">
 <c:if test="${validUser.ip}">
 <ul class="acc" id="ipacc">
 <li><h3><fmt:message key="ip.section.dispo" /></h3><div class="acc-section" id="ipdispoAccordeon"><div class="acc-content">
