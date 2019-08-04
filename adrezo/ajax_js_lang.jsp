@@ -181,5 +181,6 @@
 	<json:property name="dhcpscopeno"><fmt:message key="js.dhcpscopeno" /></json:property>
 	<json:property name="dhcpscopewait"><fmt:message key="js.dhcpscopewait" /></json:property>
 	<json:property name="subnetchange"><fmt:message key="js.subnetchange" /></json:property>
+	<json:property name="anytime"><fmt:message key="js.anytime" /></json:property>
 </json:object>	
 </c:if>

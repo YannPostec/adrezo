@@ -31,7 +31,6 @@ function addSubmit() {
 	}
 }
 function modSubmit(e) {
-	var strAlert="";
 	var node = e.target;
 	var tds = T$$("td",node.parentNode.parentNode.parentNode);
 	var id = tds[2].firstChild.value;
@@ -39,10 +38,7 @@ function modSubmit(e) {
 	var ctx = tds[3].firstChild.value;
 	var name = tds[3].firstChild.nextSibling.value;
 
-	if (!cod) {	strAlert += "- "+langdata.code+": "+langdata.verifnotnull+"<br />"; }
-	else if (cod.length > 8) { strAlert += "- "+langdata.code+": "+langdata.verifsize+" : 8<br />"; }
-	if (!name) { strAlert += "- "+langdata.name+": "+langdata.verifnotnull+"<br />"; }
-	
+	var strAlert = verifyInput(cod,name);
 	if (strAlert != "") {
 		showDialog(langdata.invalidfield+" :",strAlert,"warning",0,1);
 	} else {
@@ -56,6 +52,7 @@ function delSubmit(id) {
 		if (result) {
 			var mytd = T$("mytd"+id);
 			if (mytd) { T$("tableinfos").tBodies[0].removeChild(mytd.parentNode); }
+			refreshTable(true);
 		}
 	});
 }
@@ -88,6 +85,7 @@ function CreateModif(e) {
 	hid.type = "hidden";
 	hid.value = texte;
 	tds[3].appendChild(hid);
+	refreshTable(false);	
 }
 function CancelModif(e) {
 	var node = e.target;
@@ -106,6 +104,7 @@ function CancelModif(e) {
 	var txt = document.createTextNode(hid.value);
 	tds[3].removeChild(hid);
 	tds[3].replaceChild(txt,ipt);
+	refreshTable(false);	
 }
 function ApplyModif(id) {
 	var node = T$("mytd"+id);
@@ -124,6 +123,7 @@ function ApplyModif(id) {
 	var txt = document.createTextNode(ipt.value);
 	tds[3].removeChild(hid);
 	tds[3].replaceChild(txt,ipt);
+	refreshTable(false);	
 }
 function fillTable(sqlid,limit,offset,search,searchip,order,sqlsort) {
 	var xhr=new XMLHttpRequest();
