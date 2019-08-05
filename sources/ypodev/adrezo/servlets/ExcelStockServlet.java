@@ -157,7 +157,7 @@ public class ExcelStockServlet extends HttpServlet {
 			Cell cell = errsh.createRow(0).createCell(0);
 			cell.setCellValue(errLog);
 		}
-		res.setContentType("application/vnd.ms-excel");
+		res.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
 		if (this.rtype.equals("stock")) { res.setHeader("Content-Disposition", "attachment; filename=adrezo_stock.xlsx"); }
 		if (this.rtype.equals("mvt")) { res.setHeader("Content-Disposition", "attachment; filename=adrezo_stock_mvt.xlsx"); }
 		wb.write(res.getOutputStream());

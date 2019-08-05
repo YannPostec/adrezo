@@ -210,7 +210,7 @@ public class ExcelInfosServlet extends HttpServlet {
 			Cell cell = errsh.createRow(0).createCell(0);
 			cell.setCellValue(errLog);
 		}
-		res.setContentType("application/vnd.ms-excel");
+		res.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
 		if (this.rtype.equals("site")) { res.setHeader("Content-Disposition", "attachment; filename=adrezo_info_site.xlsx"); }
 		if (this.rtype.equals("subnet")) { res.setHeader("Content-Disposition", "attachment; filename=adrezo_info_subnet.xlsx"); }
 		if (this.rtype.equals("vlan")) { res.setHeader("Content-Disposition", "attachment; filename=adrezo_info_vlan.xlsx"); }
