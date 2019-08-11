@@ -20,9 +20,9 @@ function fillTable(sqlid,limit,offset,search,searchip,order,sqlsort) {
 					if (T$$("site_name",lines[i])[0].hasChildNodes()) { mytr.insertCell(-1).appendChild(document.createTextNode(T$$("site_name",lines[i])[0].firstChild.nodeValue)); } else { mytr.insertCell(-1); }
 					if (T$$("def",lines[i])[0].hasChildNodes()) { mytr.insertCell(-1).appendChild(document.createTextNode(T$$("def",lines[i])[0].firstChild.nodeValue)); } else { mytr.insertCell(-1); }
 					if (T$$("ip",lines[i])[0].hasChildNodes()&&T$$("mask",lines[i])[0].hasChildNodes()) { mytr.insertCell(-1).appendChild(document.createTextNode(displayip(T$$("ip",lines[i])[0].firstChild.nodeValue)+"/"+T$$("mask",lines[i])[0].firstChild.nodeValue)); } else { mytr.insertCell(-1); }
-					if (T$$("mycount",lines[i])[0].hasChildNodes()) { mytr.insertCell(-1).appendChild(document.createTextNode(T$$("mycount",lines[i])[0].firstChild.nodeValue)); } else { mytr.insertCell(-1); }
-					if (T$$("mymax",lines[i])[0].hasChildNodes()) { mytr.insertCell(-1).appendChild(document.createTextNode(T$$("mymax",lines[i])[0].firstChild.nodeValue)); } else { mytr.insertCell(-1); }
-					if (T$$("mypercent",lines[i])[0].hasChildNodes()) { mytr.insertCell(-1).appendChild(document.createTextNode(T$$("mypercent",lines[i])[0].firstChild.nodeValue)); } else { mytr.insertCell(-1); }
+					if (T$$("mycount",lines[i])[0].hasChildNodes()) { var mytd=mytr.insertCell(-1);mytd.style.textAlign = "center";mytd.appendChild(document.createTextNode(T$$("mycount",lines[i])[0].firstChild.nodeValue)); } else { mytr.insertCell(-1); }
+					if (T$$("mymax",lines[i])[0].hasChildNodes()) { var mytd=mytr.insertCell(-1);mytd.style.textAlign = "center";mytd.appendChild(document.createTextNode(T$$("mymax",lines[i])[0].firstChild.nodeValue)); } else { mytr.insertCell(-1); }
+					if (T$$("mypercent",lines[i])[0].hasChildNodes()) { var mytd=mytr.insertCell(-1);mytd.style.textAlign = "center";mytd.appendChild(document.createTextNode(T$$("mypercent",lines[i])[0].firstChild.nodeValue)); } else { mytr.insertCell(-1); }
 				}
 				if (cpt==limit) { createNext(limit); } else { cleanFoot(); }
 			}

@@ -387,6 +387,7 @@ function fillTable(sqlid,limit,offset,search,searchip,order,sqlsort) {
 					} else { mytr.insertCell(-1); }
 					if (T$$("ctx",lines[i])[0].hasChildNodes() && T$$("mask",lines[i])[0].hasChildNodes()) {
 						var mytd = mytr.insertCell(-1);
+						mytd.style.textAlign = "center";
 						var hid = document.createElement("input");
 						hid.type = "hidden";
 						hid.value = T$$("ctx",lines[i])[0].firstChild.nodeValue;

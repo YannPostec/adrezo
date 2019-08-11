@@ -15,7 +15,7 @@ function fillTable(sqlid,limit,offset,search,searchip,order,sqlsort) {
 				for (var i=0;i<lines.length;i++) {
 					cpt++;
 					var mytr = T$("tableinfos").tBodies[0].insertRow(-1);
-					if (T$$("id",lines[i])[0].hasChildNodes()) { mytr.insertCell(-1).appendChild(document.createTextNode(T$$("id",lines[i])[0].firstChild.nodeValue)); } else { mytr.insertCell(-1); }
+					if (T$$("id",lines[i])[0].hasChildNodes()) { var mytd=mytr.insertCell(-1);mytd.style.textAlign = "center";mytd.appendChild(document.createTextNode(T$$("id",lines[i])[0].firstChild.nodeValue)); } else { mytr.insertCell(-1); }
 					if (T$$("ctx_name",lines[i])[0].hasChildNodes()) { mytr.insertCell(-1).appendChild(document.createTextNode(T$$("ctx_name",lines[i])[0].firstChild.nodeValue)); } else { mytr.insertCell(-1); }
 					if (T$$("cod_site",lines[i])[0].hasChildNodes()) { mytr.insertCell(-1).appendChild(document.createTextNode(T$$("cod_site",lines[i])[0].firstChild.nodeValue)); } else { mytr.insertCell(-1); }
 					if (T$$("site_name",lines[i])[0].hasChildNodes()) { mytr.insertCell(-1).appendChild(document.createTextNode(T$$("site_name",lines[i])[0].firstChild.nodeValue)); } else { mytr.insertCell(-1); }

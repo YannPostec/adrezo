@@ -183,6 +183,7 @@ function fillTable(sqlid,limit,offset,search,searchip,order,sqlsort) {
 					} else { mytr.insertCell(-1); }
 					if (T$$("id",lines[i])[0].hasChildNodes() && T$$("vid",lines[i])[0].hasChildNodes()) {
 						var mytd = mytr.insertCell(-1);
+						mytd.style.textAlign = "center";
 						var hid = document.createElement("input");
 						hid.type = "hidden";
 						hid.value = T$$("id",lines[i])[0].firstChild.nodeValue;

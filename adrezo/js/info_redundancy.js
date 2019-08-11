@@ -19,7 +19,7 @@ function fillTable(sqlid,limit,offset,search,searchip,order,sqlsort) {
 					if (T$$("site_name",lines[i])[0].hasChildNodes()) { mytr.insertCell(-1).appendChild(document.createTextNode(T$$("site_name",lines[i])[0].firstChild.nodeValue)); } else { mytr.insertCell(-1); }
 					if (T$$("subnet_name",lines[i])[0].hasChildNodes()) { mytr.insertCell(-1).appendChild(document.createTextNode(T$$("subnet_name",lines[i])[0].firstChild.nodeValue)); } else { mytr.insertCell(-1); }
 					if (T$$("ptype_name",lines[i])[0].hasChildNodes()) { mytr.insertCell(-1).appendChild(document.createTextNode(T$$("ptype_name",lines[i])[0].firstChild.nodeValue)); } else { mytr.insertCell(-1); }
-					if (T$$("pid",lines[i])[0].hasChildNodes()) { mytr.insertCell(-1).appendChild(document.createTextNode(T$$("pid",lines[i])[0].firstChild.nodeValue)); } else { mytr.insertCell(-1); }
+					if (T$$("pid",lines[i])[0].hasChildNodes()) { var mytd=mytr.insertCell(-1);mytd.style.textAlign = "center";mytd.appendChild(document.createTextNode(T$$("pid",lines[i])[0].firstChild.nodeValue)); } else { mytr.insertCell(-1); }
 					if (T$$("ip",lines[i])[0].hasChildNodes()&&T$$("mask",lines[i])[0].hasChildNodes()) { mytr.insertCell(-1).appendChild(document.createTextNode(displayip(T$$("ip",lines[i])[0].firstChild.nodeValue)+"/"+T$$("mask",lines[i])[0].firstChild.nodeValue)); } else { mytr.insertCell(-1); }
 					if (T$$("ip_name",lines[i])[0].hasChildNodes()) { mytr.insertCell(-1).appendChild(document.createTextNode(T$$("ip_name",lines[i])[0].firstChild.nodeValue)); } else { mytr.insertCell(-1); }
 				}

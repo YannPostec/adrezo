@@ -214,6 +214,7 @@ function fillTable(sqlid,limit,offset,search,searchip,order,sqlsort) {
 					} else { mytr.insertCell(-1); }
 					if (T$$("disp",lines[i])[0].hasChildNodes()) {
 						var mytd = mytr.insertCell(-1);
+						mytd.style.textAlign = "center";
 						var texte = "";
 						if (T$$("disp",lines[i])[0].firstChild.nodeValue==0) { texte = langdata.dlgno; } else { texte = langdata.dlgyes; }
 						mytd.appendChild(document.createTextNode(texte));

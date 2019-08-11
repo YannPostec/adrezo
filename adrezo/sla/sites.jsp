@@ -54,7 +54,7 @@
 	<td><span onmouseover="javascript:tooltip.show('${lang_commonclickreset}')" onmouseout="javascript:tooltip.hide()"><img src="../img/icon_refuse.png" alt="${lang_commonclickreset}" onclick="javascript:ResetAdd()" /></span></td>
 	<td><select id="add_client"><option><fmt:message key="common.select.client" /></option><c:forEach items="${clients.rows}" var="client"><option value="${client.id}">${client.name}</option></c:forEach></select></td>
 	<td><input type="text" size="40" id="add_name" value="" /></td>
-	<td><input type="checkbox" id="add_disp" checked="checked" /></td>
+	<td style="text-align:center"><input type="checkbox" id="add_disp" checked="checked" /></td>
 	<td><select id="add_plan"><option><fmt:message key="common.select.plan" /></option><c:forEach items="${plans.rows}" var="plan"><option value="${plan.id}">${plan.id}-<c:choose><c:when test="${plan.id == 0}"><fmt:message key="sla.planning.anytime" /></c:when><c:otherwise>${plan.name}</c:otherwise></c:choose></option></c:forEach></select></td>
 </tr></tbody></table>
 <h3><fmt:message key="admin.site.list" /> :</h3>
