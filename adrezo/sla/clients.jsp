@@ -15,6 +15,7 @@
 <fmt:message key="common.click.valid" var="lang_commonclickvalid" />
 <fmt:message key="common.click.cancel" var="lang_commonclickcancel" />
 <fmt:message key="common.click.reset" var="lang_commonclickreset" />
+<fmt:message key="sla.planning.anytime" var="lang_slaplanninganytime" />
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -34,6 +35,9 @@
 <script type="text/javascript" charset="utf-8" src="../js/tinyinfotable.js"></script>
 <script type="text/javascript" charset="utf-8" src="../js/scrolltable.js"></script>
 <script type="text/javascript" charset="utf-8" src="../js/sla_clients.js"></script>
+<script type="text/javascript" charset="utf-8">
+	var langanytime = '${lang_slaplanninganytime}';
+</script>
 </head>
 <body onload='javascript:loadTable()'>
 <%@ include file="../menu.jsp" %>

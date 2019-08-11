@@ -230,7 +230,7 @@ function fillTable(sqlid,limit,offset,search,searchip,order,sqlsort) {
 						hid.type = "hidden";
 						hid.value = T$$("plan",lines[i])[0].firstChild.nodeValue;
 						mytd.appendChild(hid);
-						var texte = mysel.value>0?T$$("plan_name",lines[i])[0].firstChild.nodeValue:langdata.anytime;
+						var texte = mysel.value>0?T$$("plan_name",lines[i])[0].firstChild.nodeValue:langanytime;
 						mytd.appendChild(document.createTextNode(texte));
 					} else { mytr.insertCell(-1); }
 				}
