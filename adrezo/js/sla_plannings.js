@@ -1,24 +1,41 @@
 //@Author: Yann POSTEC
 function ResetAdd() {
-	T$("add_id").value = "";
 	T$("add_name").value = "";
 }
-function ConfirmDlg(id) {
-	showDialog(langdata.confirm,langdata.objdel+"<br/><br/><input type='button' value='"+langdata.dlgyes+"' onclick='javascript:delSubmit("+id+");'/>  <input type='button' value='"+langdata.dlgno+"' onclick='hideDialog();'/>","prompt",0,1);
-}
-function addSubmit(e) {
-	var strAlert="";
+function ConfirmDlg(e) {
 	var node = e.target;
 	var tds = T$$("td",node.parentNode.parentNode.parentNode);
 	var id = tds[2].firstChild.value;
-	var name = tds[3].firstChild.value;
-
+	showDialog(langdata.confirm,langdata.objdel+"<br/><br/><input type='button' value='"+langdata.dlgyes+"' onclick='javascript:delSubmit("+id+");'/>  <input type='button' value='"+langdata.dlgno+"' onclick='hideDialog();'/>","prompt",0,1);
+}
+function verifyInput(name) {
+	var strAlert="";
+	
 	if (!name) { strAlert += "- "+langdata.name+": "+langdata.verifnotnull+"<br />"; }
 	else {
 		if (name.indexOf("/") != -1) { strAlert += "- "+langdata.name+": "+langdata.verifnoslash+"<br />"; }
 		if (name.length > 50) { strAlert += "- "+langdata.name+": "+langdata.verifsize+" : 50<br />"; }
 	}
-	
+		
+	return(strAlert);
+}
+function addSubmit() {
+	var name = T$("add_name").value;
+
+	var strAlert = verifyInput(name);
+	if (strAlert != "") {
+		showDialog(langdata.invalidfield+" :",strAlert,"warning",0,1);
+	} else {
+		DBAjax("ajax_plannings_store.jsp","id=&name="+name);
+	}
+}
+function modSubmit(e) {
+	var node = e.target;
+	var tds = T$$("td",node.parentNode.parentNode.parentNode);
+	var id = tds[2].firstChild.value;
+	var name = tds[3].firstChild.value;
+
+	var strAlert = verifyInput(name);
 	if (strAlert != "") {
 		showDialog(langdata.invalidfield+" :",strAlert,"warning",0,1);
 	} else {
@@ -26,7 +43,13 @@ function addSubmit(e) {
 	}
 }
 function delSubmit(id) {
-	DBAjax("ajax_plannings_delete.jsp","id="+id);
+	DBAjax("ajax_plannings_delete.jsp","id="+id,true,function callback(result) {
+		if (result) {
+			var mytd = T$("mytd"+id);
+			if (mytd) { T$("tableinfos").tBodies[0].removeChild(mytd.parentNode); }
+			refreshTable(true);
+		}
+	});
 }
 function CreateModif(e) {
 	var node = e.target;
@@ -45,7 +68,10 @@ function CreateModif(e) {
 	var hid = document.createElement("input");
 	hid.type = "hidden";
 	hid.value = texte;
-	tds[3].appendChild(hid);	
+	tds[3].appendChild(hid);
+	tds[4].firstChild.style.display="none";
+	tds[5].firstChild.style.display="none";
+	refreshTable(false);	
 }
 function CancelModif(e) {
 	var node = e.target;
@@ -59,8 +85,111 @@ function CancelModif(e) {
 	var txt = document.createTextNode(hid.value);
 	tds[3].removeChild(hid);
 	tds[3].replaceChild(txt,ipt);
+	tds[4].firstChild.style.display="inline";
+	tds[5].firstChild.style.display="inline";
+	refreshTable(false);	
 }
-function PlanManage(id,name) {
+function ApplyModif(id) {
+	var node = T$("mytd"+id);
+	var tds = T$$("td",node.parentNode);
+	var span = tds[1].childNodes;
+	span[0].style.display="inline";
+	span[1].style.display="none";
+	span[2].style.display="none";
+	var ipt = tds[3].firstChild;
+	var hid = ipt.nextSibling;
+	var txt = document.createTextNode(ipt.value);
+	tds[3].removeChild(hid);
+	tds[3].replaceChild(txt,ipt);
+	tds[4].firstChild.style.display="inline";
+	tds[5].firstChild.style.display="inline";
+	refreshTable(false);
+}
+function fillTable(sqlid,limit,offset,search,searchip,order,sqlsort) {
+	var xhr=new XMLHttpRequest();
+	xhr.onreadystatechange=function(){
+		if (xhr.readyState==4 && xhr.status!=200) { createP(xhr.status+", "+xhr.statusText); }
+		if (xhr.readyState==4 && xhr.status==200) {
+			response = xhr.responseXML.documentElement;
+			if (response) { response = cleanXML(response); }
+			var erreur = T$$("err",response)[0].firstChild.nodeValue;
+			var msg = T$$("msg",response)[0].firstChild.nodeValue;
+			if (erreur == "true") { createP(msg); }
+			else {
+				var lines = T$$("line",response);
+				var cpt=0;
+				for (var i=0;i<lines.length;i++) {
+					cpt++;
+					var shadowtr = T$("tableshadow").firstChild.firstChild;
+					var mytr = shadowtr.cloneNode(true);
+					T$("tableinfos").tBodies[0].appendChild(mytr);
+					if (T$$("id",lines[i])[0].hasChildNodes()) {
+						var mytd = mytr.insertCell(-1);
+						mytd.style.textAlign = "center";
+						var hid = document.createElement("input");
+						hid.type = "hidden";
+						hid.value = T$$("id",lines[i])[0].firstChild.nodeValue;
+						mytd.id = "mytd" + hid.value;
+						mytd.appendChild(hid);
+						mytd.appendChild(document.createTextNode(T$$("id",lines[i])[0].firstChild.nodeValue));
+					} else { mytr.insertCell(-1); }
+					if (T$$("name",lines[i])[0].hasChildNodes()) {
+						var mytd = mytr.insertCell(-1);
+						mytd.appendChild(document.createTextNode(T$$("name",lines[i])[0].firstChild.nodeValue));
+					} else { mytr.insertCell(-1); }
+					if (T$$("name",lines[i])[0].hasChildNodes() && T$$("id",lines[i])[0].hasChildNodes()) {
+						var mytd = mytr.insertCell(-1);
+						mytd.style.textAlign = "center";
+						var myspan = T$("spanshadowmanage").cloneNode(true);
+						myspan.removeAttribute("id");
+						var img = document.createElement("img");
+						img.src = "../img/icon_database.png";
+						img.alt = "Click to choose planning";
+						img.addEventListener("click",PlanManage,false);
+						myspan.appendChild(img);
+						myspan.style.display="inline";
+						mytd.appendChild(myspan);
+					} else { mytr.insertCell(-1); }
+					if (T$$("name",lines[i])[0].hasChildNodes() && T$$("id",lines[i])[0].hasChildNodes()) {
+						var mytd = mytr.insertCell(-1);
+						mytd.style.textAlign = "center";
+						var myspan = T$("spanshadowcopy").cloneNode(true);
+						myspan.removeAttribute("id");
+						var img = document.createElement("img");
+						img.src = "../img/icon_copy.png";
+						img.alt = "Click to copy planning";
+						img.addEventListener("click",CopyPlan,false);
+						myspan.appendChild(img);
+						myspan.style.display="inline";
+						mytd.appendChild(myspan);
+					} else { mytr.insertCell(-1); }
+				}
+				if (cpt==limit) { createNext(limit); } else { cleanFoot(); }
+			}
+		}
+	};
+	cleanFoot();
+	var img=document.createElement("img");
+	img.id = "waitBar";
+	img.src = "../img/wait_bar.gif";
+	img.alt = "WaitBar";
+	img.width = 345;
+	img.heigth = 21;
+	T$("tablefooter").appendChild(img);
+	xhr.open("POST","../sqs",false);
+	xhr.setRequestHeader('Content-type','application/x-www-form-urlencoded');
+	xhr.send("id="+sqlid+"&limit="+limit+"&offset="+offset+"&search="+search+"&searchip="+searchip+"&order="+order+"&sort="+sqlsort);
+}
+function SwitchSearch(i) {
+		switch(i) {
+			case 2: T$("sqs_order").value="id";break;
+			case 3: T$("sqs_order").value="name";break;
+		}
+}
+function PlanManage(e) {
+	var node=e.target;
+	var id=node.parentNode.parentNode.previousSibling.previousSibling.firstChild.value;
+	var name=node.parentNode.parentNode.previousSibling.firstChild.nodeValue;
 	TINY.box.show({url:'box_plannings_hours.jsp',post:'id='+id+'&name='+name});
 }
 function PlanValid(e,id) {
@@ -114,7 +243,10 @@ function HoursBox(name,ch,inv) {
 		}
 	}
 }
-function CopyPlan(id,name) {
+function CopyPlan(e) {
+	var node=e.target;
+	var id=node.parentNode.parentNode.previousSibling.previousSibling.previousSibling.firstChild.value;
+	var name=node.parentNode.parentNode.previousSibling.previousSibling.firstChild.nodeValue;
 	TINY.box.show({url:'box_planning_copy.jsp',post:'id='+id+'&name='+name});
 }
 function CopyPlanValid(id) {

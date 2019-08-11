@@ -130,8 +130,15 @@ public class SQLQueryServlet extends HttpServlet {
 			this.wherelist.put(16,"id > 0");
 			// ID 17 : SLA Sites
 			this.selectlist.put(17,"select id,name,disp,plan,plan_name,client,client_name from slasite_display");
-			this.searchlist.put(17,"lower(name) like lower('%#SEARCHSTR#%') or lower(client) like lower('%#SEARCHSTR#%') or lower(plan_name) like lower('%#SEARCHSTR#%')");
+			this.searchlist.put(17,"lower(name) like lower('%#SEARCHSTR#%') or lower(client_name) like lower('%#SEARCHSTR#%') or lower(plan_name) like lower('%#SEARCHSTR#%')");
 			this.wherelist.put(17,"id > 0");
+			// ID 18 : SLA Equipements
+			this.selectlist.put(18,"select * from sladevice_display");
+			this.searchlist.put(18,"lower(name) like lower('%#SEARCHSTR#%') or lower(client_name) like lower('%#SEARCHSTR#%') or lower(plan_name) like lower('%#SEARCHSTR#%') or lower(site_name) like lower('%#SEARCHSTR#%')");
+			// ID 19 : SLA Plannings
+			this.selectlist.put(19,"select id,name from slaplanning");
+			this.searchlist.put(19,"lower(name) like lower('%#SEARCHSTR#%')");
+			this.wherelist.put(19,"id > 0");
 		} catch (Exception e) { printLog("Init: ",e); }
 	}
 
@@ -197,6 +204,8 @@ public class SQLQueryServlet extends HttpServlet {
 				}
 				if (this.id==16) { result += "<line><id>"+String.valueOf(rs.getInt("id"))+"</id><name>"+shapeXML(rs.getString("name"))+"</name><disp>"+String.valueOf(rs.getInt("disp"))+"</disp><plan>"+String.valueOf(rs.getInt("plan"))+"</plan><plan_name>"+shapeXML(rs.getString("plan_name"))+"</plan_name></line>"; }
 				if (this.id==17) { result += "<line><id>"+String.valueOf(rs.getInt("id"))+"</id><name>"+shapeXML(rs.getString("name"))+"</name><disp>"+String.valueOf(rs.getInt("disp"))+"</disp><plan>"+String.valueOf(rs.getInt("plan"))+"</plan><plan_name>"+shapeXML(rs.getString("plan_name"))+"</plan_name><client>"+String.valueOf(rs.getInt("client"))+"</client><client_name>"+shapeXML(rs.getString("client_name"))+"</client_name></line>"; }
+				if (this.id==18) { result += "<line><id>"+String.valueOf(rs.getInt("id"))+"</id><name>"+shapeXML(rs.getString("name"))+"</name><disp>"+String.valueOf(rs.getInt("disp"))+"</disp><plan>"+String.valueOf(rs.getInt("plan"))+"</plan><plan_name>"+shapeXML(rs.getString("plan_name"))+"</plan_name><client>"+String.valueOf(rs.getInt("client"))+"</client><client_name>"+shapeXML(rs.getString("client_name"))+"</client_name></line>"; }
+				if (this.id==19) { result += "<line><id>"+String.valueOf(rs.getInt("id"))+"</id><name>"+shapeXML(rs.getString("name"))+"</name></line>"; }
 			}
 			mylog.debug("Finish Processing SQL");
 			rs.close();rs=null;
