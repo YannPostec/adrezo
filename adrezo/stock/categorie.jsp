@@ -22,35 +22,68 @@
 <meta http-equiv="Pragma" content="no-cache" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <link rel="stylesheet" href="../stylesheet/common.css" type="text/css" />
+<link rel="stylesheet" href="../stylesheet/infos.css" type="text/css" />
 <link rel="stylesheet" href="../stylesheet/tinydropdown.css" type="text/css" />
 <link rel="stylesheet" href="../stylesheet/tinydialog.css" type="text/css" />
 <link rel="stylesheet" href="../stylesheet/tinytooltip.css" type="text/css" />
+<link rel="stylesheet" href="../stylesheet/tinytable.css" type="text/css" />
 <script type="text/javascript" charset="utf-8" src="../js/common.js"></script>
-<script type="text/javascript" charset="utf-8" src="../js/stock_categorie.js"></script>
 <script type="text/javascript" charset="utf-8" src="../js/tinydropdown.js"></script>
 <script type="text/javascript" charset="utf-8" src="../js/tinytooltip.js"></script>
 <script type="text/javascript" charset="utf-8" src="../js/tinydialog.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/tinyinfotable.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/scrolltable.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/stock_categorie.js"></script>
 </head>
-<body>
+<body onload='javascript:loadTable()'>
 <%@ include file="../menu.jsp" %>
-<sql:query var="cats">SELECT ID,NAME FROM STOCK_CAT	ORDER BY ID</sql:query>
-<div><fmt:message key="stock.cat.list" /> :</div>
-<table>
-<thead><tr><th /><th /><th><fmt:message key="common.table.name" /></th></tr>
-<tr>
-	<td />
-	<td><span onmouseover="javascript:tooltip.show('${lang_commonclickadd}')" onmouseout="javascript:tooltip.hide()"><img src="../img/icon_valid.png" alt="${lang_commonclickadd}" onclick="javascript:addSubmit(event)" /></span><span onmouseover="javascript:tooltip.show('${lang_commonclickreset}')" onmouseout="javascript:tooltip.hide()"><img src="../img/icon_refuse.png" alt="${lang_commonclickreset}" onclick="javascript:ResetAdd()" /></span></td>
-	<td><input type="hidden" id="add_id" value="" /><input type="text" size="33" id="add_name" value="" /></td>	
-</thead>
-<tbody>
-<c:forEach items="${cats.rows}" var="cat">
-<tr>
-	<td><span onmouseover="javascript:tooltip.show('${lang_commonclickdel}')" onmouseout="javascript:tooltip.hide()"><img src="../img/icon_delete.jpg" alt="${lang_commonclickdel}" onclick="javascript:ConfirmDlg(${cat.ID})" /></span></td>
-	<td style="text-align:center"><span onmouseover="javascript:tooltip.show('${lang_commonclickmod}')" onmouseout="javascript:tooltip.hide()"><img src="../img/icon_modify.jpg" alt="${lang_commonclickmod}" onclick="javascript:CreateModif(event)" /></span><span onmouseover="javascript:tooltip.show('${lang_commonclickvalid}')" onmouseout="javascript:tooltip.hide()" style="display:none;"><img src="../img/icon_valid.png" alt="${lang_commonclickvalid}" onclick="javascript:addSubmit(event)" /></span><span onmouseover="javascript:tooltip.show('${lang_commonclickcancel}')" onmouseout="javascript:tooltip.hide()" style="display:none;"><img src="../img/icon_refuse.png" alt="${lang_commonclickcancel}" onclick="javascript:CancelModif(event)" /></span></td>
-	<td><input type="hidden" value="${cat.ID}" />${cat.NAME}</td>
-</tr>
-</c:forEach>
-</tbody></table>
+<input type="hidden" id="sqs_id" value="20" />
+<input type="hidden" id="sqs_limit" value="32" />
+<input type="hidden" id="sqs_offset" value="0" />
+<input type="hidden" id="sqs_order" value="id" />
+<input type="hidden" id="sqs_sort" value="asc" />
+<input type="hidden" id="sortiny_column" value="2" />
+<input type="hidden" id="sortiny_dir" value="1" />
+
+<table id="tableshadow" style="display:none;"><tbody><tr><td><span onmouseover="javascript:tooltip.show('${lang_commonclickdel}')" onmouseout="javascript:tooltip.hide()"><img src="../img/icon_delete.jpg" alt="${lang_commonclickdel}" onclick="javascript:ConfirmDlg(event)" /></span></td><td style="text-align:center"><span onmouseover="javascript:tooltip.show('${lang_commonclickmod}')" onmouseout="javascript:tooltip.hide()"><img src="../img/icon_modify.jpg" alt="${lang_commonclickmod}" onclick="javascript:CreateModif(event)" /></span><span onmouseover="javascript:tooltip.show('${lang_commonclickvalid}')" onmouseout="javascript:tooltip.hide()" style="display:none;"><img src="../img/icon_valid.png" alt="${lang_commonclickvalid}" onclick="javascript:modSubmit(event)" /></span><span onmouseover="javascript:tooltip.show('${lang_commonclickcancel}')" onmouseout="javascript:tooltip.hide()" style="display:none;"><img src="../img/icon_refuse.png" alt="${lang_commonclickcancel}" onclick="javascript:CancelModif(event)" /></span></td></tr></tbody></table>
+<h3><fmt:message key="admin.mgt" /> :</h3>
+<table><thead><tr><th /><th /><th><fmt:message key="common.table.name" /></th></tr></thead>
+<tbody><tr>
+	<td><span onmouseover="javascript:tooltip.show('${lang_commonclickadd}')" onmouseout="javascript:tooltip.hide()"><img src="../img/icon_add2.png" alt="${lang_commonclickadd}" onclick="javascript:addSubmit()" /></span></td>
+	<td><span onmouseover="javascript:tooltip.show('${lang_commonclickreset}')" onmouseout="javascript:tooltip.hide()"><img src="../img/icon_refuse.png" alt="${lang_commonclickreset}" onclick="javascript:ResetAdd()" /></span></td>
+	<td><input type="text" size="40" id="add_name" value="" /></td>
+</tr></tbody></table>
+<h3><fmt:message key="stock.cat.list" /> :</h3>
+<div id="tablewrapper">
+	<div id="tableheader">
+		<div class="search">
+	  	<div class="searchtext"><fmt:message key="ip.click.search" /></div>
+			<input type="text" id="sqs_search" oninput="searchTable()" value="" />
+		</div>
+	</div>
+	<table id="tableheaders" class="overheaders">
+		<thead><tr><th class="nosort"><h3 /></th><th class="nosort"><h3 /></th><th><h3><fmt:message key="common.table.name" /></h3></th></tr></thead>
+	</table>
+	<table id="tableinfos" class="tinytable">
+		<thead><tr><th class="nosort"><h3 /></th><th class="nosort"><h3 /></th><th><h3><fmt:message key="common.table.name" /></h3></th></tr></thead>
+		<tbody></tbody>
+	</table>
+</div>
+<div id="tablefooter"></div>
+<div id="dlgcontent"/>
+<script type="text/javascript" charset="utf-8">
+	var sortiny = new TINY.table.sorter('sortiny','tableinfos',{
+		headclass:'head',
+		ascclass:'asc',
+		descclass:'desc',
+		evenclass:'evenrow',
+		oddclass:'oddrow',
+		evenselclass:'evenselected',
+		oddselclass:'oddselected',
+		hoverid:'selectedrow'
+	});
+</script>
+<a href="#" id="upscroll" class="scrollup" onclick="javascript:ScrollUp()">Scroll</a>
 <div id="dlgcontent"/>
 </body></html>
 </c:if>
