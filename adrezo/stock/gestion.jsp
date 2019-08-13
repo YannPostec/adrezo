@@ -23,51 +23,77 @@
 <meta http-equiv="Pragma" content="no-cache" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <link rel="stylesheet" href="../stylesheet/common.css" type="text/css" />
+<link rel="stylesheet" href="../stylesheet/infos.css" type="text/css" />
 <link rel="stylesheet" href="../stylesheet/tinydropdown.css" type="text/css" />
 <link rel="stylesheet" href="../stylesheet/tinydialog.css" type="text/css" />
 <link rel="stylesheet" href="../stylesheet/tinytooltip.css" type="text/css" />
+<link rel="stylesheet" href="../stylesheet/tinytable.css" type="text/css" />
 <script type="text/javascript" charset="utf-8" src="../js/common.js"></script>
-<script type="text/javascript" charset="utf-8" src="../js/stock_gestion.js"></script>
 <script type="text/javascript" charset="utf-8" src="../js/tinydropdown.js"></script>
 <script type="text/javascript" charset="utf-8" src="../js/tinydialog.js"></script>
 <script type="text/javascript" charset="utf-8" src="../js/tinytooltip.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/tinyinfotable.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/scrolltable.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/stock_gestion.js"></script>
 </head>
-<body>
+<body onload='javascript:loadTable();changeStock();'>
 <%@ include file="../menu.jsp" %>
+<input type="hidden" id="sqs_id" value="21" />
+<input type="hidden" id="sqs_limit" value="32" />
+<input type="hidden" id="sqs_offset" value="0" />
+<input type="hidden" id="sqs_order" value="idx" />
+<input type="hidden" id="sqs_sort" value="asc" />
+<input type="hidden" id="sortiny_column" value="4" />
+<input type="hidden" id="sortiny_dir" value="1" />
 <sql:query var="mains">select site_main from contextes where id=${validUser.ctx}</sql:query>
 <c:choose><c:when test="${mains.rows[0].site_main == 0}"><h2><fmt:message key="stock.mgt.undefined" /></h2></c:when>
 <c:otherwise>
 <sql:query var="sites">select id,name from sites where ctx=${validUser.ctx} order by name</sql:query>
-<c:choose><c:when test="${empty param.site}"><c:set var="stocksite" scope="page" value="${mains.rows[0].site_main}" /></c:when><c:otherwise><c:set var="stocksite" scope="page" value="${param.site}" /></c:otherwise></c:choose>
-<form id="f_gestion" method="post"><div><fmt:message key="stock.type.list" /> <select id="selSite" name="site" onchange="javascript:changeStock()"><c:forEach items="${sites.rows}" var="site"><option value="${site.id}"<c:if test="${stocksite == site.id}"> selected="selected"</c:if>>${site.name}</option></c:forEach></select><input type="button" value="${lang_stkgomain}" onclick="javascript:goMainSite(${mains.rows[0].site_main})" /></div></form>
-<sql:query var="types">select id,def,stock,seuil,idx,cat,idcat,encours,ctx,site from stock_etat_display where ctx=${validUser.ctx} and site=${stocksite} order by idx</sql:query>
 <sql:query var="cats">select * from stock_cat order by name</sql:query>
-<table>
-<thead><tr><th /><th /><th><fmt:message key="common.table.cat" /></th><th><fmt:message key="common.table.idx" /></th><th><fmt:message key="common.table.def" /></th><th><fmt:message key="common.table.threshold" /></th><th><fmt:message key="common.table.ongoing" /></th></tr>
-<tr>
-	<td />
-	<td><span onmouseover="javascript:tooltip.show('${lang_commonclickadd}')" onmouseout="javascript:tooltip.hide()"><img src="../img/icon_valid.png" alt="${lang_commonclickadd}" onclick="javascript:addSubmit(event)" /></span><span onmouseover="javascript:tooltip.show('${lang_commonclickreset}')" onmouseout="javascript:tooltip.hide()"><img src="../img/icon_refuse.png" alt="${lang_commonclickreset}" onclick="javascript:ResetAdd()" /></span></td>
-	<td><select id="add_cat"><option><fmt:message key="common.select.cat" /></option><c:forEach items="${cats.rows}" var="cat"><option value="${cat.ID}">${cat.NAME}</option></c:forEach></select></td>
-	<td><input type="hidden" id="add_id" value="" /><input type="text" size="9" id="add_idx" value="" /></td>
+<table id="tableshadow" style="display:none;"><tbody><tr><td><span onmouseover="javascript:tooltip.show('${lang_commonclickdel}')" onmouseout="javascript:tooltip.hide()"><img src="../img/icon_delete.jpg" alt="${lang_commonclickdel}" onclick="javascript:ConfirmDlg(event)" /></span></td><td style="text-align:center"><span onmouseover="javascript:tooltip.show('${lang_commonclickmod}')" onmouseout="javascript:tooltip.hide()"><img src="../img/icon_modify.jpg" alt="${lang_commonclickmod}" onclick="javascript:CreateModif(event)" /></span><span onmouseover="javascript:tooltip.show('${lang_commonclickvalid}')" onmouseout="javascript:tooltip.hide()" style="display:none;"><img src="../img/icon_valid.png" alt="${lang_commonclickvalid}" onclick="javascript:modSubmit(event)" /></span><span onmouseover="javascript:tooltip.show('${lang_commonclickcancel}')" onmouseout="javascript:tooltip.hide()" style="display:none;"><img src="../img/icon_refuse.png" alt="${lang_commonclickcancel}" onclick="javascript:CancelModif(event)" /></span></td></tr></tbody></table>
+<h3><fmt:message key="admin.mgt" /> :</h3>
+<table><thead><tr><th /><th /><th><fmt:message key="admin.site" /></th><th><fmt:message key="common.table.cat" /></th><th><fmt:message key="common.table.idx" /></th><th><fmt:message key="common.table.def" /></th><th><fmt:message key="common.table.threshold" /></th><th><fmt:message key="common.table.ongoing" /></th></tr></thead>
+<tbody><tr>
+	<td><span onmouseover="javascript:tooltip.show('${lang_commonclickadd}')" onmouseout="javascript:tooltip.hide()"><img src="../img/icon_add2.png" alt="${lang_commonclickadd}" onclick="javascript:addSubmit()" /></span></td>
+	<td><span onmouseover="javascript:tooltip.show('${lang_commonclickreset}')" onmouseout="javascript:tooltip.hide()"><img src="../img/icon_refuse.png" alt="${lang_commonclickreset}" onclick="javascript:ResetAdd()" /></span></td>
+	<td><select id="add_site"><option><fmt:message key="common.select.site" /></option><c:forEach items="${sites.rows}" var="sit"><option value="${sit.id}">${sit.name}</option></c:forEach></select></td>
+	<td><select id="add_cat"><option><fmt:message key="common.select.cat" /></option><c:forEach items="${cats.rows}" var="cat"><option value="${cat.id}">${cat.name}</option></c:forEach></select></td>
+	<td><input type="text" size="9" id="add_idx" value="" /></td>
 	<td><input type="text" size="80" id="add_def" value="" /></td>
 	<td><input type="text" size="6" id="add_seuil" value="0" /></td>
 	<td><input type="text" size="6" id="add_encours" value="0" /></td>
-</tr>
-</thead>
-<tbody>
-<c:forEach items="${types.rows}" var="type">
-<tr>
-	<td><span onmouseover="javascript:tooltip.show('${lang_commonclickdel}')" onmouseout="javascript:tooltip.hide()"><img src="../img/icon_delete.jpg" alt="${lang_commonclickdel}" onclick="javascript:ConfirmDlg(${type.ID})" /></span></td>
-	<td style="text-align:center"><span onmouseover="javascript:tooltip.show('${lang_commonclickmod}')" onmouseout="javascript:tooltip.hide()"><img src="../img/icon_modify.jpg" alt="${lang_commonclickmod}" onclick="javascript:CreateModif(event)" /></span><span onmouseover="javascript:tooltip.show('${lang_commonclickvalid}')" onmouseout="javascript:tooltip.hide()" style="display:none;"><img src="../img/icon_valid.png" alt="${lang_commonclickvalid}" onclick="javascript:addSubmit(event)" /></span><span onmouseover="javascript:tooltip.show('${lang_commonclickcancel}')" onmouseout="javascript:tooltip.hide()" style="display:none;"><img src="../img/icon_refuse.png" alt="${lang_commonclickcancel}" onclick="javascript:CancelModif(event)" /></span></td>
-	<td><select style="display:none"><option><fmt:message key="common.select.cat" /></option></select><input type="hidden" value="${type.idcat}" />${type.cat}</td>
-	<td><input type="hidden" value="${type.id}" />${type.idx}</td>
-	<td>${type.def}</td>
-	<td>${type.seuil}</td>
-	<td>${type.encours}</td>
-</tr>
-</c:forEach>
-</tbody></table>
+</tr></tbody></table>
+<h3><fmt:message key="stock.type.list" /> :</h3>
+<div id="tablewrapper">
+	<div id="tableheader">
+		<div class="search">
+	  	<div class="searchtext"><fmt:message key="ip.click.search" /></div>
+			<input type="text" id="sqs_search" oninput="searchTable()" value="" />
+		</div>
+	</div>
+	<table id="tableheaders" class="overheaders">
+		<thead><tr><th class="nosort"><h3 /></th><th class="nosort"><h3 /></th><th><h3><fmt:message key="admin.site" /></h3></th><th><h3><fmt:message key="common.table.cat" /></h3></th><th><h3><fmt:message key="common.table.idx" /></h3></th><th><h3><fmt:message key="common.table.def" /></h3></th><th><h3><fmt:message key="common.table.threshold" /></h3></th><th><h3><fmt:message key="common.table.ongoing" /></h3></th></tr></thead>
+	</table>
+	<table id="tableinfos" class="tinytable">
+		<thead><tr><th class="nosort"><h3 /></th><th class="nosort"><h3 /></th><th><h3><fmt:message key="admin.site" /></h3></th><th><h3><fmt:message key="common.table.cat" /></h3></th><th><h3><fmt:message key="common.table.idx" /></h3></th><th><h3><fmt:message key="common.table.def" /></h3></th><th><h3><fmt:message key="common.table.threshold" /></h3></th><th><h3><fmt:message key="common.table.ongoing" /></h3></th></tr></thead>
+		<tbody id="mytbody"></tbody>
+	</table>
+</div>
+<div id="tablefooter"></div>
 <div id="dlgcontent"/>
+<script type="text/javascript" charset="utf-8">
+	var sortiny = new TINY.table.sorter('sortiny','tableinfos',{
+		headclass:'head',
+		ascclass:'asc',
+		descclass:'desc',
+		evenclass:'evenrow',
+		oddclass:'oddrow',
+		evenselclass:'evenselected',
+		oddselclass:'oddselected',
+		hoverid:'selectedrow'
+	});
+</script>
+<a href="#" id="upscroll" class="scrollup" onclick="javascript:ScrollUp()">Scroll</a>
 </c:otherwise></c:choose>
 </body></html>
 </c:if>

@@ -142,6 +142,10 @@ public class SQLQueryServlet extends HttpServlet {
 			// ID 20 : Stock Categories
 			this.selectlist.put(20,"select id,name from stock_cat");
 			this.searchlist.put(20,"lower(name) like lower('%#SEARCHSTR#%')");
+			// ID 21 : Stock Types
+			this.selectlist.put(21,"select id,def,stock,seuil,idx,cat,idcat,encours,ctx,site,site_name from stock_etat_display");
+			this.searchlist.put(21,"lower(def) like lower('%#SEARCHSTR#%') or lower(idx) like lower('%#SEARCHSTR#%') or lower(cat) like lower('%#SEARCHSTR#%')");
+			this.wherelist.put(21,"ctx=#VALIDUSERCTX#");
 		} catch (Exception e) { printLog("Init: ",e); }
 	}
 
@@ -210,6 +214,7 @@ public class SQLQueryServlet extends HttpServlet {
 				if (this.id==18) { result += "<line><id>"+String.valueOf(rs.getInt("id"))+"</id><name>"+shapeXML(rs.getString("name"))+"</name><plan>"+String.valueOf(rs.getInt("plan"))+"</plan><plan_name>"+shapeXML(rs.getString("plan_name"))+"</plan_name><client>"+String.valueOf(rs.getInt("client"))+"</client><client_name>"+shapeXML(rs.getString("client_name"))+"</client_name><site>"+String.valueOf(rs.getInt("site"))+"</site><site_name>"+shapeXML(rs.getString("site_name"))+"</site_name><cacti>"+String.valueOf(rs.getInt("cacti"))+"</cacti><status>"+String.valueOf(rs.getInt("status"))+"</status></line>"; }
 				if (this.id==19) { result += "<line><id>"+String.valueOf(rs.getInt("id"))+"</id><name>"+shapeXML(rs.getString("name"))+"</name></line>"; }
 				if (this.id==20) { result += "<line><id>"+String.valueOf(rs.getInt("id"))+"</id><name>"+shapeXML(rs.getString("name"))+"</name></line>"; }
+				if (this.id==21) { result += "<line><id>"+String.valueOf(rs.getInt("id"))+"</id><def>"+shapeXML(rs.getString("def"))+"</def><stock>"+String.valueOf(rs.getInt("stock"))+"</stock><seuil>"+String.valueOf(rs.getInt("seuil"))+"</seuil><idx>"+shapeXML(rs.getString("idx"))+"</idx><cat>"+shapeXML(rs.getString("cat"))+"</cat><idcat>"+String.valueOf(rs.getInt("idcat"))+"</idcat><encours>"+String.valueOf(rs.getInt("encours"))+"</encours><ctx>"+String.valueOf(rs.getInt("ctx"))+"</ctx><site>"+String.valueOf(rs.getInt("site"))+"</site><site_name>"+shapeXML(rs.getString("site_name"))+"</site_name></line>"; }
 			}
 			mylog.debug("Finish Processing SQL");
 			rs.close();rs=null;

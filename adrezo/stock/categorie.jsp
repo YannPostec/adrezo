@@ -84,6 +84,5 @@
 	});
 </script>
 <a href="#" id="upscroll" class="scrollup" onclick="javascript:ScrollUp()">Scroll</a>
-<div id="dlgcontent"/>
 </body></html>
 </c:if>
