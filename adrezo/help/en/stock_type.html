@@ -4,26 +4,25 @@
 </head>
 <body>
 <h2>Furnitures Type Management</h2>
-<p>This page display by default the context main stock.<br />
-You can select a site with the scroll list or return to the main stock with <input type="button" value="Go to main stock" /><br />
-This page display something only if the main stock is defined for the current context.</p>
+<p>This page display something only if the main stock is defined for the current context.</p>
 <hr />
 <p>With proper permissions, you can manage furnitures types.<hr />
-On this page, you will find a table with :
+On this page, you will find two zones :
 <ul>
-	<li>An Add zone on the first line</li>
-	<li>the list of existing sites with their informations on the next lines</li>
+	<li>An Add zone</li>
+	<li>the list of existing sites with their informations</li>
 </ul>
 Within each line, you could :
 <ul>
 	<li>Delete a type when you click on <img src="../../img/icon_delete.jpg" alt="DeleteIcon" />. <b>Be careful, it will delete the movement history.</b></li>
 	<li>Modify a type when you click on <img src="../../img/icon_modify.jpg" alt="ModifyIcon" /></li>
 </ul>
-When adding or modifying, icons <img src="../../img/icon_valid.png" alt="ValidIcon" /><img src="../../img/icon_refuse.png" alt="ResetIcon" /> appears.<br />
-Enter or modify informations then click on <img src="../../img/icon_valid.png" alt="ValidIcon" /> to validate.<br />
-You could also click on <img src="../../img/icon_refuse.png" alt="ResetIcon" /> to cancel, going back to initial values.<hr />
+When adding entry, enter informations then click on <img src="../../img/icon_add2.png" alt="AddIcon" /> to validate.<br />
+When modifying entry, modify informations then click on <img src="../../img/icon_valid.png" alt="ValidIcon" /> to validate.<br />
+In both cases, you could click on <img src="../../img/icon_refuse.png" alt="ResetIcon" /> to cancel and go back to initial values.<hr />
 A type is defined by many fields :
 <ul>
+	<li>its site</li>
 	<li>its category</li>
 	<li>the index of case or shelf in the stock</li>
 	<li>its description</li>
@@ -32,5 +31,6 @@ A type is defined by many fields :
 </ul>
 Threshold is triggered when stock plus ongoing order are less then this threshold.
 </p>
+<p>You could only display lines including the string entered in Search field</p>
 </body>
 </html>
