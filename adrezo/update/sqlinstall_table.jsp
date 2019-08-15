@@ -53,7 +53,7 @@
 				<sql:update>create table stock_mvt (stamp date not null,usr varchar2(20) not null,mvt number(5,0) not null,invent number(1,0) default 0 not null,seuil number(1,0) default 0,id number (4,0) not null)</sql:update>
 				<sql:update>create table subnets (ip varchar2(12) not null,mask number not null,def varchar2(40) not null,gw varchar2(12),bc varchar2(12) not null,id number not null,ctx number not null,site number not null,vlan number not null,surnet number default 0 not null)</sql:update>
 				<sql:update>create table surnets (id number not null,ip varchar2(30) not null,mask number not null,infos varchar2(2000),def varchar2(100) not null,parent number not null,calc number (1.0) not null)</sql:update>
-				<sql:update>create table usercookie (login varchar2(20) not null,mail varchar2(100),ctx number,lang varchar2(2),last date,url number(1,0) default 1 not null,slidetime number default 2000 not null)</sql:update>
+				<sql:update>create table usercookie (login varchar2(20) not null,mail varchar2(100),ctx number,lang varchar2(2),last date,url number(1,0) default 1 not null,slidetime number default 2000 not null,macsearch number(1,0) default 1)</sql:update>
 				<sql:update>create table vlan (vid number not null,def varchar2(50) not null,id number not null,site number not null)</sql:update>
 			</sql:transaction>
 		</c:catch>
@@ -98,7 +98,7 @@
 				<sql:update>create table stock_mvt (stamp timestamp not null,usr varchar(20) not null,mvt integer not null,invent integer default 0 not null,seuil integer default 0,id integer not null)</sql:update>
 				<sql:update>create table subnets (ip varchar(12) not null,mask integer not null,def varchar(40) not null,gw varchar(12),bc varchar(12) not null,id integer not null,ctx integer not null,site integer not null,vlan integer not null,surnet integer default 0 not null)</sql:update>
 				<sql:update>create table surnets (id integer not null,ip varchar(30) not null,mask integer not null,infos varchar(2000),def varchar(100) not null,parent integer not null,calc integer not null)</sql:update>
-				<sql:update>create table usercookie (login varchar(20) not null,mail varchar(100),ctx integer,lang varchar(2),last timestamp,url integer default 1 not null,slidetime integer default 2000 not null)</sql:update>
+				<sql:update>create table usercookie (login varchar(20) not null,mail varchar(100),ctx integer,lang varchar(2),last timestamp,url integer default 1 not null,slidetime integer default 2000 not null,macsearch integer default 1)</sql:update>
 				<sql:update>create table vlan (vid integer not null,def varchar(50) not null,id integer not null,site integer not null)</sql:update>
 			</sql:transaction>
 		</c:catch>
