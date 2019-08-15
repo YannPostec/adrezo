@@ -77,7 +77,7 @@
 	</table>
 	<table id="tableinfos" class="tinytable">
 		<thead><tr><th class="nosort"><h3 /></th><th class="nosort"><h3 /></th><th><h3><fmt:message key="admin.site" /></h3></th><th><h3><fmt:message key="common.table.cat" /></h3></th><th><h3><fmt:message key="common.table.idx" /></h3></th><th><h3><fmt:message key="common.table.def" /></h3></th><th><h3><fmt:message key="common.table.threshold" /></h3></th><th><h3><fmt:message key="common.table.ongoing" /></h3></th></tr></thead>
-		<tbody id="mytbody"></tbody>
+		<tbody></tbody>
 	</table>
 </div>
 <div id="tablefooter"></div>

@@ -147,6 +147,10 @@ public class SQLQueryServlet extends HttpServlet {
 			this.selectlist.put(21,"select id,def,stock,seuil,idx,cat,idcat,encours,ctx,site,site_name from stock_etat_display");
 			this.searchlist.put(21,"lower(def) like lower('%#SEARCHSTR#%') or lower(idx) like lower('%#SEARCHSTR#%') or lower(cat) like lower('%#SEARCHSTR#%')");
 			this.wherelist.put(21,"ctx=#VALIDUSERCTX#");
+			// ID 22 : Stock Etat
+			this.selectlist.put(22,"select id,def,stock,seuil,idx,cat,encours,ctx,site from stock_etat_display");
+			this.searchlist.put(22,"lower(def) like lower('%#SEARCHSTR#%') or lower(idx) like lower('%#SEARCHSTR#%') or lower(cat) like lower('%#SEARCHSTR#%') or cast(stock as "+castchar+") like '%#SEARCHSTR#%'");
+			this.wherelist.put(22,"ctx=#VALIDUSERCTX# and site=#SPECIALSTR#");			
 		} catch (Exception e) { printLog("Init: ",e); }
 	}
 
@@ -165,7 +169,7 @@ public class SQLQueryServlet extends HttpServlet {
 			this.querysort = req.getParameter("sort");
 			this.queryspecial = req.getParameter("special");
 			UserInfoBean validUser = (UserInfoBean) req.getSession().getAttribute("validUser");
-			mylog.debug("Starting whith id: "+queryid+", limit: "+querylimit+",offset: "+queryoffset+",search: "+querysearch+", order: "+queryorder+", sort: "+querysort);
+			mylog.debug("Starting whith id: "+queryid+", limit: "+querylimit+",offset: "+queryoffset+",search: "+querysearch+", order: "+queryorder+", sort: "+querysort+", special: "+queryspecial);
 			Context env = (Context) new InitialContext().lookup("java:comp/env");
 			String jdbc_jndi = (String) env.lookup("jdbc_jndi");
 			String db_type = (String) env.lookup("db_type");
@@ -224,6 +228,7 @@ public class SQLQueryServlet extends HttpServlet {
 				if (this.id==19) { result += "<line><id>"+String.valueOf(rs.getInt("id"))+"</id><name>"+shapeXML(rs.getString("name"))+"</name></line>"; }
 				if (this.id==20) { result += "<line><id>"+String.valueOf(rs.getInt("id"))+"</id><name>"+shapeXML(rs.getString("name"))+"</name></line>"; }
 				if (this.id==21) { result += "<line><id>"+String.valueOf(rs.getInt("id"))+"</id><def>"+shapeXML(rs.getString("def"))+"</def><stock>"+String.valueOf(rs.getInt("stock"))+"</stock><seuil>"+String.valueOf(rs.getInt("seuil"))+"</seuil><idx>"+shapeXML(rs.getString("idx"))+"</idx><cat>"+shapeXML(rs.getString("cat"))+"</cat><idcat>"+String.valueOf(rs.getInt("idcat"))+"</idcat><encours>"+String.valueOf(rs.getInt("encours"))+"</encours><ctx>"+String.valueOf(rs.getInt("ctx"))+"</ctx><site>"+String.valueOf(rs.getInt("site"))+"</site><site_name>"+shapeXML(rs.getString("site_name"))+"</site_name></line>"; }
+				if (this.id==22) { result += "<line><id>"+String.valueOf(rs.getInt("id"))+"</id><def>"+shapeXML(rs.getString("def"))+"</def><stock>"+String.valueOf(rs.getInt("stock"))+"</stock><seuil>"+String.valueOf(rs.getInt("seuil"))+"</seuil><idx>"+shapeXML(rs.getString("idx"))+"</idx><cat>"+shapeXML(rs.getString("cat"))+"</cat><encours>"+String.valueOf(rs.getInt("encours"))+"</encours><ctx>"+String.valueOf(rs.getInt("ctx"))+"</ctx><site>"+String.valueOf(rs.getInt("site"))+"</site></line>"; }
 			}
 			mylog.debug("Finish Processing SQL");
 			rs.close();rs=null;
