@@ -36,6 +36,7 @@
 <input type="hidden" id="sqs_offset" value="0" />
 <input type="hidden" id="sqs_order" value="mypercent" />
 <input type="hidden" id="sqs_sort" value="desc" />
+<input type="hidden" id="sqs_special" value="" />
 <input type="hidden" id="sortiny_column" value="7" />
 <input type="hidden" id="sortiny_dir" value="0" />
 <div id="tablewrapper">

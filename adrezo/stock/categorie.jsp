@@ -42,6 +42,7 @@
 <input type="hidden" id="sqs_offset" value="0" />
 <input type="hidden" id="sqs_order" value="id" />
 <input type="hidden" id="sqs_sort" value="asc" />
+<input type="hidden" id="sqs_special" value="" />
 <input type="hidden" id="sortiny_column" value="2" />
 <input type="hidden" id="sortiny_dir" value="1" />
 

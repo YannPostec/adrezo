@@ -32,7 +32,7 @@ function loadTable() {
 	// URI Compliance
 	s=encodeURIComponent(s);
 	sip=encodeURIComponent(sip);
-	fillTable(T$("sqs_id").value,T$("sqs_limit").value,T$("sqs_offset").value,s,sip,T$("sqs_order").value,T$("sqs_sort").value);
+	fillTable(T$("sqs_id").value,T$("sqs_limit").value,T$("sqs_offset").value,s,sip,T$("sqs_order").value,T$("sqs_sort").value,T$("sqs_special").value);
 	resizeHeaders();
 	sortiny.init();
 }

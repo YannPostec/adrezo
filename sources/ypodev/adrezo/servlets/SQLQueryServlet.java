@@ -26,6 +26,7 @@ public class SQLQueryServlet extends HttpServlet {
 	private String querysearchip = "";
 	private String queryorder = "";
 	private String querysort = "";
+	private String queryspecial = "";
 	private String result = "";
 	private Map<Integer,String> selectlist = new HashMap<Integer,String>();
 	private Map<Integer,String> searchlist = new HashMap<Integer,String>();
@@ -162,6 +163,7 @@ public class SQLQueryServlet extends HttpServlet {
 			this.querysearchip = req.getParameter("searchip");
 			this.queryorder = req.getParameter("order");
 			this.querysort = req.getParameter("sort");
+			this.queryspecial = req.getParameter("special");
 			UserInfoBean validUser = (UserInfoBean) req.getSession().getAttribute("validUser");
 			mylog.debug("Starting whith id: "+queryid+", limit: "+querylimit+",offset: "+queryoffset+",search: "+querysearch+", order: "+queryorder+", sort: "+querysort);
 			Context env = (Context) new InitialContext().lookup("java:comp/env");
@@ -174,7 +176,14 @@ public class SQLQueryServlet extends HttpServlet {
 			String mysearch = searchlist.get(this.id).replaceAll("#SEARCHSTR#",querysearch);
 			mysearch = mysearch.replaceAll("#SEARCHIPSTR#",querysearchip);
 			if (wherelist.containsKey(this.id)) {
-				myquery += " where "+wherelist.get(this.id).replaceAll("#VALIDUSERCTX#",validUser.getCtx());
+				String whereq = wherelist.get(this.id);
+				whereq = whereq.replaceAll("#VALIDUSERCTX#",validUser.getCtx());
+				if (!queryspecial.equals("")) {
+					whereq = whereq.replaceAll("#SPECIALSTR#",queryspecial);
+				} else {
+					whereq = whereq.replaceAll("#SPECIALSTR#","0");
+				}
+				myquery += " where "+whereq;
 				if (!querysearch.equals("")) { myquery += " and ( "+mysearch+" )"; }
 			} else {
 				if (!querysearch.equals("")) { myquery += " where "+mysearch; }
@@ -251,6 +260,7 @@ public class SQLQueryServlet extends HttpServlet {
 		querysearchip = "";
 		queryorder = "";
 		querysort = "";
+		queryspecial = "";
 		result = "";
   }
 }

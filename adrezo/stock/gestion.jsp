@@ -36,13 +36,14 @@
 <script type="text/javascript" charset="utf-8" src="../js/scrolltable.js"></script>
 <script type="text/javascript" charset="utf-8" src="../js/stock_gestion.js"></script>
 </head>
-<body onload='javascript:loadTable();changeStock();'>
+<body onload='javascript:loadTable();'>
 <%@ include file="../menu.jsp" %>
 <input type="hidden" id="sqs_id" value="21" />
 <input type="hidden" id="sqs_limit" value="32" />
 <input type="hidden" id="sqs_offset" value="0" />
 <input type="hidden" id="sqs_order" value="idx" />
 <input type="hidden" id="sqs_sort" value="asc" />
+<input type="hidden" id="sqs_special" value="" />
 <input type="hidden" id="sortiny_column" value="4" />
 <input type="hidden" id="sortiny_dir" value="1" />
 <sql:query var="mains">select site_main from contextes where id=${validUser.ctx}</sql:query>
