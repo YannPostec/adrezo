@@ -31,6 +31,7 @@
 			<adrezo:sqlTrigger>create trigger stock_etat_del after delete on stock_etat referencing new as new old as old for each row begin delete from stock_mvt where id = :old.id; end stock_etat_del;</adrezo:sqlTrigger>
 			<adrezo:sqlTrigger>create trigger subnets_del after delete on subnets referencing new as new old as old for each row begin delete from adresses where ip in (select ip_mig from adresses where subnet = :old.id and mig = 1 and ip_mig is not null and ctx = :old.ctx); update adresses set mig=0,ip_mig=null,site_mig=null,mask_mig=null,date_mig=null,usr_mig=null,subnet_mig=null where ip in (select ip_mig from adresses where subnet = :old.id and type = 'dynamic' and name = 'RESA MIGRATION' and ctx = :old.ctx); delete from adresses where subnet = :old.id; end subnets_del;</adrezo:sqlTrigger>
 			<adrezo:sqlTrigger>create trigger surnets_del after delete on surnets referencing new as new old as old for each row begin update subnets set surnet = 0 where surnet = :old.id; end surnets_del;</adrezo:sqlTrigger>
+			<adrezo:sqlTrigger>create trigger tpl_site_del after delete on tpl_site referencing new as new old as old for each row begin delete from tpl_vlan where tpl = :old.id; delete from tpl_subnet where tpl = :old.id; end tpl_site_del;</adrezo:sqlTrigger>
 		</c:catch>
 		</c:when>
 		<c:when test="${adrezo:envEntry('db_type') == 'postgresql'}">
@@ -54,6 +55,7 @@
 			<adrezo:sqlTrigger>create or replace function stock_etat_del() returns trigger as $BODY$ begin delete from stock_mvt where id = OLD.id; return OLD; end; $BODY$ LANGUAGE plpgsql;</adrezo:sqlTrigger>
 			<adrezo:sqlTrigger>create or replace function subnets_del() returns trigger as $BODY$ begin delete from adresses where ip in (select ip_mig from adresses where subnet = OLD.id and mig = 1 and ip_mig is not null and ctx = OLD.ctx); update adresses set mig=0,ip_mig=null,site_mig=null,mask_mig=null,date_mig=null,usr_mig=null,subnet_mig=null where ip in (select ip_mig from adresses where subnet = OLD.id and type = 'dynamic' and name = 'RESA MIGRATION' and ctx = OLD.ctx); delete from adresses where subnet = OLD.id; return OLD; end; $BODY$ LANGUAGE plpgsql;</adrezo:sqlTrigger>
 			<adrezo:sqlTrigger>create or replace function surnets_del() returns trigger as $BODY$ begin update subnets set surnet = 0 where surnet = OLD.id; return OLD; end; $BODY$ LANGUAGE plpgsql;</adrezo:sqlTrigger>
+			<adrezo:sqlTrigger>create or replace function tpl_site_del() returns trigger as $BODY$ begin delete from tpl_vlan where tpl = OLD.id; delete from tpl_subnet where tpl = OLD.id; return OLD; end; $BODY$ LANGUAGE plpgsql;</adrezo:sqlTrigger>
 			<adrezo:sqlTrigger>create trigger auth_annu_del before delete on auth_annu for each row execute procedure auth_annu_del();</adrezo:sqlTrigger>
 			<adrezo:sqlTrigger>create trigger auth_annu_types_del before delete on auth_annu_types for each row execute procedure auth_annu_types_del();</adrezo:sqlTrigger>
 			<adrezo:sqlTrigger>create trigger auth_roles_del before delete on auth_roles for each row execute procedure auth_roles_del();</adrezo:sqlTrigger>
@@ -70,6 +72,7 @@
 			<adrezo:sqlTrigger>create trigger stock_etat_del before delete on stock_etat for each row execute procedure stock_etat_del();</adrezo:sqlTrigger>
 			<adrezo:sqlTrigger>create trigger subnets_del before delete on subnets for each row execute procedure subnets_del();</adrezo:sqlTrigger>
 			<adrezo:sqlTrigger>create trigger surnets_del before delete on surnets for each row execute procedure surnets_del();</adrezo:sqlTrigger>
+			<adrezo:sqlTrigger>create trigger tpl_site_del before delete on tpl_site for each row execute procedure tpl_site_del();</adrezo:sqlTrigger>
 		</c:catch>
 		</c:when>
 		</c:choose>

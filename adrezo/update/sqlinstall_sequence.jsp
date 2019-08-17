@@ -39,7 +39,10 @@
 						<sql:update>create sequence stock_seq start with 1 increment by 1 minvalue 1 nomaxvalue nocache nocycle noorder</sql:update>
 						<sql:update>create sequence subnets_seq start with 1 increment by 1 minvalue 1 nomaxvalue nocache nocycle noorder</sql:update>
 						<sql:update>create sequence surnets_seq start with 1 increment by 1 minvalue 1 nomaxvalue nocache nocycle noorder</sql:update>
-						<sql:update>create sequence vlan_seq start with 1 increment by 1 minvalue 1 nomaxvalue nocache nocycle noorder</sql:update>
+						<sql:update>create sequence tpl_site_seq start with 1 increment by 1 minvalue 1 nomaxvalue nocache nocycle noorder</sql:update>
+						<sql:update>create sequence tpl_vlan_seq start with 1 increment by 1 minvalue 1 nomaxvalue nocache nocycle noorder</sql:update>
+						<sql:update>create sequence tpl_subnet_seq start with 1 increment by 1 minvalue 1 nomaxvalue nocache nocycle noorder</sql:update>
+						<sql:update>create sequence vlan_seq start with 1 increment by 1 minvalue 1 nomaxvalue nocache nocycle noorder</sql:update>						
 					</sql:transaction>
 				</c:catch>
 			</c:when>
@@ -69,6 +72,9 @@
 						<sql:update>create sequence stock_seq start with 1 increment by 1 minvalue 1 no maxvalue no cycle</sql:update>
 						<sql:update>create sequence subnets_seq start with 1 increment by 1 minvalue 1 no maxvalue no cycle</sql:update>
 						<sql:update>create sequence surnets_seq start with 1 increment by 1 minvalue 1 no maxvalue no cycle</sql:update>
+						<sql:update>create sequence tpl_site_seq start with 1 increment by 1 minvalue 1 no maxvalue no cycle</sql:update>
+						<sql:update>create sequence tpl_vlan_seq start with 1 increment by 1 minvalue 1 no maxvalue no cycle</sql:update>
+						<sql:update>create sequence tpl_subnet_seq start with 1 increment by 1 minvalue 1 no maxvalue no cycle</sql:update>
 						<sql:update>create sequence vlan_seq start with 1 increment by 1 minvalue 1 no maxvalue no cycle</sql:update>
 					</sql:transaction>
 				</c:catch>

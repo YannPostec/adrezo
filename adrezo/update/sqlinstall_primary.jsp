@@ -48,6 +48,9 @@
 				<sql:update>alter table stock_etat add constraint pk_stock_etat primary key (id)</sql:update>
 				<sql:update>alter table subnets add constraint pk_subnets primary key (id)</sql:update>
 				<sql:update>alter table surnets add constraint pk_surnets primary key (id)</sql:update>
+				<sql:update>alter table tpl_site add constraint pk_tplsite primary key (id)</sql:update>
+				<sql:update>alter table tpl_vlan add constraint pk_tplvlan primary key (id)</sql:update>
+				<sql:update>alter table tpl_subnet add constraint pk_tplsubnet primary key (id)</sql:update>				
 				<sql:update>alter table usercookie add constraint pk_usercookie primary key (login)</sql:update>
 				<sql:update>alter table vlan add constraint pk_vlan primary key (id)</sql:update>
 			</sql:transaction>

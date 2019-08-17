@@ -39,6 +39,8 @@
 				<sql:update>alter table subnets add constraint fgn_subnets_site foreign key (site) references sites (id)</sql:update>
 				<sql:update>alter table subnets add constraint fgn_subnets_vlan foreign key (vlan) references vlan (id)</sql:update>
 				<sql:update>alter table subnets add constraint fgn_surnet_id foreign key (surnet) references surnets (id)</sql:update>
+				<sql:update>alter table tpl_vlan add constraint fgn_tpl_vlan_tpl foreign key (tpl) references tpl_site (id)</sql:update>
+				<sql:update>alter table tpl_subnet add constraint fgn_tpl_subnet_tpl foreign key (tpl) references tpl_site (id)</sql:update>				
 				<sql:update>alter table usercookie add constraint fgn_usercookie_lang foreign key (lang) references langues (code)</sql:update>
 				<sql:update>alter table vlan add constraint fgn_vlan_site foreign key (site) references sites (id)</sql:update>
 			</sql:transaction>
