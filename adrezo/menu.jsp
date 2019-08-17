@@ -58,6 +58,13 @@
 		</ul>
 	</li>
 </c:if>
+<c:if test="${validUser.template}">
+	<li><a href="#" class="menulink"><fmt:message key="menu.template" bundle="${bunmenu}" /></a>
+		<ul>
+			<li><a href="${pageContext.request.contextPath}/template/sites.jsp"><fmt:message key="menu.template.site" bundle="${bunmenu}" /></a></li>
+		</ul>
+	</li>
+</c:if>
 	<li><a href="#" class="menulink"><fmt:message key="menu.info" bundle="${bunmenu}" /></a>
 		<ul>
 			<li><a href="${pageContext.request.contextPath}/infos/info_sites.jsp"><fmt:message key="menu.info.site" bundle="${bunmenu}" /></a></li>

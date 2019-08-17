@@ -142,6 +142,7 @@ function NewCtxValid(elt) {
 	if (tds[4].firstChild.checked) { roles += 16; }
 	if (tds[5].firstChild.checked) { roles += 32; }
 	if (tds[6].firstChild.checked) { roles += 64; }
+	if (tds[7].firstChild.checked) { roles += 128; }
 	TINY.box.hide();
 	T$(elt).value = roles;
 }
@@ -165,6 +166,7 @@ function RightsValid(e,id) {
 		if (tds[5].firstChild.checked) { rights += 16; }
 		if (tds[6].firstChild.checked) { rights += 32; }
 		if (tds[7].firstChild.checked) { rights += 64; }
+		if (tds[8].firstChild.checked) { rights += 128; }
 		myCtx[i] = ctx;
 		myRights[i] = "r"+ctx+"="+rights;
 	}

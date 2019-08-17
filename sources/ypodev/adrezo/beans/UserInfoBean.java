@@ -452,7 +452,7 @@ public class UserInfoBean implements Serializable {
 		if ((role & 64) == 64) { isValid = true; }
 		return isValid;
 	}
-	public boolean isUndef2() {
+	public boolean isTemplate() {
 		boolean isValid = false;
 		if ((role & 128) == 128) { isValid = true; }
 		return isValid;

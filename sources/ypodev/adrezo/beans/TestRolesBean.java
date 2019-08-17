@@ -45,7 +45,7 @@ public class TestRolesBean implements Serializable {
 		if ((roles & 64) == 64) { isValid = true; }
 		return isValid;
 	}
-	public boolean isUndef2() {
+	public boolean isTemplate() {
 		boolean isValid = false;
 		if ((roles & 128) == 128) { isValid = true; }
 		return isValid;
