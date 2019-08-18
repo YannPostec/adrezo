@@ -17,9 +17,13 @@
 			<sql:transaction>
 				<sql:update>
 					insert into tpl_site (id,name,mask)
-					VALUES (${adrezo:dbSeqNextval('tpl_site_seq')}, ?, ?${adrezo:dbCast('INTEGER')})
+					values (${adrezo:dbSeqNextval('tpl_site_seq')}, ?, ?${adrezo:dbCast('INTEGER')})
 					<sql:param value="${param.name}"/>
 					<sql:param value="${param.mask}"/>
+				</sql:update>
+				<sql:update>
+					insert into tpl_vlan (id,vid,def,tpl)
+					values (${adrezo:dbSeqNextval('tpl_vlan_seq')}, 0, 'No Vlan', ${adrezo:dbSeqCurrval('tpl_site_seq')})
 				</sql:update>
 			</sql:transaction>			
 		</c:catch>
@@ -39,7 +43,7 @@
 			update tpl_site
 			set name = ?,
 			mask = ?${adrezo:dbCast('INTEGER')}
-			WHERE id = ?${adrezo:dbCast('INTEGER')}
+			where id = ?${adrezo:dbCast('INTEGER')}
 			<sql:param value="${param.name}" />
 			<sql:param value="${param.mask}" />
 			<sql:param value="${param.id}" />

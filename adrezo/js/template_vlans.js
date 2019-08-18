@@ -140,8 +140,18 @@ function fillTable(sqlid,limit,offset,search,searchip,order,sqlsort,special) {
 				var cpt=0;
 				for (var i=0;i<lines.length;i++) {
 					cpt++;
-					var shadowtr = T$("tableshadow").firstChild.firstChild;
-					var mytr = shadowtr.cloneNode(true);
+					var bNovlan = false;
+					if (T$$("vid",lines[i])[0].hasChildNodes()) {
+						if (T$$("vid",lines[i])[0].firstChild.nodeValue==0) { bNovlan = true; }
+					}
+					if (bNovlan) {
+						var mytr=document.createElement("tr");
+						mytr.insertCell(-1);
+						mytr.insertCell(-1);
+					} else {
+						var shadowtr = T$("tableshadow").firstChild.firstChild;
+						var mytr = shadowtr.cloneNode(true);
+					}
 					T$("tableinfos").tBodies[0].appendChild(mytr);
 					if (T$$("def",lines[i])[0].hasChildNodes() && T$$("id",lines[i])[0].hasChildNodes()) {
 						var mytd = mytr.insertCell(-1);
