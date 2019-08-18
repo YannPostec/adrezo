@@ -30,6 +30,7 @@
 <link rel="stylesheet" href="../stylesheet/tinytooltip.css" type="text/css" />
 <link rel="stylesheet" href="../stylesheet/tinytable.css" type="text/css" />
 <script type="text/javascript" charset="utf-8" src="../js/common.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/ip_calc.js"></script>
 <script type="text/javascript" charset="utf-8" src="../js/tinydropdown.js"></script>
 <script type="text/javascript" charset="utf-8" src="../js/tinydialog.js"></script>
 <script type="text/javascript" charset="utf-8" src="../js/tinybox.js"></script>
@@ -59,15 +60,16 @@
 <sql:query var="tpls">select mask from tpl_site where id=${param.tpl}</sql:query>
 <c:forEach items="${tpls.rows}" var="tpl"><input type="hidden" id="tpl_mask" value="${tpl.mask}" /></c:forEach>
 <h3><fmt:message key="admin.mgt" /> :</h3>
-<table><thead><tr><th /><th /><th><fmt:message key="common.table.mask" /></th><th><fmt:message key="common.table.name" /></th><th><fmt:message key="admin.subnet" /></th><th><fmt:message key="common.table.ipgw" /></th><th><fmt:message key="admin.vlan" /></th></tr></thead>
+<table><thead><tr><th /><th /><th><fmt:message key="common.table.mask" /></th><th><fmt:message key="common.table.name" /></th><th><fmt:message key="admin.subnet" /></th><th><fmt:message key="common.table.ipgw" /></th><th><fmt:message key="admin.vlan" /></th><th><fmt:message key="common.table.ipbc" /></th></tr></thead>
 <tbody><tr>
 	<td><span onmouseover="javascript:tooltip.show('${lang_commonclickadd}')" onmouseout="javascript:tooltip.hide()"><img src="../img/icon_add2.png" alt="${lang_commonclickadd}" onclick="javascript:addSubmit()" /></span></td>
 	<td><span onmouseover="javascript:tooltip.show('${lang_commonclickreset}')" onmouseout="javascript:tooltip.hide()"><img src="../img/icon_refuse.png" alt="${lang_commonclickreset}" onclick="javascript:ResetAdd()" /></span></td>
-	<td><input type="hidden" id="add_tpl" value="${param.tpl}" /><input type="text" size="3" id="add_mask" value="" onchange="javascript:fillSubnetList(event)" /></td>
+	<td><input type="hidden" id="add_tpl" value="${param.tpl}" /><input type="text" size="3" id="add_mask" value="" onchange="javascript:fillSubnetList(event);calcBC(event)" /></td>
 	<td><input type="text" size="40" id="add_name" value="" /></td>
-	<td><select id="add_ip"><option><fmt:message key="common.select.subnet" /></option></select></td>
+	<td><select id="add_ip" onchange="javascript:calcBC(event)"><option><fmt:message key="common.select.subnet" /></option></select></td>
 	<td><input type="text" size="16" id="add_gw" value="" /></td>
-	<td><select id="add_vlan"><option><fmt:message key="common.select.vlan" /></option><option value="0">0 : No Vlan</option><c:forEach items="${vlans.rows}" var="vlan"><option value="${vlan.id}">${vlan.vid} : ${vlan.def}</option></c:forEach></select></td>
+	<td><select id="add_vlan"><option><fmt:message key="common.select.vlan" /></option><c:forEach items="${vlans.rows}" var="vlan"><option value="${vlan.id}">${vlan.vid} : ${vlan.def}</option></c:forEach></select></td>
+	<td><input type="text" size="16" id="add_bc" value="" /></td>
 </tr></tbody></table>
 <h3><fmt:message key="template.subnet.list" /> :</h3>
 <div id="tablewrapper">
@@ -78,10 +80,10 @@
 		</div>
 	</div>
 	<table id="tableheaders" class="overheaders">
-		<thead><tr><th class="nosort"><h3 /></th><th class="nosort"><h3 /></th><th><h3><fmt:message key="common.table.mask" /></h3></th><th><h3><fmt:message key="common.table.name" /></h3></th><th><h3><fmt:message key="admin.subnet" /></h3></th><th><h3><fmt:message key="common.table.ipgw" /></h3></th><th><h3><fmt:message key="admin.vlan" /></h3></th></tr></thead>
+		<thead><tr><th class="nosort"><h3 /></th><th class="nosort"><h3 /></th><th><h3><fmt:message key="common.table.mask" /></h3></th><th><h3><fmt:message key="common.table.name" /></h3></th><th><h3><fmt:message key="admin.subnet" /></h3></th><th><h3><fmt:message key="common.table.ipgw" /></h3></th><th><h3><fmt:message key="admin.vlan" /></h3></th><th><h3><fmt:message key="common.table.ipbc" /></h3></th></tr></thead>
 	</table>
 	<table id="tableinfos" class="tinytable">
-		<thead><tr><th class="nosort"><h3 /></th><th class="nosort"><h3 /></th><th><h3><fmt:message key="common.table.mask" /></h3></th><th><h3><fmt:message key="common.table.name" /></h3></th><th><h3><fmt:message key="admin.subnet" /></h3></th><th><h3><fmt:message key="common.table.ipgw" /></h3></th><th><h3><fmt:message key="admin.vlan" /></h3></th></tr></thead>
+		<thead><tr><th class="nosort"><h3 /></th><th class="nosort"><h3 /></th><th><h3><fmt:message key="common.table.mask" /></h3></th><th><h3><fmt:message key="common.table.name" /></h3></th><th><h3><fmt:message key="admin.subnet" /></h3></th><th><h3><fmt:message key="common.table.ipgw" /></h3></th><th><h3><fmt:message key="admin.vlan" /></h3></th><th><h3><fmt:message key="common.table.ipbc" /></h3></th></tr></thead>
 		<tbody></tbody>
 	</table>
 </div>

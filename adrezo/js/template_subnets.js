@@ -13,9 +13,10 @@ function ConfirmDlg(e) {
 	var id = tds[2].firstChild.value;
 	showDialog(langdata.confirm,langdata.objdel+"<br/><br/><input type='button' value='"+langdata.dlgyes+"' onclick='javascript:delSubmit("+id+");'/>  <input type='button' value='"+langdata.dlgno+"' onclick='hideDialog();'/>","prompt",0,1);
 }
-function verifyInput(selectvlan,selectip,mask,mygw,name) {
+function verifyInput(selectvlan,selectip,mask,mygw,name,mybc) {
 	var strAlert="";
 	var gw = renderip(mygw);
+	var bc = renderip(mybc);
 	
 	if (selectip.selectedIndex == 0) { strAlert += "- "+langdata.ip+": "+langdata.verifchoose+"<br />"; }
 	if (selectvlan.selectedIndex == 0) { strAlert += "- "+langdata.vlan+": "+langdata.verifchoose+"<br />"; }
@@ -27,6 +28,12 @@ function verifyInput(selectvlan,selectip,mask,mygw,name) {
 			if (!in_subnet(gw,selectip.value,Number(mask))) { strAlert += "- "+langdata.ipgw+": "+langdata.verifothersubnet+"<br />"; }
 		}
 	}
+	if (bc.length != 12) { strAlert += "- "+langdata.ipbc+": "+langdata.verifip+"<br />"; }
+	else if (!verifip(bc)) { strAlert += "- "+langdata.ipbc+": "+langdata.verifippart+"<br />"; }
+	if (selectip.selectedIndex > 0&&mask&&mybc) {
+		var zeIP = new IPv4_Address(mybc,mask);
+		if (selectip.value != renderip(zeIP.netaddressDotQuad)) { strAlert += "- "+langdata.ipbc+": "+langdata.verifothersubnet+"<br />"; }
+	}
 	if (!name) { strAlert += "- "+langdata.name+": "+langdata.verifnotnull+"<br />"; }
 	else if (name.length > 40) { strAlert += "- "+langdata.name+": "+langdata.verifsize+" : 40<br />"; }
 
@@ -36,17 +43,18 @@ function addSubmit() {
 	var mask = T$("add_mask").value;
 	var name = T$("add_name").value;
 	var gw = T$("add_gw").value;
+	var bc = T$("add_bc").value;
 	var tpl = T$("add_tpl").value;
 	var selectip = T$("add_ip");
 	var selectvlan = T$("add_vlan");
 	var ip = selectip.value;
 	var vlan = selectvlan.value;
 
-	var strAlert = verifyInput(selectvlan,selectip,mask,gw,name);
+	var strAlert = verifyInput(selectvlan,selectip,mask,gw,name,bc);
 	if (strAlert != "") {
 		showDialog(langdata.invalidfield+" :",strAlert,"warning",0,1);
 	} else {
-		DBAjax("ajax_subnets_store.jsp","id=&ip="+ip+"&mask="+mask+"&def="+name+"&gw="+gw+"&vlan="+vlan+"&tpl="+tpl);
+		DBAjax("ajax_subnets_store.jsp","id=&ip="+ip+"&mask="+mask+"&def="+name+"&gw="+gw+"&bc="+bc+"&vlan="+vlan+"&tpl="+tpl);
 	}
 }
 function modSubmit(e) {
@@ -58,15 +66,16 @@ function modSubmit(e) {
 	var selectip = tds[4].firstChild;
 	var gw = tds[5].firstChild.value;
 	var selectvlan = tds[6].firstChild;
+	var bc = tds[7].firstChild.value;
 	var tpl = T$("add_tpl").value;
 	var ip = selectip.value;
 	var vlan = selectvlan.value;
 
-	var strAlert = verifyInput(selectvlan,selectip,mask,gw,name);
+	var strAlert = verifyInput(selectvlan,selectip,mask,gw,name,bc);
 	if (strAlert != "") {
 		showDialog(langdata.invalidfield+" :",strAlert,"warning",0,1);
 	} else {
-		DBAjax("ajax_subnets_store.jsp","id="+id+"&ip="+ip+"&mask="+mask+"&def="+name+"&gw="+gw+"&vlan="+vlan+"&tpl="+tpl,true,function callback(result) {
+		DBAjax("ajax_subnets_store.jsp","id="+id+"&ip="+ip+"&mask="+mask+"&def="+name+"&gw="+gw+"&bc="+bc+"&vlan="+vlan+"&tpl="+tpl,true,function callback(result) {
 			if (result) { ApplyModif(id); }
 		});
 	}
@@ -94,6 +103,7 @@ function CreateModif(e) {
 	ipt.size = 3;
 	ipt.value = texte;
 	ipt.addEventListener("change",fillSubnetList,false);
+	ipt.addEventListener("change",calcBC,false);
 	tds[2].replaceChild(ipt,txt);
 	var hid = document.createElement("input");
 	hid.type = "hidden";
@@ -116,6 +126,9 @@ function CreateModif(e) {
 	hid.type = "hidden";
 	hid.value = texte;
 	tds[4].replaceChild(hid,txt);
+	var sel = tds[4].firstChild.cloneNode(true);
+	tds[4].appendChild(sel);
+	tds[4].firstChild.addEventListener("change",calcBC,false);
 	tds[4].firstChild.style.display = "inline";
 	var txt = tds[5].firstChild;
 	var ipt = document.createElement("input");
@@ -139,6 +152,21 @@ function CreateModif(e) {
 	hid.value = texte;
 	tds[6].replaceChild(hid,txt);
 	tds[6].firstChild.style.display = "inline";	
+	var txt = tds[7].firstChild;
+	var ipt = document.createElement("input");
+	ipt.type = "text";
+	ipt.size = 16;
+	if (txt) {
+		var texte = txt.nodeValue;
+		ipt.value = texte;
+		tds[7].replaceChild(ipt,txt);
+	} else {
+		tds[7].appendChild(ipt);
+	}
+	var hid = document.createElement("input");
+	hid.type = "hidden";
+	if (txt) { hid.value = texte; }
+	tds[7].appendChild(hid);
 	refreshTable(false);	
 }
 function CancelModif(e) {
@@ -161,7 +189,9 @@ function CancelModif(e) {
 	var hid = tds[4].firstChild.nextSibling.nextSibling;
 	var txt = document.createTextNode(hid.value);
 	tds[4].replaceChild(txt,hid);
-	tds[4].firstChild.value = tds[4].firstChild.nextSibling.value;
+	var sel = tds[4].firstChild.nextSibling.nextSibling.nextSibling;
+	sel.value = tds[4].firstChild.nextSibling.value;
+	tds[4].replaceChild(sel,tds[4].firstChild);
 	tds[4].firstChild.style.display = "none";
 	var ipt = tds[5].firstChild;
 	var hid = ipt.nextSibling;
@@ -173,6 +203,11 @@ function CancelModif(e) {
 	tds[6].replaceChild(txt,hid);
 	tds[6].firstChild.value = tds[6].firstChild.nextSibling.value;
 	tds[6].firstChild.style.display = "none";	
+	var ipt = tds[7].firstChild;
+	var hid = ipt.nextSibling;
+	var txt = document.createTextNode(hid.value);
+	tds[7].removeChild(hid);
+	tds[7].replaceChild(txt,ipt);
 	refreshTable(false);	
 }
 function ApplyModif(id) {
@@ -200,6 +235,7 @@ function ApplyModif(id) {
 	tds[4].replaceChild(txt,hid2);
 	hid1.value=ipt.value;
 	ipt.style.display = "none";
+	tds[4].removeChild(tds[4].firstChild.nextSibling.nextSibling.nextSibling);
 	var ipt = tds[5].firstChild;
 	var hid = ipt.nextSibling;
 	var txt = document.createTextNode(ipt.value);
@@ -213,6 +249,11 @@ function ApplyModif(id) {
 	tds[6].replaceChild(txt,hid2);
 	hid1.value=ipt.value;
 	ipt.style.display = "none";
+	var ipt = tds[7].firstChild;
+	var hid = ipt.nextSibling;
+	var txt = document.createTextNode(ipt.value);
+	tds[7].removeChild(hid);
+	tds[7].replaceChild(txt,ipt);
 	refreshTable(false);	
 }
 function fillTable(sqlid,limit,offset,search,searchip,order,sqlsort,special) {
@@ -278,6 +319,10 @@ function fillTable(sqlid,limit,offset,search,searchip,order,sqlsort,special) {
 						mytd.appendChild(hid);
 						mytd.appendChild(document.createTextNode(T$$("vid",lines[i])[0].firstChild.nodeValue+" : "+T$$("vname",lines[i])[0].firstChild.nodeValue));
 					} else { mytr.insertCell(-1); }
+					if (T$$("bc",lines[i])[0].hasChildNodes()) {
+						var mytd = mytr.insertCell(-1);
+						mytd.appendChild(document.createTextNode(T$$("bc",lines[i])[0].firstChild.nodeValue));
+					} else { mytr.insertCell(-1); }
 				}
 				if (cpt==limit) { createNext(limit); } else { cleanFoot(); }
 			}
@@ -302,6 +347,7 @@ function SwitchSearch(i) {
 			case 4: T$("sqs_order").value="ip";break;
 			case 5: T$("sqs_order").value="gw";break;
 			case 6: T$("sqs_order").value="vid";break;
+			case 7: T$("sqs_order").value="bc";break;
 		}
 }
 function ReturnTemplate() {
@@ -351,4 +397,15 @@ function SplitSubnet(masksub,newmask) {
 		}
 	}
 	return res;
+}
+function calcBC(e) {
+	var node = e.target;
+	var tds = T$$("td",node.parentNode.parentNode);
+	var myip = displayip(tds[4].firstChild.value);
+	var mymask = tds[2].firstChild.nextSibling.value;
+	var mybc = tds[7].firstChild;
+	if (mymask && myip) {
+		var zeIP = new IPv4_Address(myip,mymask);
+		mybc.value = zeIP.netbcastDotQuad;
+	}
 }

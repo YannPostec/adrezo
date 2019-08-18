@@ -33,7 +33,7 @@
 				<sql:update>create view vlan_display (id,vid,def,site,ctx,cod_site,site_name,ctx_name) as select v.id,v.vid,v.def,v.site,s.ctx,s.cod_site,s.name as site_name,c.name as ctx_name from vlan v,sites s,contextes c where v.site=s.id and s.ctx=c.id<c:if test="${adrezo:envEntry('db_type') == 'oracle'}"> with read only</c:if></sql:update>
 				<sql:update>create view dhcp_server_display (id,hostname,port,ssl,auth,login,pwd,type,type_name,enable) as select s.id,s.hostname,s.port,s.ssl,s.auth,s.login,s.pwd,s.type,t.name as type_name,s.enable from dhcp_server s, dhcp_type t where s.type=t.id<c:if test="${adrezo:envEntry('db_type') == 'oracle'}"> with read only</c:if></sql:update>
 				<sql:update>create view tpl_site_display (id,name,mask,nbvlan,nbsubnet) as select s.id,s.name,s.mask,(select count(id) from tpl_vlan v where v.tpl=s.id) as nbvlan,(select count(id) from tpl_subnet t where t.tpl=s.id) as nbsubnet from tpl_site s<c:if test="${adrezo:envEntry('db_type') == 'oracle'}"> with read only</c:if></sql:update>
-				<sql:update>create view tpl_subnet_display (id,ip,mask,def,gw,vlan,tpl,vid,vname) as select s.id,s.ip,s.mask,s.def,s.gw,s.vlan,s.tpl,v.vid,v.def as vname from tpl_subnet s, tpl_vlan v where s.vlan=v.id<c:if test="${adrezo:envEntry('db_type') == 'oracle'}"> with read only</c:if></sql:update>
+				<sql:update>create view tpl_subnet_display (id,ip,mask,def,gw,bc,vlan,tpl,vid,vname) as select s.id,s.ip,s.mask,s.def,s.gw,s.bc,s.vlan,s.tpl,v.vid,v.def as vname from tpl_subnet s, tpl_vlan v where s.vlan=v.id<c:if test="${adrezo:envEntry('db_type') == 'oracle'}"> with read only</c:if></sql:update>
 			</sql:transaction>
 		</c:catch>
 		<c:choose>

@@ -42,11 +42,12 @@
 <c:forEach items="${subnets.rows}" var="subnet">
 <tr>
 	<td>${subnet.def}</td>
-	<td>${subnet.ip}</td>
+	<td><adrezo:displayIP value="${subnet.ip}" /></td>
 	<td style="text-align:center">${subnet.mask}</td>
 	<td>${subnet.gw}</td>
 </tr>
 </c:forEach>
 </tbody></table>
+<p>&nbsp;</p>
 </body></html>
 </c:if>
