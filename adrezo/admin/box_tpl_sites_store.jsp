@@ -23,7 +23,7 @@
 <sql:query var="sites">select name,mask from tpl_site where id = ${param.tpl}</sql:query>
 <sql:query var="surnets">select id,ip,mask,def from surnets where id>0 order by ip</sql:query>
 <c:forEach items="${sites.rows}" var="site">
-<h2>Ajouter un site suivant le modèle ${site.name}&nbsp;</h2>
+<h2><fmt:message key="template.site.add" />${site.name}&nbsp;</h2>
 <table><thead><tr><th><fmt:message key="admin.subnet" /></th><th><fmt:message key="common.table.mask" /></th><th><fmt:message key="template.site.parent" /></th></tr></thead>
 <tbody><tr><td><input id="addtpl_ip" type="text" size="20" value="" /></td>
 <td><input type="hidden" id="addtpl_mask" value="${site.mask}" />${site.mask}</td>
