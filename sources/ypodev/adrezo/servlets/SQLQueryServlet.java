@@ -159,7 +159,7 @@ public class SQLQueryServlet extends HttpServlet {
 			this.searchlist.put(24,"lower(def) like lower('%#SEARCHSTR#%') or cast(vid as "+castchar+") like '%#SEARCHSTR#%'");
 			this.wherelist.put(24,"tpl=#SPECIALSTR#");
 			// ID 25 : Template Subnets
-			this.selectlist.put(25,"select id,def,mask,ip,gw,bc,vlan,vid,vname from tpl_subnet_display");
+			this.selectlist.put(25,"select id,def,mask,ip,gw,bc,vlan,vid,vname,surnet from tpl_subnet_display");
 			this.searchlist.put(25,"lower(def) like lower('%#SEARCHSTR#%') or lower(vname) like lower('%#SEARCHSTR#%') or cast(mask as "+castchar+") like '%#SEARCHSTR#%' or cast(vid as "+castchar+") like '%#SEARCHSTR#%' or ip like '%#SEARCHIPSTR#%' or gw like '%#SEARCHIPSTR#%' or bc like '%#SEARCHIPSTR#%'");
 			this.wherelist.put(25,"tpl=#SPECIALSTR#");			
 		} catch (Exception e) { printLog("Init: ",e); }
@@ -242,7 +242,7 @@ public class SQLQueryServlet extends HttpServlet {
 				if (this.id==22) { result += "<line><id>"+String.valueOf(rs.getInt("id"))+"</id><def>"+shapeXML(rs.getString("def"))+"</def><stock>"+String.valueOf(rs.getInt("stock"))+"</stock><seuil>"+String.valueOf(rs.getInt("seuil"))+"</seuil><idx>"+shapeXML(rs.getString("idx"))+"</idx><cat>"+shapeXML(rs.getString("cat"))+"</cat><encours>"+String.valueOf(rs.getInt("encours"))+"</encours><ctx>"+String.valueOf(rs.getInt("ctx"))+"</ctx><site>"+String.valueOf(rs.getInt("site"))+"</site></line>"; }
 				if (this.id==23) { result += "<line><id>"+String.valueOf(rs.getInt("id"))+"</id><name>"+shapeXML(rs.getString("name"))+"</name><mask>"+String.valueOf(rs.getInt("mask"))+"</mask><nbvlan>"+String.valueOf(rs.getInt("nbvlan"))+"</nbvlan><nbsubnet>"+String.valueOf(rs.getInt("nbsubnet"))+"</nbsubnet></line>"; }
 				if (this.id==24) { result += "<line><id>"+String.valueOf(rs.getInt("id"))+"</id><def>"+shapeXML(rs.getString("def"))+"</def><vid>"+String.valueOf(rs.getInt("vid"))+"</vid></line>"; }
-				if (this.id==25) { result += "<line><id>"+String.valueOf(rs.getInt("id"))+"</id><def>"+shapeXML(rs.getString("def"))+"</def><mask>"+String.valueOf(rs.getInt("mask"))+"</mask><ip>"+shapeXML(rs.getString("ip"))+"</ip><gw>"+shapeXML(rs.getString("gw"))+"</gw><bc>"+shapeXML(rs.getString("bc"))+"</bc><vlan>"+String.valueOf(rs.getInt("vlan"))+"</vlan><vid>"+String.valueOf(rs.getInt("vid"))+"</vid><vname>"+shapeXML(rs.getString("vname"))+"</vname></line>"; }
+				if (this.id==25) { result += "<line><id>"+String.valueOf(rs.getInt("id"))+"</id><def>"+shapeXML(rs.getString("def"))+"</def><mask>"+String.valueOf(rs.getInt("mask"))+"</mask><ip>"+shapeXML(rs.getString("ip"))+"</ip><gw>"+shapeXML(rs.getString("gw"))+"</gw><bc>"+shapeXML(rs.getString("bc"))+"</bc><vlan>"+String.valueOf(rs.getInt("vlan"))+"</vlan><vid>"+String.valueOf(rs.getInt("vid"))+"</vid><vname>"+shapeXML(rs.getString("vname"))+"</vname><surnet>"+shapeXML(rs.getString("surnet"))+"</surnet></line>"; }
 			}
 			mylog.debug("Finish Processing SQL");
 			rs.close();rs=null;

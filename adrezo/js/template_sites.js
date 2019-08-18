@@ -12,7 +12,7 @@ function ConfirmDlg(e) {
 function verifyInput(mask,name) {
 	var strAlert="";
 	
-	if (mask == "" || isNaN(mask) || mask > 32 || mask < 2) { strAlert += "- "+langdata.mask+": "+langdata.verifmask+"<br />"; }
+	if (mask == "" || isNaN(mask) || mask > 32) { strAlert += "- "+langdata.mask+": "+langdata.verifmask+"<br />"; }
 	if (!name) { strAlert += "- "+langdata.name+": "+langdata.verifnotnull+"<br />"; }
 	else {
 		if (name.length > 50) { strAlert += "- "+langdata.name+": "+langdata.verifsize+" : 50<br />"; }
@@ -209,7 +209,12 @@ function ViewConfig(e) {
 	var node = e.target;
 	var tds = T$$("td",node.parentNode.parentNode.parentNode);
 	var id = tds[2].firstChild.value;
-	TINY.box.show({url:'box_tpl_site_view.jsp',post:'id='+id});
+	var mask = tds[3].firstChild.nodeValue;
+	if (mask>0) {
+		TINY.box.show({url:'box_tpl_site_view.jsp',post:'id='+id});
+	} else {
+		TINY.box.show({url:'box_tpl_nonstd_site_view.jsp',post:'id='+id});
+	}
 }
 function EditVlan(e) {
 	var node = e.target;
@@ -223,5 +228,9 @@ function EditSubnet(e) {
 	var tds = T$$("td",node.parentNode.parentNode.parentNode);
 	var id = tds[2].firstChild.value;
 	var mask = tds[3].firstChild.nodeValue;
-	window.location.assign("subnets.jsp?tpl="+id+"&mask="+mask);
+	if (mask>0) {
+		window.location.assign("subnets.jsp?tpl="+id+"&mask="+mask);
+	} else {
+		window.location.assign("nonstd_subnets.jsp?tpl="+id);
+	}
 }

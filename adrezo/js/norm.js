@@ -363,7 +363,7 @@ function addLstSub() {
 		for (var j=0;j<selsubc.options.length;j++) {
 			if (res[i].text < selsubc.options[j].text) { pos=j; break;}
 		}
-		selsubc.add(res[i]);
+		selsubc.add(res[i],j);
 	}
 	for (var i=0;i<del.length;i++) {
 		selsubd.removeChild(del[i]);
@@ -389,7 +389,7 @@ function delLstSub() {
 		for (var j=0;j<selsubd.options.length;j++) {
 			if (res[i].text < selsubd.options[j].text) { pos=j; break;}
 		}
-		selsubd.add(res[i]);
+		selsubd.add(res[i],j);
 	}
 	for (var i=0;i<del.length;i++) {
 		selsubc.removeChild(del[i]);

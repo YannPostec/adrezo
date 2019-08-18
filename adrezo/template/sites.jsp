@@ -53,6 +53,7 @@
 <table style="display:none;"><tbody><tr><td id="spanshadow"><span onmouseover="javascript:tooltip.show('${lang_commonclickview}')" onmouseout="javascript:tooltip.hide()"><img src="../img/icon_view.png" alt="${lang_commonclickview}" onclick="javascript:ViewConfig(event)" /></span></td></tr></tbody></table>
 <table style="display:none;"><tbody><tr><td id="vlanshadow"><span onmouseover="javascript:tooltip.show('${lang_commonclickconfig}')" onmouseout="javascript:tooltip.hide()"><img src="../img/icon_database.png" alt="${lang_commonclickconfig}" onclick="javascript:EditVlan(event)" /></span></td></tr></tbody></table>
 <table style="display:none;"><tbody><tr><td id="subnetshadow"><span onmouseover="javascript:tooltip.show('${lang_commonclickconfig}')" onmouseout="javascript:tooltip.hide()"><img src="../img/icon_database.png" alt="${lang_commonclickconfig}" onclick="javascript:EditSubnet(event)" /></span></td></tr></tbody></table>
+<p><fmt:message key="template.site.warning" /></p>
 <h3><fmt:message key="admin.mgt" /> :</h3>
 <table><thead><tr><th /><th /><th><fmt:message key="common.table.name" /></th><th><fmt:message key="common.table.mask" /></th></tr></thead>
 <tbody><tr>

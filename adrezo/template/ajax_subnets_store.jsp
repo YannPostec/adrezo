@@ -16,8 +16,8 @@
 		<c:catch var="errInsert">
 			<sql:transaction>
 				<sql:update>
-					insert into tpl_subnet (id,ip,mask,def,gw,bc,vlan,tpl)
-					VALUES (${adrezo:dbSeqNextval('tpl_subnet_seq')}, ?, ?${adrezo:dbCast('INTEGER')}, ?, ?, ?, ?${adrezo:dbCast('INTEGER')}, ?${adrezo:dbCast('INTEGER')})
+					insert into tpl_subnet (id,ip,mask,def,gw,bc,vlan,tpl,surnet)
+					VALUES (${adrezo:dbSeqNextval('tpl_subnet_seq')}, ?, ?${adrezo:dbCast('INTEGER')}, ?, ?, ?, ?${adrezo:dbCast('INTEGER')}, ?${adrezo:dbCast('INTEGER')}, ?)
 					<sql:param value="${param.ip}"/>
 					<sql:param value="${param.mask}"/>
 					<sql:param value="${param.def}"/>
@@ -25,6 +25,7 @@
 					<sql:param value="${param.bc}"/>
 					<sql:param value="${param.vlan}"/>
 					<sql:param value="${param.tpl}"/>
+					<sql:param value="${param.surnet}"/>
 				</sql:update>
 			</sql:transaction>			
 		</c:catch>
@@ -47,6 +48,7 @@
 			def = ?,
 			gw = ?,
 			bc = ?,
+			surnet = ?,
 			vlan = ?${adrezo:dbCast('INTEGER')}
 			WHERE id = ?${adrezo:dbCast('INTEGER')}
 			<sql:param value="${param.ip}" />
@@ -54,6 +56,7 @@
 			<sql:param value="${param.def}" />
 			<sql:param value="${param.gw}" />
 			<sql:param value="${param.bc}" />
+			<sql:param value="${param.surnet}" />
 			<sql:param value="${param.vlan}" />
 			<sql:param value="${param.id}" />
 		</sql:update>

@@ -31,8 +31,13 @@ function addSubmit() {
 		if (tpl==0) {
 			DBAjax("ajax_sites_store.jsp","id=&ctx="+ctx+"&cod="+cod+"&name="+name);
 		} else {
-			TINY.box.show({url:'box_tpl_sites_store.jsp',post:'ctx='+ctx+'&cod='+cod+'&name='+name+'&tpl='+tpl});
-
+			var mytpl = tpl.substring(0,tpl.indexOf('#'));
+			var mask = tpl.substring(tpl.indexOf('#')+1,tpl.length);
+			if (mask>0) {
+				TINY.box.show({url:'box_tpl_sites_store.jsp',post:'ctx='+ctx+'&cod='+cod+'&name='+name+'&tpl='+mytpl});
+			} else {
+				TINY.box.show({url:'box_tpl_nonstd_sites_store.jsp',post:'ctx='+ctx+'&cod='+cod+'&name='+name+'&tpl='+mytpl});
+			}
 		}
 	}
 }
