@@ -17,7 +17,7 @@
 </head>
 <body>
 <sql:query var="sites">select * from tpl_site where id = ${param.id}</sql:query>
-<sql:query var="subnets">select * from tpl_subnet where tpl = ${param.id}</sql:query>
+<sql:query var="subnets">select * from tpl_subnet_display where tpl = ${param.id}</sql:query>
 <sql:query var="vlans">select * from tpl_vlan where tpl = ${param.id}</sql:query>
 <h2><fmt:message key="template.boxsiteview.title" />&nbsp;${param.id}</h2>
 <c:forEach items="${sites.rows}" var="site">
@@ -38,13 +38,15 @@
 </tbody></table>
 <hr />
 <h2><fmt:message key="admin.subnet.list" /></h2>
-<table><thead><tr><th><fmt:message key="common.table.name" /></th><th><fmt:message key="common.table.ip" /></th><th><fmt:message key="common.table.mask" /></th><th><fmt:message key="common.table.ipgw" /></th></tr></thead><tbody>
+<table><thead><tr><th><fmt:message key="common.table.name" /></th><th><fmt:message key="common.table.ip" /></th><th><fmt:message key="common.table.mask" /></th><th><fmt:message key="common.table.ipgw" /></th><th><fmt:message key="admin.vlan" /></th><th><fmt:message key="common.table.ipbc" /></th></tr></thead><tbody>
 <c:forEach items="${subnets.rows}" var="subnet">
 <tr>
 	<td>${subnet.def}</td>
 	<td><adrezo:displayIP value="${subnet.ip}" /></td>
 	<td style="text-align:center">${subnet.mask}</td>
-	<td>${subnet.gw}</td>
+	<td><adrezo:displayIP value="${subnet.gw}" /></td>
+	<td>${subnet.vid} : ${subnet.vname}</td>
+	<td><adrezo:displayIP value="${subnet.bc}" /></td>
 </tr>
 </c:forEach>
 </tbody></table>

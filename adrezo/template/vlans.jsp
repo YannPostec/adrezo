@@ -48,7 +48,7 @@
 <input type="hidden" id="sqs_special" value="${param.tpl}" />
 <input type="hidden" id="sortiny_column" value="3" />
 <input type="hidden" id="sortiny_dir" value="1" />
-<h2><fmt:message key="template.vlan.title" />${param.tpl}</h2>
+<h2><fmt:message key="template.vlan.title" />${param.tpl}, <fmt:message key="common.table.mask" /> : ${param.mask}</h2>
 <input type="button" value="${lang_tplsitereturn}" onclick="javascript:ReturnTemplate();"/> 
 <p>
 <fmt:message key="template.replace.code" /><br />

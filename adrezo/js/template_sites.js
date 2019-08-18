@@ -215,11 +215,13 @@ function EditVlan(e) {
 	var node = e.target;
 	var tds = T$$("td",node.parentNode.parentNode.parentNode);
 	var id = tds[2].firstChild.value;
-	window.location.assign("vlans.jsp?tpl="+id);
+	var mask = tds[3].firstChild.nodeValue;
+	window.location.assign("vlans.jsp?tpl="+id+"&mask="+mask);
 }
 function EditSubnet(e) {
 	var node = e.target;
 	var tds = T$$("td",node.parentNode.parentNode.parentNode);
 	var id = tds[2].firstChild.value;
-	window.location.assign("subnets.jsp?tpl="+id);
+	var mask = tds[3].firstChild.nodeValue;
+	window.location.assign("subnets.jsp?tpl="+id+"&mask="+mask);
 }

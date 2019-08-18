@@ -22,12 +22,18 @@ function addSubmit() {
 	var cod = T$("add_cod").value;
 	var ctx = T$("add_ctx").value;
 	var name = T$("add_name").value;
+	var tpl = T$("add_tpl").value;
 
 	var strAlert = verifyInput(cod,name);
 	if (strAlert != "") {
 		showDialog(langdata.invalidfield+" :",strAlert,"warning",0,1);
 	} else {
-		DBAjax("ajax_sites_store.jsp","id=&ctx="+ctx+"&cod="+cod+"&name="+name);
+		if (tpl==0) {
+			DBAjax("ajax_sites_store.jsp","id=&ctx="+ctx+"&cod="+cod+"&name="+name);
+		} else {
+			TINY.box.show({url:'box_tpl_sites_store.jsp',post:'ctx='+ctx+'&cod='+cod+'&name='+name+'&tpl='+tpl});
+
+		}
 	}
 }
 function modSubmit(e) {
@@ -182,4 +188,27 @@ function SwitchSearch(i) {
 			case 2: T$("sqs_order").value="cod_site";break;
 			case 3: T$("sqs_order").value="name";break;
 		}
+}
+function BoxValid() {
+	var myip=T$("addtpl_ip").value;
+	var ip = renderip(myip);
+	var mask=T$("addtpl_mask").value;
+	var selparent=T$("addtpl_parent");
+	var strAlert = "";
+	
+	if (ip.length != 12) { strAlert += "- "+langdata.ip+": "+langdata.verifip+"<br />"; }
+	else if (!verifip(ip)) { strAlert += "- "+langdata.ip+": "+langdata.verifippart+"<br />"; }
+	if (mask&&myip) {
+		var zeIP = new IPv4_Address(myip,mask);
+		if (myip != zeIP.netaddressDotQuad) { strAlert += "- "+langdata.ip+": "+langdata.verifnet+" : "+zeIP.netaddressDotQuad+"<br />"; }
+	}
+	if (selparent.selectedIndex == 0) { strAlert += "- "+langdata.surnet+": "+langdata.verifchoose+"<br />"; }
+	
+	if (strAlert != "") {
+		T$("tplsites_err").innerHTML = strAlert;
+		TINY.box.dim();
+	} else {	
+		TINY.box.hide();
+		DBAjax("ajax_tpl_sites_store.jsp","ctx="+T$("addtpl_ctx").value+"&cod="+T$("addtpl_cod").value+"&name="+T$("addtpl_name").value+"&tpl="+T$("addtpl_tpl").value+"&surnet="+ip+"&mask="+mask+"&parent="+selparent.value);
+	}
 }

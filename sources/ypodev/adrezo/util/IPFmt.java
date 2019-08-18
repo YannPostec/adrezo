@@ -232,4 +232,20 @@ public class IPFmt {
 		} else { res=false; }
 		return res;
 	}
+	
+	public static String addTwoIP(String ip1, String ip2) {
+		if (ip1 == null || ip1.equals("") || ip2 == null || ip2.equals("")) {
+			return "";
+		} else {
+			int a1 = Integer.parseInt((String)ip1.substring(0,3));
+			int b1 = Integer.parseInt((String)ip1.substring(3,6));
+			int c1 = Integer.parseInt((String)ip1.substring(6,9));
+			int d1 = Integer.parseInt((String)ip1.substring(9,12));
+			int a2 = Integer.parseInt((String)ip2.substring(0,3));
+			int b2 = Integer.parseInt((String)ip2.substring(3,6));
+			int c2 = Integer.parseInt((String)ip2.substring(6,9));
+			int d2 = Integer.parseInt((String)ip2.substring(9,12));
+			return AddLZeroToInt(a1+a2) + AddLZeroToInt(b1+b2) + AddLZeroToInt(c1+c2) + AddLZeroToInt(d1+d2);
+		}
+	}
 }

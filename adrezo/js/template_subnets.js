@@ -42,18 +42,20 @@ function verifyInput(selectvlan,selectip,mask,mygw,name,mybc) {
 function addSubmit() {
 	var mask = T$("add_mask").value;
 	var name = T$("add_name").value;
-	var gw = T$("add_gw").value;
-	var bc = T$("add_bc").value;
+	var mygw = T$("add_gw").value;
+	var mybc = T$("add_bc").value;
 	var tpl = T$("add_tpl").value;
 	var selectip = T$("add_ip");
 	var selectvlan = T$("add_vlan");
 	var ip = selectip.value;
 	var vlan = selectvlan.value;
 
-	var strAlert = verifyInput(selectvlan,selectip,mask,gw,name,bc);
+	var strAlert = verifyInput(selectvlan,selectip,mask,mygw,name,mybc);
 	if (strAlert != "") {
 		showDialog(langdata.invalidfield+" :",strAlert,"warning",0,1);
 	} else {
+		var gw = renderip(mygw);
+		var bc = renderip(mybc);
 		DBAjax("ajax_subnets_store.jsp","id=&ip="+ip+"&mask="+mask+"&def="+name+"&gw="+gw+"&bc="+bc+"&vlan="+vlan+"&tpl="+tpl);
 	}
 }
@@ -64,17 +66,19 @@ function modSubmit(e) {
 	var mask = tds[2].firstChild.nextSibling.value;
 	var name = tds[3].firstChild.value;
 	var selectip = tds[4].firstChild;
-	var gw = tds[5].firstChild.value;
+	var mygw = tds[5].firstChild.value;
 	var selectvlan = tds[6].firstChild;
-	var bc = tds[7].firstChild.value;
+	var mybc = tds[7].firstChild.value;
 	var tpl = T$("add_tpl").value;
 	var ip = selectip.value;
 	var vlan = selectvlan.value;
 
-	var strAlert = verifyInput(selectvlan,selectip,mask,gw,name,bc);
+	var strAlert = verifyInput(selectvlan,selectip,mask,mygw,name,mybc);
 	if (strAlert != "") {
 		showDialog(langdata.invalidfield+" :",strAlert,"warning",0,1);
 	} else {
+		var gw = renderip(mygw);
+		var bc = renderip(mybc);
 		DBAjax("ajax_subnets_store.jsp","id="+id+"&ip="+ip+"&mask="+mask+"&def="+name+"&gw="+gw+"&bc="+bc+"&vlan="+vlan+"&tpl="+tpl,true,function callback(result) {
 			if (result) { ApplyModif(id); }
 		});
@@ -304,7 +308,7 @@ function fillTable(sqlid,limit,offset,search,searchip,order,sqlsort,special) {
 					} else { mytr.insertCell(-1); }
 					if (T$$("gw",lines[i])[0].hasChildNodes()) {
 						var mytd = mytr.insertCell(-1);
-						mytd.appendChild(document.createTextNode(T$$("gw",lines[i])[0].firstChild.nodeValue));
+						mytd.appendChild(document.createTextNode(displayip(T$$("gw",lines[i])[0].firstChild.nodeValue)));
 					} else { mytr.insertCell(-1); }
 					if (T$$("vlan",lines[i])[0].hasChildNodes() && T$$("vid",lines[i])[0].hasChildNodes() && T$$("vname",lines[i])[0].hasChildNodes()) {
 						var mytd = mytr.insertCell(-1);
@@ -321,7 +325,7 @@ function fillTable(sqlid,limit,offset,search,searchip,order,sqlsort,special) {
 					} else { mytr.insertCell(-1); }
 					if (T$$("bc",lines[i])[0].hasChildNodes()) {
 						var mytd = mytr.insertCell(-1);
-						mytd.appendChild(document.createTextNode(T$$("bc",lines[i])[0].firstChild.nodeValue));
+						mytd.appendChild(document.createTextNode(displayip(T$$("bc",lines[i])[0].firstChild.nodeValue)));
 					} else { mytr.insertCell(-1); }
 				}
 				if (cpt==limit) { createNext(limit); } else { cleanFoot(); }

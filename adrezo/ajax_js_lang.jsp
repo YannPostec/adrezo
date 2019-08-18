@@ -45,6 +45,7 @@
 	<json:property name="ipbc"><fmt:message key="js.ipbc" /></json:property>
 	<json:property name="ctx"><fmt:message key="js.ctx" /></json:property>
 	<json:property name="subnet"><fmt:message key="js.subnet" /></json:property>
+	<json:property name="surnet"><fmt:message key="js.surnet" /></json:property>
 	<json:property name="verifnotnull"><fmt:message key="js.verifnotnull" /></json:property>
 	<json:property name="verifchoose"><fmt:message key="js.verifchoose" /></json:property>
 	<json:property name="verifnumber"><fmt:message key="js.verifnumber" /></json:property>
