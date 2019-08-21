@@ -400,7 +400,8 @@ function fillTable(sqlid,limit,offset,search,searchip,order,sqlsort,special) {
 					} else { mytr.insertCell(-1); }
 					if (T$$("gw",lines[i])[0].hasChildNodes()) {
 						var mytd = mytr.insertCell(-1);
-						mytd.appendChild(document.createTextNode(displayip(T$$("gw",lines[i])[0].firstChild.nodeValue)));
+						var mygw = T$$("gw",lines[i])[0].firstChild.nodeValue=="null"?"":displayip(T$$("gw",lines[i])[0].firstChild.nodeValue);
+						mytd.appendChild(document.createTextNode(mygw));
 					} else { mytr.insertCell(-1); }
 					if (T$$("bc",lines[i])[0].hasChildNodes()) {
 						var mytd = mytr.insertCell(-1);

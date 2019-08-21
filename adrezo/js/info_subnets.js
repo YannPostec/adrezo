@@ -21,7 +21,7 @@ function fillTable(sqlid,limit,offset,search,searchip,order,sqlsort,special) {
 					if (T$$("site_name",lines[i])[0].hasChildNodes()) { mytr.insertCell(-1).appendChild(document.createTextNode(T$$("site_name",lines[i])[0].firstChild.nodeValue)); } else { mytr.insertCell(-1); }
 					if (T$$("ip",lines[i])[0].hasChildNodes()&&T$$("mask",lines[i])[0].hasChildNodes()) { mytr.insertCell(-1).appendChild(document.createTextNode(displayip(T$$("ip",lines[i])[0].firstChild.nodeValue)+"/"+T$$("mask",lines[i])[0].firstChild.nodeValue)); } else { mytr.insertCell(-1); }
 					if (T$$("def",lines[i])[0].hasChildNodes()) { mytr.insertCell(-1).appendChild(document.createTextNode(T$$("def",lines[i])[0].firstChild.nodeValue)); } else { mytr.insertCell(-1); }
-					if (T$$("gw",lines[i])[0].hasChildNodes()) { mytr.insertCell(-1).appendChild(document.createTextNode(displayip(T$$("gw",lines[i])[0].firstChild.nodeValue))); } else { mytr.insertCell(-1); }
+					if (T$$("gw",lines[i])[0].hasChildNodes()) { var mygw = T$$("gw",lines[i])[0].firstChild.nodeValue=="null"?"":displayip(T$$("gw",lines[i])[0].firstChild.nodeValue); mytr.insertCell(-1).appendChild(document.createTextNode(mygw)); } else { mytr.insertCell(-1); }
 					if (T$$("vid",lines[i])[0].hasChildNodes()&&T$$("vdef",lines[i])[0].hasChildNodes()) { mytr.insertCell(-1).appendChild(document.createTextNode(T$$("vid",lines[i])[0].firstChild.nodeValue+" ("+T$$("vdef",lines[i])[0].firstChild.nodeValue+")")); } else { mytr.insertCell(-1); }
 					if (T$$("surnet",lines[i])[0].hasChildNodes()&&T$$("surip",lines[i])[0].hasChildNodes()&&T$$("surmask",lines[i])[0].hasChildNodes()&&T$$("surdef",lines[i])[0].hasChildNodes()) {
 						if (T$$("surnet",lines[i])[0].firstChild.nodeValue>0) {
