@@ -112,6 +112,11 @@
 		<load-on-startup>0</load-on-startup>
 	</servlet>
 	<servlet>
+		<servlet-name>findnonstdsite</servlet-name>
+		<servlet-class>ypodev.adrezo.servlets.FindNonStdSiteServlet</servlet-class>
+		<load-on-startup>0</load-on-startup>
+	</servlet>	
+	<servlet>
     <servlet-name>APIServlet</servlet-name>
     <servlet-class>org.apache.cxf.jaxrs.servlet.CXFNonSpringJaxrsServlet</servlet-class>
     <init-param>
@@ -198,7 +203,11 @@
 	<servlet-mapping>
 		<servlet-name>excelinfos</servlet-name>
 		<url-pattern>/excelinfos</url-pattern>
-	</servlet-mapping>	
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>findnonstdsite</servlet-name>
+		<url-pattern>/findnonstdsite</url-pattern>
+	</servlet-mapping>
 	
 	<session-config>
 		<session-timeout>360</session-timeout>	

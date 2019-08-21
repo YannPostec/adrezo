@@ -36,7 +36,7 @@ function addSubmit() {
 			if (mask>0) {
 				TINY.box.show({url:'box_tpl_sites_store.jsp',post:'ctx='+ctx+'&cod='+cod+'&name='+name+'&tpl='+mytpl});
 			} else {
-				TINY.box.show({url:'box_tpl_nonstd_sites_store.jsp',post:'ctx='+ctx+'&cod='+cod+'&name='+name+'&tpl='+mytpl});
+				TINY.box.show({url:'box_tpl_nonstd_sites_store.jsp',post:'ctx='+ctx+'&cod='+cod+'&name='+name+'&tpl='+mytpl,openjs:function(){NSLoad()}});
 			}
 		}
 	}
@@ -216,4 +216,144 @@ function BoxValid() {
 		TINY.box.hide();
 		DBAjax("ajax_tpl_sites_store.jsp","ctx="+T$("addtpl_ctx").value+"&cod="+T$("addtpl_cod").value+"&name="+T$("addtpl_name").value+"&tpl="+T$("addtpl_tpl").value+"&surnet="+ip+"&mask="+mask+"&parent="+selparent.value);
 	}
+}
+function NSLoad() {
+	var divstate = T$("tplsites_state");
+	var divwait = T$("tplsites_wait");
+	var diverr = T$("tplsites_err");
+	var divres = T$("tplsites_res");
+	var lang_nothing = T$("addtpl_nothing").value;
+	var xhr=new XMLHttpRequest();
+	xhr.onreadystatechange=function(){
+		if (xhr.readyState==4 && xhr.status!=200) {
+			TINY.box.hide();
+			showDialog(langdata.xhrapperror,langdata.xhrapptext+"!<br/>"+langdata.error+" "+xhr.status+"<br/>"+xhr.statusText,"error",0,1);
+		}
+		if (xhr.readyState==4 && xhr.status==200) {
+			while (divwait.childNodes.length > 0) { divwait.removeChild(divwait.lastChild); }
+			while (diverr.childNodes.length > 0) { diverr.removeChild(diverr.lastChild); }
+			var response = xhr.responseXML.documentElement;
+			if (response) { response = cleanXML(response); }
+			var valid = T$$("valid",response)[0].firstChild.nodeValue;
+			if (valid == "true") {
+				var erreur = T$$("erreur",response)[0].firstChild.nodeValue;
+				if (erreur == "true") {
+					var error = T$$("msg",response)[0].firstChild.nodeValue;
+					diverr.innerHTML = langdata.error+" : "+error;
+					divres.innerHTML = lang_nothing;
+					T$("addtpl_valid").style.display="inline";
+				} else {
+					divstate.innerHTML = T$$("msg",response)[0].firstChild.nodeValue + "<br/>";
+					NSSearch(T$$("siteid",response)[0].firstChild.nodeValue);
+				}
+			} else {
+				diverr.innerHTML = langdata.xhrerror;
+			}
+			TINY.box.dim();			
+		}
+	};
+	var img=document.createElement("img");
+	img.src = "../img/wait_bar.gif";
+	img.alt = "WaitBar";
+	img.width = 345;
+	img.heigth = 21;
+	divwait.appendChild(img);
+	TINY.box.dim();
+	xhr.open("POST","ajax_tpl_nonstd_sites_store.jsp",true);
+	xhr.setRequestHeader('Content-type','application/x-www-form-urlencoded');
+	xhr.send("ctx="+T$("addtpl_ctx").value+"&cod="+T$("addtpl_cod").value+"&tpl="+T$("addtpl_tpl").value+"&name="+T$("addtpl_name").value);
+}
+function NSSearch(id) {
+	var divstate = T$("tplsites_state");
+	var divwait = T$("tplsites_wait");
+	var diverr = T$("tplsites_err");
+	var divres = T$("tplsites_res");
+	var lang_created = T$("addtpl_created").value;
+	var xhr=new XMLHttpRequest();
+	xhr.onreadystatechange=function(){
+		if (xhr.readyState==4 && xhr.status!=200) {
+			TINY.box.hide();
+			showDialog(langdata.xhrapperror,langdata.xhrapptext+"!<br/>"+langdata.error+" "+xhr.status+"<br/>"+xhr.statusText,"error",0,1);
+		}
+		if (xhr.readyState==4 && xhr.status==200) {
+			while (divwait.childNodes.length > 0) { divwait.removeChild(divwait.lastChild); }
+			var response = xhr.responseXML.documentElement;
+			if (response) { response = cleanXML(response); }
+			var erreur = T$$("err",response)[0].firstChild.nodeValue;
+			if (erreur == "true") {
+				var error = T$$("msg",response)[0].firstChild.nodeValue;
+				diverr.innerHTML = langdata.error+" : "+error;
+				if (T$$("result",response)[0].hasChildNodes()) {
+					divstate.innerHTML += T$$("result",response)[0].firstChild.nodeValue;
+				}
+				divres.innerHTML = lang_created;
+				T$("addtpl_valid").style.display="inline";
+			} else {
+				divstate.innerHTML += T$$("msg",response)[0].firstChild.nodeValue;
+				NSJob();
+			}
+			TINY.box.dim();			
+		}
+	};
+	var img=document.createElement("img");
+	img.src = "../img/wait_bar.gif";
+	img.alt = "WaitBar";
+	img.width = 345;
+	img.heigth = 21;
+	divwait.appendChild(img);
+	TINY.box.dim();
+	xhr.open("POST","../findnonstdsite",true);
+	xhr.setRequestHeader('Content-type','application/x-www-form-urlencoded');
+	xhr.send("id="+id+"&ctx="+T$("addtpl_ctx").value+"&cod="+T$("addtpl_cod").value+"&tpl="+T$("addtpl_tpl").value+"&name="+T$("addtpl_name").value);
+}
+function NSJob() {
+	var divstate = T$("tplsites_state");
+	var divwait = T$("tplsites_wait");
+	var diverr = T$("tplsites_err");
+	var divres = T$("tplsites_res");
+	var lang_created = T$("addtpl_allcreated").value;
+	var lang_createdbut = T$("addtpl_allcreatedbut").value;
+	var xhr=new XMLHttpRequest();
+	xhr.onreadystatechange=function(){
+		if (xhr.readyState==4 && xhr.status!=200) {
+			TINY.box.hide();
+			showDialog(langdata.xhrapperror,langdata.xhrapptext+"!<br/>"+langdata.error+" "+xhr.status+"<br/>"+xhr.statusText,"error",0,1);
+		}
+		if (xhr.readyState==4 && xhr.status==200) {
+			while (divwait.childNodes.length > 0) { divwait.removeChild(divwait.lastChild); }
+			var response = xhr.responseXML.documentElement;
+			if (response) { response = cleanXML(response); }
+			var valid = T$$("valid",response)[0].firstChild.nodeValue;
+			if (valid == "true") {
+				var erreur = T$$("erreur",response)[0].firstChild.nodeValue;
+				if (erreur == "true") {
+					var error = T$$("msg",response)[0].firstChild.nodeValue;
+					diverr.innerHTML = langdata.error+" : "+error;
+					divres.innerHTML = lang_createdbut;
+					T$("addtpl_valid").style.display="inline";
+				} else {
+					divstate.innerHTML += T$$("msg",response)[0].firstChild.nodeValue + "<br/>";
+					divres.innerHTML = lang_created;
+					T$("addtpl_valid").style.display="inline";
+				}
+			} else {
+				diverr.innerHTML = langdata.xhrerror;
+			}
+			TINY.box.dim();
+		}
+	};
+	var img=document.createElement("img");
+	img.src = "../img/wait_bar.gif";
+	img.alt = "WaitBar";
+	img.width = 345;
+	img.heigth = 21;
+	divwait.appendChild(img);
+	TINY.box.dim();
+	xhr.open("POST","../firejob",true);
+	xhr.setRequestHeader('Content-type','application/x-www-form-urlencoded');
+	xhr.send("name="+T$("addtpl_job").value);	
+}
+function NSValid() {
+	TINY.box.hide();
+	window.location.reload(true);
 }
