@@ -128,7 +128,8 @@
 				ypodev.adrezo.api.AdminAPI,
 				ypodev.adrezo.api.StockAdminAPI,
 				ypodev.adrezo.api.StockAPI,
-				ypodev.adrezo.api.PhotoAPI
+				ypodev.adrezo.api.PhotoAPI,
+				ypodev.adrezo.api.TemplateAPI
 			</param-value>
 		</init-param>
     <init-param>
