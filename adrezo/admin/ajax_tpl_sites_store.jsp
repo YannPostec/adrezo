@@ -22,8 +22,8 @@
 				<sql:param value="${param.cod}"/>
 				<sql:param value="${param.name}"/>
 			</sql:update>
-			<sql:query var="siteid">select id from sites where id=${adrezo:dbSeqCurrval('sites_seq')}</sql:query>
-			<c:set var="mysite" value="${siteid.rows[0].id}" />
+			<sql:query var="siteid">select ${adrezo:dbSeqCurrval('sites_seq')} as seq<c:if test="${adrezo:envEntry('db_type') == 'oracle'}"> from dual</c:if></sql:query>
+			<c:set var="mysite" value="${siteid.rows[0].seq}" />
 			<c:forEach items="${vlans.rows}" var="vlan">
 				<c:set var="myvdef" value="${fn:replace(vlan.def,'#CODE#',param.cod)}" />
 				<c:set var="myvdef" value="${fn:replace(myvdef,'#SITE#',param.name)}" />
@@ -33,8 +33,8 @@
 					<sql:param value="${vlan.vid}"/>
 					<sql:param value="${myvdef}"/>
 				</sql:update>
-				<sql:query var="vlanid">select id from vlan where id=${adrezo:dbSeqCurrval('vlan_seq')}</sql:query>
-				<c:set var="myvlan" value="${vlanid.rows[0].id}" />
+				<sql:query var="vlanid">select ${adrezo:dbSeqCurrval('vlan_seq')} as seq<c:if test="${adrezo:envEntry('db_type') == 'oracle'}"> from dual</c:if></sql:query>
+				<c:set var="myvlan" value="${vlanid.rows[0].seq}" />
 				<sql:query var="subnets">select * from tpl_subnet where tpl=${param.tpl} and vlan=${vlan.id}</sql:query>
 				<c:forEach items="${subnets.rows}" var="subnet">
 					<c:set var="mysdef" value="${fn:replace(subnet.def,'#CODE#',param.cod)}" />
