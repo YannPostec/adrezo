@@ -51,9 +51,9 @@ Required Roles : API, STKADMIN
 Return informations on given type.<br />
 Required Roles : API, STKADMIN
 <ul>
-<li>URL<ul><li><b>GET /api/stockadmin/type/&lt;id&gt;</b></li></ul></li>
+<li>URL<ul><li><b>GET /api/stockadmin/type/&lt;type&gt;</b></li></ul></li>
 <li>In (URI)
-<ul><li>id : integer, type id in database</li></ul></li>
+<ul><li>type : integer, type id in database</li></ul></li>
 <li>Out (JSON)
 <ul><li>{ "id":&lt;id&gt;,"name":&lt;name&gt;,"threshold":&lt;threshold&gt;,"category":&lt;category&gt;,"index":&lt;index&gt;,"ongoing":&lt;ongoing&gt;,"site":&lt;site&gt; }
 <ul><li>id : integer, type id in database</li>
@@ -74,9 +74,9 @@ Required Roles : API, STKADMIN
 Provide suppression of given type.<br />
 Required Roles : API, STKADMIN
 <ul>
-<li>URL<ul><li><b>DELETE /api/stockadmin/type/&lt;id&gt;</b></li></ul></li>
+<li>URL<ul><li><b>DELETE /api/stockadmin/type/&lt;type&gt;</b></li></ul></li>
 <li>In (URI)
-<ul><li>id : integer, type id in database</li></ul></li>
+<ul><li>type : integer, type id in database</li></ul></li>
 <li>Out (text/plain) : none except errors</li>
 <li>HTTP return code, if not ok return informations in text format
 <ul><li>500 : internal error in API</li>
@@ -111,8 +111,8 @@ Required Roles : API, STKADMIN
 Provide modification of some type parameters with given attributes.<br />
 Required Roles : API, STKADMIN
 <ul>
-<li>URL<ul><li><b>PATCH /api/stockadmin/type/&lt;id&gt;</b></li></ul></li>
-<li>In (URI)<ul><li>id : integer, type id in database</li></ul></li>
+<li>URL<ul><li><b>PATCH /api/stockadmin/type/&lt;type&gt;</b></li></ul></li>
+<li>In (URI)<ul><li>type : integer, type id in database</li></ul></li>
 <li>In (JSON)
 <ul><li>{ "name":&lt;name&gt;,"threshold":&lt;threshold&gt;,"category":&lt;category&gt;,"index":&lt;index&gt;,"ongoing":&lt;ongoing&gt; }
 <ul><li>name : string, type name</li>
@@ -132,8 +132,8 @@ Required Roles : API, STKADMIN
 Provide reception of ongoing quantity defined on type.<br />
 Required Roles : API, STKADMIN
 <ul>
-<li>URL<ul><li><b>PATCH /api/stockadmin/type/&lt;id&gt;/reception</b></li></ul></li>
-<li>In (URI)<ul><li>id : integer, type id in database</li></ul></li>
+<li>URL<ul><li><b>PATCH /api/stockadmin/type/&lt;type&gt;/reception</b></li></ul></li>
+<li>In (URI)<ul><li>type : integer, type id in database</li></ul></li>
 <li>Out (text/plain) : none except errors</li>
 <li>HTTP return code, if not ok return informations in text format
 <ul><li>500 : internal error in API</li>
@@ -163,9 +163,9 @@ Required Roles : API, STKADMIN
 Return informations on given category.<br />
 Required Roles : API, STKADMIN
 <ul>
-<li>URL<ul><li><b>GET /api/stockadmin/category/&lt;id&gt;</b></li></ul></li>
+<li>URL<ul><li><b>GET /api/stockadmin/category/&lt;category&gt;</b></li></ul></li>
 <li>In (URI)
-<ul><li>id : integer, category in database</li></ul></li>
+<ul><li>category : integer, category in database</li></ul></li>
 <li>Out (JSON)
 <ul><li>{ "id":&lt;id&gt;,"name":&lt;name&gt; }
 <ul><li>id : integer, category id in database</li>
@@ -181,9 +181,9 @@ Required Roles : API, STKADMIN
 Provide suppression of given category.<br />
 Required Roles : API, STKADMIN
 <ul>
-<li>URL<ul><li><b>DELETE /api/stockadmin/category/&lt;id&gt;</b></li></ul></li>
+<li>URL<ul><li><b>DELETE /api/stockadmin/category/&lt;category&gt;</b></li></ul></li>
 <li>In (URI)
-<ul><li>id : integer, category id in database</li></ul></li>
+<ul><li>category : integer, category id in database</li></ul></li>
 <li>Out (text/plain) : none except errors</li>
 <li>HTTP return code, if not ok return informations in text format
 <ul><li>500 : internal error in API</li>
@@ -212,8 +212,8 @@ Required Roles : API, STKADMIN
 Provide modification of some category parameters with given attributes.<br />
 Required Roles : API, STKADMIN
 <ul>
-<li>URL<ul><li><b>PATCH /api/stockadmin/category/&lt;id&gt;</b></li></ul></li>
-<li>In (URI)<ul><li>id : integer, category id in database</li></ul></li>
+<li>URL<ul><li><b>PATCH /api/stockadmin/category/&lt;category&gt;</b></li></ul></li>
+<li>In (URI)<ul><li>category : integer, category id in database</li></ul></li>
 <li>In (JSON)
 <ul><li>{ "name":&lt;name&gt; }
 <ul><li>name : string, category name</li></ul></li></ul></li>

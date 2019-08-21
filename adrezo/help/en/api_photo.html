@@ -27,9 +27,9 @@ Required Roles : API
 Return informations on given room.<br />
 Required Roles : API
 <ul>
-<li>URL<ul><li><b>GET /api/photo/room/&lt;id&gt;</b></li></ul></li>
+<li>URL<ul><li><b>GET /api/photo/room/&lt;room&gt;</b></li></ul></li>
 <li>In (URI)
-<ul><li>id : integer, room id in database</li></ul></li>
+<ul><li>room : integer, room id in database</li></ul></li>
 <li>Out (JSON)
 <ul><li>{ "id":&lt;id&gt;,"name":&lt;name&gt;,"site":&lt;site&gt; }
 <ul><li>id : integer, room id in database</li>
@@ -46,9 +46,9 @@ Required Roles : API
 Provide suppression of given room.<br />
 Required Roles : API, PHOTO
 <ul>
-<li>URL<ul><li><b>DELETE /api/photo/room/&lt;id&gt;</b></li></ul></li>
+<li>URL<ul><li><b>DELETE /api/photo/room/&lt;room&gt;</b></li></ul></li>
 <li>In (URI)
-<ul><li>id : integer, room id in database</li></ul></li>
+<ul><li>room : integer, room id in database</li></ul></li>
 <li>Out (text/plain) : none except errors</li>
 <li>HTTP return code, if not ok return informations in text format
 <ul><li>500 : internal error in API</li>
@@ -79,8 +79,8 @@ Required Roles : API, PHOTO
 Provide modification of some room parameters with given attributes.<br />
 Required Roles : API, PHOTO
 <ul>
-<li>URL<ul><li><b>PATCH /api/photo/room/&lt;id&gt;</b></li></ul></li>
-<li>In (URI)<ul><li>id : integer, room id in database</li></ul></li>
+<li>URL<ul><li><b>PATCH /api/photo/room/&lt;room&gt;</b></li></ul></li>
+<li>In (URI)<ul><li>room : integer, room id in database</li></ul></li>
 <li>In (JSON)
 <ul><li>{ "name":&lt;name&gt;,"site":&lt;site&gt; }
 <ul><li>name : string, optional, room name</li>
@@ -115,9 +115,9 @@ Required Roles : API
 Return informations on given set.<br />
 Required Roles : API
 <ul>
-<li>URL<ul><li><b>GET /api/photo/set/&lt;id&gt;</b></li></ul></li>
+<li>URL<ul><li><b>GET /api/photo/set/&lt;set&gt;</b></li></ul></li>
 <li>In (URI)
-<ul><li>id : integer, set id in database</li></ul></li>
+<ul><li>set : integer, set id in database</li></ul></li>
 <li>Out (JSON)
 <ul><li>{ "id":&lt;id&gt;,"name":&lt;name&gt;,"room":&lt;room&gt; }
 <ul><li>id : integer, set id in database</li>
@@ -134,9 +134,9 @@ Required Roles : API
 Provide suppression of given set.<br />
 Required Roles : API, PHOTO
 <ul>
-<li>URL<ul><li><b>DELETE /api/photo/set/&lt;id&gt;</b></li></ul></li>
+<li>URL<ul><li><b>DELETE /api/photo/set/&lt;set&gt;</b></li></ul></li>
 <li>In (URI)
-<ul><li>id : integer, set id in database</li></ul></li>
+<ul><li>set : integer, set id in database</li></ul></li>
 <li>Out (text/plain) : none except errors</li>
 <li>HTTP return code, if not ok return informations in text format
 <ul><li>500 : internal error in API</li>
@@ -167,8 +167,8 @@ Required Roles : API, PHOTO
 Provide modification of some set parameters with given attributes.<br />
 Required Roles : API, PHOTO
 <ul>
-<li>URL<ul><li><b>PATCH /api/photo/set/&lt;id&gt;</b></li></ul></li>
-<li>In (URI)<ul><li>id : integer, set id in database</li></ul></li>
+<li>URL<ul><li><b>PATCH /api/photo/set/&lt;set&gt;</b></li></ul></li>
+<li>In (URI)<ul><li>set : integer, set id in database</li></ul></li>
 <li>In (JSON)
 <ul><li>{ "name":&lt;name&gt;,"room":&lt;room&gt; }
 <ul><li>name : string, optional, set name</li>
@@ -204,9 +204,9 @@ Required Roles : API
 Return informations on given rack.<br />
 Required Roles : API
 <ul>
-<li>URL<ul><li><b>GET /api/photo/rack/&lt;id&gt;</b></li></ul></li>
+<li>URL<ul><li><b>GET /api/photo/rack/&lt;rack&gt;</b></li></ul></li>
 <li>In (URI)
-<ul><li>id : integer, rack id in database</li></ul></li>
+<ul><li>rack : integer, rack id in database</li></ul></li>
 <li>Out (JSON)
 <ul><li>{ "id":&lt;id&gt;,"name":&lt;name&gt;,"position":&lt;position&gt;,"set":&lt;set&gt; }
 <ul><li>id : integer, rack id in database</li>
@@ -224,9 +224,9 @@ Required Roles : API
 Provide suppression of given rack.<br />
 Required Roles : API, PHOTO
 <ul>
-<li>URL<ul><li><b>DELETE /api/photo/rack/&lt;id&gt;</b></li></ul></li>
+<li>URL<ul><li><b>DELETE /api/photo/rack/&lt;rack&gt;</b></li></ul></li>
 <li>In (URI)
-<ul><li>id : integer, rack id in database</li></ul></li>
+<ul><li>rack : integer, rack id in database</li></ul></li>
 <li>Out (text/plain) : none except errors</li>
 <li>HTTP return code, if not ok return informations in text format
 <ul><li>500 : internal error in API</li>
@@ -258,8 +258,8 @@ Required Roles : API, PHOTO
 Provide modification of some rack parameters with given attributes.<br />
 Required Roles : API, PHOTO
 <ul>
-<li>URL<ul><li><b>PATCH /api/photo/rack/&lt;id&gt;</b></li></ul></li>
-<li>In (URI)<ul><li>id : integer, rack id in database</li></ul></li>
+<li>URL<ul><li><b>PATCH /api/photo/rack/&lt;rack&gt;</b></li></ul></li>
+<li>In (URI)<ul><li>rack : integer, rack id in database</li></ul></li>
 <li>In (JSON)
 <ul><li>{ "name":&lt;name&gt;,"position":&lt;position&gt;,"set":&lt;set&gt; }
 <ul><li>name : string, optional, rack name</li>

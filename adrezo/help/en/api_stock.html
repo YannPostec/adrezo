@@ -32,9 +32,9 @@ Required Roles : API
 Return informations over a given supply.<br />
 Required Roles : API
 <ul>
-<li>URL<ul><li><b>GET /api/stock/supply/&lt;id&gt;</b></li></ul></li>
+<li>URL<ul><li><b>GET /api/stock/supply/&lt;supply&gt;</b></li></ul></li>
 <li>In (URI)
-<ul><li>id : integer, supply id in database</li></ul></li>
+<ul><li>supply : integer, supply id in database</li></ul></li>
 <li>Out (JSON)
 <ul><li>{ "id":&lt;id&gt;,"name":&lt;name&gt;,"stock":&lt;stock&gt;,"threshold":"&lt;threshold&gt;","category":&lt;category&gt;,"index":&lt;index&gt;,"ongoing":&lt;ongoing&gt; }
 <ul><li>id : integer, supply id in database</li>
@@ -55,9 +55,9 @@ Required Roles : API
 Return array with movements history of a given supply.<br />
 Required Roles : API
 <ul>
-<li>URL<ul><li><b>GET /api/stock/supply/history/&lt;id&gt;</b></li></ul></li>
+<li>URL<ul><li><b>GET /api/stock/supply/history/&lt;supply&gt;</b></li></ul></li>
 <li>In (URI)
-<ul><li>id : integer, supply id in database</li></ul></li>
+<ul><li>supply : integer, supply id in database</li></ul></li>
 <li>Out (JSON)
 <ul><li>{ "stockhistory_list": [ {"stamp":"2018-05-01 14:18:54","user":"ypostec","movement":2,"inventory":true,"ongoing":false},{...} ] }
 <ul><li>stamp : date, movement date</li>
@@ -76,8 +76,8 @@ Required Roles : API
 Provide movement over a given supply.<br />
 Required Roles : API, STOCK
 <ul>
-<li>URL<ul><li><b>PATCH /api/stock/supply/&lt;id&gt;</b></li></ul></li>
-<li>In (URI)<ul><li>id : integer, supply id in database</li></ul></li>
+<li>URL<ul><li><b>PATCH /api/stock/supply/&lt;supply&gt;</b></li></ul></li>
+<li>In (URI)<ul><li>supply : integer, supply id in database</li></ul></li>
 <li>In (JSON)
 <ul><li>{ "variation":&lt;variation&gt;,"inventory":&lt;inventory&gt; }
 <ul><li>variation : integer, supply quantity positive or negative from stock</li>

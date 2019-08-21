@@ -214,8 +214,16 @@ function BoxValid() {
 		TINY.box.dim();
 	} else {	
 		TINY.box.hide();
-		DBAjax("ajax_tpl_sites_store.jsp","ctx="+T$("addtpl_ctx").value+"&cod="+T$("addtpl_cod").value+"&name="+T$("addtpl_name").value+"&tpl="+T$("addtpl_tpl").value+"&surnet="+ip+"&mask="+mask+"&parent="+selparent.value);
+		DBAjax("ajax_tpl_sites_store.jsp","ctx="+T$("addtpl_ctx").value+"&cod="+T$("addtpl_cod").value+"&name="+T$("addtpl_name").value+"&tpl="+T$("addtpl_tpl").value+"&surnet="+ip+"&mask="+mask+"&parent="+selparent.value,false,function callback(result) {
+			if (result) { SJob(); }
+		});
 	}
+}
+function SJob() {
+	var xhr=new XMLHttpRequest();
+	xhr.open("POST","../firejob",true);
+	xhr.setRequestHeader('Content-type','application/x-www-form-urlencoded');
+	xhr.send("name=NormAddSubnetJob");
 }
 function NSLoad() {
 	var divstate = T$("tplsites_state");

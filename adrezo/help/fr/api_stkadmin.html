@@ -51,9 +51,9 @@ Roles requis : API, STKADMIN
 Retourne les informations sur un type donné.<br />
 Roles requis : API, STKADMIN
 <ul>
-<li>URL<ul><li><b>GET /api/stockadmin/type/&lt;id&gt;</b></li></ul></li>
+<li>URL<ul><li><b>GET /api/stockadmin/type/&lt;type&gt;</b></li></ul></li>
 <li>Entrée (URI)
-<ul><li>id : entier, id du type dans la base</li></ul></li>
+<ul><li>type : entier, id du type dans la base</li></ul></li>
 <li>Sortie (JSON)
 <ul><li>{ "id":&lt;id&gt;,"name":&lt;name&gt;,"threshold":&lt;threshold&gt;,"category":&lt;category&gt;,"index":&lt;index&gt;,"ongoing":&lt;ongoing&gt;,"site":&lt;site&gt; }
 <ul><li>id : entier, id du type dans la base</li>
@@ -74,9 +74,9 @@ Roles requis : API, STKADMIN
 Permet la suppression d'un type donné.<br />
 Roles requis : API, STKADMIN
 <ul>
-<li>URL<ul><li><b>DELETE /api/stockadmin/type/&lt;id&gt;</b></li></ul></li>
+<li>URL<ul><li><b>DELETE /api/stockadmin/type/&lt;type&gt;</b></li></ul></li>
 <li>Entrée (URI)
-<ul><li>id : entier, id du type dans la base</li></ul></li>
+<ul><li>type : entier, id du type dans la base</li></ul></li>
 <li>Sortie (text/plain) : aucune sauf erreur</li>
 <li>Code de retour HTTP, si non ok retour d'informations en format texte
 <ul><li>500 : erreur interne dans l'API</li>
@@ -111,8 +111,8 @@ Roles requis : API, STKADMIN
 Permet de modifier certains paramètres d'un type en fonction des caracteristiques envoyées.<br />
 Roles requis : API, STKADMIN
 <ul>
-<li>URL<ul><li><b>PATCH /api/stockadmin/type/&lt;id&gt;</b></li></ul></li>
-<li>Entrée (URI)<ul><li>id : entier, id du type dans la base</li></ul></li>
+<li>URL<ul><li><b>PATCH /api/stockadmin/type/&lt;type&gt;</b></li></ul></li>
+<li>Entrée (URI)<ul><li>type : entier, id du type dans la base</li></ul></li>
 <li>Entrée (JSON)
 <ul><li>{ "name":&lt;name&gt;,"threshold":&lt;threshold&gt;,"category":&lt;category&gt;,"index":&lt;index&gt;,"ongoing":&lt;ongoing&gt; }
 <ul><li>name : chaine, nom du type</li>
@@ -132,8 +132,8 @@ Roles requis : API, STKADMIN
 Permet de receptionner le quantitatif encours déclaré sur le type de stock.<br />
 Roles requis : API, STKADMIN
 <ul>
-<li>URL<ul><li><b>PATCH /api/stockadmin/type/&lt;id&gt;/reception</b></li></ul></li>
-<li>Entrée (URI)<ul><li>id : entier, id du type dans la base</li></ul></li>
+<li>URL<ul><li><b>PATCH /api/stockadmin/type/&lt;type&gt;/reception</b></li></ul></li>
+<li>Entrée (URI)<ul><li>type : entier, id du type dans la base</li></ul></li>
 <li>Sortie (text/plain) : aucune sauf erreur</li>
 <li>Code de retour HTTP, si non ok retour d'informations en format texte
 <ul><li>500 : erreur interne dans l'API</li>
@@ -163,9 +163,9 @@ Roles requis : API, STKADMIN
 Retourne les informations sur une catégorie donnée.<br />
 Roles requis : API, STKADMIN
 <ul>
-<li>URL<ul><li><b>GET /api/stockadmin/category/&lt;id&gt;</b></li></ul></li>
+<li>URL<ul><li><b>GET /api/stockadmin/category/&lt;category&gt;</b></li></ul></li>
 <li>Entrée (URI)
-<ul><li>id : entier, id de la catégorie dans la base</li></ul></li>
+<ul><li>category : entier, id de la catégorie dans la base</li></ul></li>
 <li>Sortie (JSON)
 <ul><li>{ "id":&lt;id&gt;,"name":&lt;name&gt; }
 <ul><li>id : entier, id de la catégorie dans la base</li>
@@ -181,9 +181,9 @@ Roles requis : API, STKADMIN
 Permet la suppression d'une catégorie donnée.<br />
 Roles requis : API, STKADMIN
 <ul>
-<li>URL<ul><li><b>DELETE /api/stockadmin/category/&lt;id&gt;</b></li></ul></li>
+<li>URL<ul><li><b>DELETE /api/stockadmin/category/&lt;category&gt;</b></li></ul></li>
 <li>Entrée (URI)
-<ul><li>id : entier, id de la catégorie dans la base</li></ul></li>
+<ul><li>category : entier, id de la catégorie dans la base</li></ul></li>
 <li>Sortie (text/plain) : aucune sauf erreur</li>
 <li>Code de retour HTTP, si non ok retour d'informations en format texte
 <ul><li>500 : erreur interne dans l'API</li>
@@ -212,8 +212,8 @@ Roles requis : API, STKADMIN
 Permet de modifier certains paramètres d'une catégorie en fonction des caracteristiques envoyées.<br />
 Roles requis : API, STKADMIN
 <ul>
-<li>URL<ul><li><b>PATCH /api/stockadmin/category/&lt;id&gt;</b></li></ul></li>
-<li>Entrée (URI)<ul><li>id : entier, id de la catégorie dans la base</li></ul></li>
+<li>URL<ul><li><b>PATCH /api/stockadmin/category/&lt;category&gt;</b></li></ul></li>
+<li>Entrée (URI)<ul><li>category : entier, id de la catégorie dans la base</li></ul></li>
 <li>Entrée (JSON)
 <ul><li>{ "name":&lt;name&gt; }
 <ul><li>name : chaine, nom de la catégorie</li></ul></li></ul></li>

@@ -32,9 +32,9 @@ Roles requis : API
 Retourne les informations sur un élément de stock donné.<br />
 Roles requis : API
 <ul>
-<li>URL<ul><li><b>GET /api/stock/supply/&lt;id&gt;</b></li></ul></li>
+<li>URL<ul><li><b>GET /api/stock/supply/&lt;supply&gt;</b></li></ul></li>
 <li>Entrée (URI)
-<ul><li>id : entier, id de l'élément dans la base</li></ul></li>
+<ul><li>supply : entier, id de l'élément dans la base</li></ul></li>
 <li>Sortie (JSON)
 <ul><li>{ "id":&lt;id&gt;,"name":&lt;name&gt;,"stock":&lt;stock&gt;,"threshold":"&lt;threshold&gt;","category":&lt;category&gt;,"index":&lt;index&gt;,"ongoing":&lt;ongoing&gt; }
 <ul><li>id : entier, id de l'élément de stock dans la base</li>
@@ -55,9 +55,9 @@ Roles requis : API
 Retourne l'historique des mouvements sur un élément de stock donné.<br />
 Roles requis : API
 <ul>
-<li>URL<ul><li><b>GET /api/stock/supply/history/&lt;id&gt;</b></li></ul></li>
+<li>URL<ul><li><b>GET /api/stock/supply/history/&lt;supply&gt;</b></li></ul></li>
 <li>Entrée (URI)
-<ul><li>id : entier, id de l'élément dans la base</li></ul></li>
+<ul><li>supply : entier, id de l'élément dans la base</li></ul></li>
 <li>Sortie (JSON)
 <ul><li>{ "stockhistory_list": [ {"stamp":"2018-05-01 14:18:54","user":"ypostec","movement":2,"inventory":true,"ongoing":false},{...} ] }
 <ul><li>stamp : date, date du mouvement</li>
@@ -76,8 +76,8 @@ Roles requis : API
 Permet d'effectuer un mouvement sur un élément de stock donné.<br />
 Roles requis : API, STOCK
 <ul>
-<li>URL<ul><li><b>PATCH /api/stock/supply/&lt;id&gt;</b></li></ul></li>
-<li>Entrée (URI)<ul><li>id : entier, id de l'élément dans la base</li></ul></li>
+<li>URL<ul><li><b>PATCH /api/stock/supply/&lt;supply&gt;</b></li></ul></li>
+<li>Entrée (URI)<ul><li>supply : entier, id de l'élément dans la base</li></ul></li>
 <li>Entrée (JSON)
 <ul><li>{ "variation":&lt;variation&gt;,"inventory":&lt;inventory&gt; }
 <ul><li>variation : entier, mouvement quantitatif positif ou négatif de stock sur l'élément</li>

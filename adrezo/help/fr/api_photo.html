@@ -27,9 +27,9 @@ Roles requis : API
 Retourne les informations sur une salle donnée.<br />
 Roles requis : API
 <ul>
-<li>URL<ul><li><b>GET /api/photo/room/&lt;id&gt;</b></li></ul></li>
+<li>URL<ul><li><b>GET /api/photo/room/&lt;room&gt;</b></li></ul></li>
 <li>Entrée (URI)
-<ul><li>id : entier, id de la salle dans la base</li></ul></li>
+<ul><li>room : entier, id de la salle dans la base</li></ul></li>
 <li>Sortie (JSON)
 <ul><li>{ "id":&lt;id&gt;,"name":&lt;name&gt;,"site":&lt;site&gt; }
 <ul><li>id : entier, id de la salle dans la base</li>
@@ -46,9 +46,9 @@ Roles requis : API
 Permet la suppression d'une salle donnée.<br />
 Roles requis : API, PHOTO
 <ul>
-<li>URL<ul><li><b>DELETE /api/photo/room/&lt;id&gt;</b></li></ul></li>
+<li>URL<ul><li><b>DELETE /api/photo/room/&lt;room&gt;</b></li></ul></li>
 <li>Entrée (URI)
-<ul><li>id : entier, id de la salle dans la base</li></ul></li>
+<ul><li>room : entier, id de la salle dans la base</li></ul></li>
 <li>Sortie (text/plain) : aucune sauf erreur</li>
 <li>Code de retour HTTP, si non ok retour d'informations en format texte
 <ul><li>500 : erreur interne dans l'API</li>
@@ -79,8 +79,8 @@ Roles requis : API, PHOTO
 Permet de modifier certains paramètres d'une salle en fonction des caracteristiques envoyées.<br />
 Roles requis : API, PHOTO
 <ul>
-<li>URL<ul><li><b>PATCH /api/photo/room/&lt;id&gt;</b></li></ul></li>
-<li>Entrée (URI)<ul><li>id : entier, id de la salle dans la base</li></ul></li>
+<li>URL<ul><li><b>PATCH /api/photo/room/&lt;room&gt;</b></li></ul></li>
+<li>Entrée (URI)<ul><li>room : entier, id de la salle dans la base</li></ul></li>
 <li>Entrée (JSON)
 <ul><li>{ "name":&lt;name&gt;,"site":&lt;site&gt; }
 <ul><li>name : chaine, optionnel, nom de la salle</li>
@@ -115,9 +115,9 @@ Roles requis : API
 Retourne les informations sur un ensemble donné.<br />
 Roles requis : API
 <ul>
-<li>URL<ul><li><b>GET /api/photo/set/&lt;id&gt;</b></li></ul></li>
+<li>URL<ul><li><b>GET /api/photo/set/&lt;set&gt;</b></li></ul></li>
 <li>Entrée (URI)
-<ul><li>id : entier, id de l'ensemble dans la base</li></ul></li>
+<ul><li>set : entier, id de l'ensemble dans la base</li></ul></li>
 <li>Sortie (JSON)
 <ul><li>{ "id":&lt;id&gt;,"name":&lt;name&gt;,"room":&lt;room&gt; }
 <ul><li>id : entier, id de l'ensemble dans la base</li>
@@ -134,9 +134,9 @@ Roles requis : API
 Permet la suppression d'un ensemble donné.<br />
 Roles requis : API, PHOTO
 <ul>
-<li>URL<ul><li><b>DELETE /api/photo/set/&lt;id&gt;</b></li></ul></li>
+<li>URL<ul><li><b>DELETE /api/photo/set/&lt;set&gt;</b></li></ul></li>
 <li>Entrée (URI)
-<ul><li>id : entier, id de l'ensemble dans la base</li></ul></li>
+<ul><li>set : entier, id de l'ensemble dans la base</li></ul></li>
 <li>Sortie (text/plain) : aucune sauf erreur</li>
 <li>Code de retour HTTP, si non ok retour d'informations en format texte
 <ul><li>500 : erreur interne dans l'API</li>
@@ -167,8 +167,8 @@ Roles requis : API, PHOTO
 Permet de modifier certains paramètres d'un ensemble en fonction des caracteristiques envoyées.<br />
 Roles requis : API, PHOTO
 <ul>
-<li>URL<ul><li><b>PATCH /api/photo/set/&lt;id&gt;</b></li></ul></li>
-<li>Entrée (URI)<ul><li>id : entier, id de l'ensemble dans la base</li></ul></li>
+<li>URL<ul><li><b>PATCH /api/photo/set/&lt;set&gt;</b></li></ul></li>
+<li>Entrée (URI)<ul><li>set : entier, id de l'ensemble dans la base</li></ul></li>
 <li>Entrée (JSON)
 <ul><li>{ "name":&lt;name&gt;,"room":&lt;room&gt; }
 <ul><li>name : chaine, optionnel, nom de l'ensemble</li>
@@ -204,9 +204,9 @@ Roles requis : API
 Retourne les informations sur une baie donnée.<br />
 Roles requis : API
 <ul>
-<li>URL<ul><li><b>GET /api/photo/rack/&lt;id&gt;</b></li></ul></li>
+<li>URL<ul><li><b>GET /api/photo/rack/&lt;rack&gt;</b></li></ul></li>
 <li>Entrée (URI)
-<ul><li>id : entier, id de la baie dans la base</li></ul></li>
+<ul><li>rack : entier, id de la baie dans la base</li></ul></li>
 <li>Sortie (JSON)
 <ul><li>{ "id":&lt;id&gt;,"name":&lt;name&gt;,"position":&lt;position&gt;,"set":&lt;set&gt; }
 <ul><li>id : entier, id de la baie dans la base</li>
@@ -224,9 +224,9 @@ Roles requis : API
 Permet la suppression d'une baie donnée.<br />
 Roles requis : API, PHOTO
 <ul>
-<li>URL<ul><li><b>DELETE /api/photo/rack/&lt;id&gt;</b></li></ul></li>
+<li>URL<ul><li><b>DELETE /api/photo/rack/&lt;rack&gt;</b></li></ul></li>
 <li>Entrée (URI)
-<ul><li>id : entier, id de la baie dans la base</li></ul></li>
+<ul><li>rack : entier, id de la baie dans la base</li></ul></li>
 <li>Sortie (text/plain) : aucune sauf erreur</li>
 <li>Code de retour HTTP, si non ok retour d'informations en format texte
 <ul><li>500 : erreur interne dans l'API</li>
@@ -258,8 +258,8 @@ Roles requis : API, PHOTO
 Permet de modifier certains paramètres d'une baie en fonction des caracteristiques envoyées.<br />
 Roles requis : API, PHOTO
 <ul>
-<li>URL<ul><li><b>PATCH /api/photo/rack/&lt;id&gt;</b></li></ul></li>
-<li>Entrée (URI)<ul><li>id : entier, id de la baie dans la base</li></ul></li>
+<li>URL<ul><li><b>PATCH /api/photo/rack/&lt;rack&gt;</b></li></ul></li>
+<li>Entrée (URI)<ul><li>rack : entier, id de la baie dans la base</li></ul></li>
 <li>Entrée (JSON)
 <ul><li>{ "name":&lt;name&gt;,"position":&lt;position&gt;,"set":&lt;set&gt; }
 <ul><li>name : chaine, optionnel, nom de la baie</li>

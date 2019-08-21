@@ -492,6 +492,7 @@ public class AdminAPI {
 								stmtvlan.executeUpdate("insert into surnets (id,ip,mask,def,infos,parent,calc) values ("+DbSeqNextval.dbSeqNextval("surnets_seq")+",'"+inip+"',"+String.valueOf(tplmask)+",'"+inname+"','',"+insur+",1)");
 								result+="Surnet created.\n";
 								stmtvlan.close();stmtvlan=null;
+								result+=NSJob();
 							}
 							stmtup.close();stmtup=null;
 						} catch (Exception e) { printLog("SiteTemplateAdd-Std/Failed: ",e); }
@@ -612,8 +613,6 @@ public class AdminAPI {
 								result+=NSJob();
 							}
 							stmtup.close();stmtup=null;
-							
-							
 						} catch (Exception e) { printLog("SiteTemplateAdd-NonStd/Failed: ",e); }
 					}
 				} else {
