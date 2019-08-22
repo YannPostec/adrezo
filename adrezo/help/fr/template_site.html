@@ -1,0 +1,41 @@
+<html>
+<head><title>Aide adrezo</title>
+<link rel="stylesheet" href="../../stylesheet/common.css" type="text/css" />
+</head>
+<body>
+<h2>Gestion des Modèles de sites</h2>
+<p>Avec les droits nécessaires, vous pouvez gérer les modèles de sites.
+<p>On distingue deux types de modèle de site
+<ul>
+<li>Standard : Listes définies de vlans. Subnets englobés dans un surnet. Ce modèle a un masque supérieur à 1</li>
+<li>Non-Standard : Liste définie de vlans. Subnets à trouver dans une liste de surnets. Pas de surnet global. Ce modèle a un masque égal à 0</li>
+</ul></p>
+<hr />
+Vous trouverez dans la page deux zones :
+<ul>
+	<li>une zone d'ajout</li>
+	<li>la liste des modèles existants avec leurs informations</li>
+</ul>
+Pour chaque ligne de la liste, vous pouvez :
+<ul>
+	<li>Effacer un modèle en cliquant sur <img src="../../img/icon_delete.jpg" alt="DeleteIcon" />. <b>Attention cela entraine la suppression de tous les objets associés</b></li>
+	<li>Modifier un modèle en cliquant sur <img src="../../img/icon_modify.jpg" alt="ModifyIcon" /></li>
+</ul>
+En cas d'ajout, entrez les différentes informations puis cliquez sur <img src="../../img/icon_add2.png" alt="AddIcon" /> pour valider.<br />
+En cas de modification, modifiez les différentes informations puis cliquez sur <img src="../../img/icon_valid.png" alt="ValidIcon" /> pour valider.<br />
+Dans les deux cas, vous pouvez cliquer sur <img src="../../img/icon_refuse.png" alt="ResetIcon" /> pour annuler et revenir aux valeurs initiales.<hr />
+Un modèle de site est défini par plusieurs champs :
+<ul>
+	<li>son nom</li>
+	<li>son masque</li>
+	<li>ses vlans</li>
+	<li>ses subnets</li>
+</ul>
+<b>La création d'un site entraîne automatiquement la création du vlan 0 associé à ce site qui signifie 'Pas de Vlan'</b>
+</p>
+<p>Il est possible de n'afficher dans le tableau que les lignes contenant la chaîne de caractères rentrée dans le champ Rechercher</p>
+<hr />
+<p>Afin de configurer les vlans ou les subnets d'un modèle de site, il suffit de cliquer sur <img src="../../img/icon_database.png" alt="ConfigIcon" /> dans la colonne appropriée.<br />
+Pour visualiser la configuration complète d'un modèle, cliquer sur <img src="../../img/icon_view.png" alt="ViewIcon" /></p>
+</body>
+</html>

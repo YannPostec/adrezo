@@ -1,0 +1,45 @@
+<html>
+<head><title>Aide adrezo</title>
+<link rel="stylesheet" href="../../stylesheet/common.css" type="text/css" />
+</head>
+<body>
+<h2>Gestion des subnets dans les modèles de sites</h2>
+<p>Avec les droits nécessaires, vous pouvez gérer les subnets des modèles de sites.
+<hr />
+Vous trouverez dans la page deux zones :
+<ul>
+	<li>une zone d'ajout</li>
+	<li>la liste des subnets existants avec leurs informations</li>
+</ul>
+Pour chaque ligne de la liste, vous pouvez :
+<ul>
+	<li>Effacer un subnet en cliquant sur <img src="../../img/icon_delete.jpg" alt="DeleteIcon" /></li>
+	<li>Modifier un subnet en cliquant sur <img src="../../img/icon_modify.jpg" alt="ModifyIcon" /></li>
+</ul>
+En cas d'ajout, entrez les différentes informations puis cliquez sur <img src="../../img/icon_add2.png" alt="AddIcon" /> pour valider.<br />
+En cas de modification, modifiez les différentes informations puis cliquez sur <img src="../../img/icon_valid.png" alt="ValidIcon" /> pour valider.<br />
+Dans les deux cas, vous pouvez cliquer sur <img src="../../img/icon_refuse.png" alt="ResetIcon" /> pour annuler et revenir aux valeurs initiales.
+</p>
+<p>Il est possible de n'afficher dans le tableau que les lignes contenant la chaîne de caractères rentrée dans le champ Rechercher</p>
+<hr />
+Un subnet est défini par plusieurs champs :
+<ul>
+	<li>son nom</li>
+	<li>son ip de subnet</li>
+	<li>son masque</li>
+	<li>son éventuelle passerelle</li>
+	<li>son vlan</li>
+	<li>son ip de broadcast, calculé automatiquement</li>
+	<li>sa liste de surnet pour un site non-standard</li>
+</ul>
+A noter : #CODE# sera remplacé par le code du site, #SITE# par le nom du site
+<hr />
+<h3>Cas des subnets pour modèle standard</h3>
+Il suffit de rentrer le masque pour que tous les choix possibles d'ip de subnet soient calculés.<br />
+Ce sont les subnets possibles dans le surnet du site, calculé sur une base ip de 0.0.0.0<br />
+<b>Attention les ip des subnets existants ne sont pas retirés de la liste proposée</b>
+<hr />
+<h3>Cas des subnets pour modèle non-standard</h3>
+Le subnet sera le premier disponible dans la liste de surnets définis, sa valeur est donc toujours 0.0.0.0
+</body>
+</html>

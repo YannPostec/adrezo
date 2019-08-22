@@ -1,0 +1,41 @@
+<html>
+<head><title>Adrezo Help</title>
+<link rel="stylesheet" href="../../stylesheet/common.css" type="text/css" />
+</head>
+<body>
+<h2>Site Templates Management</h2>
+<p>With proper permissions, you can manage site templates.
+<p>Two types of site templates are defined :
+<ul>
+<li>Standardized : Enumeration of vlans and subnets. Subnets contained in a global surnet. This template has a mask positive non null</li>
+<li>Non-Standardized : Enumeration of vlans. Subnets to be found in surnets list. No global surnet. Thie template has a mask equals to 0</li>
+</ul></p>
+<hr />
+On this page, you will find two zones :
+<ul>
+	<li>An Add zone</li>
+	<li>the list of existing templates with their informations</li>
+</ul>
+Within each line, you could :
+<ul>
+	<li>Delete a template when you click on <img src="../../img/icon_delete.jpg" alt="DeleteIcon" />. <b>Be careful, it will delete all associated objects.</b></li>
+	<li>Modify a template when you click on <img src="../../img/icon_modify.jpg" alt="ModifyIcon" /></li>
+</ul>
+When adding entry, enter informations then click on <img src="../../img/icon_add2.png" alt="AddIcon" /> to validate.<br />
+When modifying entry, modify informations then click on <img src="../../img/icon_valid.png" alt="ValidIcon" /> to validate.<br />
+In both cases, you could click on <img src="../../img/icon_refuse.png" alt="ResetIcon" /> to cancel and go back to initial values.<hr />
+A site template is defined by many fields :
+<ul>
+	<li>its name</li>
+	<li>its mask</li>
+	<li>its vlans</li>
+	<li>its subnets</li>
+</ul>
+<b>Site creation automatically creates this site vlan 0 which means 'No vlan'</b>
+</p>
+<p>You could only display lines including the string entered in Search field</p>
+<hr />
+<p>To configure vlans or subnets for a site template, click on <img src="../../img/icon_database.png" alt="ConfigIcon" /> in right column.<br />
+To view complete configuration of a template, click on <img src="../../img/icon_view.png" alt="ViewIcon" /></p>
+</body>
+</html>

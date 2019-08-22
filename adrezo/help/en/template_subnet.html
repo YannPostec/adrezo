@@ -1,0 +1,45 @@
+<html>
+<head><title>Adrezo Help</title>
+<link rel="stylesheet" href="../../stylesheet/common.css" type="text/css" />
+</head>
+<body>
+<h2>Subnets Management in site template</h2>
+<p>With proper permissions, you can manage subnets in site template.
+<hr />
+On this page, you will find two zones :
+<ul>
+	<li>An Add zone</li>
+	<li>the list of existing subnets with their informations</li>
+</ul>
+Within each line, you could :
+<ul>
+	<li>Delete a subnet when you click on <img src="../../img/icon_delete.jpg" alt="DeleteIcon" /></li>
+	<li>Modify a subnet when you click on <img src="../../img/icon_modify.jpg" alt="ModifyIcon" /></li>
+</ul>
+When adding entry, enter informations then click on <img src="../../img/icon_add2.png" alt="AddIcon" /> to validate.<br />
+When modifying entry, modify informations then click on <img src="../../img/icon_valid.png" alt="ValidIcon" /> to validate.<br />
+In both cases, you could click on <img src="../../img/icon_refuse.png" alt="ResetIcon" /> to cancel and go back to initial values.
+</p>
+<p>You could only display lines including the string entered in Search field</p>
+<hr />
+A subnet is defined by many fields :	
+<ul>
+	<li>its name</li>
+	<li>its subnet ip</li>
+	<li>its mask</li>
+	<li>its optionnal gateway ip</li>
+	<li>its vlan</li>
+	<li>its broadcast ip, automtically computed</li>
+	<li>its surnet list for a non-standardized site</li>
+</ul>
+N.B : #CODE# will be replaced with site code, #SITE# with site name
+<hr />
+<h3>Subnets in standardized site template</h3>
+Enter a mask for all possible subnet IP to be computed.<br />
+They are all subnets possible within the site surnet, computed on a ip base of 0.0.0.0<br />
+<b>Warning existing subnets ip are not cleared from the computed list</b>
+<hr />
+<h3>Subnets in non-standardized site template</h3>
+The subnet will be the first available in the given surnet list, its value is always 0.0.0.0
+</body>
+</html>

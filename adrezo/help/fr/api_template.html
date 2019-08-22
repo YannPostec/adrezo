@@ -1,0 +1,138 @@
+<html>
+<head><title>Aide adrezo</title>
+<link rel="stylesheet" href="../../stylesheet/common.css" type="text/css" />
+</head>
+<body>
+<h2>Syntaxe API, module Template</h2>
+
+<h3>Liste des modèles de site</h3>
+Retourne un tableau avec les informations de chaque modèle de site.<br />
+Roles requis : API
+<ul>
+<li>URL<ul><li><b>GET /api/template/sites</b></li></ul></li>
+<li>Entrée : Aucune</li>
+<li>Sortie (JSON)
+<ul><li>{ "site_list" : [ { "id":&lt;id&gt;,"name":&lt;name&gt;,"mask":&lt;mask&gt;,"nbvlan":&lt;nbvlan&gt;,"nbsubnet":&lt;nbsubnet&gt; },{...} ] } 
+<ul><li>id : entier, id du site dans la base</li>
+<li>name : chaine, optionnel, nom du site</li>
+<li>mask : entier, masque du modèle</li>
+<li>nbvlan : entier, nombre de vlans du modèle</li>
+<li>nbsubnet : entier, nombre de subnets du modèle</li></ul></li>
+</ul></li>
+<li>Code de retour HTTP, si non ok retour d'informations en format texte
+<ul><li>500 : erreur interne dans l'API</li>
+<li>404 : modèle de site non trouvé</li>
+<li>200 : ok, retourne le résultat au format JSON</li></ul></li>
+</ul>
+<hr />
+
+<h3>Informations sur un modèle de site</h3>
+Retourne les informations sur un modèle de site donné.<br />
+Roles requis : API
+<ul>
+<li>URL<ul><li><b>GET /api/template/site/&lt;site&gt;</b></li></ul></li>
+<li>Entrée (URI)<ul><li>site : entier, id du modèle de site dans la base</li></ul></li>
+<li>Sortie (JSON)
+<ul><li>{ "id":&lt;id&gt;,"name":&lt;name&gt;,"mask":&lt;mask&gt;,"nbvlan":&lt;nbvlan&gt;,"nbsubnet":&lt;nbsubnet&gt; }
+<ul><li>id : entier, id du site dans la base</li>
+<li>name : chaine, optionnel, nom du site</li>
+<li>mask : entier, masque du modèle</li>
+<li>nbvlan : entier, nombre de vlans du modèle</li>
+<li>nbsubnet : entier, nombre de subnets du modèle</li></ul></li>
+</ul></li>
+<li>Code de retour HTTP, si non ok retour d'informations en format texte
+<ul><li>500 : erreur interne dans l'API</li>
+<li>404 : modèle de site non trouvé</li>
+<li>200 : ok, retourne le résultat au format JSON</li></ul></li>
+</ul>
+<hr />
+
+<h3>Informations sur un modèle de vlan</h3>
+Retourne les informations sur un modèle de vlan donné.<br />
+Roles requis : API
+<ul>
+<li>URL<ul><li><b>GET /api/template/vlan/&lt;vlan&gt;</b></li></ul></li>
+<li>Entrée (URI)<ul><li>vlan : entier, id du modèle de vlan dans la base</li></ul></li>
+<li>Sortie (JSON)
+<ul><li>{ "id":&lt;id&gt;,"name":&lt;name&gt;,"vid":&lt;vid&gt;,"template":&lt;template&gt; }
+<ul><li>id : entier, id du modèle de vlan dans la base</li>
+<li>name : chaine, nom du vlan</li>
+<li>vid : entier, id du vlan</li>
+<li>template : entier, id du modèle de site dans la base</li></ul></li>
+</ul></li>
+<li>Code de retour HTTP, si non ok retour d'informations en format texte
+<ul><li>500 : erreur interne dans l'API</li>
+<li>404 : vlan non trouvé</li>
+<li>200 : ok, retourne le résultat au format JSON</li></ul></li>
+</ul>
+<hr />
+
+<h3>Liste des vlans d'un modèle de site</h3>
+Retourne un tableau avec les informations de chaque vlan d'un modèle de site donné.<br />
+Roles requis : API
+<ul>
+<li>URL<ul><li><b>GET /api/template/vlan/list/&lt;site&gt;</b></li></ul></li>
+<li>Entrée (URI)<ul><li>site : entier, id du modèle de site dans la base</li></ul></li>
+<li>Sortie (JSON)
+<ul><li>{ "vlan_list": [ { "id":&lt;id&gt;,"name":&lt;name&gt;,"vid":&lt;vid&gt;,"template":&lt;template&gt; },{...} ] }
+<ul><li>id : entier, id du modèle de vlan dans la base</li>
+<li>name : chaine, nom du vlan</li>
+<li>vid : entier, id du vlan</li>
+<li>template : entier, id du modèle de site dans la base</li></ul></li></ul></li>
+<li>Code de retour HTTP, si non ok retour d'informations en format texte
+<ul><li>500 : erreur interne dans l'API</li>
+<li>404 : liste des vlans vide</li>
+<li>200 : ok, retourne le résultat au format JSON</li></ul></li>
+</ul>
+<hr />
+
+<h3>Informations sur un modèle de subnet</h3>
+Retourne les informations sur un modèle de subnet donné.<br />
+Roles requis : API
+<ul>
+<li>URL<ul><li><b>GET /api/template/subnet/&lt;subnet&gt;</b></li></ul></li>
+<li>Entrée (URI)<ul><li>subnet : entier, id du modèle de subnet dans la base</li></ul></li>
+<li>Sortie (JSON)
+<ul><li>{ "id":&lt;id&gt;,"name":&lt;name&gt;,"ip":&lt;ip&gt;,"mask":&lt;mask&gt;,"gw":&lt;gw&gt;,"bc":&lt;bc&gt;,"vlan":&lt;vlan&gt;,"template":&lt;template&gt;,"surnets":&lt;surnets&gt; }
+<ul><li>id : entier, id du modèle de subnet dans la base</li>
+<li>name : chaine, nom du subnet</li>
+<li>ip : chaine, ip du subnet</li>
+<li>mask : entier, masque du subnet</li>
+<li>gw : entier, IP gateway du subnet</li>
+<li>bc : entier, IP broadcast du subnet</li>
+<li>vlan : entier, id du modèle de vlan dans la base</li>
+<li>template : entier, id du modèle de site dans la base</li>
+<li>surnets : chaine, liste de surnets</li></ul></li></ul></li>
+<li>Code de retour HTTP, si non ok retour d'informations en format texte
+<ul><li>500 : erreur interne dans l'API</li>
+<li>404 : subnet non trouvé</li>
+<li>200 : ok, retourne le résultat au format JSON</li></ul></li>
+</ul>
+<hr />
+
+<h3>Liste des subnets d'un modèle de site</h3>
+Retourne un tableau avec les informations de chaque subnet d'un modèle de site donné.<br />
+Roles requis : API
+<ul>
+<li>URL<ul><li><b>GET /api/template/subnet/list/&lt;site&gt;</b></li></ul></li>
+<li>Entrée (URI)<ul><li>site : entier, id du modèle de site dans la base</li></ul></li>
+<li>Sortie (JSON)
+<ul><li>{ "subnet_list": [ { "id":&lt;id&gt;,"name":&lt;name&gt;,"ip":&lt;ip&gt;,"mask":&lt;mask&gt;,"gw":&lt;gw&gt;,"bc":&lt;bc&gt;,"vlan":&lt;vlan&gt;,"template":&lt;template&gt;,"surnets":&lt;surnets&gt; },{...} ] }
+<ul><li>id : entier, id du modèle de subnet dans la base</li>
+<li>name : chaine, nom du subnet</li>
+<li>ip : chaine, ip du subnet</li>
+<li>mask : entier, masque du subnet</li>
+<li>gw : entier, IP gateway du subnet</li>
+<li>bc : entier, IP broadcast du subnet</li>
+<li>vlan : entier, id du modèle de vlan dans la base</li>
+<li>template : entier, id du modèle de site dans la base</li>
+<li>surnets : chaine, liste de surnets</li></ul></li></ul></li>
+<li>Code de retour HTTP, si non ok retour d'informations en format texte
+<ul><li>500 : erreur interne dans l'API</li>
+<li>404 : liste des subnets vide</li>
+<li>200 : ok, retourne le résultat au format JSON</li></ul></li>
+</ul>
+<hr />
+
+</body>
+</html>

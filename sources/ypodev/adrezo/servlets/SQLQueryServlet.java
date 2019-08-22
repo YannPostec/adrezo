@@ -145,7 +145,7 @@ public class SQLQueryServlet extends HttpServlet {
 			this.searchlist.put(20,"lower(name) like lower('%#SEARCHSTR#%')");
 			// ID 21 : Stock Types
 			this.selectlist.put(21,"select id,def,stock,seuil,idx,cat,idcat,encours,ctx,site,site_name from stock_etat_display");
-			this.searchlist.put(21,"lower(def) like lower('%#SEARCHSTR#%') or lower(idx) like lower('%#SEARCHSTR#%') or lower(cat) like lower('%#SEARCHSTR#%')");
+			this.searchlist.put(21,"lower(def) like lower('%#SEARCHSTR#%') or lower(idx) like lower('%#SEARCHSTR#%') or lower(cat) like lower('%#SEARCHSTR#%') or lower(site_name) like lower('%#SEARCHSTR#%')");
 			this.wherelist.put(21,"ctx=#VALIDUSERCTX#");
 			// ID 22 : Stock Etat
 			this.selectlist.put(22,"select id,def,stock,seuil,idx,cat,encours,ctx,site from stock_etat_display");

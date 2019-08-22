@@ -58,6 +58,55 @@ Required Roles : API, ADMIN
 </ul>
 <hr />
 
+<h3>Add a site following a standardized template</h3>
+Provide creation of a site following a standardized template in given context.<br />
+Required Roles : API, ADMIN
+<ul>
+<li>URL<ul><li><b>POST /api/admin/site/template/std/</b></li></ul></li>
+<li>In (JSON)
+<ul><li>{ "name":&lt;name&gt;,"code":&lt;code&gt;,"ctx":&lt;ctx&gt;,"tpl":&lt;tpl&gt;,"ip":&lt;ip&gt;,"surnet":&lt;surnet&gt; }
+<ul><li>name : string, optional, site name</li>
+<li>code : string, site code (trigram,etc...)</li>
+<li>ctx : integer, contexte id in database</li>
+<li>tpl : integer, template id in database</li>
+<li>ip : string, Surnet IP address</li>
+<li>surnet : integer, Parent surnet id in database</li></ul></li></ul></li>
+<li>Out (text/plain) : Site &lt;idsite&gt; created. Vlan &lt;idvlan&gt; created. Subnet &lt;ip&gt;/&lt;mask&gt; created. Surnet created.
+<ul><li>idsite : integer, site id in database</li>
+<li>idvlan : integer, vlan id in database</li>
+<li>ip : string, subnet IP</li>
+<li>mask : integer, subnet mask</li></ul></li>
+<li>HTTP return code, if not ok return informations in text format
+<ul><li>500 : internal error in API</li>
+<li>404 : template not found</li>
+<li>201 : ok, site created</li></ul></li>
+</ul>
+<hr />
+
+<h3>Add a site following a non-standardized template</h3>
+Provide creation of a site following a non-standardized template in given context.<br />
+Required Roles : API, ADMIN
+<ul>
+<li>URL<ul><li><b>POST /api/admin/site/template/nonstd/</b></li></ul></li>
+<li>In (JSON)
+<ul><li>{ "name":&lt;name&gt;,"code":&lt;code&gt;,"ctx":&lt;ctx&gt;,"tpl":&lt;tpl&gt; }
+<ul><li>name : string, optional, site name</li>
+<li>code : string, site code (trigram,etc...)</li>
+<li>ctx : integer, contexte id in database</li>
+<li>tpl : integer, template id in database</li></ul></li></ul></li>
+<li>Out (text/plain) : Site &lt;idsite&gt; created. Vlan &lt;idvlan&gt; created. Subnet created. &lt;ip&gt;/&lt;mask&gt;, &lt;subnetname&gt; Job NormAddSubnet launched
+<ul><li>idsite : integer, site id in database</li>
+<li>idvlan : integer, vlan id in database</li>
+<li>ip : string, subnet IP</li>
+<li>mask : integer, subnet mask</li>
+<li>subnetname : string, subnet name</li></ul></li>
+<li>HTTP return code, if not ok return informations in text format
+<ul><li>500 : internal error in API</li>
+<li>404 : template not found</li>
+<li>201 : ok, site created</li></ul></li>
+</ul>
+<hr />
+
 <h3>Modify a site</h3>
 Provide modification of some site parameters with given attributes.<br />
 Required Roles : API, ADMIN

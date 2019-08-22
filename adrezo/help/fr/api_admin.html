@@ -58,6 +58,55 @@ Roles requis : API, ADMIN
 </ul>
 <hr />
 
+<h3>Ajout d'un site suivant un modèle standard</h3>
+Permet l'ajout d'un site dans un contexte donné suivant un modèle donné de type standard.<br />
+Roles requis : API, ADMIN
+<ul>
+<li>URL<ul><li><b>POST /api/admin/site/template/std/</b></li></ul></li>
+<li>Entrée (JSON)
+<ul><li>{ "name":&lt;name&gt;,"code":&lt;code&gt;,"ctx":&lt;ctx&gt;,"tpl":&lt;tpl&gt;,"ip":&lt;ip&gt;,"surnet":&lt;surnet&gt; }
+<ul><li>name : chaine, optionnel, nom du site</li>
+<li>code : chaine, code du site (trigramme,etc...)</li>
+<li>ctx : entier, id du contexte dans la base</li>
+<li>tpl : entier, id du template dans la base</li>
+<li>ip : chaine, adresse IP du surnet</li>
+<li>surnet : entier, id du surnet parent dans la base</li></ul></li></ul></li>
+<li>Sortie (text/plain) : Site &lt;idsite&gt; created. Vlan &lt;idvlan&gt; created. Subnet &lt;ip&gt;/&lt;mask&gt; created. Surnet created.
+<ul><li>idsite : entier, id du site dans la base</li>
+<li>idvlan : entier, id du vlan dans la base</li>
+<li>ip : chaine, ip du subnet</li>
+<li>mask : entier, masque du subnet</li></ul></li>
+<li>Code de retour HTTP, si non ok retour d'informations en format texte
+<ul><li>500 : erreur interne dans l'API</li>
+<li>404 : template non trouvé</li>
+<li>201 : ok, création du site effectuée</li></ul></li>
+</ul>
+<hr />
+
+<h3>Ajout d'un site suivant un modèle non-standard</h3>
+Permet l'ajout d'un site dans un contexte donné suivant un modèle donné de type non-standard.<br />
+Roles requis : API, ADMIN
+<ul>
+<li>URL<ul><li><b>POST /api/admin/site/template/nonstd/</b></li></ul></li>
+<li>Entrée (JSON)
+<ul><li>{ "name":&lt;name&gt;,"code":&lt;code&gt;,"ctx":&lt;ctx&gt;,"tpl":&lt;tpl&gt; }
+<ul><li>name : chaine, optionnel, nom du site</li>
+<li>code : chaine, code du site (trigramme,etc...)</li>
+<li>ctx : entier, id du contexte dans la base</li>
+<li>tpl : entier, id du template dans la base</li></ul></li></ul></li>
+<li>Sortie (text/plain) : Site &lt;idsite&gt; created. Vlan &lt;idvlan&gt; created. Subnet created. &lt;ip&gt;/&lt;mask&gt;, &lt;subnetname&gt; Job NormAddSubnet launched
+<ul><li>idsite : entier, id du site dans la base</li>
+<li>idvlan : entier, id du vlan dans la base</li>
+<li>ip : chaine, ip du subnet</li>
+<li>mask : entier, masque du subnet</li>
+<li>subnetname : chaine, nom du subnet</li></ul></li>
+<li>Code de retour HTTP, si non ok retour d'informations en format texte
+<ul><li>500 : erreur interne dans l'API</li>
+<li>404 : template non trouvé</li>
+<li>201 : ok, création du site effectuée</li></ul></li>
+</ul>
+<hr />
+
 <h3>Modification d'un site</h3>
 Permet de modifier certains paramètres d'un site en fonction des caracteristiques envoyées.<br />
 Roles requis : API, ADMIN
