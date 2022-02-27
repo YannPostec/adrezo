@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="debug">
+	<Appenders>
+		<Console name="console" target="SYSTEM_OUT">
+			<PatternLayout pattern="%d %-5p (%c.java:%L).%M - %m%n"/>
+		</Console>
+		
+		<RollingFile name="default.file" fileName="${sys:catalina.base}/webapps/adrezo/log/adrezo-default.log" append="true">
+			<PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} %-5p %c{1}:%L - %m%n"/>
+			<Policies>
+        <SizeBasedTriggeringPolicy size="200 KB"/>
+      </Policies>
+    	<ThresholdFilter level="debug"/>
+      <DefaultRolloverStrategy max="5"/>
+		</RollingFile>
+
+		<RollingFile name="servlets.file" fileName="${sys:catalina.base}/webapps/adrezo/log/adrezo-servlets.log" append="true">
+			<PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} %-5p %c{1}:%L - %m%n"/>
+			<Policies>
+        <SizeBasedTriggeringPolicy size="200 KB"/>
+      </Policies>
+    	<ThresholdFilter level="debug"/>
+      <DefaultRolloverStrategy max="5"/>
+		</RollingFile>
+
+		<RollingFile name="listener.file" fileName="${sys:catalina.base}/webapps/adrezo/log/adrezo-listener.log" append="true">
+			<PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} %-5p %c{1}:%L - %m%n"/>
+			<Policies>
+        <SizeBasedTriggeringPolicy size="200 KB"/>
+      </Policies>
+    	<ThresholdFilter level="debug"/>
+      <DefaultRolloverStrategy max="5"/>
+		</RollingFile>
+
+		<RollingFile name="api.file" fileName="${sys:catalina.base}/webapps/adrezo/log/adrezo-api.log" append="true">
+			<PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} %-5p %c{1}:%L - %m%n"/>
+			<Policies>
+        <SizeBasedTriggeringPolicy size="200 KB"/>
+      </Policies>
+    	<ThresholdFilter level="debug"/>
+      <DefaultRolloverStrategy max="5"/>
+		</RollingFile>
+
+		<RollingFile name="beans.file" fileName="${sys:catalina.base}/webapps/adrezo/log/adrezo-beans.log" append="true">
+			<PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} %-5p %c{1}:%L - %m%n"/>
+			<Policies>
+        <SizeBasedTriggeringPolicy size="200 KB"/>
+      </Policies>
+    	<ThresholdFilter level="debug"/>
+      <DefaultRolloverStrategy max="5"/>
+		</RollingFile>
+
+		<RollingFile name="jsp.file" fileName="${sys:catalina.base}/webapps/adrezo/log/adrezo-jsp.log" append="true">
+			<PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} %-5p %c{1}:%L - %m%n"/>
+			<Policies>
+        <SizeBasedTriggeringPolicy size="200 KB"/>
+      </Policies>
+    	<ThresholdFilter level="debug"/>
+      <DefaultRolloverStrategy max="5"/>
+		</RollingFile>
+
+		<RollingFile name="quartz.file" fileName="${sys:catalina.base}/webapps/adrezo/log/quartz.log" append="true">
+			<PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} %-5p %c{1}:%L - %m%n"/>
+			<Policies>
+        <SizeBasedTriggeringPolicy size="200 KB"/>
+      </Policies>
+    	<ThresholdFilter level="debug"/>
+      <DefaultRolloverStrategy max="5"/>
+		</RollingFile>
+		
+		<RollingFile name="quartzjobs.file" fileName="${sys:catalina.base}/webapps/adrezo/log/quartz-jobs.log" append="true">
+			<PatternLayout pattern="%d{yyyy-MM-dd HH:mm} %-5p %c{1}: - %m%n"/>
+			<Policies>
+        <SizeBasedTriggeringPolicy size="200 KB"/>
+      </Policies>
+    	<ThresholdFilter level="debug"/>
+      <DefaultRolloverStrategy max="5"/>
+		</RollingFile>
+		
+		<RollingFile name="database.file" fileName="${sys:catalina.base}/webapps/adrezo/log/database.log" append="true">
+			<PatternLayout pattern="%d{yyyy-MM-dd HH:mm} %-5p %m%n"/>
+			<Policies>
+        <SizeBasedTriggeringPolicy size="500 KB"/>
+      </Policies>
+    	<ThresholdFilter level="debug"/>
+      <DefaultRolloverStrategy max="5"/>
+		</RollingFile>
+	</Appenders>
+
+	<Loggers>
+		<Logger name="org.quartz" level="info" additivity="false">
+			<AppenderRef ref="quartz.file"/>
+		</Logger>
+	
+		<Logger name="ypodev.adrezo.schedulers" level="debug" additivity="false">
+			<AppenderRef ref="quartzjobs.file"/>
+		</Logger>
+
+		<Logger name="ypodev.adrezo.servlets" level="debug" additivity="false">
+			<AppenderRef ref="servlets.file"/>
+		</Logger>
+	
+		<Logger name="ypodev.adrezo.listener" level="debug" additivity="false">
+			<AppenderRef ref="listener.file"/>
+		</Logger>
+
+		<Logger name="ypodev.adrezo.api" level="info" additivity="false">
+			<AppenderRef ref="api.file"/>
+		</Logger>
+	
+		<Logger name="ypodev.adrezo.beans" level="debug" additivity="false">
+			<AppenderRef ref="beans.file"/>
+		</Logger>
+	
+		<Logger name="ypodev.adrezo.tags.FileDBTag" level="info" additivity="false">
+			<AppenderRef ref="database.file"/>
+		</Logger>
+	
+		<Logger name="ypodev.adrezo.tags" level="info" additivity="false">
+			<AppenderRef ref="jsp.file"/>
+		</Logger>
+	</Loggers>
+	
+	<Root level="info">
+		<AppenderRef ref="console"/>
+		<AppenderRef ref="default.file"/>
+	</Root>
+</Configuration>
