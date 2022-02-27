@@ -10,7 +10,7 @@ import java.sql.*;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.naming.*;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.*;
 import ypodev.adrezo.util.IPFmt;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
@@ -28,7 +28,7 @@ public class ExcelIpServlet extends HttpServlet {
 	private String rctx = "";
 	private String rtype = "";
 	private String rsearch = "";
-	private Logger mylog = Logger.getLogger(ExcelIpServlet.class);
+	private Logger mylog = LogManager.getLogger(ExcelIpServlet.class);
 	private transient ResourceBundle prop;
 	private String lang;
 

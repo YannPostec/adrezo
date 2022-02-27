@@ -12,13 +12,13 @@ import javax.naming.*;
 import org.apache.directory.ldap.client.api.*;
 import org.apache.commons.pool.impl.*;
 import org.jasypt.util.text.*;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.*;
 import org.apache.commons.configuration2.builder.fluent.Configurations;
 import org.apache.commons.configuration2.*;
 
 public class LdapPoolListener implements ServletContextListener {
 	private ArrayList<String> ids = new ArrayList<String>();
-	private Logger mylog = Logger.getLogger(LdapPoolListener.class);
+	private Logger mylog = LogManager.getLogger(LdapPoolListener.class);
 
 	@Override
 	public void contextInitialized(ServletContextEvent sce) {

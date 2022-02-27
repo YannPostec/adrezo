@@ -16,7 +16,7 @@ import org.apache.directory.api.ldap.model.message.*;
 import org.apache.directory.api.ldap.model.message.controls.*;
 import org.apache.directory.api.ldap.model.name.*;
 import org.apache.directory.ldap.client.api.*;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.*;
 
 public class LDAPGroupServlet extends HttpServlet {
 	//Properties
@@ -24,7 +24,7 @@ public class LDAPGroupServlet extends HttpServlet {
 	private boolean erreur = false;
 	private String roleid = "";
 	private Hashtable<String,String> groups = new Hashtable<String,String>();
-	private Logger mylog = Logger.getLogger(LDAPGroupServlet.class);
+	private Logger mylog = LogManager.getLogger(LDAPGroupServlet.class);
 
 	private void printLog(String msg,Exception e) {
 		this.erreur = true;

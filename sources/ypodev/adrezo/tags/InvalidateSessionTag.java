@@ -7,10 +7,10 @@ package ypodev.adrezo.tags;
 import javax.servlet.http.*;
 import javax.servlet.jsp.*;
 import javax.servlet.jsp.tagext.*;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.*;
 
 public class InvalidateSessionTag extends SimpleTagSupport {
-	private Logger mylog = Logger.getLogger(InvalidateSessionTag.class);
+	private Logger mylog = LogManager.getLogger(InvalidateSessionTag.class);
 	public void doTag() {
 		try {
 			PageContext pageContext = (PageContext) getJspContext();

@@ -8,7 +8,7 @@ import java.io.*;
 import java.util.*;
 import java.sql.*;
 import javax.naming.*;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.*;
 import ypodev.adrezo.util.*;
 
 public class IpDispoBean implements Serializable {
@@ -30,7 +30,7 @@ public class IpDispoBean implements Serializable {
 	private String ipFinal = "";
 	private transient ResourceBundle prop;
 	private String lang;
-	private static Logger mylog = Logger.getLogger(IpDispoBean.class);
+	private static Logger mylog = LogManager.getLogger(IpDispoBean.class);
 	
 	//Private functions
 	private void printLog(String msg,Exception e) {

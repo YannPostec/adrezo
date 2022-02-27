@@ -8,11 +8,11 @@ import java.io.*;
 import javax.servlet.jsp.*;
 import javax.servlet.jsp.tagext.*;
 import java.util.*;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.*;
 
 public class LoggerTag extends SimpleTagSupport {
 	private Throwable t;
-	private Logger mylog = Logger.getLogger(LoggerTag.class);
+	private Logger mylog = LogManager.getLogger(LoggerTag.class);
 
 	public void setException(Throwable e) {
 		this.t = e;

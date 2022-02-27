@@ -5,7 +5,7 @@ package ypodev.adrezo.schedulers;
  */
  
 import org.quartz.*;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.*;
 import java.io.*;
 import java.util.*;
 import java.text.*;
@@ -14,7 +14,7 @@ import javax.naming.*;
 import ypodev.adrezo.util.IPFmt;
 
 public class NormAddSubnetJob implements Job {
-	private Logger mylog = Logger.getLogger(NormAddSubnetJob.class);
+	private Logger mylog = LogManager.getLogger(NormAddSubnetJob.class);
 	private Connection conn = null;
 	private Statement stmt = null;
 	private Statement stmtsearch = null;

@@ -15,7 +15,7 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.SecurityContext;
 import java.security.Principal;
 import com.google.gson.*;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.*;
 import ypodev.adrezo.beans.IpDispoBean;
 import ypodev.adrezo.util.IPFmt;
 import ypodev.adrezo.util.DbSeqNextval;
@@ -30,7 +30,7 @@ public class NetworkAPI {
 	
 	private String errLog = "";
 	private boolean erreur = false;
-	private Logger mylog = Logger.getLogger(NetworkAPI.class);
+	private Logger mylog = LogManager.getLogger(NetworkAPI.class);
 	private void printLog(String msg,Exception e) {
 		this.erreur = true;
 		if (e != null) {

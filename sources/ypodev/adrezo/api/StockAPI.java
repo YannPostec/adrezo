@@ -16,7 +16,7 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.SecurityContext;
 import java.security.Principal;
 import com.google.gson.*;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.*;
 import ypodev.adrezo.util.DbSeqNextval;
 import ypodev.adrezo.util.DbSeqCurrval;
 import ypodev.adrezo.util.DbFunc;
@@ -30,7 +30,7 @@ public class StockAPI {
 	
 	private String errLog = "";
 	private boolean erreur = false;
-	private Logger mylog = Logger.getLogger(StockAPI.class);
+	private Logger mylog = LogManager.getLogger(StockAPI.class);
 	private void printLog(String msg,Exception e) {
 		this.erreur = true;
 		if (e != null) {

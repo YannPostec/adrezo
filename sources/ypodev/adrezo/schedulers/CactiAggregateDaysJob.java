@@ -5,7 +5,7 @@ package ypodev.adrezo.schedulers;
  */
  
 import org.quartz.*;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.*;
 import java.io.*;
 import java.util.*;
 import java.text.*;
@@ -18,7 +18,7 @@ import org.apache.commons.configuration2.*;
 import org.apache.commons.lang3.time.DateUtils;
 
 public class CactiAggregateDaysJob implements Job {
-	private Logger mylog = Logger.getLogger(CactiAggregateDaysJob.class);
+	private Logger mylog = LogManager.getLogger(CactiAggregateDaysJob.class);
 	private Connection conn = null;
 	private Statement stmt = null;
 	private boolean erreur = false;

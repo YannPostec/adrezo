@@ -18,7 +18,7 @@ import javax.ws.rs.ext.Provider;
 import java.lang.annotation.*;
 import javax.annotation.Priority;
 import java.security.Principal;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.*;
 import org.apache.commons.configuration2.builder.fluent.Configurations;
 import org.apache.commons.configuration2.*;
 import org.apache.commons.lang3.time.DateUtils;
@@ -27,7 +27,7 @@ import org.apache.commons.lang3.time.DateUtils;
 @Provider
 @Priority(Priorities.AUTHENTICATION)
 public class AuthenticationFilter implements ContainerRequestFilter {
-	private Logger mylog = Logger.getLogger(AuthenticationFilter.class);
+	private Logger mylog = LogManager.getLogger(AuthenticationFilter.class);
 	private static final String REALM = "production";
 	private static final String AUTHENTICATION_SCHEME = "Adrezo";
 	private String username=null;

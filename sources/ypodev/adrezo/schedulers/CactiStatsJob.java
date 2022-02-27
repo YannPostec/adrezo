@@ -5,7 +5,7 @@ package ypodev.adrezo.schedulers;
  */
  
 import org.quartz.*;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.*;
 import java.io.*;
 import java.util.*;
 import java.text.*;
@@ -20,7 +20,7 @@ import org.apache.commons.lang3.time.DateUtils;
 import ypodev.adrezo.beans.TestHoursBean;
 
 public class CactiStatsJob implements Job {
-	private Logger mylog = Logger.getLogger(CactiStatsJob.class);
+	private Logger mylog = LogManager.getLogger(CactiStatsJob.class);
 	private Connection conna = null;
 	private Connection connc = null;
 	private Statement stmta = null;

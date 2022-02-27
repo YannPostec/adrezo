@@ -5,7 +5,7 @@ package ypodev.adrezo.util;
  */
  
 import org.jasypt.util.text.*;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.*;
 
 public class EncryptLDAPPwd {
 	public static String encryptLDAPPwd(String value) {
@@ -13,6 +13,6 @@ public class EncryptLDAPPwd {
 			BasicTextEncryptor pwd = new BasicTextEncryptor();
 			pwd.setPassword("ceciestlepasswordldap");
 			return pwd.encrypt(value);
-		} catch (Exception e) { Logger.getLogger(EncryptLDAPPwd.class).error("Error:",e);return(e.getMessage()); }
+		} catch (Exception e) { LogManager.getLogger(EncryptLDAPPwd.class).error("Error:",e);return(e.getMessage()); }
 	}
 }

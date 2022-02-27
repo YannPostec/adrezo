@@ -5,10 +5,10 @@ package ypodev.adrezo.util;
  */
  
 import javax.naming.*;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.*;
 
 public class DbSeqCurrval {
-	private static Logger mylog = Logger.getLogger(DbSeqCurrval.class);
+	private static Logger mylog = LogManager.getLogger(DbSeqCurrval.class);
 	public static String dbSeqCurrval(String value) {
 		try {
 			Context env = (Context) new InitialContext().lookup("java:comp/env");
@@ -20,7 +20,7 @@ public class DbSeqCurrval {
 			else if (db_type.equals("postgresql")) {
 				resultat = "currval('"+value+"')";
 			}
-			else { mylog.error("Unknown DB Type",null); }
+			else { mylog.error("Unknown DB Type"); }
 			return((String) resultat);
 		} catch (Exception e) { mylog.error("Error:",e);return(e.getMessage()); }
 	}

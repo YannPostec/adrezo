@@ -17,7 +17,7 @@ import javax.naming.*;
 import static org.imgscalr.Scalr.*;
 import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.*;
 import ypodev.adrezo.beans.UserInfoBean;
 import ypodev.adrezo.util.DbSeqNextval;
 import ypodev.adrezo.util.DbSeqCurrval;
@@ -38,7 +38,7 @@ public class UploadServlet extends HttpServlet {
 	private boolean photo_cifs;
 	private String lang;
 	private ResourceBundle prop;
-	private Logger mylog = Logger.getLogger(UploadServlet.class);
+	private Logger mylog = LogManager.getLogger(UploadServlet.class);
 	private String db_type;
 
 	private void printLog(String msg,Exception e) {

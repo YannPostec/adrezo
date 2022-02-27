@@ -5,7 +5,7 @@ package ypodev.adrezo.schedulers;
  */
 
 import org.quartz.*;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.*;
 import java.io.*;
 import java.util.*; 
 import java.sql.*;
@@ -16,7 +16,7 @@ import jcifs.smb.*;
 
 public class PurgePhotosJob implements Job {
 
-	private Logger mylog = Logger.getLogger(PurgePhotosJob.class);
+	private Logger mylog = LogManager.getLogger(PurgePhotosJob.class);
 	private Vector<String> urls = new Vector<String>();
 	private String dirLog = "";
 	private String fileLog = "";

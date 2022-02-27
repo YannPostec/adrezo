@@ -16,7 +16,7 @@ import java.math.BigInteger;
 import java.security.SecureRandom;
 import com.google.gson.*;
 import org.jasypt.util.password.*;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.*;
 import org.apache.commons.configuration2.builder.fluent.Configurations;
 import org.apache.commons.configuration2.*;
 import org.apache.commons.lang3.time.DateUtils;
@@ -24,7 +24,7 @@ import ypodev.adrezo.util.DbFunc;
 
 @Path("/auth")
 public class AuthAPI {
-	private Logger mylog = Logger.getLogger(AuthAPI.class);
+	private Logger mylog = LogManager.getLogger(AuthAPI.class);
 	private Connection conn = null;
 	private Statement stmt = null;
 	private ResultSet rslocal = null;

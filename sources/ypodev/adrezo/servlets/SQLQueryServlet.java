@@ -10,7 +10,7 @@ import java.sql.*;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.naming.*;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.*;
 import ypodev.adrezo.util.DbCast;
 import ypodev.adrezo.beans.UserInfoBean;
 
@@ -32,7 +32,7 @@ public class SQLQueryServlet extends HttpServlet {
 	private Map<Integer,String> searchlist = new HashMap<Integer,String>();
 	private Map<Integer,String> wherelist = new HashMap<Integer,String>();
 	private Map<Integer,String> groupbylist = new HashMap<Integer,String>();
-	private Logger mylog = Logger.getLogger(SQLQueryServlet.class);
+	private Logger mylog = LogManager.getLogger(SQLQueryServlet.class);
 	
 	private void printLog(String msg,Exception e) {
 		this.erreur = true;

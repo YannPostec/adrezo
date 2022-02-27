@@ -18,7 +18,7 @@ import java.sql.*;
 import static org.imgscalr.Scalr.*;
 import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.*;
 import ypodev.adrezo.beans.UserInfoBean;
 import ypodev.adrezo.util.DbFunc;
 
@@ -34,7 +34,7 @@ public class ReplaceUploadServlet extends HttpServlet {
 	private boolean photo_cifs;
 	private String lang;
 	private ResourceBundle prop;
-	private Logger mylog = Logger.getLogger(ReplaceUploadServlet.class);
+	private Logger mylog = LogManager.getLogger(ReplaceUploadServlet.class);
 
 	private void printLog(String msg,Exception e) {
 		this.erreur = true;

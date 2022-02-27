@@ -11,11 +11,11 @@ import javax.servlet.http.*;
 import javax.servlet.jsp.*;
 import javax.servlet.jsp.tagext.*;
 import ypodev.adrezo.beans.UserInfoBean;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.*;
 
 public class FileDBTag extends SimpleTagSupport {
 	private String value;
-	private Logger mylog = Logger.getLogger(FileDBTag.class);
+	private Logger mylog = LogManager.getLogger(FileDBTag.class);
 
 	public void setValue(String value) {
 		this.value = value;

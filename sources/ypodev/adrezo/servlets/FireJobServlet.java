@@ -12,7 +12,7 @@ import org.quartz.*;
 import org.quartz.ee.servlet.*;
 import org.quartz.impl.*;
 import org.quartz.impl.matchers.*;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.*;
 import ypodev.adrezo.beans.UserInfoBean;
 
 public class FireJobServlet extends HttpServlet {
@@ -22,7 +22,7 @@ public class FireJobServlet extends HttpServlet {
 	private String jobname = "";
 	private String lang;
 	private ResourceBundle prop;
-	private Logger mylog = Logger.getLogger(FireJobServlet.class);
+	private Logger mylog = LogManager.getLogger(FireJobServlet.class);
 
 	private void printLog(String msg,Exception e) {
 		this.erreur = true;

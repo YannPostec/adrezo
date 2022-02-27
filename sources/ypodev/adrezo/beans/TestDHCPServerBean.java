@@ -8,7 +8,7 @@ import java.io.*;
 import java.util.*;
 import java.sql.*;
 import javax.naming.*;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.*;
 import org.apache.commons.configuration2.builder.fluent.Configurations;
 import org.apache.commons.configuration2.*;
 import javax.ws.rs.*;
@@ -24,7 +24,7 @@ public class TestDHCPServerBean implements Serializable {
 	private transient ResourceBundle prop;
 	private String lang;
 	private String myid;
-	private static Logger mylog = Logger.getLogger(TestDHCPServerBean.class);
+	private static Logger mylog = LogManager.getLogger(TestDHCPServerBean.class);
 	private Integer dhcp_receive=5000;
 	private Integer dhcp_cnx=3000;
 	private String basePath = "dhcp";

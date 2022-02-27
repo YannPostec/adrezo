@@ -10,7 +10,7 @@ import java.sql.*;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.naming.*;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.*;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -26,7 +26,7 @@ public class DHCPScopeServlet extends HttpServlet {
 	private String errLog = "";
 	private boolean erreur = false;	
 	private String id = "";
-	private Logger mylog = Logger.getLogger(DHCPScopeServlet.class);
+	private Logger mylog = LogManager.getLogger(DHCPScopeServlet.class);
 	private Integer dhcp_receive=5000;
 	private Integer dhcp_cnx=3000;
 	private String basePath = "dhcp";
@@ -45,7 +45,7 @@ public class DHCPScopeServlet extends HttpServlet {
 		if (e != null) {
 			msg += e.getMessage();		
 			mylog.error(msg,e);
-		} else { mylog.error(msg,null); }
+		} else { mylog.error(msg); }
 		this.errLog += msg + "<br />";
 	}
 	

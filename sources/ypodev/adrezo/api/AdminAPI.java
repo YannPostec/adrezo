@@ -20,7 +20,7 @@ import org.quartz.impl.*;
 import org.quartz.impl.matchers.*;
 import java.security.Principal;
 import com.google.gson.*;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.*;
 import ypodev.adrezo.util.DbSeqNextval;
 import ypodev.adrezo.util.DbSeqCurrval;
 import ypodev.adrezo.util.IPFmt;
@@ -34,7 +34,7 @@ public class AdminAPI {
 	
 	private String errLog = "";
 	private boolean erreur = false;
-	private Logger mylog = Logger.getLogger(AdminAPI.class);
+	private Logger mylog = LogManager.getLogger(AdminAPI.class);
 	private void printLog(String msg,Exception e) {
 		this.erreur = true;
 		if (e != null) {

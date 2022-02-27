@@ -8,7 +8,7 @@ import java.io.*;
 import java.util.*; 
 import javax.servlet.*;
 import javax.servlet.http.*;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.*;
 import org.apache.commons.fileupload.*;
 import org.apache.commons.fileupload.disk.*;
 import org.apache.commons.fileupload.servlet.*;
@@ -35,7 +35,7 @@ public class ImportCSVServlet extends HttpServlet {
 	private int cptsub;
 	private int cptvlan;
 	private int cptip;
-	private Logger mylog = Logger.getLogger(ImportCSVServlet.class);
+	private Logger mylog = LogManager.getLogger(ImportCSVServlet.class);
 
 	private void printLog(String msg) {
 		this.erreur = true;

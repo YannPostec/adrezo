@@ -10,7 +10,7 @@ import java.sql.*;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.naming.*;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.*;
 import ypodev.adrezo.util.*;
 
 public class NormCalcServlet extends HttpServlet {
@@ -25,7 +25,7 @@ public class NormCalcServlet extends HttpServlet {
 	private ArrayList<String> allnet = new ArrayList<String>();
 	private ArrayList<String> existnet = new ArrayList<String>();
 	private ArrayList<String> resnet = new ArrayList<String>();
-	private Logger mylog = Logger.getLogger(NormCalcServlet.class);
+	private Logger mylog = LogManager.getLogger(NormCalcServlet.class);
 
 	private void printLog(String msg,Exception e) {
 		this.erreur = true;

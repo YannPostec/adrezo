@@ -12,7 +12,7 @@ import javax.servlet.http.*;
 import org.apache.commons.fileupload.*;
 import org.apache.commons.fileupload.disk.*;
 import org.apache.commons.fileupload.servlet.*;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.*;
 import ypodev.adrezo.beans.UserInfoBean;
 
 public class UploadLogoServlet extends HttpServlet {
@@ -22,7 +22,7 @@ public class UploadLogoServlet extends HttpServlet {
 	private String lang;
 	private ResourceBundle prop;
 	private String type;
-	private Logger mylog = Logger.getLogger(UploadLogoServlet.class);
+	private Logger mylog = LogManager.getLogger(UploadLogoServlet.class);
 
 	private void printLog(String msg,Exception e) {
 		this.erreur = true;

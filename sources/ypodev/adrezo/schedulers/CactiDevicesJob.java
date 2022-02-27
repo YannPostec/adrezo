@@ -5,7 +5,7 @@ package ypodev.adrezo.schedulers;
  */
  
 import org.quartz.*;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.*;
 import java.io.*;
 import java.util.*;
 import java.text.*;
@@ -18,7 +18,7 @@ import org.apache.commons.configuration2.*;
 import ypodev.adrezo.util.DbSeqNextval;
 
 public class CactiDevicesJob implements Job {
-	private Logger mylog = Logger.getLogger(CactiDevicesJob.class);
+	private Logger mylog = LogManager.getLogger(CactiDevicesJob.class);
 	private Connection conna = null;
 	private Connection connc = null;
 	private Statement stmta = null;

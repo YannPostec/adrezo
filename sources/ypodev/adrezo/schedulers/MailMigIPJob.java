@@ -5,7 +5,7 @@ package ypodev.adrezo.schedulers;
  */
  
 import org.quartz.*;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.*;
 import java.io.*;
 import java.util.*;
 import java.text.*;
@@ -62,7 +62,7 @@ public class MailMigIPJob implements Job {
 		} else { mylog.warn("Mail To is null"); }
 	}	
 
-	private Logger mylog = Logger.getLogger(MailMigIPJob.class);
+	private Logger mylog = LogManager.getLogger(MailMigIPJob.class);
 
 	@Override
 	public void execute(JobExecutionContext context) throws JobExecutionException {

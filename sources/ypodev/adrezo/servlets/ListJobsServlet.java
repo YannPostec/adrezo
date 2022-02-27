@@ -12,7 +12,7 @@ import org.quartz.*;
 import org.quartz.ee.servlet.*;
 import org.quartz.impl.*;
 import org.quartz.impl.matchers.*;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.*;
 import ypodev.adrezo.beans.UserInfoBean;
 
 public class ListJobsServlet extends HttpServlet {
@@ -20,7 +20,7 @@ public class ListJobsServlet extends HttpServlet {
 	private String errLog = "";
 	private boolean erreur = false;
 	private String jobs = "";
-	private Logger mylog = Logger.getLogger(ListJobsServlet.class);
+	private Logger mylog = LogManager.getLogger(ListJobsServlet.class);
 
 	private void printLog(String msg,Exception e) {
 		this.erreur = true;

@@ -5,7 +5,7 @@ package ypodev.adrezo.schedulers;
  */
  
 import org.quartz.*;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.*;
 import java.io.*;
 import java.util.*;
 import java.text.*;
@@ -60,7 +60,7 @@ public class MailTempIPJob implements Job {
 		catch (EmailException e) { mylog.error("Mail: "+e.getMessage(),e); }
 	}	
 
-	private Logger mylog = Logger.getLogger(MailTempIPJob.class);
+	private Logger mylog = LogManager.getLogger(MailTempIPJob.class);
 
 	@Override
 	public void execute(JobExecutionContext context) throws JobExecutionException {

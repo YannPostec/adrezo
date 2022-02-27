@@ -17,7 +17,7 @@ import org.apache.directory.api.ldap.model.message.*;
 import org.apache.directory.api.ldap.model.exception.*;
 import org.apache.directory.api.ldap.model.name.*;
 import org.apache.directory.ldap.client.api.*;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.*;
 import org.jasypt.util.password.*;
 import org.jasypt.util.text.*;
 import ypodev.adrezo.util.DbFunc;
@@ -42,7 +42,7 @@ public class UserInfoBean implements Serializable {
 	private String url;
 	private String macsearch;
 	private String slidetime;
-	private static Logger mylog = Logger.getLogger(UserInfoBean.class);
+	private static Logger mylog = LogManager.getLogger(UserInfoBean.class);
 	private static Map session;
 
 	//Private functions

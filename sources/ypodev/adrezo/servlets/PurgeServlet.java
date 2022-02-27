@@ -12,7 +12,7 @@ import java.sql.*;
 import javax.naming.*;
 import jcifs.*;
 import jcifs.smb.*;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.*;
 import ypodev.adrezo.beans.UserInfoBean;
 
 public class PurgeServlet extends HttpServlet {
@@ -26,7 +26,7 @@ public class PurgeServlet extends HttpServlet {
 	private ResourceBundle prop;
 	private boolean bDelDir = false;
 	private boolean bDelFile = false;
-	private Logger mylog = Logger.getLogger(PurgeServlet.class);
+	private Logger mylog = LogManager.getLogger(PurgeServlet.class);
 
 	private void printLog(String msg,Exception e) {
 		this.erreur = true;

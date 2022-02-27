@@ -8,7 +8,7 @@ import java.io.*;
 import java.util.*;
 import java.sql.*;
 import javax.naming.*;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.*;
 import com.mysql.cj.jdbc.MysqlDataSource;
 import org.apache.commons.configuration2.builder.fluent.Configurations;
 import org.apache.commons.configuration2.*;
@@ -19,7 +19,7 @@ public class TestMySQLBean implements Serializable {
 	private transient Connection conn;
 	private transient ResourceBundle prop;
 	private String lang;
-	private static Logger mylog = Logger.getLogger(TestMySQLBean.class);
+	private static Logger mylog = LogManager.getLogger(TestMySQLBean.class);
 	private String cactihost="localhost";
 	private Integer cactiport=3306;
 	private String cactidbname="cacti";

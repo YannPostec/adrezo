@@ -8,7 +8,7 @@ import java.io.*;
 import java.util.*; 
 import java.sql.*;
 import javax.naming.*;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.*;
 import org.apache.commons.mail.*;
 import org.apache.commons.configuration2.builder.fluent.Configurations;
 import org.apache.commons.configuration2.*;
@@ -26,7 +26,7 @@ public class MailBean implements Serializable {
 	private boolean erreur = false;
 	private transient ResourceBundle prop;
 	private String lang = "";
-	private static Logger mylog = Logger.getLogger(MailBean.class);
+	private static Logger mylog = LogManager.getLogger(MailBean.class);
 	
 	// Private procedures
 	private void printLog(String msg,Exception e) {

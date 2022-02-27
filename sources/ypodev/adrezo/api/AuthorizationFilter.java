@@ -20,13 +20,13 @@ import java.lang.annotation.*;
 import java.lang.reflect.*;
 import javax.annotation.Priority;
 import java.security.Principal;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.*;
 
 @Secured
 @Provider
 @Priority(Priorities.AUTHORIZATION)
 public class AuthorizationFilter implements ContainerRequestFilter {
-	private Logger mylog = Logger.getLogger(AuthorizationFilter.class);
+	private Logger mylog = LogManager.getLogger(AuthorizationFilter.class);
 	private String login = null;
 	private String msg = null;
 

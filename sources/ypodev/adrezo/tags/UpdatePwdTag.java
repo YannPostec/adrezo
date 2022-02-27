@@ -9,12 +9,12 @@ import javax.servlet.jsp.*;
 import javax.servlet.jsp.tagext.*;
 import java.sql.*;
 import javax.naming.*;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.*;
 import org.jasypt.util.password.*;
 
 public class UpdatePwdTag extends SimpleTagSupport {
 	private String value;
-	private Logger mylog = Logger.getLogger(UpdatePwdTag.class);
+	private Logger mylog = LogManager.getLogger(UpdatePwdTag.class);
 	
 	public void setValue(String value) {
 		this.value = value;

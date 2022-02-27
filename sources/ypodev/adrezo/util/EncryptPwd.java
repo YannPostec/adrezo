@@ -5,13 +5,13 @@ package ypodev.adrezo.util;
  */
  
 import org.jasypt.util.password.*;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.*;
 
 public class EncryptPwd {
 	public static String encryptPwd(String value) {
 		try {
 			BasicPasswordEncryptor pwd = new BasicPasswordEncryptor();
 			return pwd.encryptPassword(value);
-		} catch (Exception e) { Logger.getLogger(EncryptPwd.class).error("Error:",e);return(e.getMessage()); }
+		} catch (Exception e) { LogManager.getLogger(EncryptPwd.class).error("Error:",e);return(e.getMessage()); }
 	}
 }

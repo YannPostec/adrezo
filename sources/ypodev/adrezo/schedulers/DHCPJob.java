@@ -5,7 +5,7 @@ package ypodev.adrezo.schedulers;
  */
  
 import org.quartz.*;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.*;
 import java.io.*;
 import java.util.*;
 import java.text.*;
@@ -25,7 +25,7 @@ import ypodev.adrezo.util.IPFmt;
 import ypodev.adrezo.util.DbFunc;
 
 public class DHCPJob implements Job {
-	private Logger mylog = Logger.getLogger(DHCPJob.class);
+	private Logger mylog = LogManager.getLogger(DHCPJob.class);
 	private Connection conn = null;
 	private Statement stmt = null;
 	private boolean erreur = false;
@@ -445,7 +445,7 @@ public class DHCPJob implements Job {
 								mylog.debug(srv+"/"+key+": SQL Processed Reserve and lease with "+iplease.size()+" inserts");
 								globalcpt+=iplease.size();
 								stmtu.close();stmtu=null;
-							} catch (SQLException e) { erreur=true;mylog.warn("DHCP/GetScopeInfos-UpdateSQL: in SQL "+strSQL+" : "+e.getMessage(),null); }
+							} catch (SQLException e) { erreur=true;mylog.warn("DHCP/GetScopeInfos-UpdateSQL: in SQL "+strSQL+" : "+e.getMessage()); }
 							finally {
 								if (stmtu != null) { try { stmtu.close(); } catch (SQLException e) { mylog.error("DHCP/GetScopeInfos-stmtu",e); } stmtu = null; }
 							}

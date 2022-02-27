@@ -5,7 +5,7 @@ package ypodev.adrezo.schedulers;
  */
  
 import org.quartz.*;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.*;
 import java.util.*;
 import java.text.*;
 import java.sql.*;
@@ -15,7 +15,7 @@ import ypodev.adrezo.util.DbFunc;
 
 public class PurgeSupplyMvtJob implements Job {
 
-	private Logger mylog = Logger.getLogger(PurgeSupplyMvtJob.class);
+	private Logger mylog = LogManager.getLogger(PurgeSupplyMvtJob.class);
 
 	@Override
 	public void execute(JobExecutionContext context) throws JobExecutionException {

@@ -10,10 +10,10 @@ import javax.servlet.jsp.tagext.*;
 import java.sql.*;
 import javax.naming.*;
 import java.util.*;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.*;
 
 public class SqlTriggerTag extends SimpleTagSupport {
-	private Logger mylog = Logger.getLogger(SqlTriggerTag.class);
+	private Logger mylog = LogManager.getLogger(SqlTriggerTag.class);
 	public void doTag() throws IOException {
 		Connection conn = null;
 		Statement stmt = null;
