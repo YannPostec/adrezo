@@ -86,7 +86,7 @@ function FillBody(node) {
 				window.accordion=new TINY.accordion.slider("accordion");
 				accordion.init("acc","h3",0);
 				accordion.pr(1);
-				showAdmin(false);
+				if (T$("adminchoice")!=null) { showAdmin(false); }
 				T$("OldestPic").innerHTML=T$("OldestPicture").value;
 				T$("NewestPic").innerHTML=T$("NewestPicture").value;
 				T$("InfosDatesPhotos").style.display = "inline";
