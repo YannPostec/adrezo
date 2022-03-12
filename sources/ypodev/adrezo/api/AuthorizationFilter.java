@@ -95,6 +95,7 @@ public class AuthorizationFilter implements ContainerRequestFilter {
 					if (Role.PHOTO.equals(r) && !isPhoto(myrole)) { bCorrect = false; if (missing!=null) { missing += ",Photo"; } else { missing = "Photo"; } }
 					if (Role.STOCK.equals(r) && !isStock(myrole)) { bCorrect = false; if (missing!=null) { missing += ",Stock"; } else { missing = "Stock"; } }
 					if (Role.STKADMIN.equals(r) && !isStockAdmin(myrole)) { bCorrect = false; if (missing!=null) { missing += ",StockAdmin"; } else { missing = "StockAdmin"; } }
+					if (Role.TEMPLATE.equals(r) && !isTemplate(myrole)) { bCorrect = false; if (missing!=null) { missing += ",Template"; } else { missing = "Template"; } }
 				}
 				if (!bCorrect) { msg = "Missing roles "+missing; }
 			} else {
@@ -150,6 +151,11 @@ public class AuthorizationFilter implements ContainerRequestFilter {
 	private boolean isApi(Integer role) {
 		boolean isValid = false;
 		if ((role & 64) == 64) { isValid = true; }
+		return isValid;
+	}
+	private boolean isTemplate(Integer role) {
+		boolean isValid = false;
+		if ((role & 128) == 128) { isValid = true; }
 		return isValid;
 	}
 	

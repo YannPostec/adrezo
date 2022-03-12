@@ -11,5 +11,6 @@ public enum Role {
 	IP,
 	PHOTO,
 	STOCK,
-	STKADMIN
+	STKADMIN,
+	TEMPLATE
 }
