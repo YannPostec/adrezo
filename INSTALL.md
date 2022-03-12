@@ -13,7 +13,7 @@ You can copy it to a directory of your choice, suffix it with the version and li
 ## Prepare database connection
 
 1. Create a PostgreSQL database with UTF8 encoding and an account to access it  
-More on [PostgreSQL website](https://www.postgresql.org/docs/10/static/index.html)  
+More on [PostgreSQL website](https://www.postgresql.org/docs/13/index.html)  
 
 2. The JDBC Driver for PostgreSQL 10 is already in `WEB-INF/lib/jdbc-postgresql-10.3.jar`, you can delete it if you have your own in your instance classpath
 
@@ -39,10 +39,10 @@ The last three parameters (pool connections) can be changed as well to suits you
 If you need to change the jdbc/adrezo name, you must change it as well in `WEB-INF/web.xml`, see below section
 
 ## Customize log file
-All log configuration is in file `WEB-INF/classes/log4j.xml`
+All log configuration is in file `WEB-INF/classes/log4j2.xml`
 
 In all appenders configured, the file parameter contains the path to application `log` directory  
-Example : `${catalina.base}/webapps/adrezo/log/adrezo-default.log`  
+Example : `${sys:catalina.base}/webapps/adrezo/log/adrezo-default.log`  
 Change them if needed
 
 ## Customize web.xml

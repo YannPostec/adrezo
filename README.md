@@ -18,7 +18,7 @@ The application has been tested on :
   - Tomcat 9.0, 8.5, 7.0
   - Weblogic 12.2.1
 - Database Servers
-  - PostgreSQL 11.4, 10.3, 9.4
+  - PostgreSQL 13.5, 11.4, 10.3, 9.4
   - Oracle 12.1
 
 and with browsers :
@@ -48,7 +48,7 @@ You must copy or modify some files from the actual version :
 - pictures/ directory if you store pictures locally
 - WEB-INF/web.xml if needed
 - WEB-INF/classes/adrezo.properties if needed
-- WEB-INF/classes/log4j.xml if needed
+- WEB-INF/classes/log4j2.xml if needed
 - WEB-INF/classes/quartz-config.xml if needed
 - META-INF/context.xml
 
