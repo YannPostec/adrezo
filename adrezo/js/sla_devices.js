@@ -1,19 +1,4 @@
 //@Author: Yann POSTEC
-function CheckDisplay() {
-	var cbu = T$("cb_unk");
-	var cbd = T$("cb_destroy");
-	var tr = T$$("tr",T$("mytbody"));
-	for (var i=0;i<tr.length;i++) {
-		var site = T$$("td",tr[i])[2].firstChild.nextSibling.value;
-		var status = T$$("td",tr[i])[5].firstChild.nextSibling.value;
-		if ( (cbu.checked && site>0) || (cbd.checked && status==2) ) {
-			tr[i].style.display="none";
-		}
-		else {
-			tr[i].style.display=""
-		}
-	}
-}
 function FillSite(node,bModify) {
 	var tds = T$$("td",node.parentNode.parentNode);
 	var client = node.value;
@@ -175,7 +160,20 @@ function fillTable(sqlid,limit,offset,search,searchip,order,sqlsort,special) {
 			else {
 				var lines = T$$("line",response);
 				var cpt=0;
+
+				var cbu = T$("cb_unk");
+				var cbd = T$("cb_destroy");
+				
 				for (var i=0;i<lines.length;i++) {
+					// Check if non-Unknown Site with only display unknown checked
+					if (T$$("site",lines[i])[0].hasChildNodes()) {
+						if (cbu.checked && T$$("site",lines[i])[0].firstChild.nodeValue>0) { continue; }
+					}
+					// Check if status destroyed with dont display destroy checked
+					if (T$$("status",lines[i])[0].hasChildNodes()) {
+						if (cbd.checked && T$$("status",lines[i])[0].firstChild.nodeValue==2) { continue; }
+					}
+					
 					cpt++;
 					var shadowtr = T$("tableshadow").firstChild.firstChild;
 					var mytr = shadowtr.cloneNode(true);

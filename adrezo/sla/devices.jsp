@@ -61,8 +61,8 @@
 <select id="tpl_plan" style="display:none"><option><fmt:message key="common.select.plan" /></option><c:forEach items="${plans.rows}" var="plan"><option value="${plan.id}">${plan.id}-<c:choose><c:when test="${plan.id == 0}"><fmt:message key="sla.planning.anytime" /></c:when><c:otherwise>${plan.name}</c:otherwise></c:choose></option></c:forEach></select>
 <table id="tableshadow" style="display:none;"><tbody><tr><td style="text-align:center"><span onmouseover="javascript:tooltip.show('${lang_commonclickmod}')" onmouseout="javascript:tooltip.hide()"><img src="../img/icon_modify.jpg" alt="${lang_commonclickmod}" onclick="javascript:CreateModif(event)" /></span><span onmouseover="javascript:tooltip.show('${lang_commonclickvalid}')" onmouseout="javascript:tooltip.hide()" style="display:none;"><img src="../img/icon_valid.png" alt="${lang_commonclickvalid}" onclick="javascript:modSubmit(event)" /></span><span onmouseover="javascript:tooltip.show('${lang_commonclickcancel}')" onmouseout="javascript:tooltip.hide()" style="display:none;"><img src="../img/icon_refuse.png" alt="${lang_commonclickcancel}" onclick="javascript:CancelModif(event)" /></span></td></tr></tbody></table>
 <p><fmt:message key="sla.device.list" /> :<br />
-<input type="checkbox" id="cb_unk" onchange="javascript:CheckDisplay()" /> <fmt:message key="sla.device.unaffect" /><br />
-<input type="checkbox" id="cb_destroy" onchange="javascript:CheckDisplay()" /> <fmt:message key="sla.device.dispdestroyed" /></p>
+<input type="checkbox" id="cb_unk" onchange="javascript:sortTable()" /> <fmt:message key="sla.device.unaffect" /><br />
+<input type="checkbox" id="cb_destroy" onchange="javascript:sortTable()" /> <fmt:message key="sla.device.dispdestroyed" /></p>
 <div id="tablewrapper">
 	<div id="tableheader">
 		<div class="search">
