@@ -336,8 +336,8 @@ function insRow() {
 		case '2': txt += " LIKE lower('%" + val + "')";break;
 		case '3': txt += " IS NULL";break;
 		case '4': txt += " NOT LIKE lower('%" + val + "%')";break;
-		case '5': txt += " LIKE lower('" + val + "%')";break;
-		case '6': txt += " LIKE lower('%" + val + "')";break;
+		case '5': txt += " NOT LIKE lower('" + val + "%')";break;
+		case '6': txt += " NOT LIKE lower('%" + val + "')";break;
 		case '7': txt += " IS NOT NULL";break;
 		case '8': txt += " = " + val;break;
 		case '9': txt += " != " +val;break;
