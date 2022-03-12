@@ -30,7 +30,7 @@
 <li>16)  <fmt:message key="admin.right.adm.txt" /></li>
 <li>32)  <fmt:message key="admin.right.rezo.txt" /></li>
 <li>64)  <fmt:message key="admin.right.api.txt" /></li>
-<li>64)  <fmt:message key="admin.right.template.txt" /></li>
+<li>128)  <fmt:message key="admin.right.template.txt" /></li>
 </ul>
 </div>
 <hr />
