@@ -6,5 +6,7 @@
 <%response.setHeader("Content-Disposition", "attachment; filename=adrezo_contexte.csv");%>
 <% pageContext.setAttribute("newLineChar", "\n"); %>
 <c:if test="${validUser == null}"><jsp:forward page="../login.jsp"><jsp:param name="origURL" value="${pageContext.request.requestURL}" /><jsp:param name="errorKey" value="login.err" /></jsp:forward></c:if>
+<c:if test="${validUser.admin}">
 <sql:query var="ctxs">select * from contextes order by id</sql:query>
 <c:forEach items="${ctxs.rows}" var="ctx">CTX,${ctx.id},${ctx.name},${ctx.site_main}${newLineChar}</c:forEach>
+</c:if>

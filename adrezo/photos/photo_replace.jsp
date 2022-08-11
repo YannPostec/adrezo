@@ -7,6 +7,7 @@
 <fmt:setBundle basename="ypodev.adrezo.props.lang" />
 <%request.setCharacterEncoding("UTF-8");%>
 <c:if test="${validUser == null}"><jsp:forward page="../login.jsp"><jsp:param name="origURL" value="${pageContext.request.requestURL}" /><jsp:param name="errorKey" value="login.err" /></jsp:forward></c:if>
+<c:if test="${validUser.photo}">
 <fmt:message key="common.close" var="lang_commonclose" />
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -33,3 +34,4 @@
 </c:if>
 </body>
 </html>
+</c:if>

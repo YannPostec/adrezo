@@ -8,7 +8,7 @@
 <fmt:setBundle basename="ypodev.adrezo.props.lang" />
 <%@ taglib prefix="adrezo" uri="adrezotaglib" %>
 <%request.setCharacterEncoding("UTF-8");%>
-<c:if test="${validUser != null && pageContext.request.method == 'POST' && !empty param.id}">
+<c:if test="${validUser != null && validUser.read && pageContext.request.method == 'POST' && !empty param.id}">
 <fmt:message key="common.click.add" var="lang_commonclickadd" />
 <fmt:message key="common.click.mod" var="lang_commonclickmod" />
 <fmt:message key="common.click.del" var="lang_commonclickdel" />

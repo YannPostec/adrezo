@@ -18,8 +18,8 @@
 				<sql:update>insert into auth_annu_types (id,name) values (1,'LDAP')</sql:update>
 				<sql:update>insert into auth_annu (id,name,ordre,type) values (0,'Local',0,0)</sql:update>
 				<sql:update>insert into contextes (id,name,site_main) values (1,'Default',0)</sql:update>
-				<sql:update>insert into auth_roles (id,name,new_ctx,annu,grp,pref_ctx,grp_dn) values (0,'Read-Only',0,0,null,1,null)</sql:update>
-				<sql:update>insert into auth_roles (id,name,new_ctx,annu,grp,pref_ctx,grp_dn) values (1,'AdminLocal',255,0,null,1,null)</sql:update>
+				<sql:update>insert into auth_roles (id,name,new_ctx,annu,grp,pref_ctx,grp_dn) values (0,'NoAccess',0,0,null,1,null)</sql:update>
+				<sql:update>insert into auth_roles (id,name,new_ctx,annu,grp,pref_ctx,grp_dn) values (1,'AdminLocal',511,0,null,1,null)</sql:update>
 				<sql:update>insert into auth_rights (ctx,role,rights) values (1,0,0)</sql:update>
 				<sql:update>insert into auth_rights (ctx,role,rights) values (1,1,255)</sql:update>
 				<sql:update>insert into auth_users (login,pwd,mail,role,auth,id) values ('admin','hjK/szAmjNFtn2V7UktrRkjwXaCqXslE','root@adrezo',1,0,0)</sql:update>

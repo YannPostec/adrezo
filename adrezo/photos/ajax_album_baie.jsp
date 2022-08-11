@@ -10,7 +10,7 @@
 <%request.setCharacterEncoding("UTF-8");%>
 <fmt:message key="common.click.del" var="lang_commonclickdel" />
 <fmt:message key="common.click.mod" var="lang_commonclickmod" />
-<c:if test="${validUser != null && pageContext.request.method == 'POST' && !empty param.baieid && !empty param.baietype}">
+<c:if test="${validUser != null && validUser.read && pageContext.request.method == 'POST' && !empty param.baieid && !empty param.baietype}">
 <c:if test="${param.baietype == 'RH'}"><c:set var="txtBaie" value=" Avant Haut"/></c:if>
 <c:if test="${param.baietype == 'RB'}"><c:set var="txtBaie" value=" Avant Bas"/></c:if>
 <c:if test="${param.baietype == 'VH'}"><c:set var="txtBaie" value=" Arriere Haut"/></c:if>

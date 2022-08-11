@@ -9,7 +9,7 @@
 <%@ taglib prefix="adrezo" uri="adrezotaglib" %>
 <%request.setCharacterEncoding("UTF-8");%>
 <c:if test="${validUser == null}"><jsp:forward page="../login.jsp"><jsp:param name="origURL" value="${pageContext.request.requestURL}" /><jsp:param name="errorKey" value="login.err" /></jsp:forward></c:if>
-<c:if test="${!empty param.salle}">
+<c:if test="${validUser.read && !empty param.salle}">
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>

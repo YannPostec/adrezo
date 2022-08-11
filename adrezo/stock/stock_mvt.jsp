@@ -19,6 +19,7 @@ td.mvt {white-space:nowrap; text-align:center}
 </style>
 </head>
 <body>
+<c:choose><c:when test="${validUser.read}">
 <table>
 <thead><tr><th><fmt:message key="common.table.date" /></th><th><fmt:message key="common.table.cat" /></th><th><fmt:message key="common.table.idx" /></th><th><fmt:message key="common.table.def" /></th><th><fmt:message key="admin.user" /></th><th><fmt:message key="common.table.move" /></th><th><fmt:message key="common.table.inventory" /></th><th><fmt:message key="common.table.thresholdcross" /></th></tr></thead>
 <tbody>
@@ -69,5 +70,6 @@ td.mvt {white-space:nowrap; text-align:center}
 </c:if>
 </tbody>
 </table>
+</c:when><c:otherwise><fmt:message key="common.noaccess" /></c:otherwise></c:choose>
 </body>
 </html>

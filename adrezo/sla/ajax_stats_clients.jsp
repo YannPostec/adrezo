@@ -9,7 +9,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="adrezo" uri="adrezotaglib" %>
 <%request.setCharacterEncoding("UTF-8");%>
-<c:if test="${validUser != null && pageContext.request.method == 'POST' && !empty param.stamp1 && !empty param.stamp2 && !empty param.comp && !empty param.digit}">
+<c:if test="${validUser != null && validUser.read && pageContext.request.method == 'POST' && !empty param.stamp1 && !empty param.stamp2 && !empty param.comp && !empty param.digit}">
 <sql:query var="clients">select client,client_name,avg(case when stamp like '${param.stamp1}%' then availability else null end) as dispo1,avg(case when stamp like '${param.stamp2}%' then availability else null end) as dispo2 from slastats_display group by client,client_name order by client_name</sql:query>
 <c:forEach items="${clients.rows}" var="client">
 	<fmt:formatNumber value="${client.dispo1}" maxFractionDigits="${param.digit}" type="number" var="fmtDispo1" />

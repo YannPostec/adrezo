@@ -11,6 +11,7 @@
 <%@ taglib prefix="adrezo" uri="adrezotaglib" %>
 <%request.setCharacterEncoding("UTF-8");%>
 <c:if test="${validUser == null}"><jsp:forward page="../login.jsp"><jsp:param name="origURL" value="${pageContext.request.requestURL}" /><jsp:param name="errorKey" value="login.err" /></jsp:forward></c:if>
+<c:choose><c:when test="${validUser.read}">
 <fmt:message key="common.click.valid" var="lang_commonclickvalid" />
 <fmt:message key="common.click.xls" var="lang_commonclickxls" />
 <fmt:message key="sla.display" var="lang_sladisplay" />
@@ -61,3 +62,4 @@
 </c:choose>
 </body>
 </html>
+</c:when><c:otherwise><html><body><fmt:message key="common.noaccess" /></body></html></c:otherwise></c:choose>

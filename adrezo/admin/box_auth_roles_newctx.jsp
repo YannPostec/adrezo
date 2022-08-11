@@ -20,7 +20,7 @@
 <jsp:useBean id="testRoles" scope="page" class="ypodev.adrezo.beans.TestRolesBean" />
 <c:set target="${testRoles}" property="roles" value="${param.role}" />
 <table>
-<thead><tr><th><fmt:message key="admin.right.ip" /></th><th><fmt:message key="admin.right.photo" /></th><th><fmt:message key="admin.right.stock" /></th><th><fmt:message key="admin.right.stockadm" /></th><th><fmt:message key="admin.right.adm" /></th><th><fmt:message key="admin.right.rezo" /></th><th><fmt:message key="admin.right.api" /></th><th><fmt:message key="admin.right.template" /></th></tr></thead>
+<thead><tr><th><fmt:message key="admin.right.ip" /></th><th><fmt:message key="admin.right.photo" /></th><th><fmt:message key="admin.right.stock" /></th><th><fmt:message key="admin.right.stockadm" /></th><th><fmt:message key="admin.right.adm" /></th><th><fmt:message key="admin.right.rezo" /></th><th><fmt:message key="admin.right.api" /></th><th><fmt:message key="admin.right.template" /></th><th><fmt:message key="admin.right.read" /></th></tr></thead>
 <tbody>
 <tr id="newctx_tr">
 <td style="text-align:center"><input type="checkbox" value="true" <c:if test='${testRoles.ip}'> checked="true"</c:if> /></td>
@@ -31,8 +31,9 @@
 <td style="text-align:center"><input type="checkbox" value="true" <c:if test='${testRoles.rezo}'> checked="true"</c:if> /></td>
 <td style="text-align:center"><input type="checkbox" value="true" <c:if test='${testRoles.api}'> checked="true"</c:if> /></td>
 <td style="text-align:center"><input type="checkbox" value="true" <c:if test='${testRoles.template}'> checked="true"</c:if> /></td>
+<td style="text-align:center"><input type="checkbox" value="true" <c:if test='${testRoles.read}'> checked="true"</c:if> /></td>
 </tr>
-<tr><td colspan="6" style="text-align:center"><span onmouseover="javascript:tooltip.show('${lang_commonclickvalid}')" onmouseout="javascript:tooltip.hide()"><img src="../img/icon_valid.png" alt="${lang_commonclickvalid}" onclick="javascript:NewCtxValid('${param.elt}')" /></span></td></tr>
+<tr><td colspan="9" style="text-align:center"><span onmouseover="javascript:tooltip.show('${lang_commonclickvalid}')" onmouseout="javascript:tooltip.hide()"><img src="../img/icon_valid.png" alt="${lang_commonclickvalid}" onclick="javascript:NewCtxValid('${param.elt}')" /></span></td></tr>
 </tbody></table>
 </body></html>
 <c:remove var="testRoles" scope="page"/>

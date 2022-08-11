@@ -6,5 +6,7 @@
 <%response.setHeader("Content-Disposition", "attachment; filename=adrezo_iplight.csv");%>
 <% pageContext.setAttribute("newLineChar", "\n"); %>
 <c:if test="${validUser == null}"><jsp:forward page="../login.jsp"><jsp:param name="origURL" value="${pageContext.request.requestURL}" /><jsp:param name="errorKey" value="login.err" /></jsp:forward></c:if>
+<c:if test="${validUser.admin}">
 <sql:query var="ips">select id,ctx,site,subnet,ip,mask,name,def,mac from adresses order by id</sql:query>
 <c:forEach items="${ips.rows}" var="ip">IP,${ip.id},${ip.ctx},${ip.site},${ip.subnet},${ip.ip},${ip.mask},${ip.name},${ip.def},${ip.mac}${newLineChar}</c:forEach>
+</c:if>

@@ -6,5 +6,7 @@
 <%response.setHeader("Content-Disposition", "attachment; filename=adrezo_subnet.csv");%>
 <% pageContext.setAttribute("newLineChar", "\n"); %>
 <c:if test="${validUser == null}"><jsp:forward page="../login.jsp"><jsp:param name="origURL" value="${pageContext.request.requestURL}" /><jsp:param name="errorKey" value="login.err" /></jsp:forward></c:if>
+<c:if test="${validUser.admin}">
 <sql:query var="subnets">select * from subnets order by id</sql:query>
 <c:forEach items="${subnets.rows}" var="sub">SUBNET,${sub.id},${sub.ctx},${sub.site},${sub.vlan},${sub.ip},${sub.mask},${sub.def},${sub.gw},${sub.bc}${newLineChar}</c:forEach>
+</c:if>

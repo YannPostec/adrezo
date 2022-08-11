@@ -50,4 +50,9 @@ public class TestRolesBean implements Serializable {
 		if ((roles & 128) == 128) { isValid = true; }
 		return isValid;
 	}
+	public boolean isRead() {
+		boolean isValid = false;
+		if ((roles & 256) == 256) { isValid = true; }
+		return isValid;
+	}	
 }

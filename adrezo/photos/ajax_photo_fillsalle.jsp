@@ -6,7 +6,7 @@
 <%@ taglib prefix="adrezo" uri="adrezotaglib" %>
 <%request.setCharacterEncoding("UTF-8");%>
 <c:choose>
-<c:when test="${validUser != null && pageContext.request.method == 'POST' && !empty param.site}">
+<c:when test="${validUser != null && validUser.read && pageContext.request.method == 'POST' && !empty param.site}">
 	<c:set var="message"><valid>true</valid></c:set>
 	<sql:query var="salles">select id,name from salles where idsite=${param.site} order by name</sql:query>
 	<c:forEach items="${salles.rows}" var="salle">

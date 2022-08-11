@@ -13,6 +13,7 @@
 	<jsp:forward page="../login.jsp"><jsp:param name="origURL" value="${pageContext.request.requestURL}" /><jsp:param name="errorKey" value="login.err" /></jsp:forward>
 </c:when>
 <c:otherwise>
+<c:if test="${validUser.admin}">
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head><title><fmt:message key="admin.global.mysql" /></title>
@@ -34,5 +35,6 @@
 </body>
 </html>
 <c:remove var="mysql" scope="page" />
+</c:if>
 </c:otherwise>
 </c:choose>

@@ -11,6 +11,7 @@
 <%@ taglib prefix="adrezo" uri="adrezotaglib" %>
 <%request.setCharacterEncoding("UTF-8");%>
 <c:if test="${validUser == null}"><jsp:forward page="../login.jsp"><jsp:param name="origURL" value="${pageContext.request.requestURL}" /><jsp:param name="errorKey" value="login.err" /></jsp:forward></c:if>
+<c:choose><c:when test="${validUser.read}">
 <fmt:message key="common.click.add" var="lang_commonclickadd" />
 <fmt:message key="common.click.mod" var="lang_commonclickmod" />
 <fmt:message key="common.click.del" var="lang_commonclickdel" />
@@ -68,3 +69,4 @@ accroot.init("acc0","h3",0,-1);
 <div id="dlgcontent"/>
 </body>
 </html>
+</c:when><c:otherwise><html><body><fmt:message key="common.noaccess" /></body></html></c:otherwise></c:choose>

@@ -8,7 +8,7 @@
 <fmt:setBundle basename="ypodev.adrezo.props.lang" />
 <%@ taglib prefix="adrezo" uri="adrezotaglib" %>
 <%request.setCharacterEncoding("UTF-8");%>
-<c:if test="${validUser != null && pageContext.request.method == 'POST' && !empty param.subnet && !empty param.ip}">
+<c:if test="${validUser != null && validUser.read && pageContext.request.method == 'POST' && !empty param.subnet && !empty param.ip}">
 <sql:query var="subs">select def,ip,mask,site_name from subnets_display where ctx=${validUser.ctx} and id=${param.subnet}</sql:query>
 <sql:query var="ips">select ip from adresses where ctx=${validUser.ctx} and subnet=${param.subnet} and ip='${param.ip}'</sql:query>
 <c:forEach items="${subs.rows}" var="sub">${sub.site_name}, ${sub.def} (<adrezo:displayIP value="${sub.ip}" />/${sub.mask})</c:forEach>

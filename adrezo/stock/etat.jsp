@@ -8,6 +8,7 @@
 <fmt:setBundle basename="ypodev.adrezo.props.lang" />
 <%request.setCharacterEncoding("UTF-8");%>
 <c:if test="${validUser == null}"><jsp:forward page="../login.jsp"><jsp:param name="origURL" value="${pageContext.request.requestURL}" /><jsp:param name="errorKey" value="login.err" /></jsp:forward></c:if>
+<c:choose><c:when test="${validUser.read}">
 <fmt:message key="stock.mgt.gomain" var="lang_stkgomain" />
 <fmt:message key="stock.xls.click.stock" var="lang_stkclickstock" />
 <fmt:message key="stock.xls.click.mvt" var="lang_stkclickmvt" />
@@ -97,3 +98,4 @@
 </c:otherwise></c:choose>
 </body>
 </html>
+</c:when><c:otherwise><html><body><fmt:message key="common.noaccess" /></body></html></c:otherwise></c:choose>

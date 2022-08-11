@@ -17,7 +17,7 @@
 <fmt:message key="photo.mod.RB" var="lang_photomodRB" />
 <fmt:message key="photo.mod.VH" var="lang_photomodVH" />
 <fmt:message key="photo.mod.VB" var="lang_photomodVB" />
-<c:if test="${validUser != null && pageContext.request.method == 'POST' && !empty param.salle}">
+<c:if test="${validUser != null && validUser.read && pageContext.request.method == 'POST' && !empty param.salle}">
 <jsp:useBean id="today" scope="page" class="java.util.Date" />
 <jsp:useBean id="olddate" scope="page" class="java.util.Date">
 	<c:set target="${olddate}" property="time" value="0" />

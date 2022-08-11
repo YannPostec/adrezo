@@ -85,6 +85,30 @@ public class UserInfoBean implements Serializable {
 		
 		return result;
 	}
+	private boolean GrantAccess() {
+		boolean result = false;
+		Enumeration ectx = this.roles.keys();
+		while(ectx.hasMoreElements()) {
+			String contexte = (String) ectx.nextElement();
+			Integer erights = this.roles.get(contexte);
+			if (erights>0) { result = true; }
+		}
+		
+		return result;
+	}
+	private void DefaultCtx() {
+		boolean bFound = false;
+		Enumeration ectx = this.roles.keys();
+		while(!bFound && ectx.hasMoreElements()) {
+			String contexte = (String) ectx.nextElement();
+			Integer erights = this.roles.get(contexte);
+			if (erights>0) {
+				bFound=true;
+				this.ctx=contexte;
+				this.role = erights;
+			}
+		}
+	}
 	private void Authentication() {
 		Connection conn = null;
 		Statement stmt = null;
@@ -216,13 +240,13 @@ public class UserInfoBean implements Serializable {
 			}
 			if (!bAuth) { printLog(prop.getString("user.err"),null); }
 			else {
-				// Start Roles : Role Read-only
+				// Start Roles : NoAccess
 				rs=stmt.executeQuery("select ctx,rights from auth_rights where role = 0");
 				Hashtable<String,Integer> readonly = new Hashtable<String,Integer>();
 				while(rs.next()) {
 					readonly.put(String.valueOf(rs.getInt("ctx")),rs.getInt("rights"));
 				}
-				// Start Ctx : Role Read-Only
+				// Start Ctx : Role NoAccess
 				rs=stmt.executeQuery("select pref_ctx from auth_roles where id = 0");
 				if (rs.next()) {
 					this.ctx = String.valueOf(rs.getInt("pref_ctx"));
@@ -341,27 +365,35 @@ public class UserInfoBean implements Serializable {
 							temproles.put(String.valueOf(rs.getInt("ctx")),rs.getInt("rights"));
 						}
 						this.roles = MergeRoles(this.roles,temproles);
-						this.role = this.roles.get(this.ctx);					
+						this.role = this.roles.get(this.ctx);
 					}
 				}
 				rs.close();rs = null;
-				if (!login.equals("admin")) {
-					rscookie = stmt.executeQuery("select ctx,lang,url,slidetime,macsearch from usercookie where login = '"+login+"'");
-					if (rscookie.next()) {
-						this.ctx = String.valueOf(rscookie.getInt("ctx"));
-						this.lang = rscookie.getString("lang");
-						this.url = String.valueOf(rscookie.getInt("url"));
-						this.macsearch = String.valueOf(rscookie.getInt("macsearch"));
-						this.slidetime = String.valueOf(rscookie.getInt("slidetime"));
-						stmt.executeUpdate("update usercookie set mail='"+this.mail+"',last = "+DbFunc.ToDateStr()+"('"+new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new java.util.Date())+"','YYYY-MM-DD HH24:MI:SS') where login = '"+login+"'");
-					} else {
-						stmt.executeUpdate("insert into usercookie (login,mail,ctx,lang,last) values ('"+login+"','"+this.mail+"',"+this.ctx+",'"+this.lang+"',"+DbFunc.ToDateStr()+"('"+new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new java.util.Date())+"','YYYY-MM-DD HH24:MI:SS'))");
-						this.url = "1";
-						this.macsearch = "1";
-						this.slidetime = "2000";
+				// If rights exists in at least one ctx, manage cookie infos
+				if (GrantAccess()) {
+					if (!login.equals("admin")) {
+						rscookie = stmt.executeQuery("select ctx,lang,url,slidetime,macsearch from usercookie where login = '"+login+"'");
+						if (rscookie.next()) {
+							this.ctx = String.valueOf(rscookie.getInt("ctx"));
+							this.role = this.roles.get(this.ctx);
+							this.lang = rscookie.getString("lang");
+							this.url = String.valueOf(rscookie.getInt("url"));
+							this.macsearch = String.valueOf(rscookie.getInt("macsearch"));
+							this.slidetime = String.valueOf(rscookie.getInt("slidetime"));
+							stmt.executeUpdate("update usercookie set mail='"+this.mail+"',last = "+DbFunc.ToDateStr()+"('"+new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new java.util.Date())+"','YYYY-MM-DD HH24:MI:SS') where login = '"+login+"'");
+						} else {
+							stmt.executeUpdate("insert into usercookie (login,mail,ctx,lang,last) values ('"+login+"','"+this.mail+"',"+this.ctx+",'"+this.lang+"',"+DbFunc.ToDateStr()+"('"+new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new java.util.Date())+"','YYYY-MM-DD HH24:MI:SS'))");
+							this.url = "1";
+							this.macsearch = "1";
+							this.slidetime = "2000";
+						}
+						rscookie.close();rscookie = null;
 					}
-					rscookie.close();rscookie = null;
+					//Verify the ctx selected after login has rights
+					if (!readCtx(this.ctx)) { DefaultCtx(); }
 				}
+				// Else invalidate user
+				else { printLog(prop.getString("user.noright"),null); }
 			}
 			stmt.close();stmt = null;
 			stmt2.close();stmt2 = null;
@@ -457,13 +489,74 @@ public class UserInfoBean implements Serializable {
 		if ((role & 128) == 128) { isValid = true; }
 		return isValid;
 	}
+	public boolean isRead() {
+		boolean isValid = false;
+		if ((role & 256) == 256) { isValid = true; }
+		return isValid;
+	}
 	
 	//Public Testers on specified ctx
+	public boolean ipCtx(String myctx) {
+		boolean isValid = false;
+		Integer myrole = 0;
+		if (this.roles.containsKey(myctx)) { myrole = this.roles.get(myctx); }
+		if ((myrole & 1) == 1) { isValid = true; }
+		return isValid;
+	}
+	public boolean photoCtx(String myctx) {
+		boolean isValid = false;
+		Integer myrole = 0;
+		if (this.roles.containsKey(myctx)) { myrole = this.roles.get(myctx); }
+		if ((myrole & 2) == 2) { isValid = true; }
+		return isValid;
+	}
 	public boolean stockCtx(String myctx) {
 		boolean isValid = false;
 		Integer myrole = 0;
 		if (this.roles.containsKey(myctx)) { myrole = this.roles.get(myctx); }
 		if ((myrole & 4) == 4) { isValid = true; }
+		return isValid;
+	}
+	public boolean stockadminCtx(String myctx) {
+		boolean isValid = false;
+		Integer myrole = 0;
+		if (this.roles.containsKey(myctx)) { myrole = this.roles.get(myctx); }
+		if ((myrole & 8) == 8) { isValid = true; }
+		return isValid;
+	}
+	public boolean adminCtx(String myctx) {
+		boolean isValid = false;
+		Integer myrole = 0;
+		if (this.roles.containsKey(myctx)) { myrole = this.roles.get(myctx); }
+		if ((myrole & 16) == 16) { isValid = true; }
+		return isValid;
+	}
+	public boolean rezoCtx(String myctx) {
+		boolean isValid = false;
+		Integer myrole = 0;
+		if (this.roles.containsKey(myctx)) { myrole = this.roles.get(myctx); }
+		if ((myrole & 32) == 32) { isValid = true; }
+		return isValid;
+	}
+	public boolean apiCtx(String myctx) {
+		boolean isValid = false;
+		Integer myrole = 0;
+		if (this.roles.containsKey(myctx)) { myrole = this.roles.get(myctx); }
+		if ((myrole & 64) == 64) { isValid = true; }
+		return isValid;
+	}
+	public boolean templateCtx(String myctx) {
+		boolean isValid = false;
+		Integer myrole = 0;
+		if (this.roles.containsKey(myctx)) { myrole = this.roles.get(myctx); }
+		if ((myrole & 128) == 128) { isValid = true; }
+		return isValid;
+	}
+	public boolean readCtx(String myctx) {
+		boolean isValid = false;
+		Integer myrole = 0;
+		if (this.roles.containsKey(myctx)) { myrole = this.roles.get(myctx); }
+		if ((myrole & 256) == 256) { isValid = true; }
 		return isValid;
 	}
 }

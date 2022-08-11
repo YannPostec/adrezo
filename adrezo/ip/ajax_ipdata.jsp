@@ -7,7 +7,7 @@
 <%@ taglib prefix="json" uri="http://www.atg.com/taglibs/json" %>
 <%request.setCharacterEncoding("UTF-8");%>
 <c:choose>
-<c:when test="${validUser != null && pageContext.request.method == 'POST'}">
+<c:when test="${validUser != null && validUser.read && pageContext.request.method == 'POST'}">
 <sql:query var="sites">select id,name from sites where ctx=${validUser.ctx} order by name</sql:query>
 <sql:query var="subs">select id,def,ip,mask,site from subnets where ctx=${validUser.ctx} order by def</sql:query>
 <sql:query var="types">select distinct type from adresses where ctx=${validUser.ctx} order by type</sql:query>

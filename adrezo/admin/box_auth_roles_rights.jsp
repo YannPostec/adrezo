@@ -22,7 +22,7 @@
 <h2><fmt:message key="admin.boxroleright.text" /><fmt:message key="common.space" />${param.name}</h2>
 <div><fmt:message key="admin.right.reminder" /> :
 <ul>
-<li>0)   <fmt:message key="admin.right.ro.txt" /></li>
+<li>0)   <fmt:message key="admin.right.noaccess.txt" /></li>
 <li>1)   <fmt:message key="admin.right.ip.txt" /></li>
 <li>2)   <fmt:message key="admin.right.photo.txt" /></li>
 <li>4)   <fmt:message key="admin.right.stock.txt" /></li>
@@ -31,11 +31,12 @@
 <li>32)  <fmt:message key="admin.right.rezo.txt" /></li>
 <li>64)  <fmt:message key="admin.right.api.txt" /></li>
 <li>128)  <fmt:message key="admin.right.template.txt" /></li>
+<li>256)  <fmt:message key="admin.right.read.txt" /></li>
 </ul>
 </div>
 <hr />
 <table id="right_table">
-<thead><tr><th><fmt:message key="admin.ctx" /></th><th><fmt:message key="admin.right.ip" /></th><th><fmt:message key="admin.right.photo" /></th><th><fmt:message key="admin.right.stock" /></th><th><fmt:message key="admin.right.stockadm" /></th><th><fmt:message key="admin.right.adm" /></th><th><fmt:message key="admin.right.rezo" /></th><th><fmt:message key="admin.right.api" /></th><th><fmt:message key="admin.right.template" /></th></tr></thead>
+<thead><tr><th><fmt:message key="admin.ctx" /></th><th><fmt:message key="admin.right.ip" /></th><th><fmt:message key="admin.right.photo" /></th><th><fmt:message key="admin.right.stock" /></th><th><fmt:message key="admin.right.stockadm" /></th><th><fmt:message key="admin.right.adm" /></th><th><fmt:message key="admin.right.rezo" /></th><th><fmt:message key="admin.right.api" /></th><th><fmt:message key="admin.right.template" /></th><th><fmt:message key="admin.right.read" /></th></tr></thead>
 <tbody>
 <c:forEach items="${rights.rows}" var="right">
 <c:set target="${testRoles}" property="roles" value="${right.rights}" />
@@ -49,9 +50,10 @@
 <td style="text-align:center"><input type="checkbox" value="true" <c:if test='${testRoles.rezo}'> checked="true"</c:if> /></td>
 <td style="text-align:center"><input type="checkbox" value="true" <c:if test='${testRoles.api}'> checked="true"</c:if> /></td>
 <td style="text-align:center"><input type="checkbox" value="true" <c:if test='${testRoles.template}'> checked="true"</c:if> /></td>
+<td style="text-align:center"><input type="checkbox" value="true" <c:if test='${testRoles.read}'> checked="true"</c:if> /></td>
 </tr>
 </c:forEach>
-<tr><td colspan="6" style="text-align:center"><span onmouseover="javascript:tooltip.show('${lang_commonclickvalid}')" onmouseout="javascript:tooltip.hide()"><img src="../img/icon_valid.png" alt="${lang_commonclickvalid}" onclick="javascript:RightsValid(event,${param.id})" /></span></td></tr>
+<tr><td colspan="10" style="text-align:center"><span onmouseover="javascript:tooltip.show('${lang_commonclickvalid}')" onmouseout="javascript:tooltip.hide()"><img src="../img/icon_valid.png" alt="${lang_commonclickvalid}" onclick="javascript:RightsValid(event,${param.id})" /></span></td></tr>
 </tbody></table>
 </body></html>
 <c:remove var="testRoles" scope="page"/>

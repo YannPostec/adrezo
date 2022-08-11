@@ -4,7 +4,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql" %>
 <%request.setCharacterEncoding("UTF-8");%>
-<c:if test="${validUser != null && pageContext.request.method == 'POST' && !empty param.ip}">
+<c:if test="${validUser != null && validUser.read && pageContext.request.method == 'POST' && !empty param.ip}">
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>

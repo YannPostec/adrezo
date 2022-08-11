@@ -8,6 +8,7 @@
 <fmt:setBundle basename="ypodev.adrezo.props.lang" />
 <%request.setCharacterEncoding("UTF-8");%>
 <c:if test="${validUser == null}"><jsp:forward page="../login.jsp"><jsp:param name="origURL" value="${pageContext.request.requestURL}" /><jsp:param name="errorKey" value="login.err" /></jsp:forward></c:if>
+<c:choose><c:when test="${validUser.read}">
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head><title><fmt:message key="info.mask.title" /></title>
@@ -55,3 +56,4 @@
 <tr><td>31</td><td>255.255.255.254</td></tr>
 <tr><td>32</td><td>255.255.255.255</td></tr>
 </tbody></table></body></html>
+</c:when><c:otherwise><html><body><fmt:message key="common.noaccess" /></body></html></c:otherwise></c:choose>

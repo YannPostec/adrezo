@@ -11,7 +11,7 @@
 	<ul><c:forEach items="${langues.rows}" var="lang">
 	<li><a <c:if test="${validUser.lang == lang.code}">class="langselect" </c:if>href="javascript:chgLang('${lang.code}');"><img src="${pageContext.request.contextPath}/img/flags/${lang.code}.png" /></a>
 	</li></c:forEach></ul></li>
-	<li class="menulink"><form method="post" action="${pageContext.request.contextPath}/chg_ctx.jsp"><div><input type="hidden" name="backURL" value="<c:out value='${pageContext.request.requestURL}' escapeXml='true'/>" /><select name="contexte" onchange="javascript:submit()"><c:forEach items="${contextes.rows}" var="ctx"><option value="${ctx.ID}"<c:if test="${validUser.ctx == ctx.ID}"> selected="selected"</c:if>>${ctx.NAME}</option></c:forEach></select></div></form></li>
+	<li class="menulink"><form method="post" action="${pageContext.request.contextPath}/chg_ctx.jsp"><div><input type="hidden" name="backURL" value="<c:out value='${pageContext.request.requestURL}' escapeXml='true'/>" /><select name="contexte" onchange="javascript:submit()"><c:forEach items="${contextes.rows}" var="ctx"><c:set var="myid">${ctx.id}</c:set><c:if test="${validUser.readCtx(myid)}"><option value="${ctx.ID}"<c:if test="${validUser.ctx == ctx.ID}"> selected="selected"</c:if>>${ctx.NAME}</option></c:if></c:forEach></select></div></form></li>
 
 <c:if test="${validUser.admin}">
 	<li><a href="#" class="menulink"><fmt:message key="menu.admin" bundle="${bunmenu}" /></a>
@@ -21,7 +21,7 @@
 			<li><a href="${pageContext.request.contextPath}/admin/auth_roles.jsp"><fmt:message key="menu.admin.role" bundle="${bunmenu}" /></a></li>
 			<li><a href="${pageContext.request.contextPath}/admin/auth_users.jsp"><fmt:message key="menu.admin.usr" bundle="${bunmenu}" /></a></li>
 			<li><a href="${pageContext.request.contextPath}/admin/contextes.jsp"><fmt:message key="menu.admin.ctx" bundle="${bunmenu}" /></a></li>
-						<li><a href="${pageContext.request.contextPath}/admin/mails.jsp"><fmt:message key="menu.admin.mail" bundle="${bunmenu}" /></a></li>
+			<li><a href="${pageContext.request.contextPath}/admin/mails.jsp"><fmt:message key="menu.admin.mail" bundle="${bunmenu}" /></a></li>
 			<li><a href="${pageContext.request.contextPath}/admin/csv.jsp"><fmt:message key="menu.admin.csv" bundle="${bunmenu}" /></a></li>
 			<li><a href="${pageContext.request.contextPath}/admin/api.jsp"><fmt:message key="menu.admin.api" bundle="${bunmenu}" /></a></li>
 			<li><a href="${pageContext.request.contextPath}/admin/schedulers.jsp"><fmt:message key="menu.admin.schedulers" bundle="${bunmenu}" /></a></li>

@@ -9,7 +9,7 @@
 <%@ taglib prefix="adrezo" uri="adrezotaglib" %>
 <%request.setCharacterEncoding("UTF-8");%>
 <c:choose>
-<c:when test="${validUser != null && pageContext.request.method == 'POST'}">
+<c:when test="${validUser != null && validUser.read && pageContext.request.method == 'POST'}">
 <c:set var="message"><valid>true</valid></c:set>
 <c:choose><c:when test="${empty param.limit}"><c:set var="limit" value="40"/></c:when><c:otherwise><c:set var="limit" value="${param.limit}"/></c:otherwise></c:choose>
 <c:choose><c:when test="${empty param.page}"><c:set var="page" value="1"/></c:when><c:otherwise><c:set var="page" value="${param.page}"/></c:otherwise></c:choose>
