@@ -47,7 +47,7 @@ function addSubmit(e) {
 		if (name.indexOf("/") != -1) { strAlert += "- "+langdata.name+": "+langdata.verifnoslash+"<br />"; }
 		if (name.length > 40) { strAlert += "- "+langdata.name+": "+langdata.verifsize+" : 40<br />"; }
 	}
-	if (!newctx || isNaN(newctx) || newctx < 0 || newctx > 255) { strAlert += "- "+langdata.newctx+": "+langdata.verifnumber+" < 256<br />"; }
+	if (!newctx || isNaN(newctx) || newctx < 0 || newctx > 511) { strAlert += "- "+langdata.newctx+": "+langdata.verifnumber+" < 512<br />"; }
 	
 	if (strAlert != "") {
 		showDialog(langdata.invalidfield+" :",strAlert,"warning",0,1);
