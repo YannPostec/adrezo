@@ -5,7 +5,7 @@
 			<PatternLayout pattern="%d %-5p (%c.java:%L).%M - %m%n"/>
 		</Console>
 		
-		<RollingFile name="default.file" fileName="${sys:catalina.base}/webapps/adrezo/log/adrezo-default.log" append="true">
+		<RollingFile name="default.file" fileName="${sys:catalina.base}/webapps/adrezo/log/adrezo-default.log" filePattern="%d{yyyy-MM-dd HH:mm:ss} %-5p %m%n" append="true">
 			<PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} %-5p %c{1}:%L - %m%n"/>
 			<Policies>
         <SizeBasedTriggeringPolicy size="200 KB"/>
@@ -14,7 +14,7 @@
       <DefaultRolloverStrategy max="5"/>
 		</RollingFile>
 
-		<RollingFile name="servlets.file" fileName="${sys:catalina.base}/webapps/adrezo/log/adrezo-servlets.log" append="true">
+		<RollingFile name="servlets.file" fileName="${sys:catalina.base}/webapps/adrezo/log/adrezo-servlets.log" filePattern="%d{yyyy-MM-dd HH:mm:ss} %-5p %m%n" append="true">
 			<PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} %-5p %c{1}:%L - %m%n"/>
 			<Policies>
         <SizeBasedTriggeringPolicy size="200 KB"/>
@@ -23,7 +23,7 @@
       <DefaultRolloverStrategy max="5"/>
 		</RollingFile>
 
-		<RollingFile name="listener.file" fileName="${sys:catalina.base}/webapps/adrezo/log/adrezo-listener.log" append="true">
+		<RollingFile name="listener.file" fileName="${sys:catalina.base}/webapps/adrezo/log/adrezo-listener.log" filePattern="%d{yyyy-MM-dd HH:mm:ss} %-5p %m%n" append="true">
 			<PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} %-5p %c{1}:%L - %m%n"/>
 			<Policies>
         <SizeBasedTriggeringPolicy size="200 KB"/>
@@ -32,7 +32,7 @@
       <DefaultRolloverStrategy max="5"/>
 		</RollingFile>
 
-		<RollingFile name="api.file" fileName="${sys:catalina.base}/webapps/adrezo/log/adrezo-api.log" append="true">
+		<RollingFile name="api.file" fileName="${sys:catalina.base}/webapps/adrezo/log/adrezo-api.log" filePattern="%d{yyyy-MM-dd HH:mm:ss} %-5p %m%n" append="true">
 			<PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} %-5p %c{1}:%L - %m%n"/>
 			<Policies>
         <SizeBasedTriggeringPolicy size="200 KB"/>
@@ -41,7 +41,7 @@
       <DefaultRolloverStrategy max="5"/>
 		</RollingFile>
 
-		<RollingFile name="beans.file" fileName="${sys:catalina.base}/webapps/adrezo/log/adrezo-beans.log" append="true">
+		<RollingFile name="beans.file" fileName="${sys:catalina.base}/webapps/adrezo/log/adrezo-beans.log" filePattern="%d{yyyy-MM-dd HH:mm:ss} %-5p %m%n" append="true">
 			<PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} %-5p %c{1}:%L - %m%n"/>
 			<Policies>
         <SizeBasedTriggeringPolicy size="200 KB"/>
@@ -50,7 +50,7 @@
       <DefaultRolloverStrategy max="5"/>
 		</RollingFile>
 
-		<RollingFile name="jsp.file" fileName="${sys:catalina.base}/webapps/adrezo/log/adrezo-jsp.log" append="true">
+		<RollingFile name="jsp.file" fileName="${sys:catalina.base}/webapps/adrezo/log/adrezo-jsp.log" filePattern="%d{yyyy-MM-dd HH:mm:ss} %-5p %m%n" append="true">
 			<PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} %-5p %c{1}:%L - %m%n"/>
 			<Policies>
         <SizeBasedTriggeringPolicy size="200 KB"/>
@@ -59,7 +59,7 @@
       <DefaultRolloverStrategy max="5"/>
 		</RollingFile>
 
-		<RollingFile name="quartz.file" fileName="${sys:catalina.base}/webapps/adrezo/log/quartz.log" append="true">
+		<RollingFile name="quartz.file" fileName="${sys:catalina.base}/webapps/adrezo/log/quartz.log" filePattern="%d{yyyy-MM-dd HH:mm:ss} %-5p %m%n" append="true">
 			<PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} %-5p %c{1}:%L - %m%n"/>
 			<Policies>
         <SizeBasedTriggeringPolicy size="200 KB"/>
@@ -68,7 +68,7 @@
       <DefaultRolloverStrategy max="5"/>
 		</RollingFile>
 		
-		<RollingFile name="quartzjobs.file" fileName="${sys:catalina.base}/webapps/adrezo/log/quartz-jobs.log" append="true">
+		<RollingFile name="quartzjobs.file" fileName="${sys:catalina.base}/webapps/adrezo/log/quartz-jobs.log" filePattern="%d{yyyy-MM-dd HH:mm:ss} %-5p %m%n" append="true">
 			<PatternLayout pattern="%d{yyyy-MM-dd HH:mm} %-5p %c{1}: - %m%n"/>
 			<Policies>
         <SizeBasedTriggeringPolicy size="200 KB"/>
@@ -77,7 +77,7 @@
       <DefaultRolloverStrategy max="5"/>
 		</RollingFile>
 		
-		<RollingFile name="database.file" fileName="${sys:catalina.base}/webapps/adrezo/log/database.log" append="true">
+		<RollingFile name="database.file" fileName="${sys:catalina.base}/webapps/adrezo/log/database.log" filePattern="%d{yyyy-MM-dd HH:mm:ss} %-5p %m%n" append="true">
 			<PatternLayout pattern="%d{yyyy-MM-dd HH:mm} %-5p %m%n"/>
 			<Policies>
         <SizeBasedTriggeringPolicy size="500 KB"/>
