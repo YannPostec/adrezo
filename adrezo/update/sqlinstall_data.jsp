@@ -21,7 +21,7 @@
 				<sql:update>insert into auth_roles (id,name,new_ctx,annu,grp,pref_ctx,grp_dn) values (0,'NoAccess',0,0,null,1,null)</sql:update>
 				<sql:update>insert into auth_roles (id,name,new_ctx,annu,grp,pref_ctx,grp_dn) values (1,'AdminLocal',511,0,null,1,null)</sql:update>
 				<sql:update>insert into auth_rights (ctx,role,rights) values (1,0,0)</sql:update>
-				<sql:update>insert into auth_rights (ctx,role,rights) values (1,1,256)</sql:update>
+				<sql:update>insert into auth_rights (ctx,role,rights) values (1,1,511)</sql:update>
 				<sql:update>insert into auth_users (login,pwd,mail,role,auth,id) values ('admin','hjK/szAmjNFtn2V7UktrRkjwXaCqXslE','root@adrezo',1,0,0)</sql:update>
 				<sql:update>insert into dhcp_type (id,name,port) values (1,'MS Windows DHCP Server',6660)</sql:update>
 				<sql:update>insert into ipurl (id,proto,port,uri) values (1,'http',null,'')</sql:update>
