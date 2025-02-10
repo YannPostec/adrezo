@@ -10,8 +10,8 @@ function ConfirmDlg(e) {
 	var node = e.target;
 	var tds = T$$("td",node.parentNode.parentNode.parentNode);
 	var id = tds[5].firstChild.value;
-	var box = tds[4].firstChild.value;
-	var num = tds[6].firstChild.value;
+	var box = tds[4].firstChild.nextSibling.value;
+	var num = tds[6].firstChild.nextSibling.value;
 	showDialog(langdata.confirm,langdata.objdel+"<br/><br/><input type='button' value='"+langdata.dlgyes+"' onclick='javascript:delSubmit("+id+","+box+","+num+");'/>  <input type='button' value='"+langdata.dlgno+"' onclick='hideDialog();'/>","prompt",0,1);
 }
 function FillSalle(node,bModify) {
