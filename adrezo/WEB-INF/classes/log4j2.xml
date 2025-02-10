@@ -92,15 +92,15 @@
 			<AppenderRef ref="quartz.file"/>
 		</Logger>
 	
-		<Logger name="ypodev.adrezo.schedulers" level="debug" additivity="false">
+		<Logger name="ypodev.adrezo.schedulers" level="info" additivity="false">
 			<AppenderRef ref="quartzjobs.file"/>
 		</Logger>
 
-		<Logger name="ypodev.adrezo.servlets" level="debug" additivity="false">
+		<Logger name="ypodev.adrezo.servlets" level="info" additivity="false">
 			<AppenderRef ref="servlets.file"/>
 		</Logger>
 	
-		<Logger name="ypodev.adrezo.listener" level="debug" additivity="false">
+		<Logger name="ypodev.adrezo.listener" level="info" additivity="false">
 			<AppenderRef ref="listener.file"/>
 		</Logger>
 
@@ -108,7 +108,7 @@
 			<AppenderRef ref="api.file"/>
 		</Logger>
 	
-		<Logger name="ypodev.adrezo.beans" level="debug" additivity="false">
+		<Logger name="ypodev.adrezo.beans" level="info" additivity="false">
 			<AppenderRef ref="beans.file"/>
 		</Logger>
 	
