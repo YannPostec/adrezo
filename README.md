@@ -13,13 +13,10 @@ Some features available are :
 
 ## Environment
 
-The application has been tested on :
-- Applications Servers
-  - Tomcat 9.0, 8.5, 7.0
-  - Weblogic 12.2.1
-- Database Servers
-  - PostgreSQL 13.5, 11.4, 10.3, 9.4
-  - Oracle 12.1
+The application is designed to work on :
+- Tomcat 9.0 as application server with JDK 17
+- PostgreSQL 17 as database server
+it was originally designed to work on Weblogic 12 with Oracle 12.1
 
 and with browsers :
 - Vivaldi

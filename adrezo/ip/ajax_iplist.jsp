@@ -16,12 +16,12 @@
 <c:choose><c:when test="${adrezo:envEntry('db_type') == 'oracle'}">
 	<sql:query var="count">
 		SELECT ceil(COUNT(*)/${limit}) FROM ADRESSES WHERE CTX = ${param.ctx}	
-		<c:if test="${!empty param.search}">AND ${param.search}</c:if>
+		<c:if test="${!empty param.search}"> AND ${param.search}</c:if>
 	</sql:query>
 </c:when><c:when test="${adrezo:envEntry('db_type') == 'postgresql'}">
 	<sql:query var="count">
 		SELECT ceil(COUNT(*)/${limit}.0) FROM ADRESSES WHERE CTX = ${param.ctx}	
-		<c:if test="${!empty param.search}">AND ${param.search}</c:if>
+		<c:if test="${!empty param.search}"> AND ${param.search}</c:if>
 	</sql:query>
 </c:when></c:choose>
 <c:set var="nbPage" value="${count.rowsByIndex[0][0]}" />

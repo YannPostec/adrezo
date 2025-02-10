@@ -28,7 +28,7 @@
 </head>
 <body>
 <%@ include file="../menu.jsp" %>
-<c:if test="${validUser.login != 'admin'}">
+<c:choose><c:when test="${validUser.login != 'admin'}">
 <sql:query var="prefs">select ctx,lang,url,slidetime,macsearch from usercookie where login = '${validUser.login}'</sql:query>
 <c:choose><c:when test="${prefs.rowCount == 0}"><h2><fmt:message key="userprefs.undefined" /></h2></c:when>
 <c:otherwise>
@@ -58,5 +58,9 @@
 </tr></tbody></table>
 </c:forEach>
 <div id="dlgcontent"/>
-</c:if>
+</c:when>
+<c:otherwise>
+<h2><fmt:message key="userprefs.noadminchange" /></h2>
+</c:otherwise>
+</c:choose>
 </body></html>
