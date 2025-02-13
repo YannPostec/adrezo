@@ -14,6 +14,14 @@
 		<c:set var="message"><valid>true</valid></c:set>
 		<c:catch var="err">
 			<sql:transaction>
+				<c:choose>
+				<c:when test="${adrezo:envEntry('db_type') == 'oracle'}">
+					<sql:update>alter table auth_ldap modify bindpwd varchar2(512)</sql:update>
+				</c:when>
+				<c:when test="${adrezo:envEntry('db_type') == 'postgresql'}">
+					<sql:update>alter table auth_ldap alter column bindpwd type varchar(512)</sql:update>
+				</c:when>
+				</c:choose>
 				<sql:update>update usercookie set mail='240' where login='admin'</sql:update>
 			</sql:transaction>
 		</c:catch>

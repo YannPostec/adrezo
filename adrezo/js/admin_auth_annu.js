@@ -127,6 +127,8 @@ function ConfigSave() {
 	if (newldap == "0") {
 		if (ldap_bindpwd != ldap_bindpwd_confirm) { StrAlert += "- "+langdata.pwdmatch+"<br />"; }
 		if (!ldap_bindpwd) { StrAlert += "- Bind Password: "+langdata.verifnotnull+"<br />"; }
+	} else {
+		if ((ldap_bindpwd || ldap_bindpwd_confirm) && ldap_bindpwd != ldap_bindpwd_confirm) { StrAlert += "- "+langdata.pwdmatch+"<br />"; }
 	}
 	if (!ldap_server) { StrAlert += "- Server: "+langdata.verifnotnull+"<br />"; }
 	if (!ldap_binddn) { StrAlert += "- Bind DN: "+langdata.verifnotnull+"<br />"; } 

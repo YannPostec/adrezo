@@ -21,7 +21,7 @@
 <sql:query var="ldaps">select server,port,method,basedn,binddn,usrdn,usrclass,usrfilter,usrnameattr,grpdn,grpclass,grpfilter,grpnameattr,grpmemberattr from auth_ldap where id = ${param.id}</sql:query>
 <c:set scope="page" var="ldap" value="${ldaps.rows[0]}" />
 <input type="hidden" id="ldap_id" value="${param.id}" />
-<input type="hidden" id="ldap_new" value="<c:if test="${empty ldap}">0</c:if>" />
+<input type="hidden" id="ldap_new" value="<c:choose><c:when test="${empty ldap}">0</c:when><c:otherwise>1</c:otherwise></c:choose>" />
 <p><b><i>* : <fmt:message key="admin.boxldap.mandatoryfield" /></i></b></p>
 <p><b>* Server : </b><input type="text" size="50" id="ldap_server" value="${ldap.server}" /><br /><i><fmt:message key="admin.boxldap.server" /></i></p>
 <p>Port : <input type="text" size="5" id="ldap_port" value="${ldap.port}" /><br /><i><fmt:message key="admin.boxldap.port" /></i></p>
